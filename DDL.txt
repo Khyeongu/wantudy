@@ -1,0 +1,497 @@
+/*create oracle user
+==================================*/
+sqlplus system/oracle@localhost:1521/xepdb1
+
+create user wantudy 
+identified by wantudy 
+default tablespace users 
+temporary tablespace temp;
+
+alter user wantudy 
+quota unlimited on users;
+
+grant connect, resource to wantudy;
+
+/*create sequence
+=====================================*/
+-- 시퀀스 삭제
+-- 멤버 번호 시퀀스
+DROP SEQUENCE MEMBER_NO_SEQ;
+
+-- 카테고리 번호 시퀀스
+DROP SEQUENCE CATEGORY_NO_SEQ;
+
+-- 채팅 로그 시퀀스
+DROP SEQUENCE CHATTINGLOG_NO_SEQ;
+
+-- 스터디 시퀀스
+DROP SEQUENCE STUDY_NO_SEQ;
+
+-- 역량 단계 시퀀스
+DROP SEQUENCE ABILITYLEVEL_NO_SEQ;
+
+-- 시퀀스 생성
+-- 멤버 번호 시퀀스
+CREATE SEQUENCE MEMBER_NO_SEQ
+    START WITH 1
+    INCREMENT BY 1
+	NOCACHE;
+	
+-- 카테고리 번호 시퀀스
+CREATE SEQUENCE CATEGORY_NO_SEQ
+    START WITH 1
+    INCREMENT BY 1
+	NOCACHE;
+	
+-- 채팅 로그 시퀀스
+CREATE SEQUENCE CHATTINGLOG_NO_SEQ
+    START WITH 1
+    INCREMENT BY 1
+	NOCACHE;
+	
+-- 스터디 시퀀스
+CREATE SEQUENCE STUDY_NO_SEQ
+    START WITH 1
+    INCREMENT BY 1
+	NOCACHE;
+	
+-- 역량 단계 시퀀스
+CREATE SEQUENCE ABILITYLEVEL_NO_SEQ
+    START WITH 1
+    INCREMENT BY 1
+	NOCACHE;
+/*create table
+===================================*/
+-- 테이블, 제약조건 및 뷰 삭제
+DROP TABLE ABILITYLEVEL     CASCADE CONSTRAINTS PURGE;
+DROP TABLE CATEGORY  		CASCADE CONSTRAINTS PURGE;
+DROP TABLE CHATTINGLOG     	CASCADE CONSTRAINTS PURGE;
+DROP TABLE ENROLL       	CASCADE CONSTRAINTS PURGE;
+DROP TABLE INTEREST     	CASCADE CONSTRAINTS PURGE;
+DROP TABLE MEMBER    		CASCADE CONSTRAINTS PURGE;
+DROP TABLE MEMBERABILITY    CASCADE CONSTRAINTS PURGE;
+DROP TABLE REQUIREMENT     	CASCADE CONSTRAINTS PURGE;
+DROP TABLE STUDY     		CASCADE CONSTRAINTS PURGE;
+
+
+
+-- 테이블 생성 
+-- ABILITYLEVEL 테이블 생성 
+CREATE TABLE ABILITYLEVEL (
+      no     NUMBER NOT NULL -- 역량 단계 번호
+    , name   VARCHAR2(50)    -- 역량 이름
+    , score  VARCHAR2(50)    -- 역량 단계
+/*****************************************************************************
+      TABLE NAME  	: ABILITYLEVEL
+      DESCRIPTION   : 역량단계를 저장하는 테이블
+      PARAMETERS    : no     -- 역량 단계 번호
+					  name	 -- 역량 이름
+					  score  -- 역량 단계
+      특이사항       :
+  ----------------------------------------------------------------------------
+        DATE       AUTHOR           DESCRIPTION
+  ----------------------------------------------------------------------------
+     2021-05-20    KSY              최초 작성
+	 2021-05-20    KHG              최초 작성
+	 2021-05-20    LYL              최초 작성
+
+******************************************************************************/
+);
+
+ALTER TABLE ABILITYLEVEL ADD CONSTRAINT abilitylevel_pk PRIMARY KEY ( no );
+
+
+-- CATEGORY 테이블 생성 
+CREATE TABLE CATEGORY (
+      no    NUMBER NOT NULL        -- 카테고리 번호
+    , name  VARCHAR2(50) NOT NULL  -- 카테고리 이름
+/*****************************************************************************
+      TABLE NAME  	: CATEGORY
+      DESCRIPTION   : 카테고리를 저장하는 테이블
+      PARAMETERS    : no     -- 카테고리 번호
+					  name	 -- 카테고리 이름
+      특이사항       :
+  ----------------------------------------------------------------------------
+        DATE       AUTHOR           DESCRIPTION
+  ----------------------------------------------------------------------------
+     2021-05-20    KSY              최초 작성
+	 2021-05-20    KHG              최초 작성
+	 2021-05-20    LYL              최초 작성
+
+******************************************************************************/
+);
+
+ALTER TABLE CATEGORY ADD CONSTRAINT category_pk PRIMARY KEY ( no );
+
+
+-- CHATTINGLOG 테이블 생성 
+CREATE TABLE CHATTINGLOG (
+      no         NUMBER NOT NULL  -- 채팅로그 번호
+    , member_no  NUMBER NOT NULL  -- 채팅 회원 번호
+    , study_no   NUMBER NOT NULL  -- 채팅 스터디 번호
+    , content    CLOB             -- 채팅 내용
+    , time       DATE             -- 채팅 시간
+/*****************************************************************************
+      TABLE NAME  	: CHATTINGLOG
+      DESCRIPTION   : 채팅 기록을 저장하는 테이블
+      PARAMETERS    : no         -- 채팅로그 번호
+					  member_no	 -- 채팅 회원 번호
+					  study_no   -- 채팅 스터디 번호
+					  content    -- 채팅 내용
+					  time       -- 채팅 시간
+      특이사항       :
+  ----------------------------------------------------------------------------
+        DATE       AUTHOR           DESCRIPTION
+  ----------------------------------------------------------------------------
+     2021-05-20    KSY              최초 작성
+	 2021-05-20    KHG              최초 작성
+	 2021-05-20    LYL              최초 작성
+
+******************************************************************************/
+);
+
+ALTER TABLE CHATTINGLOG ADD CONSTRAINT chattinglog_pk PRIMARY KEY ( no );
+
+
+-- ENROLL 테이블 생성 
+CREATE TABLE ENROLL (
+      member_no  NUMBER NOT NULL  -- 회원 번호
+    , study_no   NUMBER NOT NULL  -- 스터디 번호
+    , status     VARCHAR2(20)     -- 회원 상태
+    , skip       VARCHAR2(20)     -- skip 여부
+/*****************************************************************************
+      TABLE NAME  	: ENROLL
+      DESCRIPTION   : 스터디에 대한 회원 상태를 저장하는 테이블
+      PARAMETERS    : member_no  -- 회원 번호
+					  study_no	 -- 스터디 번호
+					  status     -- 회원 상태
+					  skip       -- skip 여부
+      특이사항       :
+  ----------------------------------------------------------------------------
+        DATE       AUTHOR           DESCRIPTION
+  ----------------------------------------------------------------------------
+     2021-05-20    KSY              최초 작성
+	 2021-05-20    KHG              최초 작성
+	 2021-05-20    LYL              최초 작성
+
+******************************************************************************/
+);
+
+ALTER TABLE ENROLL ADD CONSTRAINT enroll_pk PRIMARY KEY ( member_no,
+                                                          study_no );
+
+
+-- INTEREST 테이블 생성 
+CREATE TABLE INTEREST (
+      member_no    NUMBER NOT NULL  -- 회원 번호
+    , category_no  NUMBER NOT NULL  -- 카테고리 번호
+/*****************************************************************************
+      TABLE NAME  	: INTEREST
+      DESCRIPTION   : 회원의 관심분야(category)를 저장하는 테이블
+      PARAMETERS    : member_no      -- 회원 번호
+					  category_no	 -- 카테고리 번호
+      특이사항       :
+  ----------------------------------------------------------------------------
+        DATE       AUTHOR           DESCRIPTION
+  ----------------------------------------------------------------------------
+     2021-05-20    KSY              최초 작성
+	 2021-05-20    KHG              최초 작성
+	 2021-05-20    LYL              최초 작성
+
+******************************************************************************/
+);
+
+ALTER TABLE INTEREST ADD CONSTRAINT interest_pk PRIMARY KEY ( member_no,
+                                                              category_no );
+
+
+-- MEMBER 테이블 생성 
+CREATE TABLE MEMBER (
+      no        NUMBER NOT NULL         -- 회원 번호
+    , id        VARCHAR2(50) NOT NULL   -- 아이디
+    , password  VARCHAR2(50) NOT NULL   -- 비밀번호
+    , name      VARCHAR2(50) NOT NULL   -- 이름
+/*****************************************************************************
+      TABLE NAME  	: MEMBER
+      DESCRIPTION   : 회원 정보를 저장하는 테이블
+      PARAMETERS    : no        -- 회원 번호
+					  id	    -- 아이디
+					  password	-- 비밀번호
+					  name	    -- 이름
+      특이사항       :
+  ----------------------------------------------------------------------------
+        DATE       AUTHOR           DESCRIPTION
+  ----------------------------------------------------------------------------
+     2021-05-20    KSY              최초 작성
+	 2021-05-20    KHG              최초 작성
+	 2021-05-20    LYL              최초 작성
+
+******************************************************************************/
+);
+
+ALTER TABLE MEMBER ADD CONSTRAINT member_pk PRIMARY KEY ( no );
+
+
+-- MEMBERABILITY 테이블 생성 
+CREATE TABLE MEMBERABILITY (
+      member_no        NUMBER NOT NULL   -- 회원 번호
+    , abilitylevel_no  NUMBER NOT NULL   -- 역량 단계 번호
+/*****************************************************************************
+      TABLE NAME  	: MEMBERABILITY
+      DESCRIPTION   : 회원의 역량을 저장하는 테이블
+      PARAMETERS    : member_no           -- 회원 번호
+					  abilitylevel_no	  -- 역량 단계 번호
+      특이사항       :
+  ----------------------------------------------------------------------------
+        DATE       AUTHOR           DESCRIPTION
+  ----------------------------------------------------------------------------
+     2021-05-20    KSY              최초 작성
+	 2021-05-20    KHG              최초 작성
+	 2021-05-20    LYL              최초 작성
+
+******************************************************************************/
+);
+
+ALTER TABLE MEMBERABILITY ADD CONSTRAINT memberability_pk PRIMARY KEY ( member_no,
+                                                                        abilitylevel_no );
+
+
+-- REQUIREMENT 테이블 생성 
+CREATE TABLE REQUIREMENT (
+      study_no         NUMBER NOT NULL   -- 스터디 번호
+    , abilitylevel_no  NUMBER NOT NULL   -- 역량 단계 번호
+/*****************************************************************************
+      TABLE NAME  	: REQUIREMENT
+      DESCRIPTION   : 스터디 참여 역량 조건을 저장하는 테이블
+      PARAMETERS    : study_no           -- 스터디 번호
+					  abilitylevel_no	 -- 역량 단계 번호
+      특이사항       :
+  ----------------------------------------------------------------------------
+        DATE       AUTHOR           DESCRIPTION
+  ----------------------------------------------------------------------------
+     2021-05-20    KSY              최초 작성
+	 2021-05-20    KHG              최초 작성
+	 2021-05-20    LYL              최초 작성
+
+******************************************************************************/
+);
+
+ALTER TABLE REQUIREMENT ADD CONSTRAINT requirement_pk PRIMARY KEY ( abilitylevel_no,
+                                                                    study_no );
+
+
+-- STUDY 테이블 생성 
+CREATE TABLE STUDY (
+      no           NUMBER NOT NULL          -- 스터디 번호
+    , name         VARCHAR2(50) NOT NULL    -- 이름
+    , content      CLOB                     -- 내용
+    , startdate    DATE                     -- 시작 날짜
+    , enddate      DATE                     -- 종료 날짜
+    , capacity     NUMBER                   -- 수용 인원
+    , category_no  NUMBER NOT NULL          -- 카테고리 번호
+    , member_no    NUMBER NOT NULL          -- 스터디 장 회원 번호
+/*****************************************************************************
+      TABLE NAME  	: STUDY
+      DESCRIPTION   : 스터디 정보를 저장하는 테이블
+      PARAMETERS    : no           -- 스터디 번호
+					  name	 -- 이름
+					  content	     -- 내용
+					  startdate	     -- 시작 날짜
+					  enddate	     -- 종료 날짜
+					  capacity	     -- 수용 인원
+					  category_no	 -- 카테고리 번호
+					  member_no	     -- 스터디 장 회원 번호
+      특이사항       :
+  ----------------------------------------------------------------------------
+        DATE       AUTHOR           DESCRIPTION
+  ----------------------------------------------------------------------------
+     2021-05-20    KSY              최초 작성
+	 2021-05-20    KHG              최초 작성
+	 2021-05-20    LYL              최초 작성
+
+******************************************************************************/
+);
+
+ALTER TABLE STUDY ADD CONSTRAINT study_pk PRIMARY KEY ( no );
+
+
+
+-- Foreighn Key
+ALTER TABLE CHATTINGLOG
+    ADD CONSTRAINT chattinglog_member_fk FOREIGN KEY ( member_no )
+        REFERENCES MEMBER ( no );
+
+ALTER TABLE CHATTINGLOG
+    ADD CONSTRAINT chattinglog_study_fk FOREIGN KEY ( study_no )
+        REFERENCES STUDY ( no );
+
+ALTER TABLE ENROLL
+    ADD CONSTRAINT enroll_member_fk FOREIGN KEY ( member_no )
+        REFERENCES MEMBER ( no );
+
+ALTER TABLE ENROLL
+    ADD CONSTRAINT enroll_study_fk FOREIGN KEY ( study_no )
+        REFERENCES STUDY ( no );
+
+ALTER TABLE INTEREST
+    ADD CONSTRAINT interest_category_fk FOREIGN KEY ( category_no )
+        REFERENCES CATEGORY ( no );
+
+ALTER TABLE INTEREST
+    ADD CONSTRAINT interest_member_fk FOREIGN KEY ( member_no )
+        REFERENCES MEMBER ( no );
+
+ALTER TABLE MEMBERABILITY
+    ADD CONSTRAINT memberability_abilitylevel_fk FOREIGN KEY ( abilitylevel_no )
+        REFERENCES ABILITYLEVEL ( no );
+
+ALTER TABLE MEMBERABILITY
+    ADD CONSTRAINT memberability_member_fk FOREIGN KEY ( member_no )
+        REFERENCES MEMBER ( no );
+
+ALTER TABLE REQUIREMENT
+    ADD CONSTRAINT requirement_abilitylevel_fk FOREIGN KEY ( abilitylevel_no )
+        REFERENCES ABILITYLEVEL ( no );
+
+ALTER TABLE REQUIREMENT
+    ADD CONSTRAINT requirement_study_fk FOREIGN KEY ( study_no )
+        REFERENCES STUDY ( no );
+
+ALTER TABLE STUDY
+    ADD CONSTRAINT study_category_fk FOREIGN KEY ( category_no )
+        REFERENCES CATEGORY ( no );
+
+ALTER TABLE STUDY
+    ADD CONSTRAINT study_member_fk FOREIGN KEY ( member_no )
+        REFERENCES MEMBER ( no );
+
+
+
+/*insert abilitylevel
+=====================================*/
+insert into abilitylevel (no, name, score) values (1, 'python', 1);
+insert into abilitylevel (no, name, score) values (2, 'python', 2);
+insert into abilitylevel (no, name, score) values (3, 'python', 3);
+insert into abilitylevel (no, name, score) values (4, 'python', 4);
+insert into abilitylevel (no, name, score) values (5, 'python', 5);
+insert into abilitylevel (no, name, score) values (6, 'java', 1);
+insert into abilitylevel (no, name, score) values (7, 'java', 2);
+insert into abilitylevel (no, name, score) values (8, 'java', 3);
+insert into abilitylevel (no, name, score) values (9, 'java', 4);
+insert into abilitylevel (no, name, score) values (10, 'java', 5);
+insert into abilitylevel (no, name, score) values (11, 'c', 1);
+insert into abilitylevel (no, name, score) values (12, 'c', 2);
+insert into abilitylevel (no, name, score) values (13, 'c', 3);
+insert into abilitylevel (no, name, score) values (14, 'c', 4);
+insert into abilitylevel (no, name, score) values (15, 'c', 5);
+insert into abilitylevel (no, name, score) values (16, 'cpp', 1);
+insert into abilitylevel (no, name, score) values (17, 'cpp', 2);
+insert into abilitylevel (no, name, score) values (18, 'cpp', 3);
+insert into abilitylevel (no, name, score) values (19, 'cpp', 4);
+insert into abilitylevel (no, name, score) values (20, 'cpp', 5);
+insert into abilitylevel (no, name, score) values (21, 'javascript', 1);
+insert into abilitylevel (no, name, score) values (22, 'javascript', 2);
+insert into abilitylevel (no, name, score) values (23, 'javascript', 3);
+insert into abilitylevel (no, name, score) values (24, 'javascript', 4);
+insert into abilitylevel (no, name, score) values (25, 'javascript', 5);
+insert into abilitylevel (no, name, score) values (26, 'django', 1);
+insert into abilitylevel (no, name, score) values (27, 'django', 2);
+insert into abilitylevel (no, name, score) values (28, 'django', 3);
+insert into abilitylevel (no, name, score) values (29, 'django', 4);
+insert into abilitylevel (no, name, score) values (30, 'django', 5);
+insert into abilitylevel (no, name, score) values (31, 'flask', 1);
+insert into abilitylevel (no, name, score) values (32, 'flask', 2);
+insert into abilitylevel (no, name, score) values (33, 'flask', 3);
+insert into abilitylevel (no, name, score) values (34, 'flask', 4);
+insert into abilitylevel (no, name, score) values (35, 'flask', 5);
+insert into abilitylevel (no, name, score) values (36, 'spring', 1);
+insert into abilitylevel (no, name, score) values (37, 'spring', 2);
+insert into abilitylevel (no, name, score) values (38, 'spring', 3);
+insert into abilitylevel (no, name, score) values (39, 'spring', 4);
+insert into abilitylevel (no, name, score) values (40, 'spring', 5);
+insert into abilitylevel (no, name, score) values (41, 'nodeJs', 1);
+insert into abilitylevel (no, name, score) values (42, 'nodeJs', 2);
+insert into abilitylevel (no, name, score) values (43, 'nodeJs', 3);
+insert into abilitylevel (no, name, score) values (44, 'nodeJs', 4);
+insert into abilitylevel (no, name, score) values (45, 'nodeJs', 5);
+insert into abilitylevel (no, name, score) values (46, 'android', 1);
+insert into abilitylevel (no, name, score) values (47, 'android', 2);
+insert into abilitylevel (no, name, score) values (48, 'android', 3);
+insert into abilitylevel (no, name, score) values (49, 'android', 4);
+insert into abilitylevel (no, name, score) values (50, 'android', 5);
+insert into abilitylevel (no, name, score) values (51, 'ios', 1);
+insert into abilitylevel (no, name, score) values (52, 'ios', 2);
+insert into abilitylevel (no, name, score) values (53, 'ios', 3);
+insert into abilitylevel (no, name, score) values (54, 'ios', 4);
+insert into abilitylevel (no, name, score) values (55, 'ios', 5);
+insert into abilitylevel (no,name,score) values (56,'algorithm',1);
+insert into abilitylevel (no,name,score) values (57,'algorithm',2);
+insert into abilitylevel (no,name,score) values (58,'algorithm',3);
+insert into abilitylevel (no,name,score) values (59,'algorithm',4);
+insert into abilitylevel (no,name,score) values (60,'algorithm',5);
+insert into abilitylevel (no,name,score) values (61,'dataStructure',1);
+insert into abilitylevel (no,name,score) values (62,'dataStructure',2);
+insert into abilitylevel (no,name,score) values (63,'dataStructure',3);
+insert into abilitylevel (no,name,score) values (64,'dataStructure',4);
+insert into abilitylevel (no,name,score) values (65,'dataStructure',5);
+insert into abilitylevel (no,name,score) values (66,'machinLearning',1);
+insert into abilitylevel (no,name,score) values (67,'machinLearning',2);
+insert into abilitylevel (no,name,score) values (68,'machinLearning',3);
+insert into abilitylevel (no,name,score) values (69,'machinLearning',4);
+insert into abilitylevel (no,name,score) values (70,'machinLearning',5);
+insert into abilitylevel (no,name,score) values (71,'opratingSystem',1);
+insert into abilitylevel (no,name,score) values (72,'opratingSystem',2);
+insert into abilitylevel (no,name,score) values (73,'opratingSystem',3);
+insert into abilitylevel (no,name,score) values (74,'opratingSystem',4);
+insert into abilitylevel (no,name,score) values (75,'opratingSystem',5);
+insert into abilitylevel (no,name,score) values (76,'computerArchitecture',1);
+insert into abilitylevel (no,name,score) values (77,'computerArchitecture',2);
+insert into abilitylevel (no,name,score) values (78,'computerArchitecture',3);
+insert into abilitylevel (no,name,score) values (79,'computerArchitecture',4);
+insert into abilitylevel (no,name,score) values (80,'computerArchitecture',5);
+insert into abilitylevel (no,name,score) values (81,'designPattern',1);
+insert into abilitylevel (no,name,score) values (82,'designPattern',2);
+insert into abilitylevel (no,name,score) values (83,'designPattern',3);
+insert into abilitylevel (no,name,score) values (84,'designPattern',4);
+insert into abilitylevel (no,name,score) values (85,'designPattern',5);
+insert into abilitylevel (no,name,score) values (86,'sequrity',1);
+insert into abilitylevel (no,name,score) values (87,'sequrity',2);
+insert into abilitylevel (no,name,score) values (88,'sequrity',3);
+insert into abilitylevel (no,name,score) values (89,'sequrity',4);
+insert into abilitylevel (no,name,score) values (90,'sequrity',5);
+insert into abilitylevel (no,name,score) values (91,'network',1);
+insert into abilitylevel (no,name,score) values (92,'network',2);
+insert into abilitylevel (no,name,score) values (93,'network',3);
+insert into abilitylevel (no,name,score) values (94,'network',4);
+insert into abilitylevel (no,name,score) values (95,'network',5);
+insert into abilitylevel (no,name,score) values (96,'mysql',1);
+insert into abilitylevel (no,name,score) values (97,'mysql',2);
+insert into abilitylevel (no,name,score) values (98,'mysql',3);
+insert into abilitylevel (no,name,score) values (99,'mysql',4);
+insert into abilitylevel (no,name,score) values (100,'mysql',5);
+insert into abilitylevel (no,name,score) values (101,'oracle',1);
+insert into abilitylevel (no,name,score) values (102,'oracle',2);
+insert into abilitylevel (no,name,score) values (103,'oracle',3);
+insert into abilitylevel (no,name,score) values (104,'oracle',4);
+insert into abilitylevel (no,name,score) values (105,'oracle',5);
+insert into abilitylevel (no,name,score) values (106,'mongodb',1);
+insert into abilitylevel (no,name,score) values (107,'mongodb',2);
+insert into abilitylevel (no,name,score) values (108,'mongodb',3);
+insert into abilitylevel (no,name,score) values (109,'mongodb',4);
+insert into abilitylevel (no,name,score) values (110,'mongodb',5);
+
+/*insert category
+=====================================*/
+insert into category (no, name) values (1, '네트워크');
+insert into category (no, name) values (2, '디자인패턴');
+insert into category (no, name) values (3, '머신러닝');
+insert into category (no, name) values (4, '보안');
+insert into category (no, name) values (5, '알고리즘');
+insert into category (no, name) values (6, '안드로이드');
+insert into category (no, name) values (7, '운영체제');
+insert into category (no, name) values (8, '웹');
+insert into category (no, name) values (9, '자료구조');
+insert into category (no, name) values (10, '프로그래밍 언어');
+insert into category (no, name) values (11, '컴퓨터구조');
+insert into category (no, name) values (12, 'IOS');
+insert into category (no, name) values (13, 'DB');

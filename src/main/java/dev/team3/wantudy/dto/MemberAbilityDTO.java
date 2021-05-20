@@ -9,5 +9,5 @@ import lombok.ToString;
 @ToString
 public class MemberAbilityDTO {
 	int member_no;
-	int ability_no;
+	int abilityLevel_no;
 }

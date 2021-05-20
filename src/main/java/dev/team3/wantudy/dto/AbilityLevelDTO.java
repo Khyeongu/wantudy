@@ -8,7 +8,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class AbilityLevelDTO {
-	int ability_no;
-	String ability_name;
-	int ability_score;
+	int no;
+	String name;
+	int score;
 }
