@@ -1,6 +1,6 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8" session="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="context" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
@@ -15,17 +15,31 @@
 <title>Ogani | Template</title>
 
 <!-- Google Font -->
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap"
+	rel="stylesheet">
 
 <!-- Css Styles -->
-<link rel="stylesheet" href="${context}/resources/css/bootstrap.min.css" type="text/css">
-<link rel="stylesheet" href="${context}/resources/css/font-awesome.min.css" type="text/css">
-<link rel="stylesheet" href="${context}/resources/css/elegant-icons.css" type="text/css">
-<link rel="stylesheet" href="${context}/resources/css/nice-select.css" type="text/css">
-<link rel="stylesheet" href="${context}/resources/css/jquery-ui.min.css" type="text/css">
-<link rel="stylesheet" href="${context}/resources/css/owl.carousel.min.css" type="text/css">
-<link rel="stylesheet" href="${context}/resources/css/slicknav.min.css" type="text/css">
-<link rel="stylesheet" href="${context}/resources/css/style.css" type="text/css">
+<link rel="stylesheet" href="${context}/resources/css/bootstrap.min.css"
+	type="text/css">
+<link rel="stylesheet"
+	href="${context}/resources/css/font-awesome.min.css" type="text/css">
+<link rel="stylesheet" href="${context}/resources/css/elegant-icons.css"
+	type="text/css">
+<link rel="stylesheet" href="${context}/resources/css/nice-select.css"
+	type="text/css">
+<link rel="stylesheet" href="${context}/resources/css/jquery-ui.min.css"
+	type="text/css">
+<link rel="stylesheet"
+	href="${context}/resources/css/owl.carousel.min.css" type="text/css">
+<link rel="stylesheet" href="${context}/resources/css/slicknav.min.css"
+	type="text/css">
+<link rel="stylesheet" href="${context}/resources/css/style.css"
+	type="text/css">
+<link rel="stylesheet" href="${context}/resources/css/dropdown.css"
+	type="text/css">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
 </head>
 
 <body>
@@ -141,7 +155,8 @@
 	<!-- Hero Section End -->
 
 	<!-- Breadcrumb Section Begin -->
-	<section class="breadcrumb-section set-bg" data-setbg="${context}/resources/img/breadcrumb.jpg">
+	<section class="breadcrumb-section set-bg"
+		data-setbg="${context}/resources/img/breadcrumb.jpg">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 text-center">
@@ -161,8 +176,27 @@
 	<section class="blog spad">
 		<div class="container">
 			<div class="row">
+				<div class="col-lg-3 col-md-5">
+					<div class="sidebar">
+						<div class="sidebar__item">
+							<h4>My page</h4>
+							<ul>
+								<li><a href="#">내 정보</a></li>
+								<li><a href="#">지원한 스터디</a></li>
+								<li><a class="dropbox" href="#">내 스터디 관리<i
+										class="bi small bi-caret-down-fill"></i></a>
+									<ul class="submenu collapse">
+										<li><a class="nav-link" href="#">Submenu item 4 </a></li>
+										<li><a class="nav-link" href="#">Submenu item 5 </a></li>
+										<li><a class="nav-link" href="#">Submenu item 6 </a></li>
+										<li><a class="nav-link" href="#">Submenu item 7 </a></li>
+									</ul></li>
+						</div>
+						</ul>
+					</div>
+				</div>
 
-				<div class="col-lg-12 col-md-7">
+				<div class="col-lg-9 col-md-7">
 					<div class="row">
 						<div class="col-lg-4 col-md-4 col-sm-4">
 							<div class="blog__item">
@@ -177,8 +211,10 @@
 									<h5>
 										<a href="#">6 ways to prepare breakfast for 30</a>
 									</h5>
-									<p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat</p>
-									<a href="#" class="blog__btn">READ MORE <span class="arrow_right"></span></a>
+									<p>Sed quia non numquam modi tempora indunt ut labore et
+										dolore magnam aliquam quaerat</p>
+									<a href="#" class="blog__btn">READ MORE <span
+										class="arrow_right"></span></a>
 								</div>
 							</div>
 						</div>
@@ -195,8 +231,10 @@
 									<h5>
 										<a href="#">Visit the clean farm in the US</a>
 									</h5>
-									<p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat</p>
-									<a href="#" class="blog__btn">READ MORE <span class="arrow_right"></span></a>
+									<p>Sed quia non numquam modi tempora indunt ut labore et
+										dolore magnam aliquam quaerat</p>
+									<a href="#" class="blog__btn">READ MORE <span
+										class="arrow_right"></span></a>
 								</div>
 							</div>
 						</div>
@@ -213,8 +251,10 @@
 									<h5>
 										<a href="#">Cooking tips make cooking simple</a>
 									</h5>
-									<p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat</p>
-									<a href="#" class="blog__btn">READ MORE <span class="arrow_right"></span></a>
+									<p>Sed quia non numquam modi tempora indunt ut labore et
+										dolore magnam aliquam quaerat</p>
+									<a href="#" class="blog__btn">READ MORE <span
+										class="arrow_right"></span></a>
 								</div>
 							</div>
 						</div>
@@ -231,8 +271,10 @@
 									<h5>
 										<a href="#">Cooking tips make cooking simple</a>
 									</h5>
-									<p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat</p>
-									<a href="#" class="blog__btn">READ MORE <span class="arrow_right"></span></a>
+									<p>Sed quia non numquam modi tempora indunt ut labore et
+										dolore magnam aliquam quaerat</p>
+									<a href="#" class="blog__btn">READ MORE <span
+										class="arrow_right"></span></a>
 								</div>
 							</div>
 						</div>
@@ -247,10 +289,13 @@
 										<li><i class="fa fa-comment-o"></i> 5</li>
 									</ul>
 									<h5>
-										<a href="#">The Moment You Need To Remove Garlic From The Menu</a>
+										<a href="#">The Moment You Need To Remove Garlic From The
+											Menu</a>
 									</h5>
-									<p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat</p>
-									<a href="#" class="blog__btn">READ MORE <span class="arrow_right"></span></a>
+									<p>Sed quia non numquam modi tempora indunt ut labore et
+										dolore magnam aliquam quaerat</p>
+									<a href="#" class="blog__btn">READ MORE <span
+										class="arrow_right"></span></a>
 								</div>
 							</div>
 						</div>
@@ -267,8 +312,10 @@
 									<h5>
 										<a href="#">Cooking tips make cooking simple</a>
 									</h5>
-									<p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat</p>
-									<a href="#" class="blog__btn">READ MORE <span class="arrow_right"></span></a>
+									<p>Sed quia non numquam modi tempora indunt ut labore et
+										dolore magnam aliquam quaerat</p>
+									<a href="#" class="blog__btn">READ MORE <span
+										class="arrow_right"></span></a>
 								</div>
 							</div>
 						</div>
@@ -320,13 +367,17 @@
 				<div class="col-lg-4 col-md-12">
 					<div class="footer__widget">
 						<h6>Join Our Newsletter Now</h6>
-						<p>Get E-mail updates about our latest shop and special offers.</p>
+						<p>Get E-mail updates about our latest shop and special
+							offers.</p>
 						<form action="#">
 							<input type="text" placeholder="Enter your mail">
 							<button type="submit" class="site-btn">Subscribe</button>
 						</form>
 						<div class="footer__widget__social">
-							<a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i class="fa fa-instagram"></i></a> <a href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i class="fa fa-pinterest"></i></a>
+							<a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i
+								class="fa fa-instagram"></i></a> <a href="#"><i
+								class="fa fa-twitter"></i></a> <a href="#"><i
+								class="fa fa-pinterest"></i></a>
 						</div>
 					</div>
 				</div>
@@ -341,7 +392,9 @@
 								<script>
 									document.write(new Date().getFullYear());
 								</script>
-								All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+								All rights reserved | This template is made with <i
+									class="fa fa-heart" aria-hidden="true"></i> by <a
+									href="https://colorlib.com" target="_blank">Colorlib</a>
 								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 							</p>
 						</div>
@@ -364,6 +417,7 @@
 	<script src="${context}/resources/js/mixitup.min.js"></script>
 	<script src="${context}/resources/js/owl.carousel.min.js"></script>
 	<script src="${context}/resources/js/main.js"></script>
+	<script src="${context}/resources/js/dropbox.js"></script>
 
 
 
