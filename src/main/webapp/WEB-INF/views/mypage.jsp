@@ -181,18 +181,9 @@
 						<div class="sidebar__item">
 							<h4>My page</h4>
 							<ul>
-								<li><a href="#">Fresh Meat</a></li>
-								<li><a href="#">Vegetables</a></li>
-								<li><a href="#">Fruit & Nut Gifts</a></li>
-								<li><a href="#">Fresh Berries</a></li>
-								<li><a href="#">Ocean Foods</a></li>
-								<li><a href="#">Butter & Eggs</a></li>
-								<li><a href="#">Fastfood</a></li>
-								<li><a href="#">Fresh Onion</a></li>
-								<li><a href="#">Papayaya & Crisps</a></li>
-								<li><a href="#">Oatmeal</a></li>
-								<li>
-								<li><a class="dropbox" href="#"> More menus <i
+								<li><a href="#">내 정보</a></li>
+								<li><a href="#">지원한 스터디</a></li>
+								<li><a class="dropbox" href="#">내 스터디 관리<i
 										class="bi small bi-caret-down-fill"></i></a>
 									<ul class="submenu collapse">
 										<li><a class="nav-link" href="#">Submenu item 4 </a></li>
@@ -200,7 +191,6 @@
 										<li><a class="nav-link" href="#">Submenu item 6 </a></li>
 										<li><a class="nav-link" href="#">Submenu item 7 </a></li>
 									</ul></li>
-								</li>
 						</div>
 						</ul>
 					</div>
