@@ -28,73 +28,130 @@
 <link rel="stylesheet" href="${context}/resources/css/login/style.css">
 
 
+
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 		<div class="container">
-			<a class="navbar-brand" href="index.html"><span>wantudy</span></a>
+			<a class="navbar-brand" href="login"><span class="navbar-name">wantudy</span></a>
 		</div>
 	</nav>
 	<!-- END nav -->
 
-	<div class="hero-wrap js-fullheight" style="background-image: url('images/bg_1.jpg');">
+	<div class="hero-wrap js-fullheight" style="background-image: url('${context}/resources/img/login/login.jpg');">
 		<div class="overlay"></div>
 	</div>
 
 	<section class="ftco-section ftco-no-pb ftco-no-pt">
 		<div class="container">
 			<div class="row">
-				<div class="login-wrap p-4 p-md-5 mb-5">
-					<h3 class="mb-4">Register Now</h3>
-					<form action="#" class="signup-form">
-						<div class="form-group">
-							<label class="label" for="name">Name</label> <input type="text" class="form-control" placeholder="John Doe">
-						</div>
-						<div class="form-group">
-							<label class="label" for="email">ID</label> <input type="text" class="form-control" placeholder="johndoe@gmail.com">
-						</div>
-						<div class="form-group">
-							<label class="label" for="password">Password</label> <input id="password-field" type="password" class="form-control" placeholder="Password">
-						</div>
-						<div class="form-group">
-							<label class="label" for="password">Confirm Password</label> <input id="password-field" type="password" class="form-control" placeholder="Confirm Password">
-						</div>
-						<div class="form-group d-flex justify-content-end mt-4">
-							<button type="submit" class="btn btn-primary submit">
-								<span class="fa fa-paper-plane"></span>
-							</button>
-						</div>
-					</form>
-					<p class="text-center">
-						Already have an account? <a href="#signin">Sign In</a>
-					</p>
+				<div class="col-md-7"></div>
+				<div class="col-md-5 order-md-last">
+					<div class="login-wrap p-4 p-md-5">
+						<h3 class="mb-4">Sign Up</h3>
+						<form action="#" class="signup-form">
+							<div class="form-group">
+								<label class="label" for="name">Name</label> <input type="text" class="form-control" placeholder="Name">
+							</div>
+							<div class="form-group">
+								<label class="label" for="email">ID</label> <input type="text" class="form-control" placeholder="ID">
+							</div>
+							<div class="form-group">
+								<label class="label" for="password">Password</label> <input id="password-field" type="password" class="form-control" placeholder="Password">
+							</div>
+							<div class="form-group">
+								<label class="label" for="password">Confirm Password</label> <input id="password-field" type="password" class="form-control" placeholder="Confirm Password">
+							</div>
+							<div class="form-group d-flex justify-content-end mt-4">
+								<button type="submit" class="btn btn-primary submit">
+									<span class="fa fa-paper-plane"></span>
+								</button>
+							</div>
+						</form>
+						<p class="text-center">
+							Already have an account? <a href="#signin">Sign In</a>
+						</p>
+					</div>
 				</div>
-
-				<div class="mt-5 mb-5"></div>
 			</div>
 		</div>
 	</section>
 
 
-	<footer class="ftco-footer ftco-no-pt">
+	<!-- Footer Section Begin -->
+	<footer class="footer spad">
 		<div class="container">
-			<div class="row mb-5"></div>
 			<div class="row">
-				<div class="col-md-12 text-center">
-
-					<p>
-						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-						Copyright &copy;
-						<script>
-							document.write(new Date().getFullYear());
-						</script>
-						All rights reserved by | <a href="https://github.com/Khyeongu" target="_blank">Kang Hyun Gu</a> | Lim You Rim | <a href="https://github.com/gawibawibo" target="_blank">Kim Seok Yun</a> | <a href="http://www.hyundai-ite.com/index.jsp" target="_blank">Hyundai Project</a>
-						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-					</p>
+				<div class="col-lg-3 col-md-6 col-sm-6">
+					<div class="footer__about">
+						<div class="footer__about__logo">
+							<a href="./index.html"><img src="img/logo.png" alt=""></a>
+						</div>
+						<ul>
+							<li>Address: 60-49 Road 11378 New York</li>
+							<li>Phone: +65 11.188.888</li>
+							<li>Email: hello@colorlib.com</li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
+					<div class="footer__widget">
+						<h6>Useful Links</h6>
+						<ul>
+							<li><a href="#">About Us</a></li>
+							<li><a href="#">About Our Shop</a></li>
+							<li><a href="#">Secure Shopping</a></li>
+							<li><a href="#">Delivery infomation</a></li>
+							<li><a href="#">Privacy Policy</a></li>
+							<li><a href="#">Our Sitemap</a></li>
+						</ul>
+						<ul>
+							<li><a href="#">Who We Are</a></li>
+							<li><a href="#">Our Services</a></li>
+							<li><a href="#">Projects</a></li>
+							<li><a href="#">Contact</a></li>
+							<li><a href="#">Innovation</a></li>
+							<li><a href="#">Testimonials</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-12">
+					<div class="footer__widget">
+						<h6>Join Our Newsletter Now</h6>
+						<p>Get E-mail updates about our latest shop and special offers.</p>
+						<form action="#">
+							<input type="text" placeholder="Enter your mail">
+							<button type="submit" class="site-btn">Subscribe</button>
+						</form>
+						<div class="footer__widget__social">
+							<a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i class="fa fa-instagram"></i></a> <a href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i class="fa fa-pinterest"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="footer__copyright">
+						<div class="footer__copyright__text">
+							<p>
+								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+								Copyright &copy;
+								<script>
+									document.write(new Date().getFullYear());
+								</script>
+								All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+							</p>
+						</div>
+						<div class="footer__copyright__payment">
+							<img src="img/payment-item.png" alt="">
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</footer>
+	<!-- Footer Section End -->
 
 
 
