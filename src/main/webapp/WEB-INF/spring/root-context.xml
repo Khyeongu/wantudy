@@ -18,5 +18,21 @@
 		p:driverClassName="${driver}"
 		p:maximumPoolSize="20"
 		/>
+		
+	
+	
+	<!-- memberDAO start -->
+	<bean
+		id="memberSqlSession" class="org.mybatis.spring.SqlSessionFactoryBean" 
+		p:dataSource-ref="dataSource"
+		p:typeAliasesPackage="dev.team3.wantudy.dto"
+		/> 
+	<bean
+		id="memberDAO" 
+		class="org.mybatis.spring.mapper.MapperFactoryBean" 
+		p:sqlSessionFactory-ref="memberSqlSession"
+		p:mapperInterface="dev.team3.wantudy.dao.MemberDAO"
+		/>
+	<!-- memberDAO end -->
 
 </beans>

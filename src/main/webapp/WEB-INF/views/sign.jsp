@@ -33,7 +33,7 @@
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 		<div class="container">
-			<a class="navbar-brand" href="login"><span class="navbar-name">wantudy</span></a>
+			<a class="navbar-brand" href="sign"><span class="navbar-name">wantudy</span></a>
 		</div>
 	</nav>
 	<!-- END nav -->
@@ -49,18 +49,18 @@
 				<div class="col-md-5 order-md-last">
 					<div class="login-wrap p-4 p-md-5">
 						<h3 class="mb-4">Sign Up</h3>
-						<form action="#" class="signup-form">
+						<form class="signup-form" method="post">
 							<div class="form-group">
-								<label class="label" for="name">Name</label> <input type="text" class="form-control" placeholder="Name">
+								<label class="label" for="name">Name</label> <input type="text" class="form-control" placeholder="Name" name="name" required="required">
 							</div>
 							<div class="form-group">
-								<label class="label" for="email">ID</label> <input type="text" class="form-control" placeholder="ID">
+								<label class="label" for="id">ID</label> <input type="text" class="form-control" placeholder="ID" name="id" required="required">
 							</div>
 							<div class="form-group">
-								<label class="label" for="password">Password</label> <input id="password-field" type="password" class="form-control" placeholder="Password">
+								<label class="label" for="password">Password</label> <input type="password" class="form-control" placeholder="Password" name="password" required="required">
 							</div>
 							<div class="form-group">
-								<label class="label" for="password">Confirm Password</label> <input id="password-field" type="password" class="form-control" placeholder="Confirm Password">
+								<label class="label" for="password">Confirm Password</label> <input type="password" class="form-control" placeholder="Confirm Password" name="confirmPassword" required="required">
 							</div>
 							<div class="form-group d-flex justify-content-end mt-4">
 								<button type="submit" class="btn btn-primary submit">
@@ -69,7 +69,7 @@
 							</div>
 						</form>
 						<p class="text-center">
-							Already have an account? <a href="#signin">Sign In</a>
+							Already have an account? <a href="signin">Sign In</a>
 						</p>
 					</div>
 				</div>
