@@ -1,7 +1,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" session="false"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" session="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="context" value="${pageContext.request.contextPath}" />
+
+
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -40,7 +43,7 @@
 					<div class="col-lg-6">
 						<div class="header__top__left">
 							<ul>
-								<li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
+								<li><i class="fa fa-envelope"></i> ${sessionScope.userInfo.name}(${sessionScope.userInfo.id}) 님 안녕하세요.</li>
 								<li>새로운 스터디와 함께 공부해보세요!</li>
 							</ul>
 						</div>
@@ -49,7 +52,7 @@
 						<div class="header__top__right">
 
 							<div class="header__top__right__auth">
-								<a href="#"><i class="fa fa-user"></i> Logout</a>
+								<a href="logout"><i class="fa fa-user"></i> Logout</a>
 							</div>
 						</div>
 					</div>

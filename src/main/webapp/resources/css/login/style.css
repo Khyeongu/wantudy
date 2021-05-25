@@ -8777,10 +8777,10 @@ h1, h2, h3, h4, h5,
     
     
     
-    
     /* signin.jsp 's signin form start
     Author : KSY    
     */
+ 
     .signin-wrap {
   position: relative;
   background: #fff;
@@ -8844,7 +8844,7 @@ h1, h2, h3, h4, h5,
     .signin-wrap .form-control:-moz-placeholder {
       /* Firefox 18- */
       color: rgba(0, 0, 0, 0.8) !important; }
-    .signin-wrap .form-control:focus, .login-wrap .form-control:active {
+    .signin-wrap .form-control:focus, .signin-wrap .form-control:active {
       outline: none !important;
       -webkit-box-shadow: none;
       box-shadow: none;
@@ -8855,6 +8855,7 @@ h1, h2, h3, h4, h5,
     /* signin.jsp 's sign in form end*/
     
     
+   
     
     
     

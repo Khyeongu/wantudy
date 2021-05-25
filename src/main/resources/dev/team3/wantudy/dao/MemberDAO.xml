@@ -6,8 +6,17 @@
 <mapper namespace="dev.team3.wantudy.dao.MemberDAO">
 
 	<select id="signup" parameterType="MemberDTO">
-		insert into member (no, id, password, name)
-		values (member_no_seq.nextval, #{id}, #{password}, #{name})
+		insert into member (no, id,
+		password, name)
+		values (member_no_seq.nextval, #{id}, #{password},
+		#{name})
+	</select>
+
+	<select id="getUser" parameterType="MemberDTO"
+		resultType="MemberDTO">
+		select no, id, password, name
+		from member
+		where id=#{id} and password=#{password}
 	</select>
 
 </mapper>

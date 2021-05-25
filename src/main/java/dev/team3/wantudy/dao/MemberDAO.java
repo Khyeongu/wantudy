@@ -8,4 +8,6 @@ public interface MemberDAO {
 
 	void signup(MemberDTO memberDTO) throws SQLException;
 
+	MemberDTO getUser(MemberDTO memberDTO) throws SQLException;
+
 }
