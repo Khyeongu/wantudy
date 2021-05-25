@@ -2,6 +2,9 @@ package dev.team3.wantudy.dto;
 
 import java.sql.Date;
 
+import lombok.Data;
+
+@Data
 public class StudyDTO {
 	int no;
 	String name;

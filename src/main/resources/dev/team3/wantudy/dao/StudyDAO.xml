@@ -5,8 +5,8 @@
 
 <mapper namespace="dev.team3.wantudy.dao.StudyDAO">
 	<select id="getStudy" parameterType="int" resultType="StudyDTO">
-		select * 
+		select no, name 
 		from study
-		where study_no = #{study_no}
+		where no = #{study_no}
 	</select>
 </mapper>
