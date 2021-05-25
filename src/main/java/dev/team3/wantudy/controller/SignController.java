@@ -34,7 +34,7 @@ public class SignController {
 	@PostMapping(value = { "", "/sign" })
 	public ModelAndView sign(@ModelAttribute MemberDTO memberDTO, HttpSession session, HttpServletRequest request) {
 
-		if (memberDTO.getPassword().equals(memberDTO.getConfirmPassword())) {
+		
 			try {
 				signService.signup(memberDTO);
 				MemberDTO userInfo = signService.getUser(memberDTO);
@@ -50,12 +50,7 @@ public class SignController {
 				mav.addObject("url", "javascript:history.back();");
 				return mav;
 			}
-		} else {
-			ModelAndView mav = new ModelAndView("result");
-			mav.addObject("msg", "비밀번호와 비밀번호 확인이 일치하지 않습니다.");
-			mav.addObject("url", "javascript:history.back();");
-			return mav;
-		}
+		
 
 	}
 
