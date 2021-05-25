@@ -29,6 +29,50 @@
 /*----------------------------------------*/
 /* Template default CSS
 /*----------------------------------------*/
+.memberinfo form button{
+	font-size: 13px;
+	border-radius: 5px;
+}
+.memberinfo form input {
+	    width: 100%;
+    font-size: 16px;
+    padding-left: 20px;
+    color: #1c1c1c;
+    height: 46px;
+    border: 1px solid #ededed;
+}
+
+.memberinfo form h4{
+	font-size: 20px;
+	margin-top: 20px;
+	margin-bottom: 5px;
+}
+
+.navbar-brand {
+	color: #7fad39;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 1.2;
+    background: #ffffff;
+    padding: 0 20px;
+    background: #ffffff;
+    background: -moz-linear-gradient(-45deg, #7fad39 0%, #ffffff 100%);
+    background: -webkit-gradient(left top, right bottom, color-stop(0%, #7fad39), color-stop(100%, #ffffff));
+    background: -webkit-linear-gradient(
+-45deg
+, #7fad39 0%, #ffffff 100%);
+    background: -o-linear-gradient(-45deg, #7fad39 0%, #ffffff 100%);
+    background: -ms-linear-gradient(-45deg, #7fad39 0%, #ffffff 100%);
+    background: -webkit-linear-gradient(
+315deg
+, #7fad39 0%, #ffffff 100%);
+    background: -o-linear-gradient(315deg, #7fad39 0%, #ffffff 100%);
+    background: linear-gradient(
+135deg
+, rgba( 255, 255, 255, 0.6 ) 0%, rgba( 255, 255, 255, 0.6 ) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7fad39', endColorstr='#ffffff', GradientType=1 );
+}
+    
 html, body {
 	height: 100%;
 	font-family: "Cairo", sans-serif;
@@ -98,6 +142,10 @@ ul, ol {
 /*---------------------
   Helper CSS
 -----------------------*/
+.border__bottom {
+		border-bottom: 2px solid #7fad39;
+	}
+	
 .section-title {
 	margin-bottom: 50px;
 	text-align: center;
@@ -442,7 +490,7 @@ transparent;
 }
 
 .header__logo {
-	padding: 15px 0;
+	padding: 24px 0;
 }
 
 .header__logo a {
@@ -1118,6 +1166,7 @@ transparent;
 	color: #1c1c1c;
 	font-weight: 700;
 	margin-bottom: 25px;
+	border-bottom: 2px solid #7fad39;
 }
 
 .sidebar__item ul li {
@@ -1127,6 +1176,14 @@ transparent;
 .sidebar__item ul li a {
 	font-size: 16px;
 	color: #1c1c1c;
+	line-height: 39px;
+	display: block;
+}
+
+.sidebar__item ul li.active a {
+	font-size: 16px;
+	font-weight: bold;
+	color: #7fad39;
 	line-height: 39px;
 	display: block;
 }
@@ -3484,4 +3541,5 @@ transparent;
 		padding-left: 1rem;
 		padding-right: 1rem;
 	}
+	
 }
