@@ -5,7 +5,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="context" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
-
+<%!MemberDTO memberdto = new MemberDTO(1, "id", "password", "name");%>
 <html lang="zxx">
 
 <head>
