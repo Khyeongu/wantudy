@@ -1,9 +1,11 @@
+<%@page import="dev.team3.wantudy.dto.MemberDTO"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8" session="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="context" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
+<%!MemberDTO memberdto = new MemberDTO(1, "id", "password", "name");%>
 <html lang="zxx">
 
 <head>
@@ -57,7 +59,8 @@
 					<div class="col-lg-6">
 						<div class="header__top__left">
 							<ul>
-								<li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
+								<li><i class="fa fa-envelope"></i> <%=memberdto.getName()%>님
+									안녕하세요</li>
 								<li>새로운 스터디와 함께 공부해보세요!</li>
 							</ul>
 						</div>
@@ -76,24 +79,19 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-3">
-					<div class="header__logo">
-						<a href="./index.html"><img src="img/logo.png" alt=""></a>
+					<div class="header__logo  align-self-center">
+						<a class="navbar-brand" href="login"><span class="navbar-name">wantudy</span></a>
 					</div>
 				</div>
-				<div class="col-lg-6">
+				<div class="col-lg-7">
 					<nav class="header__menu">
 						<ul>
-							<li><a href="./index.html">Home</a></li>
-							<li><a href="./shop-grid.html">Shop</a></li>
-							<li><a href="#">Pages</a>
-								<ul class="header__menu__dropdown">
-									<li><a href="./shop-details.html">Shop Details</a></li>
-									<li><a href="./shoping-cart.html">Shoping Cart</a></li>
-									<li><a href="./checkout.html">Check Out</a></li>
-									<li><a href="./blog-details.html">Blog Details</a></li>
-								</ul></li>
-							<li class="active"><a href="./blog.html">Blog</a></li>
-							<li><a href="./contact.html">Contact</a></li>
+							<li><a href="./index.html">홈</a></li>
+							<li><a href="./shop-grid.html">스터디 검색</a></li>
+							<li><a href="./shop-grid.html">스터디 추가</a></li>
+							<li><a href="#">채팅</a>
+							<li><a href="./blog.html">스터디 관리</a></li>
+							<li class="active"><a href="./blog.html">마이페이지</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -105,57 +103,6 @@
 	</header>
 	<!-- Header Section End -->
 
-	<!-- Hero Section Begin -->
-	<section class="hero hero-normal">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-3">
-					<div class="hero__categories">
-						<div class="hero__categories__all">
-							<i class="fa fa-bars"></i> <span>All departments</span>
-						</div>
-						<ul>
-							<li><a href="#">Fresh Meat</a></li>
-							<li><a href="#">Vegetables</a></li>
-							<li><a href="#">Fruit & Nut Gifts</a></li>
-							<li><a href="#">Fresh Berries</a></li>
-							<li><a href="#">Ocean Foods</a></li>
-							<li><a href="#">Butter & Eggs</a></li>
-							<li><a href="#">Fastfood</a></li>
-							<li><a href="#">Fresh Onion</a></li>
-							<li><a href="#">Papayaya & Crisps</a></li>
-							<li><a href="#">Oatmeal</a></li>
-							<li><a href="#">Fresh Bananas</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-lg-9">
-					<div class="hero__search">
-						<div class="hero__search__form">
-							<form action="#">
-								<div class="hero__search__categories">
-									All Categories <span class="arrow_carrot-down"></span>
-								</div>
-								<input type="text" placeholder="What do yo u need?">
-								<button type="submit" class="site-btn">SEARCH</button>
-							</form>
-						</div>
-						<div class="hero__search__phone">
-							<div class="hero__search__phone__icon">
-								<i class="fa fa-phone"></i>
-							</div>
-							<div class="hero__search__phone__text">
-								<h5>010-2750-4064</h5>
-								<span>support 24/7 time</span>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- Hero Section End -->
-
 	<!-- Breadcrumb Section Begin -->
 	<section class="breadcrumb-section set-bg"
 		data-setbg="${context}/resources/img/breadcrumb.jpg">
@@ -163,10 +110,7 @@
 			<div class="row">
 				<div class="col-lg-12 text-center">
 					<div class="breadcrumb__text">
-						<h2>Blog</h2>
-						<div class="breadcrumb__option">
-							<a href="./index.html">Home</a> <span>Blog</span>
-						</div>
+						<h2>마이페이지</h2>
 					</div>
 				</div>
 			</div>
@@ -180,10 +124,10 @@
 			<div class="row">
 				<div class="col-lg-3 col-md-5">
 					<div class="sidebar">
-						<div class="sidebar__item">
-							<h4>My page</h4>
+						<div class="sidebar__item pr-5">
+							<h4>마이페이지</h4>
 							<ul>
-								<li><a href="#">내 정보</a></li>
+								<li class="active"><a href="#">내 정보 수정</a></li>
 								<li><a href="#">지원한 스터디</a></li>
 								<li><a class="dropbox" href="#">내 스터디 관리<i
 										class="bi small bi-caret-down-fill"></i></a>
@@ -193,135 +137,110 @@
 										<li><a class="nav-link" href="#">Submenu item 6 </a></li>
 										<li><a class="nav-link" href="#">Submenu item 7 </a></li>
 									</ul></li>
+							</ul>
 						</div>
-						</ul>
+
 					</div>
 				</div>
 
 				<div class="col-lg-9 col-md-7">
+					<h4 class="mb-3 border__bottom">내 정보 수정</h4>
 					<div class="row">
-						<div class="col-lg-4 col-md-4 col-sm-4">
-							<div class="blog__item">
-								<div class="blog__item__pic">
-									<img src="img/blog/blog-2.jpg" alt="">
-								</div>
-								<div class="blog__item__text">
-									<ul>
-										<li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-										<li><i class="fa fa-comment-o"></i> 5</li>
-									</ul>
-									<h5>
-										<a href="#">6 ways to prepare breakfast for 30</a>
-									</h5>
-									<p>Sed quia non numquam modi tempora indunt ut labore et
-										dolore magnam aliquam quaerat</p>
-									<a href="#" class="blog__btn">READ MORE <span
-										class="arrow_right"></span></a>
-								</div>
+						<div class="col-lg-12">
+							<div class="memberinfo" id="memberinfo">
+								<form method="post">
+									<div>
+										<h4>아이디</h4>
+										<input type="text" id="id" name="id"
+											value="<%=memberdto.getId()%>" disabled>
+									</div>
+									<div>
+										<h4>비밀번호</h4>
+										<input type="password" id="password" name="password">
+									</div>
+									<div>
+										<h4>비밀번호 확인</h4>
+										<input type="password" id="password-confirm"
+											name="password-confirm">
+									</div>
+									<div>
+										<h4>이름</h4>
+										<input type="text" id="name" name="name"
+											value="<%=memberdto.getName()%>">
+									</div>
+									<div>
+									<div>
+										<h4>관심분야 1</h4>
+										</div>
+										<div>
+											<select id="interest1" class="form-control mt-1">
+												<option>선택안함</option>
+												<option>알고리즘</option>
+												<option>웹</option>
+												<option>안드로이드</option>
+												<option>IOS</option>
+												<option>자료구조</option>
+												<option>머신러닝</option>
+												<option>프로그래밍 언어</option>
+												<option>운영체제</option>
+												<option>컴퓨터구조</option>
+												<option>디자인패턴</option>
+												<option>컴뷰터 보안</option>
+												<option>네트워크</option>
+												<option>데이터베이스</option>
+											</select>
+											
+									</div>
+									<div>
+										<h4>관심분야 2</h4>
+										</div>
+										<div>
+											<select id="interest2" class="form-control mt-1">
+												<option>선택안함</option>
+												<option>알고리즘</option>
+												<option>웹</option>
+												<option>안드로이드</option>
+												<option>IOS</option>
+												<option>자료구조</option>
+												<option>머신러닝</option>
+												<option>프로그래밍 언어</option>
+												<option>운영체제</option>
+												<option>컴퓨터구조</option>
+												<option>디자인패턴</option>
+												<option>컴뷰터 보안</option>
+												<option>네트워크</option>
+												<option>데이터베이스</option>
+											</select>
+											
+									</div>
+									<div>
+										<h4>관심분야 3</h4>
+										</div>
+										<div>
+											<select id="interest3" class="form-control mt-1">
+												<option>선택안함</option>
+												<option>알고리즘</option>
+												<option>웹</option>
+												<option>안드로이드</option>
+												<option>IOS</option>
+												<option>자료구조</option>
+												<option>머신러닝</option>
+												<option>프로그래밍 언어</option>
+												<option>운영체제</option>
+												<option>컴퓨터구조</option>
+												<option>디자인패턴</option>
+												<option>컴뷰터 보안</option>
+												<option>네트워크</option>
+												<option>데이터베이스</option>
+											</select>
+											
+									</div>
+									<div class="col-lg-2 mt-3 float-right">
+										<button type="submit" class="site-btn">저장</button>
+									</div>
+								</form>
 							</div>
 						</div>
-						<div class="col-lg-4 col-md-4 col-sm-4">
-							<div class="blog__item">
-								<div class="blog__item__pic">
-									<img src="img/blog/blog-3.jpg" alt="">
-								</div>
-								<div class="blog__item__text">
-									<ul>
-										<li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-										<li><i class="fa fa-comment-o"></i> 5</li>
-									</ul>
-									<h5>
-										<a href="#">Visit the clean farm in the US</a>
-									</h5>
-									<p>Sed quia non numquam modi tempora indunt ut labore et
-										dolore magnam aliquam quaerat</p>
-									<a href="#" class="blog__btn">READ MORE <span
-										class="arrow_right"></span></a>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-4 col-sm-4">
-							<div class="blog__item">
-								<div class="blog__item__pic">
-									<img src="img/blog/blog-1.jpg" alt="">
-								</div>
-								<div class="blog__item__text">
-									<ul>
-										<li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-										<li><i class="fa fa-comment-o"></i> 5</li>
-									</ul>
-									<h5>
-										<a href="#">Cooking tips make cooking simple</a>
-									</h5>
-									<p>Sed quia non numquam modi tempora indunt ut labore et
-										dolore magnam aliquam quaerat</p>
-									<a href="#" class="blog__btn">READ MORE <span
-										class="arrow_right"></span></a>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-4 col-sm-4">
-							<div class="blog__item">
-								<div class="blog__item__pic">
-									<img src="img/blog/blog-4.jpg" alt="">
-								</div>
-								<div class="blog__item__text">
-									<ul>
-										<li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-										<li><i class="fa fa-comment-o"></i> 5</li>
-									</ul>
-									<h5>
-										<a href="#">Cooking tips make cooking simple</a>
-									</h5>
-									<p>Sed quia non numquam modi tempora indunt ut labore et
-										dolore magnam aliquam quaerat</p>
-									<a href="#" class="blog__btn">READ MORE <span
-										class="arrow_right"></span></a>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-4 col-sm-4">
-							<div class="blog__item">
-								<div class="blog__item__pic">
-									<img src="img/blog/blog-4.jpg" alt="">
-								</div>
-								<div class="blog__item__text">
-									<ul>
-										<li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-										<li><i class="fa fa-comment-o"></i> 5</li>
-									</ul>
-									<h5>
-										<a href="#">The Moment You Need To Remove Garlic From The
-											Menu</a>
-									</h5>
-									<p>Sed quia non numquam modi tempora indunt ut labore et
-										dolore magnam aliquam quaerat</p>
-									<a href="#" class="blog__btn">READ MORE <span
-										class="arrow_right"></span></a>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-4 col-sm-4">
-							<div class="blog__item">
-								<div class="blog__item__pic">
-									<img src="img/blog/blog-6.jpg" alt="">
-								</div>
-								<div class="blog__item__text">
-									<ul>
-										<li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-										<li><i class="fa fa-comment-o"></i> 5</li>
-									</ul>
-									<h5>
-										<a href="#">Cooking tips make cooking simple</a>
-									</h5>
-									<p>Sed quia non numquam modi tempora indunt ut labore et
-										dolore magnam aliquam quaerat</p>
-									<a href="#" class="blog__btn">READ MORE <span
-										class="arrow_right"></span></a>
-								</div>
-							</div>
-						</div>
-
 					</div>
 				</div>
 			</div>
