@@ -11,8 +11,12 @@ public class MemberDTO {
 	int no;
 	String id;
 	String password;
-	String confirmPassword;
 	String name;
 	
-	
+	MemberDTO(int no, String id, String password, String name){
+		this.no=no;
+		this.id=id;
+		this.password=password;
+		this.name=name;
+	}
 }	
