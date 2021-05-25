@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dev.team3.wantudy.dao.MemberDAO">
+
+	<select id="signup" parameterType="MemberDTO">
+		insert into member (no, id,
+		password, name)
+		values (member_no_seq.nextval, #{id}, #{password},
+		#{name})
+	</select>
+
+	<select id="getUser" parameterType="MemberDTO"
+		resultType="MemberDTO">
+		select no, id, password, name
+		from member
+		where id=#{id} and password=#{password}
+	</select>
+
+</mapper>

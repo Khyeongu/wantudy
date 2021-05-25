@@ -8772,6 +8772,93 @@ h1, h2, h3, h4, h5,
       border: 1px solid #4986fc; }
   .login-wrap textarea.form-control {
     height: inherit !important; }
+    
+    
+    
+    
+    
+    /* signin.jsp 's signin form start
+    Author : KSY    
+    */
+ 
+    .signin-wrap {
+  position: relative;
+  background: #fff;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 10px 34px -15px rgba(0, 0, 0, 0.24);
+  -moz-box-shadow: 0px 10px 34px -15px rgba(0, 0, 0, 0.24);
+  box-shadow: 0px 10px 34px -15px rgba(0, 0, 0, 0.24);
+  z-index: 0;
+  margin-top: -650px; }
+  @media (max-width: 767.98px) {
+    .signin-wrap {
+      margin-top: 3em; } }
+  .signin-wrap:after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 145px;
+    content: '';
+    background: rgba(0, 0, 0, 0.05);
+    z-index: -1;
+    border-radius: 50% 0 0 0; }
+  .signin-wrap h3 {
+    font-weight: 500;
+    font-size: 20px;
+    color: #7fad39; }
+  .signin-wrap .form-group {
+    position: relative;
+    margin-bottom: 30px; }
+    .signin-wrap .form-group label {
+      position: absolute;
+      top: -12px;
+      left: 0;
+      font-weight: 500;
+      font-size: 14px;
+      color: rgba(0, 0, 0, 0.3);
+      margin-bottom: 0;
+      background: #fff;
+      margin-left: 30px;
+      padding: 0 4px; }
+  .signin-wrap .form-control {
+    height: 52px;
+    background: #fff;
+    color: #000000;
+    font-size: 16px;
+    border-radius: 40px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding-left: 20px;
+    padding-right: 20px; }
+    .signin-wrap .form-control::-webkit-input-placeholder {
+      /* Chrome/Opera/Safari */
+      color: rgba(0, 0, 0, 0.8) !important; }
+    .signin-wrap .form-control::-moz-placeholder {
+      /* Firefox 19+ */
+      color: rgba(0, 0, 0, 0.8) !important; }
+    .signin-wrap .form-control:-ms-input-placeholder {
+      /* IE 10+ */
+      color: rgba(0, 0, 0, 0.8) !important; }
+    .signin-wrap .form-control:-moz-placeholder {
+      /* Firefox 18- */
+      color: rgba(0, 0, 0, 0.8) !important; }
+    .signin-wrap .form-control:focus, .signin-wrap .form-control:active {
+      outline: none !important;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+      border: 1px solid #4986fc; }
+  .signin-wrap textarea.form-control {
+    height: inherit !important; }
+    
+    /* signin.jsp 's sign in form end*/
+    
+    
+   
+    
+    
+    
 
 .bg-light {
   background: #f9faff !important; }
