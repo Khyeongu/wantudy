@@ -13,8 +13,9 @@
 <title>Insert title here</title>
 
 </head>
-<!-- 
+
 <script type="text/javascript">
+<!--
 	var ws;
 	wsOpen();
 
@@ -47,25 +48,52 @@
 	function send() {
 		var uN = $("#userName").val();
 		var msg = $("#chatting").val();
-		ws.send(uN+" : "+msg);
+		
+		var msgData={
+				study_no:study_no,
+				member_no:uN,
+				msg:msg
+		};
+		var jsonData = JSON.stringify(msgData);
+		ws.send(jsonData);
 		$('#chatting').val("");
 	}
+	-->
+	function getStudyNo(study){
+		var study_no = $(study).data("value");
+
+		
+		if($('.nowstudy_no').val()!= "" && $('.nowstudy_no').val()!=study_no){
+			$('.nowstudy_no').val(study_no);
+			$('#chattinglog').text('');
+			//ws.open
+			//ajax로 대화 목록 가져오기
+		}
+
+		
+
+	}
+	
+
 </script>
--->
+
 <body>
 	<div id="container" class="container">
 		<h1>채팅</h1>
 		<div class="innercontainer">
 			<div class="studylistcontainer">
+			<input class="nowstudy_no" type="hidden" name="nowstudy_no" value="">
 			<c:forEach var="studylist" items="${studylist}">
-				<div class="studycontainer" data-value="${studylist.no}">
+				<div class="studycontainer" data-value="${studylist.no}" onClick="getStudyNo(this)" >
 					${studylist.name}
 				</div>
 
 			</c:forEach>
 			</div>
 			<div class="chattingcontainer">
-				<div id="chating" class="chating"></div>
+				<div id="chattinglog" class="chattinglog">
+					hi
+				</div>
 				<input type="hidden" id="userName"
 					value="<%=session.getAttribute("member_no")%>">
 				<div id="yourMsg">
