@@ -37,9 +37,5 @@ public class HomeController {
 		return "sign/sign";
 	}
 	
-	
-	@GetMapping(value="/chatting")
-	public String chatting() {
-		return "chat";
-	}
+
 }

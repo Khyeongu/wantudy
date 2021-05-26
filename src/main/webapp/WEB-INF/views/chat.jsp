@@ -1,51 +1,22 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="context" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/chatting/chat.css"/>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
-<style>
-		*{
-			margin:0;
-			padding:0;
-		}
-		.container{
-			width: 500px;
-			margin: 0 auto;
-			padding: 25px
-		}
-		.container h1{
-			text-align: left;
-			padding: 5px 5px 5px 15px;
-			color: #7fad39;
-			border-left: 3px solid #7fad39;
-			margin-bottom: 20px;
-		}
-		.chating{
-			background-color: #000;
-			width: 500px;
-			height: 500px;
-			overflow: auto;
-		}
-		.chating p{
-			color: #fff;
-			text-align: left;
-		}
-		input{
-			width: 330px;
-			height: 25px;
-		}
-		#yourMsg{
-			display: none;
-		}
-	</style>
+
 </head>
+<!-- 
 <script type="text/javascript">
 	var ws;
+	wsOpen();
 
 	function wsOpen(){
 		ws = new WebSocket("ws://localhost/wantudy/chat");
@@ -71,17 +42,7 @@
 		});
 	}
 
-	function chatName(){
-		var userName = $("#userName").val();
-		if(userName == null || userName.trim() == ""){
-			alert("사용자 이름을 입력해주세요.");
-			$("#userName").focus();
-		}else{
-			wsOpen();
-			$("#yourName").hide();
-			$("#yourMsg").show();
-		}
-	}
+
 
 	function send() {
 		var uN = $("#userName").val();
@@ -90,30 +51,36 @@
 		$('#chatting').val("");
 	}
 </script>
+-->
 <body>
 	<div id="container" class="container">
 		<h1>채팅</h1>
-		<div id="chating" class="chating">
+		<div class="innercontainer">
+			<div class="studylistcontainer">
+			<c:forEach var="studylist" items="${studylist}">
+				<div class="studycontainer" data-value="${studylist.no}">
+					${studylist.name}
+				</div>
+
+			</c:forEach>
+			</div>
+			<div class="chattingcontainer">
+				<div id="chating" class="chating"></div>
+				<input type="hidden" id="userName"
+					value="<%=session.getAttribute("member_no")%>">
+				<div id="yourMsg">
+					<table class="inputTable">
+						<tr>
+							<th>메시지</th>
+							<th><input id="chatting" placeholder="보내실 메시지를 입력하세요."></th>
+							<th><button onclick="send()" id="sendBtn">보내기</button></th>
+						</tr>
+					</table>
+				</div>
+			</div>
+
 		</div>
-		
-		<div id="yourName">
-			<table class="inputTable">
-				<tr>
-					<th>사용자명</th>
-					<th><input type="text" name="userName" id="userName"></th>
-					<th><button onclick="chatName()" id="startBtn">이름 등록</button></th>
-				</tr>
-			</table>
-		</div>
-		<div id="yourMsg">
-			<table class="inputTable">
-				<tr>
-					<th>메시지</th>
-					<th><input id="chatting" placeholder="보내실 메시지를 입력하세요."></th>
-					<th><button onclick="send()" id="sendBtn">보내기</button></th>
-				</tr>
-			</table>
-		</div>
+
 	</div>
 </body>
 </html>
