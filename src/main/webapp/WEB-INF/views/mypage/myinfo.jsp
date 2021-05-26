@@ -2,13 +2,12 @@
 <%@page import="dev.team3.wantudy.dto.MemberDTO"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8" session="false"%>
+	pageEncoding="utf-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="context" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
-<%!MemberDTO memberdto = new MemberDTO(1, "id", "password", "name");%>
 <html lang="zxx">
-
+<% MemberDTO userInfo = (MemberDTO)session.getAttribute("userInfo"); %>
 <head>
 <meta charset="UTF-8">
 <meta name="description" content="Ogani Template">
@@ -16,6 +15,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>Wantudy | MyPage</title>
+<script>
+function updateInfo(){
+	var password=document.getElementById("password").value;
+	var password_confirm=document.getElementById("password-confirm").value;
+	var session_password = '<%=((MemberDTO)session.getAttribute("userInfo")).getPassword()%>';
+	
+	if(password==password_confirm){
+		if(password==session_password){
+			if(confirm("정말 수정하시겠습니까?")){
+				document.getElementById("memberInfoForm").submit();
+			}
+			else{
+				return false;
+			}
+		}else{
+			alert("비밀번호가 일치하지 않습니다.");
+		}
+	}
+	else{
+		alert("비밀번호가 서로 일치하지 않습니다.");
+	}
+}
+</script>
 
 <!-- Google Font -->
 <link
@@ -60,7 +82,7 @@
 					<div class="col-lg-6">
 						<div class="header__top__left">
 							<ul>
-								<li><i class="fa fa-envelope"></i> <%=memberdto.getName()%>님
+								<li><i class="fa fa-envelope"></i> ${sessionScope.userInfo.name}님
 									안녕하세요</li>
 								<li>새로운 스터디와 함께 공부해보세요!</li>
 							</ul>
@@ -149,11 +171,11 @@
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="memberinfo" id="memberinfo">
-								<form method="post">
+								<form id="memberInfoForm" name="memberInfoForm" method="post">
 									<div>
 										<h4>아이디</h4>
 										<input type="text" id="id" name="id"
-											value="<%=memberdto.getId()%>" disabled>
+											value="${sessionScope.userInfo.id}" disabled>
 									</div>
 									<div>
 										<h4>비밀번호</h4>
@@ -167,28 +189,27 @@
 									<div>
 										<h4>이름</h4>
 										<input type="text" id="name" name="name"
-											value="<%=memberdto.getName()%>">
+											value="<%=((MemberDTO)session.getAttribute("userInfo")).getName()%>">
 									</div>
-									<div>
 									<div>
 										<h4>관심분야 1</h4>
 										</div>
 										<div>
-											<select id="interest1" class="form-control mt-1">
+											<select id="interest1" name="interest1" class="form-control mt-1">
 												<option>선택안함</option>
-												<option>알고리즘</option>
-												<option>웹</option>
-												<option>안드로이드</option>
-												<option>IOS</option>
-												<option>자료구조</option>
-												<option>머신러닝</option>
-												<option>프로그래밍 언어</option>
-												<option>운영체제</option>
-												<option>컴퓨터구조</option>
-												<option>디자인패턴</option>
-												<option>컴뷰터 보안</option>
-												<option>네트워크</option>
-												<option>데이터베이스</option>
+												<option value="5">알고리즘</option>
+												<option value="8">웹</option>
+												<option value="6">안드로이드</option>
+												<option value="12">IOS</option>
+												<option value="9">자료구조</option>
+												<option value="3">머신러닝</option>
+												<option value="10">프로그래밍 언어</option>
+												<option value="7">운영체제</option>
+												<option value="11">컴퓨터구조</option>
+												<option value="2">디자인패턴</option>
+												<option value="4">컴뷰터 보안</option>
+												<option value="1">네트워크</option>
+												<option value="13">데이터베이스</option>
 											</select>
 											
 									</div>
@@ -196,21 +217,21 @@
 										<h4>관심분야 2</h4>
 										</div>
 										<div>
-											<select id="interest2" class="form-control mt-1">
+											<select id="interest2" name="interest2" class="form-control mt-1">
 												<option>선택안함</option>
-												<option>알고리즘</option>
-												<option>웹</option>
-												<option>안드로이드</option>
-												<option>IOS</option>
-												<option>자료구조</option>
-												<option>머신러닝</option>
-												<option>프로그래밍 언어</option>
-												<option>운영체제</option>
-												<option>컴퓨터구조</option>
-												<option>디자인패턴</option>
-												<option>컴뷰터 보안</option>
-												<option>네트워크</option>
-												<option>데이터베이스</option>
+												<option value="5">알고리즘</option>
+												<option value="8">웹</option>
+												<option value="6">안드로이드</option>
+												<option value="12">IOS</option>
+												<option value="9">자료구조</option>
+												<option value="3">머신러닝</option>
+												<option value="10">프로그래밍 언어</option>
+												<option value="7">운영체제</option>
+												<option value="11">컴퓨터구조</option>
+												<option value="2">디자인패턴</option>
+												<option value="4">컴뷰터 보안</option>
+												<option value="1">네트워크</option>
+												<option value="13">데이터베이스</option>
 											</select>
 											
 									</div>
@@ -218,26 +239,26 @@
 										<h4>관심분야 3</h4>
 										</div>
 										<div>
-											<select id="interest3" class="form-control mt-1">
+											<select id="interest3" name="interest3" class="form-control mt-1">
 												<option>선택안함</option>
-												<option>알고리즘</option>
-												<option>웹</option>
-												<option>안드로이드</option>
-												<option>IOS</option>
-												<option>자료구조</option>
-												<option>머신러닝</option>
-												<option>프로그래밍 언어</option>
-												<option>운영체제</option>
-												<option>컴퓨터구조</option>
-												<option>디자인패턴</option>
-												<option>컴뷰터 보안</option>
-												<option>네트워크</option>
-												<option>데이터베이스</option>
+												<option value="5">알고리즘</option>
+												<option value="8">웹</option>
+												<option value="6">안드로이드</option>
+												<option value="12">IOS</option>
+												<option value="9">자료구조</option>
+												<option value="3">머신러닝</option>
+												<option value="10">프로그래밍 언어</option>
+												<option value="7">운영체제</option>
+												<option value="11">컴퓨터구조</option>
+												<option value="2">디자인패턴</option>
+												<option value="4">컴뷰터 보안</option>
+												<option value="1">네트워크</option>
+												<option value="13">데이터베이스</option>
 											</select>
 											
 									</div>
 									<div class="col-lg-2 mt-3 float-right">
-										<button type="submit" class="site-btn">저장</button>
+										<button type="button" id="btnUpdate" class="site-btn" onclick="updateInfo()">저장</button>
 									</div>
 								</form>
 							</div>
@@ -256,7 +277,6 @@
 				<div class="col-lg-3 col-md-6 col-sm-6">
 					<div class="footer__about">
 						<div class="footer__about__logo">
-							<a href="./index.html"><img src="img/logo.png" alt=""></a>
 						</div>
 						<ul>
 							<li>Address: 60-49 Road 11378 New York</li>
@@ -321,7 +341,6 @@
 							</p>
 						</div>
 						<div class="footer__copyright__payment">
-							<img src="img/payment-item.png" alt="">
 						</div>
 					</div>
 				</div>

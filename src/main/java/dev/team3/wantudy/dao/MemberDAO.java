@@ -10,4 +10,6 @@ public interface MemberDAO {
 	
 	MemberDTO getUser(MemberDTO memberDTO) throws SQLException;
 
+	void modifyMemberInfo(MemberDTO memberDTO) throws SQLException;
+
 }
