@@ -63,7 +63,7 @@
 	
 	<!-- EnrollDAO start -->
 	<bean
-		id="enrolllogSqlSession" class="org.mybatis.spring.SqlSessionFactoryBean" 
+		id="enrollSqlSession" class="org.mybatis.spring.SqlSessionFactoryBean" 
 		p:dataSource-ref="dataSource"
 		p:typeAliasesPackage="dev.team3.wantudy.dto"
 		/> 
@@ -77,7 +77,7 @@
 		
 	<!-- InterestDAO start -->
 	<bean
-		id="interestlogSqlSession" class="org.mybatis.spring.SqlSessionFactoryBean" 
+		id="interestSqlSession" class="org.mybatis.spring.SqlSessionFactoryBean" 
 		p:dataSource-ref="dataSource"
 		p:typeAliasesPackage="dev.team3.wantudy.dto"
 		/> 
