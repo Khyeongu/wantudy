@@ -31,6 +31,7 @@ public class SocketHandler extends TextWebSocketHandler {
 		//소켓 연결
 		super.afterConnectionEstablished(session);
 		sessionMap.put(session.getId(), session);
+		
 	}
 	
 	@Override
