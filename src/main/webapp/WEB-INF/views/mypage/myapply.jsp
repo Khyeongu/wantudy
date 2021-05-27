@@ -8,7 +8,9 @@
 <c:set var="interestList" value="${interestList}" />
 <!DOCTYPE html>
 <html lang="zxx">
-<% MemberDTO userInfo = (MemberDTO)session.getAttribute("userInfo"); %>
+<%
+MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
+%>
 <head>
 <meta charset="UTF-8">
 <meta name="description" content="Ogani Template">
@@ -42,6 +44,8 @@
 	type="text/css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
+<link rel="stylesheet" href="${context}/resources/css/studycard/studycard.css"
+	type="text/css">
 
 
 
@@ -58,38 +62,11 @@
 
 
 <script>
-$(document).ready(function(){
-	$("#interest1").val('<c:out value="${interestList[0].category_no}"/>').prop("selected", true);
-	$("#interest2").val('<c:out value="${interestList[1].category_no}"/>').prop("selected", true);
-	$("#interest3").val('<c:out value="${interestList[2].category_no}"/>').prop("selected", true);
-});
+	$(document).ready(function() {
 
-function updateInfo(){
-	var password=document.getElementById("password").value;
-	var password_confirm=document.getElementById("password-confirm").value;
-	var session_password = '<%=((MemberDTO)session.getAttribute("userInfo")).getPassword()%>';
-	
-	if(password==password_confirm){
-		if(password==session_password){
-			if(confirm("정말 수정하시겠습니까?")){
-				document.getElementById("memberInfoForm").submit();
-			}
-			else{
-				return false;
-			}
-		}else{
-			alert("비밀번호가 일치하지 않습니다.");
-		}
-	}
-	else{
-		alert("비밀번호가 서로 일치하지 않습니다.");
-	}
-}
+	});
 </script>
-
 </head>
-
-
 <body>
 	<!-- Page Preloder -->
 	<div id="preloder">
@@ -154,7 +131,7 @@ function updateInfo(){
 			<div class="row">
 				<div class="col-lg-12 text-center">
 					<div class="breadcrumb__text">
-						<h2>마이페이지</h2>
+						<h2>지원한 스터디</h2>
 					</div>
 				</div>
 			</div>
@@ -171,8 +148,8 @@ function updateInfo(){
 						<div class="sidebar__item pr-5">
 							<h4>마이페이지</h4>
 							<ul>
-								<li class="active"><a href="./myinfo">내 정보 수정</a></li>
-								<li><a href="./myapply">지원한 스터디</a></li>
+								<li><a href="./myinfo">내 정보 수정</a></li>
+								<li class="active"><a href="./myapply">지원한 스터디</a></li>
 								<li><a class="dropbox" href="#">내 스터디 관리<i
 										class="bi small bi-caret-down-fill"></i></a>
 									<ul class="submenu collapse">
@@ -188,110 +165,42 @@ function updateInfo(){
 				</div>
 
 				<div class="col-lg-9 col-md-7">
-					<h4 class="mb-3 border__bottom">내 정보 수정</h4>
+					<h4 class="mb-3 border__bottom">지원한 스터디</h4>
 					<div class="row">
-						<div class="col-lg-7">
-							<div class="memberinfo" id="memberinfo">
-								<form id="memberInfoForm" name="memberInfoForm" method="post">
-									<div>
-										<h4>아이디</h4>
-										<input type="text" id="id" name="id"
-											value="${sessionScope.userInfo.id}" disabled>
+					<div class="col-lg-12">
+						<a href=""> <!-- 클릭 시 링크 설정 -->
+							<div class="card">
+								<!-- 카드 헤더 -->
+								<div class="card-header">
+									<div class="card-header-is_closed">
+										<div class="card-header-text">모집중</div>
+										<div class="card-header-number">2 / 5</div>
 									</div>
-									<div>
-										<h4>비밀번호</h4>
-										<input type="password" id="password" name="password">
+								</div>
+								<!--  카드 바디 -->
+								<div class="card-body">
+									<!--  카드 바디 헤더 -->
+									<div class="card-body-header">
+										<h1>4월 15일 순천만 동행구해요!</h1>
+										<p class="card-body-hashtag">#여수 #순천 #광양</p>
+										<p class="card-body-nickname">작성자: ENDORPHIN0710</p>
 									</div>
-									<div>
-										<h4>비밀번호 확인</h4>
-										<input type="password" id="password-confirm"
-											name="password-confirm">
+									<p class="card-body-description">안녕하세요! 4월 15일 순천만 동행구합니다!
+									</p>
+									<!--  카드 바디 본문 -->
+									
+									<!--  카드 바디 푸터 -->
+									<div class="card-body-footer">
+										<hr
+											style="margin-bottom: 8px; opacity: 0.5; border-color: #EF5A31">
+										<i class="icon icon-view_count"></i>조회 38회 <i
+											class="icon icon-comments_count"></i>댓글 4개 <i
+											class="reg_date"> 2018/04/12 </i>
 									</div>
-									<div>
-										<h4>이름</h4>
-										<input type="text" id="name" name="name"
-											value="<%=((MemberDTO)session.getAttribute("userInfo")).getName()%>">
-									</div>
-									<div>
-										<h4>관심분야 1</h4>
-									</div>
-									<div>
-										<select id="interest1" name="interest1"
-											class="form-control mt-1">
-											<option value="0">선택안함</option>
-											<option value="5">알고리즘</option>
-											<option value="8">웹</option>
-											<option value="6">안드로이드</option>
-											<option value="12">IOS</option>
-											<option value="9">자료구조</option>
-											<option value="3">머신러닝</option>
-											<option value="10">프로그래밍 언어</option>
-											<option value="7">운영체제</option>
-											<option value="11">컴퓨터구조</option>
-											<option value="2">디자인패턴</option>
-											<option value="4">컴뷰터 보안</option>
-											<option value="1">네트워크</option>
-											<option value="13">데이터베이스</option>
-										</select>
-
-									</div>
-									<div>
-										<h4>관심분야 2</h4>
-									</div>
-									<div>
-										<select id="interest2" name="interest2"
-											class="form-control mt-1">
-											<option value="0">선택안함</option>
-											<option value="5">알고리즘</option>
-											<option value="8">웹</option>
-											<option value="6">안드로이드</option>
-											<option value="12">IOS</option>
-											<option value="9">자료구조</option>
-											<option value="3">머신러닝</option>
-											<option value="10">프로그래밍 언어</option>
-											<option value="7">운영체제</option>
-											<option value="11">컴퓨터구조</option>
-											<option value="2">디자인패턴</option>
-											<option value="4">컴뷰터 보안</option>
-											<option value="1">네트워크</option>
-											<option value="13">데이터베이스</option>
-										</select>
-
-									</div>
-									<div>
-										<h4>관심분야 3</h4>
-									</div>
-									<div>
-										<select id="interest3" name="interest3"
-											class="form-control mt-1">
-											<option value="0">선택안함</option>
-											<option value="5">알고리즘</option>
-											<option value="8">웹</option>
-											<option value="6">안드로이드</option>
-											<option value="12">IOS</option>
-											<option value="9">자료구조</option>
-											<option value="3">머신러닝</option>
-											<option value="10">프로그래밍 언어</option>
-											<option value="7">운영체제</option>
-											<option value="11">컴퓨터구조</option>
-											<option value="2">디자인패턴</option>
-											<option value="4">컴뷰터 보안</option>
-											<option value="1">네트워크</option>
-											<option value="13">데이터베이스</option>
-										</select>
-
-									</div>
-
-								</form>
+								</div>
 							</div>
+						</a>
 						</div>
-					</div>
-					<div class="row">
-					<div class="col-lg-7"></div>
-					<div class="col-lg-2 mt-3 float-right">
-						<button type="button" id="btnUpdate" class="site-btn"
-							onclick="updateInfo()">저장</button>
-					</div>
 					</div>
 				</div>
 			</div>

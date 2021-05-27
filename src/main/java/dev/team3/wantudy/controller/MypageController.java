@@ -83,4 +83,19 @@ public class MypageController {
 			e.printStackTrace();
 		}
 	}
+	
+	@GetMapping(value = "/mypage/myapply")
+	public String myapply(Locale locale, Model model, HttpSession session) {
+		
+		List<InterestDTO> interestList = null;
+		try {
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return "mypage/myapply";
+	}
 }
