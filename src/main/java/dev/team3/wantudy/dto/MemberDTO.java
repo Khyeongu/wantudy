@@ -11,7 +11,6 @@ public class MemberDTO {
 	int no;
 	String id;
 	String password;
-	String confirmPassword;
 	String name;
 	
 	

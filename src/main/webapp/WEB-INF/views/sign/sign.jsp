@@ -42,40 +42,46 @@
 		<div class="overlay"></div>
 	</div>
 
-<!-- 	<section class="ftco-section ftco-no-pb ftco-no-pt"> -->
-		<div class="container">
-			<div class="row">
-				<div class="col-md-7"></div>
-				<div class="col-md-5 order-md-last">
-					<div class="login-wrap p-4 p-md-5">
-						<h3 class="mb-4">Sign Up</h3>
-						<form class="signup-form" method="post">
-							<div class="form-group">
-								<label class="label" for="name">Name</label> <input type="text" class="form-control" placeholder="Name" name="name" required="required">
-							</div>
-							<div class="form-group">
-								<label class="label" for="id">ID</label> <input type="text" class="form-control" placeholder="ID" name="id" required="required">
-							</div>
-							<div class="form-group">
-								<label class="label" for="password">Password</label> <input type="password" class="form-control" placeholder="Password" name="password" required="required">
-							</div>
-							<div class="form-group">
-								<label class="label" for="password">Confirm Password</label> <input type="password" class="form-control" placeholder="Confirm Password" name="confirmPassword" required="required">
-							</div>
-							<div class="form-group d-flex justify-content-end mt-4">
-								<button type="submit" class="btn btn-primary submit" >
-									<span class="fa fa-paper-plane"></span>
-								</button>
-							</div>
-						</form>
-						<p class="text-center">
-							Already have an account? <a href="signin">Sign In</a>
-						</p>
-					</div>
+	<!-- 	<section class="ftco-section ftco-no-pb ftco-no-pt"> -->
+	<div class="container">
+		<div class="row">
+			<div class="col-md-7"></div>
+			<div class="col-md-5 order-md-last">
+				<div class="login-wrap p-4 p-md-5">
+					<h3 class="mb-4">Sign Up</h3>
+					<form class="signup-form" method="post">
+						<div class="form-group">
+							<label class="label" for="name">Name</label>
+							<input type="text" class="form-control" placeholder="Name" name="name" id="name" required="required" />
+						</div>
+						<div class="form-group">
+							<label class="label" for="id">ID</label>
+							<input type="text" class="form-control" placeholder="ID" name="id" id="id" required="required" />
+						</div>
+						<div class="form-group">
+							<label class="label" for="password">Password</label>
+							<input type="password" class="form-control" placeholder="Password" name="password" id="password" required="required" / >
+						</div>
+						<div class="form-group">
+							<label class="label" for="password">Confirm Password</label>
+							<input type="password" class="form-control" placeholder="Confirm Password" name="confirmPassword" id="confirmPassword" required="required" />
+						</div>
+						<div class="alert alert-success" id="alert-success">비밀번호가 일치합니다.</div>
+						<div class="alert alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다.</div>
+						<div class="form-group d-flex justify-content-end mt-4">
+							<button type="submit" class="btn btn-primary submit" id="signupbutton">
+								<span class="fa fa-paper-plane"></span>
+							</button>
+						</div>
+					</form>
+					<p class="text-center">
+						Already have an account? <a href="sign/signin">Sign In</a>
+					</p>
 				</div>
 			</div>
 		</div>
-<!-- 	</section> -->
+	</div>
+	<!-- 	</section> -->
 
 
 	<!-- Footer Section Begin -->
@@ -178,6 +184,34 @@
 	<script src="https://ma/resourcesps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 	<script src="${context}/resources/js/sign/google-map.js"></script>
 	<script src="${context}/resources/js/sign/main.js"></script>
+
+
+	<!-- 로그인 시 비밀번호 일치 여부 확인 -->
+	<script type="text/javascript">
+		$(function(){
+			$("#alert-success").hide(); 
+			$("#alert-danger").hide(); 
+			$("#confirmPassword").keyup(function(){
+				var pwd1=$("#password").val(); 
+				var pwd2=$("#confirmPassword").val();
+				if(pwd1 != "" || pwd2 != ""){
+					if(pwd1 == pwd2){ 
+						$("#alert-success").show();
+						$("#alert-danger").hide(); 
+						$("#signinbutton").removeAttr("disabled"); 
+					} 
+					else { 
+						$("#alert-success").hide();
+						$("#alert-danger").show(); 
+						$("#signinbutton").attr("disabled", "disabled"); 
+					} 
+				}
+			});
+		});
+	</script>
+
+
+
 
 </body>
 </html>

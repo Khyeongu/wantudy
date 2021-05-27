@@ -1,5 +1,7 @@
 package dev.team3.wantudy.service;
 
+import java.util.HashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
-public class SignServiceImpl implements SignService {
+public class MemberServiceImpl implements MemberService {
 
 	@Autowired
 	private MemberDAO memberDAO;
@@ -38,6 +40,15 @@ public class SignServiceImpl implements SignService {
 			throw e;
 		}
 	}
-	
 
+	@Override
+	public void signupAbilitylvl(HashMap<String, Object> map) throws Exception {
+		try {
+			memberDAO.signupAbilitylvl(map);
+		} catch (Exception e) {
+			log.info(e.getMessage());
+			throw e;
+		}
+		
+	}
 }
