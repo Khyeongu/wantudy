@@ -22,15 +22,40 @@
 	display:flex;
 }
 
-.chattinglog {
+.chattingloglistcontainer {
 	background-color: #000;
-	width: 500px;
+	width: 700px;
 	height: 500px;
 	overflow: auto;
 	color: #fff;
 	text-align: left;
 }
 
+.chattinglogcontainer{
+	display:flex;
+	height:20px;
+	width:100%;
+}
+.mylog{
+	display:flex;
+	justify-content:flex-end;
+	width:100%;	
+}
+
+.chattinglogname{
+	width: 20px;
+	height:100%;
+}
+
+.chattinglogcontent{
+	width:150px;
+	height:100%;
+}
+
+.chattinglogtime{
+	width:150px;
+	height:100%;
+}
 
 
 input {

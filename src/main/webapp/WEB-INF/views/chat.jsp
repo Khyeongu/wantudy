@@ -63,11 +63,66 @@
 		var study_no = $(study).data("value");
 
 		
-		if($('.nowstudy_no').val()!= "" && $('.nowstudy_no').val()!=study_no){
+		if($('.nowstudy_no').val()!=study_no){
 			$('.nowstudy_no').val(study_no);
-			$('#chattinglog').text('');
+			$('#chattingloglistcontainer').text('');
+			
+			
+			
 			//ws.open
-			//ajax로 대화 목록 가져오기
+			$.ajax({
+				 type:'POST',
+				 url:'${pageContext.request.contextPath}/chatting/getlog',
+				 data:{
+					 "study_no":study_no
+				 },
+				 datatype:"json",
+				 async:false,
+				 success:function(data){
+					 alert("채팅로그를 불러왔습니다.");
+					 console.log(data.chattingloglist);
+					 
+					 for(var i = 0; i<data.chattingloglist.length; i++){
+						 var content = data.chattingloglist[i].content;
+						 var time = data.chattingloglist[i].time;
+						 var member_no = data.chattingloglist[i].member_no;
+						 var username = $('#userName').val();
+						 
+						 if(member_no!=username){
+							 var str = "<div class='chattinglogcontainer'>";
+							 str += "<div class='chattinglogname'>"
+							 str += member_no;
+							 str += ":</div>";
+							 str += "<div class='chattinglogcontent'>"
+							 str += content;
+							 str += "</div>";
+							 str += "<div class='chattinglogtime'>"
+							 str += time;
+							 str += "</div>";
+							 str += "</div>";
+						 }
+						 else{
+							 var str = "<div class='chattinglogcontainer mylog'>";
+							 str += "<div class='chattinglogtime'>"
+							 str += time;
+							 str += "</div>";
+							 str += "<div class='chattinglogname'>"
+							 str += member_no;
+							 str += ":</div>";
+							 str += "<div class='chattinglogcontent'>"
+							 str += content;
+							 str += "</div>";
+							 str += "</div>";
+						 }
+						 
+
+						 $("#chattingloglistcontainer").append(str);
+					 }
+					 
+				 },error:function(){
+					 alert("로그 불러오기 실패.");
+				 }
+			 })
 		}
 
 		
@@ -91,8 +146,7 @@
 			</c:forEach>
 			</div>
 			<div class="chattingcontainer">
-				<div id="chattinglog" class="chattinglog">
-					hi
+				<div id="chattingloglistcontainer" class="chattingloglistcontainer">
 				</div>
 				<input type="hidden" id="userName"
 					value="<%=session.getAttribute("member_no")%>">
