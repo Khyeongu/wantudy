@@ -32,7 +32,7 @@ public class SignController {
 	@Autowired
 	private MemberService memberService;
 
-	/*  댁 媛 泥 硫 */
+	/* 처음 웹 페이지  */
 	@GetMapping(value = { "" })
 	public String sign() {
 		return "sign/sign";
@@ -48,7 +48,6 @@ public class SignController {
 			session.setAttribute("userInfo", userInfo);
 			log.info(userInfo.toString());
 			ModelAndView mav = new ModelAndView("redirect:/sign/signupAbilitylvl");
-			// mav.addObject("url", "signupAbilitylvl");
 			return mav;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -60,7 +59,7 @@ public class SignController {
 
 	}
 
-	/* 회占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙, ability level 占쌉뤄옙 占쏙옙占쏙옙占쏙옙 */
+	/* 개인 역량 입력 페이지 */
 	@GetMapping(value = { "/signupAbilitylvl" })
 	public String signupAbilitylvl() {
 		return "sign/signupAbilitylvl";
@@ -78,7 +77,7 @@ public class SignController {
 		MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 		session.setAttribute("userInfo", userInfo);
 
-		// 
+		// parsing
 		try {
 			insertParam = (JSONArray) jsonParser.parse(httpParam);
 		} catch (ParseException e) {
@@ -106,11 +105,10 @@ public class SignController {
 		return mav;
 	}
 
-	/* interest 占쌉뤄옙 占쏙옙占쏙옙占쏙옙 */
+	/* 관심 분야 입력 페이지 */
 
 	@GetMapping(value = { "/signupInterest" })
 	public String signupInterest() {
-		System.out.println("硫댁 嫄곗??");
 		return "sign/signupInterest";
 	}
 
@@ -127,14 +125,14 @@ public class SignController {
 		} catch (Exception e) {
 			e.printStackTrace();
 			ModelAndView mav = new ModelAndView("sign/result");
-			mav.addObject("msg", "占쏙옙占쏙옙 占쌩삼옙.");
+			mav.addObject("msg", "에러 발생.");
 			mav.addObject("url", "javascript:history.back();");
 			return mav;
 		}
 
 	}
 
-	/* signin (占싸깍옙占쏙옙) 占쏙옙占쏙옙占쏙옙 */
+	/* 로그인(signin) 페이지 */
 	@GetMapping(value = { "/signin" })
 	public String signin() {
 		return "sign/signin";
@@ -155,16 +153,5 @@ public class SignController {
 			model.addAttribute("url", "./");
 			return "sign/result";
 		}
-	}
-
-	@GetMapping("/logout")
-	public ModelAndView logout(HttpSession session) {
-		MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
-		session.invalidate();
-
-		ModelAndView mav = new ModelAndView("sign/result");
-		mav.addObject("msg", userInfo.getName() + "(" + userInfo.getId() + ")占쏙옙占쏙옙 占싸그아울옙 占싹울옙占쏙옙占싹댐옙.");
-		mav.addObject("url", "./");
-		return mav;
 	}
 }

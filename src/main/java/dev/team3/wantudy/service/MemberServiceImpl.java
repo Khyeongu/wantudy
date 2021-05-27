@@ -1,17 +1,11 @@
 package dev.team3.wantudy.service;
 
-
 import java.util.HashMap;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import dev.team3.wantudy.dao.MemberDAO;
 import dev.team3.wantudy.dto.MemberDTO;
@@ -23,6 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 public class MemberServiceImpl implements MemberService {
 
 	@Autowired
+	@Resource(name = "memberDAO")
 	private MemberDAO memberDAO;
 
 	@Override
@@ -58,17 +53,12 @@ public class MemberServiceImpl implements MemberService {
 			log.info(e.getMessage());
 			throw e;
 		}
-		
-	}
 
-@Autowired
-@Resource(name="memberDAO")
-private MemberDAO memberDAO;
+	}
 
 	@Override
 	public void modifyMemberInfo(MemberDTO memberDTO) throws Exception {
 		memberDAO.modifyMemberInfo(memberDTO);
 	}
-
 
 }
