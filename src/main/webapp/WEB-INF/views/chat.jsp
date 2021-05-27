@@ -15,9 +15,10 @@
 </head>
 
 <script type="text/javascript">
-<!--
+
 	var ws;
 	wsOpen();
+
 
 	function wsOpen(){
 		ws = new WebSocket("ws://localhost/wantudy/chat");
@@ -31,34 +32,55 @@
 		
 		ws.onmessage = function(data) {
 			var msg = data.data;
-			if(msg != null && msg.trim() != ''){
-				$("#chating").append("<p>" + msg + "</p>");
-			}
+			console.log(msg);
+			console.log("받아온msg:"+msg);
+			$("#chattingloglistcontainer").append("<div class='chattinglogcontainer'>" + msg + "</div>");
+
 		}
 
 		document.addEventListener("keypress", function(e){
 			if(e.keyCode == 13){ //enter press
-				send();
+				sendChat();
 			}
 		});
 	}
+	
+	//입장 시
+	function sendEnter(){
+		var message = $('#chatting').val();
+		var cmd = 'Enter';
+		send(message,cmd);
+		$('#chatting').val("");
+	}
+	//메세지 보낼 시
+	function sendChat(){
+		var message = $('#chatting').val();
+		console.log("send누르고"+message);
+		var cmd = 'Send';
+		send(message,cmd);
+		$('#chatting').val("");
+	}
 
 
-
-	function send() {
-		var uN = $("#userName").val();
-		var msg = $("#chatting").val();
-		
+	//message send
+	function send(msg,cmd) {
+		var uN = $('#userName').val();
+		var study_no = $('.nowstudy_no').val();
+		console.log("send보내기"+uN+study_no);
+		console.log("msg:"+msg+"cmd:"+cmd);
 		var msgData={
 				study_no:study_no,
 				member_no:uN,
-				msg:msg
+				msg:msg,
+				cmd:cmd
 		};
 		var jsonData = JSON.stringify(msgData);
 		ws.send(jsonData);
 		$('#chatting').val("");
 	}
-	-->
+	
+
+
 	function getStudyNo(study){
 		var study_no = $(study).data("value");
 
@@ -67,9 +89,9 @@
 			$('.nowstudy_no').val(study_no);
 			$('#chattingloglistcontainer').text('');
 			
+			//입장
+			sendEnter();
 			
-			
-			//ws.open
 			$.ajax({
 				 type:'POST',
 				 url:'${pageContext.request.contextPath}/chatting/getlog',
@@ -118,6 +140,8 @@
 
 						 $("#chattingloglistcontainer").append(str);
 					 }
+					
+					 
 					 
 				 },error:function(){
 					 alert("로그 불러오기 실패.");
@@ -155,7 +179,7 @@
 						<tr>
 							<th>메시지</th>
 							<th><input id="chatting" placeholder="보내실 메시지를 입력하세요."></th>
-							<th><button onclick="send()" id="sendBtn">보내기</button></th>
+							<th><button onclick="sendChat()" id="sendBtn">보내기</button></th>
 						</tr>
 					</table>
 				</div>

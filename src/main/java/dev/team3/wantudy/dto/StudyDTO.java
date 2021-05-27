@@ -14,4 +14,6 @@ public class StudyDTO {
 	int capacity;
 	int member_no;
 	int category_no;
+
+	
 }
