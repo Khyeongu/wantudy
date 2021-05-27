@@ -26,13 +26,13 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
-@RequestMapping("sign")
+@RequestMapping({ "sign", "" })
 public class SignController {
 
 	@Autowired
 	private MemberService memberService;
 
-	/* 처음 웹 페이지  */
+	/* 처음 웹 페이지 */
 	@GetMapping(value = { "" })
 	public String sign() {
 		return "sign/sign";
@@ -40,7 +40,6 @@ public class SignController {
 
 	@PostMapping(value = { "" })
 	public ModelAndView sign(@ModelAttribute MemberDTO memberDTO, HttpSession session, HttpServletRequest request) {
-
 
 		try {
 			memberService.signup(memberDTO);
@@ -83,8 +82,6 @@ public class SignController {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		
-		
 
 		for (int i = 0; i < insertParam.size(); i++) {
 			JSONObject insertData = (JSONObject) insertParam.get(i);
@@ -139,19 +136,20 @@ public class SignController {
 	}
 
 	@PostMapping(value = { "/signin" })
-	public String signin(@ModelAttribute MemberDTO memberDTO, Model model, HttpSession session) {
+	public ModelAndView signin(@ModelAttribute MemberDTO memberDTO, Model model, HttpSession session) {
 		log.info(memberDTO.toString());
 		try {
 			MemberDTO userInfo = memberService.getUser(memberDTO);
 			log.info(userInfo.toString());
-
+			ModelAndView mav = new ModelAndView("redirect:/home");
 			session.setAttribute("userInfo", userInfo);
-			return "home";
+			return mav;
 		} catch (Exception e) {
 			log.info(e.getMessage());
-			model.addAttribute("msg", e.getMessage());
-			model.addAttribute("url", "./");
-			return "sign/result";
+			ModelAndView mav = new ModelAndView("/sign/result");
+			mav.addObject("msg", "아이디가 없거나 비밀번호가 일치하지 않습니다.");
+			mav.addObject("url", "javascript:history.back();");
+			return mav;
 		}
 	}
 }

@@ -30,6 +30,12 @@
 
 
 </head>
+
+
+
+
+
+
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark ftco-navbar-light" id="ftco-navbar">
 		<div class="container">
@@ -40,293 +46,111 @@
 
 	<div class="hero-wrap " style="background-image: url('${context}/resources/img/sign/login.jpg'); height: 2500px; ">
 		<div class="overlay"></div>
-		
-		
-<!-- 			<section class="ftco-section ftco-no-pb ftco-no-pt"> -->
+
+
+		 			<section class="ftco-section ftco-no-pb ftco-no-pt"> 
 		<div class="container">
 			<div class="row">
 				<div class="col-md-3"></div>
 				<div class="col-md-6">
 					<div class="signupAbilityLvl-wrap p-4 p-md-5">
 						<h3 class="mb-4">Ability Level</h3>
-						<form class="signupAbilitylvl-form" method="post">
-							<div class="form-group">
-								<label class="label" for="python">Python</label>
-								<div class="ability-form-control">
-								&nbsp;&nbsp;(low)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_python" value="1" checked="checked">1&nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_python" value="2">2 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_python" value="3">3 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_python" value="4">4 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_python" value="5">5 &nbsp;&nbsp;&nbsp;
+						<!-- <form class="signup-form" method="POST">  -->
+						<div class="form-group">
+							<label class="label" for="python">관심분야 1</label>
+							<div>
+										<select id="interest1" name="interest1"
+											class="form-control mt-1">
+											<option value="0">선택안함</option>
+											<option value="5">알고리즘</option>
+											<option value="8">웹</option>
+											<option value="6">안드로이드</option>
+											<option value="12">IOS</option>
+											<option value="9">자료구조</option>
+											<option value="3">머신러닝</option>
+											<option value="10">프로그래밍 언어</option>
+											<option value="7">운영체제</option>
+											<option value="11">컴퓨터구조</option>
+											<option value="2">디자인패턴</option>
+											<option value="4">컴뷰터 보안</option>
+											<option value="1">네트워크</option>
+											<option value="13">데이터베이스</option>
+										</select>
+
+									</div>
+						</div>
+						<div class="form-group">
+							<label class="label" for="python">관심분야 2</label>
+							<div>
+										<select id="interest1" name="interest1"
+											class="form-control mt-1">
+											<option value="0">선택안함</option>
+											<option value="5">알고리즘</option>
+											<option value="8">웹</option>
+											<option value="6">안드로이드</option>
+											<option value="12">IOS</option>
+											<option value="9">자료구조</option>
+											<option value="3">머신러닝</option>
+											<option value="10">프로그래밍 언어</option>
+											<option value="7">운영체제</option>
+											<option value="11">컴퓨터구조</option>
+											<option value="2">디자인패턴</option>
+											<option value="4">컴뷰터 보안</option>
+											<option value="1">네트워크</option>
+											<option value="13">데이터베이스</option>
+										</select>
+
+									</div>
+						</div>
+						<div class="form-group">
+							<label class="label" for="python">관심분야 3</label>
+							<div>
+										<select id="interest1" name="interest1"
+											class="form-control mt-1">
+											<option value="0">선택안함</option>
+											<option value="5">알고리즘</option>
+											<option value="8">웹</option>
+											<option value="6">안드로이드</option>
+											<option value="12">IOS</option>
+											<option value="9">자료구조</option>
+											<option value="3">머신러닝</option>
+											<option value="10">프로그래밍 언어</option>
+											<option value="7">운영체제</option>
+											<option value="11">컴퓨터구조</option>
+											<option value="2">디자인패턴</option>
+											<option value="4">컴뷰터 보안</option>
+											<option value="1">네트워크</option>
+											<option value="13">데이터베이스</option>
+										</select>
+
+									</div>
+						</div>
+						
+						<!-- <div class="form-group">
+							<label class="label" for="mongodb">Mongodb</label>
+							<div class="ability-form-control">
+								&nbsp;&nbsp;(low)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="mongodb" value="1" checked="checked"  />&nbsp;1 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="mongodb" value="2"  />&nbsp;2 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="mongodb" value="3"  />&nbsp;3 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="mongodb" value="4"  />&nbsp;4 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="mongodb" value="5"  />&nbsp;5 &nbsp;&nbsp;&nbsp; 
 								&nbsp;&nbsp;(high)&nbsp;&nbsp;
-								</div>
 							</div>
-							<div class="form-group">
-								<label class="label" for="java">Java</label>
-								<div class="ability-form-control">
-								&nbsp;&nbsp;(low)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_java" value="1" checked="checked"> 1  &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_java" value="2">2  &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_java" value="3">3  &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_java" value="4">4  &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_java" value="5">5  &nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;(high)&nbsp;&nbsp;
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="label" for="c">C</label>
-								<div class="ability-form-control">
-								&nbsp;&nbsp;(low)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_c" value="1" checked="checked">1&nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_c" value="2">2 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_c" value="3">3 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_c" value="4">4 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_c" value="5">5 &nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;(high)&nbsp;&nbsp;
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="label" for="cpp">CPP</label>
-								<div class="ability-form-control">
-								&nbsp;&nbsp;(low)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_cpp" value="1" checked="checked">1 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_cpp" value="2">2 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_cpp" value="3">3 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_cpp" value="4">4 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_cpp" value="5">5 &nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;(high)&nbsp;&nbsp;
-								</div>					
-							</div>
-							<div class="form-group">
-								<label class="label" for="javascript">Javascript</label>
-								<div class="ability-form-control">
-								&nbsp;&nbsp;(low)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_javascript" value="1" checked="checked">1 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_javascript" value="2">2 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_javascript" value="3">3 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_javascript" value="4">4 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_javascript" value="5">5 &nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;(high)&nbsp;&nbsp;  
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="label" for="django">Django</label>
-								<div class="ability-form-control">
-								&nbsp;&nbsp;(low)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_django" value="1" checked="checked">1 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_django" value="2">2&nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_django" value="3">3&nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_django" value="4">4&nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_django" value="5">5&nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;(high)&nbsp;&nbsp;  
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="label" for="flask">Flask</label>
-								<div class="ability-form-control">
-								&nbsp;&nbsp;(low)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_flask" value="1" checked="checked">1 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_flask" value="2">2 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_flask" value="3">3 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_flask" value="4">4 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_flask" value="5">5 &nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;(high)&nbsp;&nbsp;
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="label" for="spring">Spring</label>
-								<div class="ability-form-control">
-								&nbsp;&nbsp;(low)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_spring" value="1" checked="checked">1 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_spring" value="2">2 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_spring" value="3">3 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_spring" value="4">4 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_spring" value="5">5 &nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;(high)&nbsp;&nbsp;
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="label" for="nodeJs">NodeJs</label>
-								<div class="ability-form-control">
-								&nbsp;&nbsp;(low)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_nodeJs" value="1" checked="checked">1 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_nodeJs" value="2">2 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_nodeJs" value="3">3 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_nodeJs" value="4">4 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_nodeJs" value="5">5 &nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;(high)&nbsp;&nbsp;
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="label" for="android">Android</label>
-								<div class="ability-form-control">
-								&nbsp;&nbsp;(low)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_android" value="1" checked="checked">1 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_android" value="2">2 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_android" value="3">3 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_android" value="4">4 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_android" value="5">5 &nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;(high)&nbsp;&nbsp;
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="label" for="ios">ios</label>
-								<div class="ability-form-control">
-								&nbsp;&nbsp;(low)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_ios" value="1" checked="checked">1 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_ios" value="2">2 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_ios" value="3">3 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_ios" value="4">4 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_ios" value="5">5 &nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;(high)&nbsp;&nbsp;
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="label" for="algorithm">Algorithm</label>
-								<div class="ability-form-control">
-								&nbsp;&nbsp;(low)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_algorithm" value="1" checked="checked">1 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_algorithm" value="2">2 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_algorithm" value="3">3 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_algorithm" value="4">4 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_algorithm" value="5">5 &nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;(high)&nbsp;&nbsp;
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="label" for="dataStructure">Data Structure</label>
-								<div class="ability-form-control">
-								&nbsp;&nbsp;(low)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_dataStructure" value="1" checked="checked">1 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_dataStructure" value="2">2 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_dataStructure" value="3">3 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_dataStructure" value="4">4 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_dataStructure" value="5">5 &nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;(high)&nbsp;&nbsp;
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="label" for="machinLearning">Machin Learning</label>
-								<div class="ability-form-control">
-								&nbsp;&nbsp;(low)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_machinLearning" value="1" checked="checked">1 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_machinLearning" value="2">2 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_machinLearning" value="3">3 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_machinLearning" value="4">4 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_machinLearning" value="5">5 &nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;(high)&nbsp;&nbsp;
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="label" for="opratingSystem">Oprating System</label>
-								<div class="ability-form-control">
-								&nbsp;&nbsp;(low)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_opratingSystem" value="1" checked="checked">1 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_opratingSystem" value="2">2 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_opratingSystem" value="3">3 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_opratingSystem" value="4">4 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_opratingSystem" value="5">5 &nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;(high)&nbsp;&nbsp;
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="label" for="computerArchitecture">Computer Architecture</label>
-								<div class="ability-form-control">
-								&nbsp;&nbsp;(low)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_computerArchitecture" value="1" checked="checked">1 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_computerArchitecture" value="2">2 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_computerArchitecture" value="3">3 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_computerArchitecture" value="4">4 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_computerArchitecture" value="5">5 &nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;(high)&nbsp;&nbsp;
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="label" for="designPattern">Design Pattern</label>
-								<div class="ability-form-control">
-								&nbsp;&nbsp;(low)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_designPattern" value="1" checked="checked">1 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_designPattern" value="2">2 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_designPattern" value="3">3 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_designPattern" value="4">4 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_designPattern" value="5">5 &nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;(high)&nbsp;&nbsp;
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="label" for="security">Security</label>
-								<div class="ability-form-control">
-								&nbsp;&nbsp;(low)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_security" value="1" checked="checked">1 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_security" value="2">2 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_security" value="3">3 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_security" value="4">4 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_security" value="5">5 &nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;(high)&nbsp;&nbsp;
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="label" for="network">Network</label>
-								<div class="ability-form-control">
-								&nbsp;&nbsp;(low)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_network" value="1" checked="checked">1 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_network" value="2">2 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_network" value="3">3 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_network" value="4">4 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_network" value="5">5 &nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;(high)&nbsp;&nbsp;
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="label" for="mysql">Mysql</label> 
-								<div class="ability-form-control">
-								&nbsp;&nbsp;(low)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_mysql" value="1" checked="checked">1 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_mysql" value="2">2 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_mysql" value="3">3 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_mysql" value="4">4 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_mysql" value="5">5 &nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;(high)&nbsp;&nbsp;
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="label" for="oracle">Oracle</label> 
-								<div class="ability-form-control">
-								&nbsp;&nbsp;(low)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_oracle" value="1" checked="checked">1 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_oracle" value="2">2 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_oracle" value="3">3 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_oracle" value="4">4 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_oracle" value="5">5 &nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;(high)&nbsp;&nbsp;
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="label" for="mongodb">Mongodb</label>
-								<div class="ability-form-control">
-								&nbsp;&nbsp;(low)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_mongodb" value="1" checked="checked">1 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_mongodb" value="2">2 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_mongodb" value="3">3 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_mongodb" value="4">4 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_mongodb" value="5">5 &nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;(high)&nbsp;&nbsp;
-								</div>
-							</div>
-							<div class="form-group d-flex justify-content-end mt-4">
-								<button type="submit" class="btn btn-primary submit">
-									<span class="fa fa-paper-plane"></span>
-								</button>
-							</div>
-						</form>
+						</div> -->
+						<div class="form-group d-flex justify-content-end mt-4">
+							<button type="submit" class="btn btn-primary submit" id="name_all_save">
+								<span class="fa fa-paper-plane"></span>
+							</button>
+						</div>
+						<!-- </form>  -->
 					</div>
 				</div>
 				<div class="col-md-3"></div>
 			</div>
 		</div>
-<!-- 	</section> -->
-		
+		 	</section> 
+
 	</div>
 
 
@@ -433,6 +257,74 @@
 	<script src="${context}/resources/js/sign/google-map.js"></script>
 	<script src="${context}/resources/js/sign/main.js"></script>
 
+
+	
+	<script type="text/javascript">
+ 	$(function(){ 
+ 		$("#name_all_save").click(function () {		
+			var radio_name = [];//array
+			var raido_name_val = {};//object
+			var radio = $("input[type=radio]"); //라디오 정보를 가져옵니다.
+			var arr = new Array();
+			
+			
+			
+			$.each(radio, function (key, value) { // input radio의 name 값을 가져옵니다.
+				radio_name.push($(value).attr('name'));
+			});
+			
+			//console.log(radio_name);
+			
+			radio_name = $.unique(radio_name.sort()).sort(); //중복요소 이름을 제거
+			//console.log(radio_name);
+			
+			for (var i = 0; i < radio_name.length; i++) {
+				var obj_length = document.getElementsByName(radio_name[i]).length;
+				var obj = {
+						'name': '',
+						'score': ''
+						};
+				
+				 for (var j=0; j<obj_length; j++) {
+			            if (document.getElementsByName(radio_name[i])[j].checked == true) {
+			                //alert(document.getElementsByName(radio_name[i])[j].value);
+			                
+			                obj.name=radio_name[i];
+			                obj.score=document.getElementsByName(radio_name[i])[j].value;
+			                
+							//console.log(obj.name);
+							//console.log(obj.score);
+							//console.log(obj);
+							
+							arr.push(obj);
+			            }
+			        }
+
+				}	
+			
+			var jsonData = JSON.stringify(arr) ;
+			//console.log(jsonData) ;
+			
+			//alert('console.log 확인용');
+
+			
+			  $.ajax({
+	    		url:'${pageContext.request.contextPath}/sign/signupAbilitylvl',		    	      
+	    		type:'post',
+				contentType:'application/json; charset=UTF-8',
+		   		data:jsonData,
+				success:function(data){
+					 //alert("됨.");
+					 location.href='${pageContext.request.contextPath}/sign/signupInterest';
+		 		}
+				// ,error:function(){
+			 	// alert("안됨.");
+				// }
+		   	})	  
+		});
+	}); 
+	</script>
+
+
 </body>
 </html>
-								
