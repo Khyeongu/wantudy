@@ -184,11 +184,13 @@ ALTER TABLE ENROLL ADD CONSTRAINT enroll_pk PRIMARY KEY ( member_no,
 -- INTEREST 테이블 생성 
 CREATE TABLE INTEREST (
       member_no    NUMBER NOT NULL  -- 회원 번호
+    , interest_no  NUMBER NOT NULL -- 관심분야 번호
     , category_no  NUMBER NOT NULL  -- 카테고리 번호
 /*****************************************************************************
       TABLE NAME  	: INTEREST
       DESCRIPTION   : 회원의 관심분야(category)를 저장하는 테이블
       PARAMETERS    : member_no      -- 회원 번호
+    				  interest_no    -- 관심분야 순서
 					  category_no	 -- 카테고리 번호
       특이사항       :
   ----------------------------------------------------------------------------
@@ -197,12 +199,13 @@ CREATE TABLE INTEREST (
      2021-05-20    KSY              최초 작성
 	 2021-05-20    KHG              최초 작성
 	 2021-05-20    LYL              최초 작성
+	 2021-05-27    KHG              interest_no column 추가
 
 ******************************************************************************/
 );
 
 ALTER TABLE INTEREST ADD CONSTRAINT interest_pk PRIMARY KEY ( member_no,
-                                                              category_no );
+                                                              interest_no );
 
 
 -- MEMBER 테이블 생성 
@@ -230,6 +233,7 @@ CREATE TABLE MEMBER (
 );
 
 ALTER TABLE MEMBER ADD CONSTRAINT member_pk PRIMARY KEY ( no );
+ALTER TABLE MEMBER ADD UNIQUE (id);
 
 
 -- MEMBERABILITY 테이블 생성 

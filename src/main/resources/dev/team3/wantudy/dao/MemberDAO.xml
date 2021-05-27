@@ -16,7 +16,8 @@
 		resultType="MemberDTO">
 		select no, id, password, name
 		from member
-		where id=#{id} and password=#{password}
+		where id=#{id} and
+		password=#{password}
 	</select>
 	
 	
@@ -29,5 +30,11 @@
             )
         }
 	</select>
+
+	<update id="modifyMemberInfo" parameterType="MemberDTO">
+		update member
+		set name=#{name}
+		where no=#{no}
+	</update>
 
 </mapper>

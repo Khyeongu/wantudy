@@ -32,7 +32,7 @@ public class SignController {
 	@Autowired
 	private MemberService memberService;
 
-	/* 웹 페이지 가장 처음 화면 */
+	/*  댁 媛 泥 硫 */
 	@GetMapping(value = { "" })
 	public String sign() {
 		return "sign/sign";
@@ -40,6 +40,7 @@ public class SignController {
 
 	@PostMapping(value = { "" })
 	public ModelAndView sign(@ModelAttribute MemberDTO memberDTO, HttpSession session, HttpServletRequest request) {
+
 
 		try {
 			memberService.signup(memberDTO);
@@ -56,9 +57,10 @@ public class SignController {
 			mav.addObject("url", "javascript:history.back();");
 			return mav;
 		}
+
 	}
 
-	/* ȸ������ ���� ��, ability level �Է� ������ */
+	/* 회占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙, ability level 占쌉뤄옙 占쏙옙占쏙옙占쏙옙 */
 	@GetMapping(value = { "/signupAbilitylvl" })
 	public String signupAbilitylvl() {
 		return "sign/signupAbilitylvl";
@@ -76,7 +78,7 @@ public class SignController {
 		MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 		session.setAttribute("userInfo", userInfo);
 
-		// 파싱
+		// 
 		try {
 			insertParam = (JSONArray) jsonParser.parse(httpParam);
 		} catch (ParseException e) {
@@ -104,11 +106,11 @@ public class SignController {
 		return mav;
 	}
 
-	/* interest �Է� ������ */
+	/* interest 占쌉뤄옙 占쏙옙占쏙옙占쏙옙 */
 
 	@GetMapping(value = { "/signupInterest" })
 	public String signupInterest() {
-		System.out.println("화면전환 된거야??");
+		System.out.println("硫댁 嫄곗??");
 		return "sign/signupInterest";
 	}
 
@@ -125,14 +127,14 @@ public class SignController {
 		} catch (Exception e) {
 			e.printStackTrace();
 			ModelAndView mav = new ModelAndView("sign/result");
-			mav.addObject("msg", "���� �߻�.");
+			mav.addObject("msg", "占쏙옙占쏙옙 占쌩삼옙.");
 			mav.addObject("url", "javascript:history.back();");
 			return mav;
 		}
 
 	}
 
-	/* signin (�α���) ������ */
+	/* signin (占싸깍옙占쏙옙) 占쏙옙占쏙옙占쏙옙 */
 	@GetMapping(value = { "/signin" })
 	public String signin() {
 		return "sign/signin";
@@ -161,7 +163,7 @@ public class SignController {
 		session.invalidate();
 
 		ModelAndView mav = new ModelAndView("sign/result");
-		mav.addObject("msg", userInfo.getName() + "(" + userInfo.getId() + ")���� �α׾ƿ� �Ͽ����ϴ�.");
+		mav.addObject("msg", userInfo.getName() + "(" + userInfo.getId() + ")占쏙옙占쏙옙 占싸그아울옙 占싹울옙占쏙옙占싹댐옙.");
 		mav.addObject("url", "./");
 		return mav;
 	}

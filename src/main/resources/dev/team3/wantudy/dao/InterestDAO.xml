@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dev.team3.wantudy.dao.InterestDAO">
+	<select id="getInterest" parameterType="int" resultType="InterestDTO">
+		select member_no, interest_no, category_no
+		from interest
+		where member_no=#{member_no}
+		order by interest_no asc
+	</select>
+
+	<update id="updateInterest">
+		update interest
+		set category_no=#{category_no}
+		where member_no=#{member_no} and
+			interest_no=#{interest_no}
+	</update>
+</mapper>

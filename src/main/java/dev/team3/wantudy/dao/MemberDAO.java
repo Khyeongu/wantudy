@@ -11,6 +11,10 @@ public interface MemberDAO {
 
 	MemberDTO getUser(MemberDTO memberDTO) throws SQLException;
 
+
 	void signupAbilitylvl(HashMap<String, Object> map) throws SQLException;
+
+	void modifyMemberInfo(MemberDTO memberDTO) throws SQLException;
+
 
 }

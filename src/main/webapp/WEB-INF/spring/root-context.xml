@@ -19,7 +19,92 @@
 		p:maximumPoolSize="20"
 		/>
 		
-		<!-- memberDAO start -->
+	<!-- AbilityLevelDAO start -->
+	<bean
+		id="abilityLevelSqlSession" class="org.mybatis.spring.SqlSessionFactoryBean" 
+		p:dataSource-ref="dataSource"
+		p:typeAliasesPackage="dev.team3.wantudy.dto"
+		/> 
+	<bean
+		id="abilityLevelDAO" 
+		class="org.mybatis.spring.mapper.MapperFactoryBean" 
+		p:sqlSessionFactory-ref="abilityLevelSqlSession"
+		p:mapperInterface="dev.team3.wantudy.dao.AbilityLevelDAO"
+		/>
+	<!-- AbilityLevelDAO end -->
+		
+	<!-- CategoryDAO start -->
+	<bean
+		id="categorySqlSession" class="org.mybatis.spring.SqlSessionFactoryBean" 
+		p:dataSource-ref="dataSource"
+		p:typeAliasesPackage="dev.team3.wantudy.dto"
+		/> 
+	<bean
+		id="categoryDAO" 
+		class="org.mybatis.spring.mapper.MapperFactoryBean" 
+		p:sqlSessionFactory-ref="categorySqlSession"
+		p:mapperInterface="dev.team3.wantudy.dao.CategoryDAO"
+		/>
+	<!-- CategoryDAO end -->	
+		
+	<!-- ChattinglogDAO start -->
+	<bean
+		id="chattinglogSqlSession" class="org.mybatis.spring.SqlSessionFactoryBean" 
+		p:dataSource-ref="dataSource"
+		p:typeAliasesPackage="dev.team3.wantudy.dto"
+		/> 
+	<bean
+		id="chattinglogDAO" 
+		class="org.mybatis.spring.mapper.MapperFactoryBean" 
+		p:sqlSessionFactory-ref="chattinglogSqlSession"
+		p:mapperInterface="dev.team3.wantudy.dao.ChattinglogDAO"
+		/>
+	<!-- ChattinglogDAO end -->	
+	
+	<!-- EnrollDAO start -->
+	<bean
+		id="enrollSqlSession" class="org.mybatis.spring.SqlSessionFactoryBean" 
+		p:dataSource-ref="dataSource"
+		p:typeAliasesPackage="dev.team3.wantudy.dto"
+		/> 
+	<bean
+		id="enrollDAO" 
+		class="org.mybatis.spring.mapper.MapperFactoryBean" 
+		p:sqlSessionFactory-ref="enrollSqlSession"
+		p:mapperInterface="dev.team3.wantudy.dao.EnrollDAO"
+		/>
+	<!-- EnrollDAO end -->	
+		
+	<!-- InterestDAO start -->
+	<bean
+		id="interestSqlSession" class="org.mybatis.spring.SqlSessionFactoryBean" 
+		p:dataSource-ref="dataSource"
+		p:typeAliasesPackage="dev.team3.wantudy.dto"
+		/> 
+	<bean
+		id="interestDAO" 
+		class="org.mybatis.spring.mapper.MapperFactoryBean" 
+		p:sqlSessionFactory-ref="interestSqlSession"
+		p:mapperInterface="dev.team3.wantudy.dao.InterestDAO"
+		/>
+	<!-- InterestDAO end -->	
+	
+	<!-- MemberAbilityDAO start -->
+	<bean
+		id="memberAbilitySqlSession" class="org.mybatis.spring.SqlSessionFactoryBean" 
+		p:dataSource-ref="dataSource"
+		p:typeAliasesPackage="dev.team3.wantudy.dto"
+		/> 
+	<bean
+		id="memberAbilityDAO" 
+		class="org.mybatis.spring.mapper.MapperFactoryBean" 
+		p:sqlSessionFactory-ref="memberAbilitySqlSession"
+		p:mapperInterface="dev.team3.wantudy.dao.MemberAbilityDAO"
+		/>
+	<!-- MemberAbilityDAO end -->
+			
+		
+	<!-- memberDAO start -->
 	<bean
 		id="memberSqlSession" class="org.mybatis.spring.SqlSessionFactoryBean" 
 		p:dataSource-ref="dataSource"
@@ -32,5 +117,32 @@
 		p:mapperInterface="dev.team3.wantudy.dao.MemberDAO"
 		/>
 	<!-- memberDAO end -->
+	
+	<!-- RequirementDAO start -->
+	<bean
+		id="requirementSqlSession" class="org.mybatis.spring.SqlSessionFactoryBean" 
+		p:dataSource-ref="dataSource"
+		p:typeAliasesPackage="dev.team3.wantudy.dto"
+		/> 
+	<bean
+		id="requirementDAO" 
+		class="org.mybatis.spring.mapper.MapperFactoryBean" 
+		p:sqlSessionFactory-ref="requirementSqlSession"
+		p:mapperInterface="dev.team3.wantudy.dao.RequirementDAO"
+		/>
+	<!-- RequirementDAO end -->
 
+	<!-- StudyDAO start -->
+	<bean
+		id="studySqlSession" class="org.mybatis.spring.SqlSessionFactoryBean" 
+		p:dataSource-ref="dataSource"
+		p:typeAliasesPackage="dev.team3.wantudy.dto"
+		/> 
+	<bean
+		id="studyDAO" 
+		class="org.mybatis.spring.mapper.MapperFactoryBean" 
+		p:sqlSessionFactory-ref="studySqlSession"
+		p:mapperInterface="dev.team3.wantudy.dao.StudyDAO"
+		/>
+	<!-- StudyDAO end -->
 </beans>
