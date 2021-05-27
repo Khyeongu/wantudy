@@ -7,8 +7,14 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class InterestDTO {
+public class MemberInfoDTO {
+	int no;
+	String id;
+	String password;
+	String name;
 	int member_no;
-	int interest_no;
+	int interest1;
+	int interest2;
+	int interest3;
 	int category_no;
 }
