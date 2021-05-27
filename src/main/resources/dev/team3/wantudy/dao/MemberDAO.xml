@@ -19,6 +19,17 @@
 		where id=#{id} and
 		password=#{password}
 	</select>
+	
+	
+	<select id="signupAbilitylvl" parameterType="hashmap" statementType="CALLABLE">
+		{
+            CALL PACK_SIGNUP_PKG.PROC_INSERT_ABILITY_LEVEL(
+            	#{memberNo},
+                #{abilityLevelDTO.name},
+                #{abilityLevelDTO.score}
+            )
+        }
+	</select>
 
 	<update id="modifyMemberInfo" parameterType="MemberDTO">
 		update member

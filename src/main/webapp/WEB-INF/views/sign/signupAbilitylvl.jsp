@@ -39,7 +39,7 @@
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark ftco-navbar-light" id="ftco-navbar">
 		<div class="container">
-			<a class="navbar-brand" href="sign"><span class="navbar-name">wantudy</span></a>
+			<a class="navbar-brand" href="../"><span class="navbar-name">wantudy</span></a>
 		</div>
 	</nav>
 	<!-- END nav -->
@@ -55,16 +55,16 @@
 				<div class="col-md-6">
 					<div class="signupAbilityLvl-wrap p-4 p-md-5">
 						<h3 class="mb-4">Ability Level</h3>
-						<form class="signup-form" method="post"> 
+						<!-- <form class="signup-form" method="POST">  -->
 						<div class="form-group">
 							<label class="label" for="python">Python</label>
 							<div class="ability-form-control">
 								&nbsp;&nbsp;(low)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_python" value="1" checked="checked" id="python" />&nbsp;1&nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_python" value="2" id="python" />&nbsp;2 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_python" value="3" id="python" />&nbsp;3 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_python" value="4" id="python" />&nbsp;4 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_python" value="5" id="python" />&nbsp;5 &nbsp;&nbsp;&nbsp;
+								<input type="radio" name="python" value="1" checked="checked"  />&nbsp;1&nbsp;&nbsp;&nbsp;
+								<input type="radio" name="python" value="2"  />&nbsp;2 &nbsp;&nbsp;&nbsp;
+								<input type="radio" name="python" value="3"  />&nbsp;3 &nbsp;&nbsp;&nbsp;
+								<input type="radio" name="python" value="4"  />&nbsp;4 &nbsp;&nbsp;&nbsp;
+								<input type="radio" name="python" value="5"  />&nbsp;5 &nbsp;&nbsp;&nbsp;
 								&nbsp;&nbsp;(high)&nbsp;&nbsp;
 							</div>
 						</div>
@@ -73,11 +73,11 @@
 							<label class="label" for="java">Java</label>
 							<div class="ability-form-control">
 								&nbsp;&nbsp;(low)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_java" value="1" checked="checked" id="java" />&nbsp;1&nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_java" value="2" id="java" />&nbsp;2 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_java" value="3" id="java" />&nbsp;3 &nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_java" value="4" id="java" />&nbsp;4 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_java" value="5" id="java" />&nbsp;5 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="java" value="1" checked="checked"  />&nbsp;1&nbsp;&nbsp;&nbsp;
+								<input type="radio" name="java" value="2" />&nbsp;2 &nbsp;&nbsp;&nbsp;
+								<input type="radio" name="java" value="3" />&nbsp;3 &nbsp;&nbsp;&nbsp;
+								<input type="radio" name="java" value="4" />&nbsp;4 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="java" value="5" />&nbsp;5 &nbsp;&nbsp;&nbsp; 
 								&nbsp;&nbsp;(high)&nbsp;&nbsp;
 							</div>
 						</div>
@@ -85,11 +85,11 @@
 							<label class="label" for="c">C</label>
 							<div class="ability-form-control">
 								&nbsp;&nbsp;(low) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<input type="radio" name="chk_c" value="1" checked="checked" id="c" />&nbsp;1&nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_c" value="2" id="c" />&nbsp;2 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_c" value="3" id="c" />&nbsp;3 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_c" value="4" id="c" />&nbsp;4 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_c" value="5" id="c" />&nbsp;5 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="c" value="1" checked="checked"  />&nbsp;1&nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="c" value="2" />&nbsp;2 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="c" value="3" />&nbsp;3 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="c" value="4" />&nbsp;4 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="c" value="5" />&nbsp;5 &nbsp;&nbsp;&nbsp; 
 								&nbsp;&nbsp;(high)&nbsp;&nbsp;
 							</div>
 						</div>
@@ -97,11 +97,11 @@
 							<label class="label" for="cpp">CPP</label>
 							<div class="ability-form-control">
 								&nbsp;&nbsp;(low) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_cpp" value="1" checked="checked" id="cpp" />&nbsp;1 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_cpp" value="2" id="cpp" />&nbsp;2 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_cpp" value="3" id="cpp" />&nbsp;3 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_cpp" value="4" id="cpp" />&nbsp;4 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_cpp" value="5" id="cpp" />&nbsp;5 &nbsp;&nbsp;&nbsp;
+								<input type="radio" name="cpp" value="1" checked="checked" />&nbsp;1 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="cpp" value="2" />&nbsp;2 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="cpp" value="3" />&nbsp;3 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="cpp" value="4" />&nbsp;4 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="cpp" value="5" />&nbsp;5 &nbsp;&nbsp;&nbsp;
 								&nbsp;&nbsp;(high)&nbsp;&nbsp;
 							</div>
 						</div>
@@ -109,11 +109,11 @@
 							<label class="label" for="javascript">Javascript</label>
 							<div class="ability-form-control">
 								&nbsp;&nbsp;(low)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_javascript" value="1" checked="checked" id="javascript" />&nbsp;1 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_javascript" value="2" id="javascript" />&nbsp;2 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_javascript" value="3" id="javascript" />&nbsp;3 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_javascript" value="4" id="javascript" />&nbsp;4 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_javascript" value="5" id="javascript" />&nbsp;5 &nbsp;&nbsp;&nbsp;
+								<input type="radio" name="javascript" value="1" checked="checked"  />&nbsp;1 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="javascript" value="2"  />&nbsp;2 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="javascript" value="3"  />&nbsp;3 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="javascript" value="4"  />&nbsp;4 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="javascript" value="5"  />&nbsp;5 &nbsp;&nbsp;&nbsp;
 								&nbsp;&nbsp;(high)&nbsp;&nbsp;
 							</div>
 						</div>
@@ -121,11 +121,11 @@
 							<label class="label" for="django">Django</label>
 							<div class="ability-form-control">
 								&nbsp;&nbsp;(low)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_django" value="1" checked="checked" id="django" />&nbsp;1 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_django" value="2" id="django" />&nbsp;2&nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_django" value="3" id="django" />&nbsp;3&nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_django" value="4" id="django" />&nbsp;4&nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_django" value="5" id="django" />&nbsp;5 &nbsp;&nbsp;&nbsp;
+								<input type="radio" name="django" value="1" checked="checked"  />&nbsp;1 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="django" value="2" />&nbsp;2&nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="django" value="3" />&nbsp;3&nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="django" value="4" />&nbsp;4&nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="django" value="5" />&nbsp;5 &nbsp;&nbsp;&nbsp;
 								&nbsp;&nbsp;(high)&nbsp;&nbsp;
 							</div>
 						</div>
@@ -133,11 +133,11 @@
 							<label class="label" for="flask">Flask</label>
 							<div class="ability-form-control">
 								&nbsp;&nbsp;(low)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_flask" value="1" checked="checked" id="flask" />&nbsp;1 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_flask" value="2" id="flask" />&nbsp;2 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_flask" value="3" id="flask" />&nbsp;3 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_flask" value="4" id="flask" />&nbsp;4 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_flask" value="5" id="flask" />&nbsp;5 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="flask" value="1" checked="checked" />&nbsp;1 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="flask" value="2" />&nbsp;2 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="flask" value="3" />&nbsp;3 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="flask" value="4" />&nbsp;4 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="flask" value="5" />&nbsp;5 &nbsp;&nbsp;&nbsp; 
 								&nbsp;&nbsp;(high)&nbsp;&nbsp;
 							</div>
 						</div>
@@ -145,11 +145,11 @@
 							<label class="label" for="spring">Spring</label>
 							<div class="ability-form-control">
 								&nbsp;&nbsp;(low)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_spring" value="1" checked="checked" id="spring" />&nbsp;1 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_spring" value="2" id="spring" />&nbsp;2 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_spring" value="3" id="spring" />&nbsp;3 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_spring" value="4" id="spring" />&nbsp;4 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_spring" value="5" id="spring" />&nbsp;5 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="spring" value="1" checked="checked"  />&nbsp;1 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="spring" value="2" />&nbsp;2 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="spring" value="3" />&nbsp;3 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="spring" value="4" />&nbsp;4 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="spring" value="5" />&nbsp;5 &nbsp;&nbsp;&nbsp; 
 								&nbsp;&nbsp;(high)&nbsp;&nbsp;
 							</div>
 						</div>
@@ -157,11 +157,11 @@
 							<label class="label" for="nodeJs">NodeJs</label>
 							<div class="ability-form-control">
 								&nbsp;&nbsp;(low)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_nodeJs" value="1" checked="checked" id="nodeJs" />&nbsp;1 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_nodeJs" value="2" id="nodeJs" />&nbsp;2 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_nodeJs" value="3" id="nodeJs" />&nbsp;3 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_nodeJs" value="4" id="nodeJs" />&nbsp;4 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_nodeJs" value="5" id="nodeJs" />&nbsp;5 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="nodeJs" value="1" checked="checked"  />&nbsp;1 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="nodeJs" value="2"  />&nbsp;2 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="nodeJs" value="3"  />&nbsp;3 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="nodeJs" value="4"  />&nbsp;4 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="nodeJs" value="5"  />&nbsp;5 &nbsp;&nbsp;&nbsp; 
 								&nbsp;&nbsp;(high)&nbsp;&nbsp;
 							</div>
 						</div>
@@ -169,11 +169,11 @@
 							<label class="label" for="android">Android</label>
 							<div class="ability-form-control">
 								&nbsp;&nbsp;(low)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_android" value="1" checked="checked" id="android" />&nbsp;1 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_android" value="2" id="android" />&nbsp;2 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_android" value="3" id="android" />&nbsp;3 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_android" value="4" id="android" />&nbsp;4 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_android" value="5" id="android" />&nbsp;5 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="android" value="1" checked="checked"  />&nbsp;1 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="android" value="2"  />&nbsp;2 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="android" value="3"  />&nbsp;3 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="android" value="4"  />&nbsp;4 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="android" value="5"  />&nbsp;5 &nbsp;&nbsp;&nbsp; 
 								&nbsp;&nbsp;(high)&nbsp;&nbsp;
 							</div>
 						</div>
@@ -181,11 +181,11 @@
 							<label class="label" for="ios">ios</label>
 							<div class="ability-form-control">
 								&nbsp;&nbsp;(low)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_ios" value="1" checked="checked" id="ios" />&nbsp;1 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_ios" value="2" id="ios" />&nbsp;2 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_ios" value="3" id="ios" />&nbsp;3 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_ios" value="4" id="ios" />&nbsp;4 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_ios" value="5" id="ios" />&nbsp;5 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="ios" value="1" checked="checked"  />&nbsp;1 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="ios" value="2"  />&nbsp;2 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="ios" value="3"  />&nbsp;3 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="ios" value="4"  />&nbsp;4 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="ios" value="5"  />&nbsp;5 &nbsp;&nbsp;&nbsp; 
 								&nbsp;&nbsp;(high)&nbsp;&nbsp;
 							</div>
 						</div>
@@ -193,11 +193,11 @@
 							<label class="label" for="algorithm">Algorithm</label>
 							<div class="ability-form-control">
 								&nbsp;&nbsp;(low)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_algorithm" value="1" checked="checked" id="algorithm" />&nbsp;1 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_algorithm" value="2" id="algorithm" />&nbsp;2 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_algorithm" value="3" id="algorithm" />&nbsp;3 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_algorithm" value="4" id="algorithm" />&nbsp;4 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_algorithm" value="5" id="algorithm" />&nbsp;5 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="algorithm" value="1" checked="checked"  />&nbsp;1 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="algorithm" value="2" />&nbsp;2 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="algorithm" value="3" />&nbsp;3 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="algorithm" value="4" />&nbsp;4 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="algorithm" value="5" />&nbsp;5 &nbsp;&nbsp;&nbsp; 
 								&nbsp;&nbsp;(high)&nbsp;&nbsp;
 							</div>
 						</div>
@@ -205,11 +205,11 @@
 							<label class="label" for="dataStructure">Data Structure</label>
 							<div class="ability-form-control">
 								&nbsp;&nbsp;(low)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_dataStructure" value="1" checked="checked" id="dataStructure" />&nbsp;1 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_dataStructure" value="2" id="dataStructure" />&nbsp;2 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_dataStructure" value="3" id="dataStructure" />&nbsp;3 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_dataStructure" value="4" id="dataStructure" />&nbsp;4 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_dataStructure" value="5" id="dataStructure" />&nbsp;5 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="dataStructure" value="1" checked="checked"  />&nbsp;1 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="dataStructure" value="2"  />&nbsp;2 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="dataStructure" value="3"  />&nbsp;3 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="dataStructure" value="4"  />&nbsp;4 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="dataStructure" value="5"  />&nbsp;5 &nbsp;&nbsp;&nbsp; 
 								&nbsp;&nbsp;(high)&nbsp;&nbsp;
 							</div>
 						</div>
@@ -217,11 +217,11 @@
 							<label class="label" for="machinLearning">Machin Learning</label>
 							<div class="ability-form-control">
 								&nbsp;&nbsp;(low)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_machinLearning" value="1" checked="checked" id="machinLearning" />&nbsp;1 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_machinLearning" value="2" id="machinLearning" />&nbsp;2 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_machinLearning" value="3" id="machinLearning" />&nbsp;3 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_machinLearning" value="4" id="machinLearning" />&nbsp;4 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_machinLearning" value="5" id="machinLearning" />&nbsp;5 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="machinLearning" value="1" checked="checked"  />&nbsp;1 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="machinLearning" value="2" />&nbsp;2 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="machinLearning" value="3" />&nbsp;3 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="machinLearning" value="4" />&nbsp;4 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="machinLearning" value="5" />&nbsp;5 &nbsp;&nbsp;&nbsp; 
 								&nbsp;&nbsp;(high)&nbsp;&nbsp;
 							</div>
 						</div>
@@ -229,11 +229,11 @@
 							<label class="label" for="opratingSystem">Oprating System</label>
 							<div class="ability-form-control">
 								&nbsp;&nbsp;(low)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_opratingSystem" value="1" checked="checked" id="opratingSystem" />&nbsp;1 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_opratingSystem" value="2" id="opratingSystem" />&nbsp;2 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_opratingSystem" value="3" id="opratingSystem" />&nbsp;3 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_opratingSystem" value="4" id="opratingSystem" />&nbsp;4 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_opratingSystem" value="5" id="opratingSystem" />&nbsp;5 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="opratingSystem" value="1" checked="checked"  />&nbsp;1 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="opratingSystem" value="2"  />&nbsp;2 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="opratingSystem" value="3"  />&nbsp;3 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="opratingSystem" value="4"  />&nbsp;4 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="opratingSystem" value="5"  />&nbsp;5 &nbsp;&nbsp;&nbsp; 
 								&nbsp;&nbsp;(high)&nbsp;&nbsp;
 							</div>
 						</div>
@@ -241,11 +241,11 @@
 							<label class="label" for="computerArchitecture">Computer Architecture</label>
 							<div class="ability-form-control">
 								&nbsp;&nbsp;(low)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_computerArchitecture" value="1" checked="checked" id="computerArchitecture" />&nbsp;1 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_computerArchitecture" value="2" id="computerArchitecture" />&nbsp;2 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_computerArchitecture" value="3" id="computerArchitecture" />&nbsp;3 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_computerArchitecture" value="4" id="computerArchitecture" />&nbsp;4 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_computerArchitecture" value="5" id="computerArchitecture" />&nbsp;5 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="computerArchitecture" value="1" checked="checked"  />&nbsp;1 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="computerArchitecture" value="2" />&nbsp;2 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="computerArchitecture" value="3" />&nbsp;3 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="computerArchitecture" value="4" />&nbsp;4 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="computerArchitecture" value="5" />&nbsp;5 &nbsp;&nbsp;&nbsp; 
 								&nbsp;&nbsp;(high)&nbsp;&nbsp;
 							</div>
 						</div>
@@ -253,11 +253,11 @@
 							<label class="label" for="designPattern">Design Pattern</label>
 							<div class="ability-form-control">
 								&nbsp;&nbsp;(low)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_designPattern" value="1" checked="checked" id="designPattern" />&nbsp;1 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_designPattern" value="2" id="designPattern" />&nbsp;2 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_designPattern" value="3" id="designPattern" />&nbsp;3 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_designPattern" value="4" id="designPattern" />&nbsp;4 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_designPattern" value="5" id="designPattern" />&nbsp;5 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="designPattern" value="1" checked="checked"  />&nbsp;1 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="designPattern" value="2" />&nbsp;2 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="designPattern" value="3" />&nbsp;3 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="designPattern" value="4" />&nbsp;4 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="designPattern" value="5" />&nbsp;5 &nbsp;&nbsp;&nbsp; 
 								&nbsp;&nbsp;(high)&nbsp;&nbsp;
 							</div>
 						</div>
@@ -265,11 +265,11 @@
 							<label class="label" for="security">Security</label>
 							<div class="ability-form-control">
 								&nbsp;&nbsp;(low)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_security" value="1" checked="checked" id="security"  />&nbsp;1 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_security" value="2" id="security" />&nbsp;2 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_security" value="3" id="security" />&nbsp;3 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_security" value="4" id="security" />&nbsp;4 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_security" value="5" id="security" />&nbsp;5 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="security" value="1" checked="checked"  />&nbsp;1 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="security" value="2"  />&nbsp;2 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="security" value="3"  />&nbsp;3 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="security" value="4"  />&nbsp;4 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="security" value="5"  />&nbsp;5 &nbsp;&nbsp;&nbsp; 
 								&nbsp;&nbsp;(high)&nbsp;&nbsp;
 							</div>
 						</div>
@@ -277,11 +277,11 @@
 							<label class="label" for="network">Network</label>
 							<div class="ability-form-control">
 								&nbsp;&nbsp;(low)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_network" value="1" checked="checked" id="network" />&nbsp;1 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_network" value="2" id="network" />&nbsp;2 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_network" value="3" id="network" />&nbsp;3 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_network" value="4" id="network" />&nbsp;4 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_network" value="5" id="network" />&nbsp;5 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="network" value="1" checked="checked"  />&nbsp;1 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="network" value="2"  />&nbsp;2 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="network" value="3"  />&nbsp;3 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="network" value="4"  />&nbsp;4 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="network" value="5"  />&nbsp;5 &nbsp;&nbsp;&nbsp; 
 								&nbsp;&nbsp;(high)&nbsp;&nbsp;
 							</div>
 						</div>
@@ -289,11 +289,11 @@
 							<label class="label" for="mysql">Mysql</label>
 							<div class="ability-form-control">
 								&nbsp;&nbsp;(low)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_mysql" value="1" checked="checked" id="mysql" />&nbsp;1 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_mysql" value="2" id="mysql" />&nbsp;2 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_mysql" value="3" id="mysql" />&nbsp;3 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_mysql" value="4" id="mysql" />&nbsp;4 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_mysql" value="5" id="mysql" />&nbsp;5 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="mysql" value="1" checked="checked"  />&nbsp;1 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="mysql" value="2"  />&nbsp;2 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="mysql" value="3"  />&nbsp;3 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="mysql" value="4"  />&nbsp;4 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="mysql" value="5"  />&nbsp;5 &nbsp;&nbsp;&nbsp; 
 								&nbsp;&nbsp;(high)&nbsp;&nbsp;
 							</div>
 						</div>
@@ -301,11 +301,11 @@
 							<label class="label" for="oracle">Oracle</label>
 							<div class="ability-form-control">
 								&nbsp;&nbsp;(low)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_oracle" value="1" checked="checked" id="oracle" />&nbsp;1 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_oracle" value="2"  id="oracle" />&nbsp;2 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_oracle" value="3"  id="oracle" />&nbsp;3 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_oracle" value="4"  id="oracle" />&nbsp;4 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_oracle" value="5"  id="oracle" />&nbsp;5 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="oracle" value="1" checked="checked"  />&nbsp;1 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="oracle" value="2"  />&nbsp;2 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="oracle" value="3"  />&nbsp;3 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="oracle" value="4"  />&nbsp;4 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="oracle" value="5"  />&nbsp;5 &nbsp;&nbsp;&nbsp; 
 								&nbsp;&nbsp;(high)&nbsp;&nbsp;
 							</div>
 						</div>
@@ -313,20 +313,20 @@
 							<label class="label" for="mongodb">Mongodb</label>
 							<div class="ability-form-control">
 								&nbsp;&nbsp;(low)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_mongodb" value="1" checked="checked" id="mongodb" />&nbsp;1 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_mongodb" value="2" id="mongodb" />&nbsp;2 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_mongodb" value="3" id="mongodb" />&nbsp;3 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_mongodb" value="4" id="mongodb" />&nbsp;4 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="chk_mongodb" value="5" id="mongodb" />&nbsp;5 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="mongodb" value="1" checked="checked"  />&nbsp;1 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="mongodb" value="2"  />&nbsp;2 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="mongodb" value="3"  />&nbsp;3 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="mongodb" value="4"  />&nbsp;4 &nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="mongodb" value="5"  />&nbsp;5 &nbsp;&nbsp;&nbsp; 
 								&nbsp;&nbsp;(high)&nbsp;&nbsp;
 							</div>
 						</div>
 						<div class="form-group d-flex justify-content-end mt-4">
-							<button type="submit" class="btn btn-primary submit" id="id_all_save">
+							<button type="submit" class="btn btn-primary submit" id="name_all_save">
 								<span class="fa fa-paper-plane"></span>
 							</button>
 						</div>
-						</form> 
+						<!-- </form>  -->
 					</div>
 				</div>
 				<div class="col-md-3"></div>
@@ -441,28 +441,72 @@
 	<script src="${context}/resources/js/sign/main.js"></script>
 
 
-	<script>
-		$("#id_all_save").click(function() {
-			var radio_id = []; //id 값을 넣을 배열
-			var radio_id_val = {};//object
-			var radio = $("input[type=radio]"); // 모든 라디오 접근
-			$.each(radio, function(key, value) {
-				radio_id.push($(value).attr('id')); // id 값만을 추출
+	
+	<script type="text/javascript">
+ 	$(function(){ 
+ 		$("#name_all_save").click(function () {		
+			var radio_name = [];//array
+			var raido_name_val = {};//object
+			var radio = $("input[type=radio]"); //라디오 정보를 가져옵니다.
+			var arr = new Array();
+			
+			
+			
+			$.each(radio, function (key, value) { // input radio의 name 값을 가져옵니다.
+				radio_name.push($(value).attr('name'));
 			});
-			radio_id = $.unique(radio_id.sort()).sort(); //중복요소제거
-			var input_radio; // 라디오 id로 접근하기 위해서
-			for (var i = 0; i < radio_id.length; i++) {
-				input_radio = $("input[id=" + radio_id[i] + "]"); // id값으로 확인
-				$.each(input_radio, function(key, value) {
-					if ($(this)[0].checked === true) { //체크가 되어 있는지 아닌지확인
-						radio_id_val[radio_id[i]] = $(this)[0].value; // 라디오 id 값과 value 값을 매칭
-					}
-				});
-			}
-			console.log(radio_id_val); //{python: "1", cpp: "2"}
-		});
-	</script>
+			
+			//console.log(radio_name);
+			
+			radio_name = $.unique(radio_name.sort()).sort(); //중복요소 이름을 제거
+			//console.log(radio_name);
+			
+			for (var i = 0; i < radio_name.length; i++) {
+				var obj_length = document.getElementsByName(radio_name[i]).length;
+				var obj = {
+						'name': '',
+						'score': ''
+						};
+				
+				 for (var j=0; j<obj_length; j++) {
+			            if (document.getElementsByName(radio_name[i])[j].checked == true) {
+			                //alert(document.getElementsByName(radio_name[i])[j].value);
+			                
+			                obj.name=radio_name[i];
+			                obj.score=document.getElementsByName(radio_name[i])[j].value;
+			                
+							//console.log(obj.name);
+							//console.log(obj.score);
+							//console.log(obj);
+							
+							arr.push(obj);
+			            }
+			        }
 
+				}	
+			
+			var jsonData = JSON.stringify(arr) ;
+			//console.log(jsonData) ;
+			
+			//alert('console.log 확인용');
+
+			
+			  $.ajax({
+	    		url:'${pageContext.request.contextPath}/sign/signupAbilitylvl',		    	      
+	    		type:'post',
+				contentType:'application/json; charset=UTF-8',
+		   		data:jsonData,
+				success:function(data){
+					 //alert("됨.");
+					 location.href='${pageContext.request.contextPath}/sign/signupInterest';
+		 		}
+				// ,error:function(){
+			 	// alert("안됨.");
+				// }
+		   	})	  
+		});
+	}); 
+	</script>
 
 
 </body>

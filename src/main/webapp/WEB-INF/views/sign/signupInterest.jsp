@@ -33,7 +33,7 @@
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark ftco-navbar-light" id="ftco-navbar">
 		<div class="container">
-			<a class="navbar-brand" href="sign"><span class="navbar-name">wantudy</span></a>
+			<a class="navbar-brand" href="../"><span class="navbar-name">wantudy</span></a>
 		</div>
 	</nav>
 	<!-- END nav -->

@@ -1,85 +1,116 @@
 package dev.team3.wantudy.controller;
 
+import java.util.HashMap;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import dev.team3.wantudy.dto.AbilityLevelDTO;
 import dev.team3.wantudy.dto.MemberDTO;
-import dev.team3.wantudy.service.SignService;
+import dev.team3.wantudy.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
-@RequestMapping
+@RequestMapping("sign")
 public class SignController {
 
 	@Autowired
-	private SignService signService;
+	private MemberService memberService;
 
-	/* À¥ Ã¹¹øÂ° ÆäÀÌÁö */
-	@GetMapping(value = { "", "/sign" })
+	/* Â› Â˜ÂëŒÂ€ åª›Â€Â ï§£Â˜ÂÂŒ Â™Â”ï§ */
+	@GetMapping(value = { "" })
 	public String sign() {
 		return "sign/sign";
 	}
 
-	@PostMapping(value = { "", "/sign" })
+	@PostMapping(value = { "" })
 	public ModelAndView sign(@ModelAttribute MemberDTO memberDTO, HttpSession session, HttpServletRequest request) {
 
-		
-			try {
-				signService.signup(memberDTO);
-				MemberDTO userInfo = signService.getUser(memberDTO);
-				session.setAttribute("userInfo", userInfo);
-				log.info(userInfo.toString());
-				ModelAndView mav = new ModelAndView("redirect:signupAbilitylvl");
-				// mav.addObject("url", "signupAbilitylvl");
-				return mav;
-			} catch (Exception e) {
-				e.printStackTrace();
-				ModelAndView mav = new ModelAndView("result");
-				mav.addObject("msg", "ÀÌ¹Ì »ç¿ëÁßÀÎ ID ÀÔ´Ï´Ù.");
-				mav.addObject("url", "javascript:history.back();");
-				return mav;
-			}
-		
+
+		try {
+			memberService.signup(memberDTO);
+			MemberDTO userInfo = memberService.getUser(memberDTO);
+			session.setAttribute("userInfo", userInfo);
+			log.info(userInfo.toString());
+			ModelAndView mav = new ModelAndView("redirect:/sign/signupAbilitylvl");
+			// mav.addObject("url", "signupAbilitylvl");
+			return mav;
+		} catch (Exception e) {
+			e.printStackTrace();
+			ModelAndView mav = new ModelAndView("/sign/result");
+			mav.addObject("msg", "ì´ë¯¸ ì¡´ì¬í•˜ëŠ” ì•„ì´ë””ì…ë‹ˆë‹¤.");
+			mav.addObject("url", "javascript:history.back();");
+			return mav;
+		}
 
 	}
 
-	/* È¸¿ø°¡ÀÔ ¼º°ø ÈÄ, ability level ÀÔ·Â ÆäÀÌÁö */
+	/* íšŒå ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™, ability level å ìŒ‰ë¤„ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ */
 	@GetMapping(value = { "/signupAbilitylvl" })
-	public String signupDetail() {
+	public String signupAbilitylvl() {
 		return "sign/signupAbilitylvl";
 	}
 
 	@PostMapping(value = { "/signupAbilitylvl" })
-	public ModelAndView signupDetail(@ModelAttribute MemberDTO memberDTO, HttpSession session,
+	public ModelAndView signupAbilitylvl(@RequestBody String httpParam, HttpSession session,
 			HttpServletRequest request) {
-		MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
-		log.info(userInfo.toString());
-		/*
-		 * try { signService.signup(memberDTO); log.info(memberDTO.toString());
-		 * ModelAndView mav = new ModelAndView("signupInterest"); mav.addObject("url",
-		 * "signupInterest"); return mav; } catch (Exception e) { e.printStackTrace();
-		 * ModelAndView mav = new ModelAndView("result"); mav.addObject("msg",
-		 * "¿¡·¯ ¹ß»ı."); mav.addObject("url", "javascript:history.back();"); return mav; }
-		 */
-		return null;
 
+		ModelAndView mav = new ModelAndView("redirect:/sign/signupInterest");
+
+		JSONParser jsonParser = new JSONParser();
+		JSONArray insertParam = null;
+
+		MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
+		session.setAttribute("userInfo", userInfo);
+
+		// ÂŒÂŒÂ‹
+		try {
+			insertParam = (JSONArray) jsonParser.parse(httpParam);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		
+
+		for (int i = 0; i < insertParam.size(); i++) {
+			JSONObject insertData = (JSONObject) insertParam.get(i);
+			AbilityLevelDTO abilityLevelDTO = new AbilityLevelDTO();
+			abilityLevelDTO.setName((String) insertData.get("name"));
+			abilityLevelDTO.setScore(Integer.parseInt((String) insertData.get("score")));
+
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("abilityLevelDTO", abilityLevelDTO);
+			map.put("memberNo", userInfo.getNo());
+			try {
+				memberService.signupAbilitylvl(map);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		return mav;
 	}
 
-	/* interest ÀÔ·Â ÆäÀÌÁö */
+	/* interest å ìŒ‰ë¤„ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ */
 
 	@GetMapping(value = { "/signupInterest" })
 	public String signupInterest() {
+		System.out.println("Â™Â”ï§ëŒÂ„Â™Â˜ ÂÂœå«„ê³—Â•??");
 		return "sign/signupInterest";
 	}
 
@@ -88,7 +119,7 @@ public class SignController {
 			HttpServletRequest request) {
 
 		try {
-			signService.signup(memberDTO);
+			memberService.signup(memberDTO);
 			log.info(memberDTO.toString());
 			ModelAndView mav = new ModelAndView("signupInterest");
 			mav.addObject("url", "sign/signupInterest");
@@ -96,14 +127,14 @@ public class SignController {
 		} catch (Exception e) {
 			e.printStackTrace();
 			ModelAndView mav = new ModelAndView("sign/result");
-			mav.addObject("msg", "¿¡·¯ ¹ß»ı.");
+			mav.addObject("msg", "å ì™ì˜™å ì™ì˜™ å ìŒ©ì‚¼ì˜™.");
 			mav.addObject("url", "javascript:history.back();");
 			return mav;
 		}
 
 	}
 
-	/* signin (·Î±×ÀÎ) ÆäÀÌÁö */
+	/* signin (å ì‹¸ê¹ì˜™å ì™ì˜™) å ì™ì˜™å ì™ì˜™å ì™ì˜™ */
 	@GetMapping(value = { "/signin" })
 	public String signin() {
 		return "sign/signin";
@@ -113,7 +144,7 @@ public class SignController {
 	public String signin(@ModelAttribute MemberDTO memberDTO, Model model, HttpSession session) {
 		log.info(memberDTO.toString());
 		try {
-			MemberDTO userInfo = signService.getUser(memberDTO);
+			MemberDTO userInfo = memberService.getUser(memberDTO);
 			log.info(userInfo.toString());
 
 			session.setAttribute("userInfo", userInfo);
@@ -132,7 +163,7 @@ public class SignController {
 		session.invalidate();
 
 		ModelAndView mav = new ModelAndView("sign/result");
-		mav.addObject("msg", userInfo.getName() + "(" + userInfo.getId() + ")´ÔÀÌ ·Î±×¾Æ¿ô ÇÏ¿´½À´Ï´Ù.");
+		mav.addObject("msg", userInfo.getName() + "(" + userInfo.getId() + ")å ì™ì˜™å ì™ì˜™ å ì‹¸ê·¸ì•„ìš¸ì˜™ å ì‹¹ìš¸ì˜™å ì™ì˜™å ì‹¹ëŒì˜™.");
 		mav.addObject("url", "./");
 		return mav;
 	}
