@@ -82,6 +82,8 @@ public class SignController {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
+		
+		
 
 		for (int i = 0; i < insertParam.size(); i++) {
 			JSONObject insertData = (JSONObject) insertParam.get(i);
