@@ -32,15 +32,46 @@
 		ws.onmessage = function(data) {
 			var all = JSON.parse(data.data);
 			var member_no = all.member_no;
+			var user_no = $('#userName').val();
 			var msg = all.msg; 
 			var cmd = all.cmd;
 			console.log(msg);
 			console.log("받아온msg:"+msg);
 			if(cmd == "Enter"){
-				$("#chattingloglistcontainer").append("<div class='chattinglogcontainer'>" +member_no+ msg + "</div>");
+				var str = "<div class='enterchattinglogcontainer'>";
+				 str += "<div class='chattinglogname'>"
+				 str += member_no;
+				 str += "</div>";
+				 str += "<div class='chattinglogcontent'>"
+				 str += msg;
+				 str += "</div>";
+				str += "</div>";
+				$("#chattingloglistcontainer").append(str);
 			}
 			else{
-				$("#chattingloglistcontainer").append("<div class='chattinglogcontainer'>" +member_no+":"+ msg + "</div>");
+				if(member_no == user_no ){
+					var str = "<div class='mychattinglogcontainer'>";
+					 str += "<div class='chattinglogcontent'>"
+					 str += msg;
+					 str += "</div>";
+					 str += "<div class='chattinglogname'>"
+					 str += member_no;
+					 str += "</div>";
+					 str += "</div>";
+				}
+				else{
+					var str = "<div class='chattinglogcontainer'>";
+					 str += "<div class='chattinglogname'>"
+					 str += member_no;
+					 str += ":</div>";
+					 str += "<div class='chattinglogcontent'>"
+					 str += msg;
+					 str += "</div>";
+					 str += "</div>";
+
+				}
+
+				$("#chattingloglistcontainer").append(str);
 			}
 			
 

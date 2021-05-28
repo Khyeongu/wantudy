@@ -36,6 +36,20 @@
 	height:20px;
 	width:100%;
 }
+
+.enterchattinglogcontainer{
+	display:flex;
+	height:20px;
+	width:250px;
+	margin:0 auto;
+}
+
+.mychattinglogcontainer{
+	display:flex;
+	height:20px;
+	justify-content:flex-end;
+}
+
 .mylog{
 	display:flex;
 	justify-content:flex-end;
@@ -48,9 +62,11 @@
 }
 
 .chattinglogcontent{
-	width:150px;
+	width:200px;
 	height:100%;
 }
+
+
 
 .chattinglogtime{
 	width:150px;
