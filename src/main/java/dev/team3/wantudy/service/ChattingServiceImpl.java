@@ -45,8 +45,6 @@ public class ChattingServiceImpl implements ChattingService{
 	public List<ChattinglogDTO> getChattinglog(int study_no) {
 		return chattinglogDAO.getCattinglog(study_no);
 	}
-
-
 	
 	
 	

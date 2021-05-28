@@ -48,18 +48,21 @@ public class SocketHandler extends TextWebSocketHandler {
 			sessionList.add(map);
 			
 			System.out.println("¿‘¿Âcontroller");
-
+			System.out.println("sessionList:"+sessionList);
 			for(int i = 0; i<sessionList.size(); i++) {
 				Map<String,Object> mapSessionList = sessionList.get(i);
 				String study_no = (String) mapSessionList.get("study_no");
 				String member_no = (String) mapSessionList.get("member_no");
 				WebSocketSession sess = (WebSocketSession) mapSessionList.get("session");
 				
+				System.out.println(mapReceive.get("study_no"));
+				
 				if(study_no.equals(mapReceive.get("study_no"))) {
 					Map<String,String> mapToSend = new HashMap<String,String>();
 					mapToSend.put("study_no", study_no);
+					mapToSend.put("member_no", (String)map.get("member_no"));
 					mapToSend.put("cmd", "Enter");
-					mapToSend.put("msg",member_no+"¥‘¿Ã ¿‘¿Â«œºÃΩ¿¥œ¥Ÿ.");
+					mapToSend.put("msg","¥‘¿Ã ¿‘¿Â«œºÃΩ¿¥œ¥Ÿ.");
 					
 					String jsonStr = objectMapper.writeValueAsString(mapToSend);
 					sess.sendMessage(new TextMessage(jsonStr));
@@ -68,17 +71,20 @@ public class SocketHandler extends TextWebSocketHandler {
 			
 		}
 		else {
+			System.out.println("sessionList:"+sessionList);
 			for (int i = 0; i < sessionList.size(); i++) {
 				Map<String, Object> mapSessionList = sessionList.get(i);
 				String study_no = (String) mapSessionList.get("study_no");
 				String member_no = (String) mapSessionList.get("member_no");
 				WebSocketSession sess = (WebSocketSession) mapSessionList.get("session");
 
+				
 				if (study_no.equals(mapReceive.get("study_no"))) {
 					Map<String, String> mapToSend = new HashMap<String, String>();
 					mapToSend.put("study_no", study_no);
 					mapToSend.put("cmd", "Send");
-					mapToSend.put("msg", member_no + " : " + mapReceive.get("msg"));
+					mapToSend.put("member_no", mapReceive.get("member_no"));
+					mapToSend.put("msg", mapReceive.get("msg"));
 
 					String jsonStr = objectMapper.writeValueAsString(mapToSend);
 					sess.sendMessage(new TextMessage(jsonStr));
@@ -92,7 +98,20 @@ public class SocketHandler extends TextWebSocketHandler {
 	
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-
+		ObjectMapper objectMapper = new ObjectMapper();
+		String now_study_no="";
+		for (int i = 0 ; i <sessionList.size(); i++) {
+			Map<String,Object> map = sessionList.get(i);
+			String study_no = (String) map.get("study_no");
+			WebSocketSession sess  = (WebSocketSession) map.get("session");
+			
+			if(session.equals(sess)) {
+				now_study_no = study_no;
+				sessionList.remove(map);
+				break;
+			}
+		}
+		
 		log.info("≤˜∞ÂΩ¿¥œ¥Ÿ.");
 	}
 }

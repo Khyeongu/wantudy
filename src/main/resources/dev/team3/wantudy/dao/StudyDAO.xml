@@ -5,7 +5,7 @@
 
 <mapper namespace="dev.team3.wantudy.dao.StudyDAO">
 	<select id="getStudy" parameterType="int" resultType="StudyDTO">
-		select no, name 
+		select *
 		from study
 		where no = #{study_no}
 	</select>

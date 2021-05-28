@@ -19,7 +19,6 @@
 	var ws;
 	wsOpen();
 
-
 	function wsOpen(){
 		ws = new WebSocket("ws://localhost/wantudy/chat");
 		wsEvt();
@@ -31,12 +30,22 @@
 		}
 		
 		ws.onmessage = function(data) {
-			var msg = data.data;
+			var all = JSON.parse(data.data);
+			var member_no = all.member_no;
+			var msg = all.msg; 
+			var cmd = all.cmd;
 			console.log(msg);
 			console.log("받아온msg:"+msg);
-			$("#chattingloglistcontainer").append("<div class='chattinglogcontainer'>" + msg + "</div>");
+			if(cmd == "Enter"){
+				$("#chattingloglistcontainer").append("<div class='chattinglogcontainer'>" +member_no+ msg + "</div>");
+			}
+			else{
+				$("#chattingloglistcontainer").append("<div class='chattinglogcontainer'>" +member_no+":"+ msg + "</div>");
+			}
+			
 
 		}
+
 
 		document.addEventListener("keypress", function(e){
 			if(e.keyCode == 13){ //enter press
@@ -79,16 +88,19 @@
 		$('#chatting').val("");
 	}
 	
+	
 
 
 	function getStudyNo(study){
 		var study_no = $(study).data("value");
-
+		
 		
 		if($('.nowstudy_no').val()!=study_no){
 			$('.nowstudy_no').val(study_no);
 			$('#chattingloglistcontainer').text('');
-			
+		
+	
+		
 			//입장
 			sendEnter();
 			

@@ -7,6 +7,6 @@
 	<select id="selectAllEnrolls" parameterType="MemberDTO" resultType="EnrollDTO">
 		select * 
 		from enroll
-		where member_no = #{no}
+		where member_no = #{no} 
 	</select>
 </mapper>
