@@ -7,6 +7,13 @@
 	<select id="selectAllEnrolls" parameterType="MemberDTO" resultType="EnrollDTO">
 		select * 
 		from enroll
-		where member_no = #{member_no}
+		where member_no = #{no}
+	</select>
+	
+	<select id="getMemberCount" parameterType="int" resultType="int">
+		select count(*)
+		from enroll
+		where study_no=#{study_no}
+	
 	</select>
 </mapper>
