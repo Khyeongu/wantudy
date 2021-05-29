@@ -7,6 +7,6 @@
 	<select id="getStudy" parameterType="int" resultType="StudyDTO">
 		select * 
 		from study
-		where study_no = #{study_no}
+		where no = #{study_no}
 	</select>
 </mapper>

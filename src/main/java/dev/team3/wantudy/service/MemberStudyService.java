@@ -6,7 +6,7 @@ import dev.team3.wantudy.dto.EnrollDTO;
 import dev.team3.wantudy.dto.MemberDTO;
 import dev.team3.wantudy.dto.StudyDTO;
 
-public interface ChattingService {
+public interface MemberStudyService {
 
 	public List<EnrollDTO> selectAllEnrolls(MemberDTO memberDTO);
 	public StudyDTO getStudy(int study_no);
