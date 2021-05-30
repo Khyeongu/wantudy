@@ -111,7 +111,6 @@ public class SocketHandler extends TextWebSocketHandler {
 				break;
 			}
 		}
-		
 		log.info("²÷°å½À´Ï´Ù.");
 	}
 }

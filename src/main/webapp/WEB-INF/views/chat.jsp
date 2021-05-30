@@ -51,7 +51,7 @@
 			else{
 				if(member_no == user_no ){
 					var str = "<div class='mychattinglogcontainer'>";
-					 str += "<div class='chattinglogcontent'>"
+					 str += "<div clashattis='cnglogcontent'>"
 					 str += msg;
 					 str += "</div>";
 					 str += "<div class='chattinglogname'>"
@@ -73,14 +73,21 @@
 
 				$("#chattingloglistcontainer").append(str);
 			}
-			
 
 		}
+		
+		ws.onclose = function(data){
+			wsOpen();
+		};
 
 
 		document.addEventListener("keypress", function(e){
+			var message = $('#chatting').val();
 			if(e.keyCode == 13){ //enter press
-				sendChat();
+				if(message != ""){
+					sendChat();
+				}
+
 			}
 		});
 	}
@@ -99,6 +106,11 @@
 		var cmd = 'Send';
 		send(message,cmd);
 		$('#chatting').val("");
+	}
+	
+	//메세지 전송 시 chattinglog 기록
+	function insertChattinglog(){
+		
 	}
 
 
