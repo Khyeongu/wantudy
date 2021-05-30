@@ -75,7 +75,7 @@ public class MypageController {
 	}
 	
 	@PostMapping(value="/mypage/myinfo")
-	public void modifyMemberInfo(@ModelAttribute MemberInfoDTO memberinfoDTO, HttpSession session ) {
+	public String modifyMemberInfo(@ModelAttribute MemberInfoDTO memberinfoDTO, Model model, HttpSession session ) {
 		memberinfoDTO.setNo(((MemberDTO)session.getAttribute("userInfo")).getNo());
 		memberinfoDTO.setId(((MemberDTO)session.getAttribute("userInfo")).getId());
 		log.info(memberinfoDTO.toString());
@@ -99,8 +99,14 @@ public class MypageController {
 			
 			memberService.modifyMemberInfo(memberDTO);
 			session.setAttribute("userInfo", memberDTO);
+			
+			return "redirect:/mypage/myinfo";
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.info(e.getMessage());
+			model.addAttribute("msg",e.getMessage());
+			model.addAttribute("title", "에러");
+			model.addAttribute("url", "./");
+			return "result";
 		}
 	}
 	

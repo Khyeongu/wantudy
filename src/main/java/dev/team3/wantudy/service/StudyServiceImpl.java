@@ -23,4 +23,16 @@ public class StudyServiceImpl implements StudyService {
 		return studyDAO.getMemberStudy(member_no);
 	}
 
+	@Override
+	public StudyDTO getStudy(int study_no) throws Exception {
+		// TODO Auto-generated method stub
+		return studyDAO.getStudy(study_no);
+	}
+
+	@Override
+	public void updateStudyInfo(StudyDTO studyDTO) throws Exception {
+		// TODO Auto-generated method stub
+		studyDAO.updateStudyInfo(studyDTO);
+	}
+
 }

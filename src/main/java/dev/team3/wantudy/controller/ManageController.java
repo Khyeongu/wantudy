@@ -10,8 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
+import dev.team3.wantudy.dto.CategoryDTO;
 import dev.team3.wantudy.dto.EnrollDTO;
 import dev.team3.wantudy.dto.InterestDTO;
 import dev.team3.wantudy.dto.MemberDTO;
@@ -87,7 +90,40 @@ public class ManageController {
 	@GetMapping(value = "/manage/studyinfo/{study_no}")
 	public String mystudy(@PathVariable int study_no, Model model, HttpSession session) {
 		
+		//세션과 스터디 장 일치하는지 확인기능 추가해야함
+		List<CategoryDTO> categoryList = null;
+		try {
+			categoryList = categoryService.getCategoryAll();
+			model.addAttribute("categoryList", categoryList);
+			StudyDTO studyDTO = studyService.getStudy(study_no);
+			model.addAttribute("studyDTO", studyDTO);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return "/manage/studyinfo";
+	}
+	
+	@PostMapping(value = "/manage/studyinfo/{study_no}")
+	public String updateStudyInfo(@PathVariable int study_no, @ModelAttribute StudyDTO s, Model model, HttpSession session) {
+		try {
+			StudyDTO studyDTO = studyService.getStudy(study_no);
+			studyDTO.setName(s.getName());
+			studyDTO.setContent(s.getContent());
+			studyDTO.setEnddate(s.getEnddate());
+			studyDTO.setCapacity(s.getCapacity());
+			studyDTO.setCategory_no(s.getCategory_no());
+			studyService.updateStudyInfo(studyDTO);
+			return "redirect:/manage/studyinfo/"+study_no;			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			model.addAttribute("msg",e.getMessage());
+			model.addAttribute("title", "에러");
+			model.addAttribute("url", "./");
+			return "result";
+		}
+		
 	}
 
 }
