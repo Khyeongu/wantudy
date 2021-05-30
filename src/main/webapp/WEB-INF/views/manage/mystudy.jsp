@@ -63,13 +63,12 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 
 <script>
 	$(document).ready(function() {
-		var element = $('.studycard-body-header');
-		element.forEach()
-		{
+		var element=$('.studycard-body-header');
+		element.forEach(){
 
 			alert(element.html());
 		}
-
+		
 	});
 </script>
 </head>
@@ -117,8 +116,8 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 							<li><a href="./shop-grid.html">스터디 검색</a></li>
 							<li><a href="./shop-grid.html">스터디 추가</a></li>
 							<li><a href="#">채팅</a>
-							<li><a href="${context}/manage/mystudy">스터디 관리</a></li>
-							<li class="active"><a href="${context}/mypage/myinfo">마이페이지</a></li>
+							<li class="active"><a href="${context}/manage/mystudy">스터디 관리</a></li>
+							<li><a href="${context}/mypage/myinfo">마이페이지</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -137,7 +136,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 			<div class="row">
 				<div class="col-lg-12 text-center">
 					<div class="breadcrumb__text">
-						<h2>지원한 스터디</h2>
+						<h2>내가 만든 스터디</h2>
 					</div>
 				</div>
 			</div>
@@ -149,38 +148,19 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 	<section class="blog spad">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-3 col-md-5 pl-5 pr-5">
-					<div class="sidebar">
-						<div class="sidebar__item pr-5">
-							<h4>마이페이지</h4>
-							<ul>
-								<li><a href="./myinfo">내 정보 수정</a></li>
-								<li class="active"><a href="./myapply">지원한 스터디</a></li>
-								<li><a class="dropbox" href="#">내 스터디 관리<i
-										class="bi small bi-caret-down-fill"></i></a>
-									<ul class="submenu collapse">
-										<li><a class="nav-link" href="#">Submenu item 4 </a></li>
-										<li><a class="nav-link" href="#">Submenu item 5 </a></li>
-										<li><a class="nav-link" href="#">Submenu item 6 </a></li>
-										<li><a class="nav-link" href="#">Submenu item 7 </a></li>
-									</ul></li>
-							</ul>
-						</div>
+				<div class="col-lg-1 col-md-5 pl-5 pr-5"></div>
 
-					</div>
-				</div>
-
-				<div class="col-lg-9 col-md-7">
-					<h4 class="mb-3 border__bottom">지원한 스터디</h4>
+				<div class="col-lg-10 col-md-7">
+					<h4 class="mb-3 border__bottom">관리할 스터디 선택</h4>
 					<div class="row">
 
 						<c:forEach items="${memberStudyList}" var="ms">
-							<c:set var="current_cnt" value="${ms.study_member_count}" />
-							<c:set var="max_cnt" value="${ms.study_capacity}" />
-							<c:set var="study_status" value="${ms.enroll_status}" />
+						<c:set var="current_cnt" value="${ms.study_member_count}"/>
+						<c:set var="max_cnt" value="${ms.study_capacity}"/>
+						<c:set var="study_status" value="${ms.enroll_status}" />
 							<!-- 카드 시작 -->
 							<div class="col-lg-4">
-								<a href=""> <!-- 클릭 시 링크 설정 -->
+								<a href="studyinfo/${ms.enroll_study_no}"> <!-- 클릭 시 링크 설정 -->
 									<div class="studycard ml-2 mr-2">
 										<!-- 카드 헤더 -->
 										<div class="studycard-header"

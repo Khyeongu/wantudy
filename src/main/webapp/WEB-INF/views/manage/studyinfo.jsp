@@ -32,8 +32,6 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 	href="${context}/resources/css/font-awesome.min.css" type="text/css">
 <link rel="stylesheet" href="${context}/resources/css/elegant-icons.css"
 	type="text/css">
-<link rel="stylesheet" href="${context}/resources/css/nice-select.css"
-	type="text/css">
 <link rel="stylesheet" href="${context}/resources/css/jquery-ui.min.css"
 	type="text/css">
 <link rel="stylesheet"
@@ -44,8 +42,8 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 	type="text/css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
-<link rel="stylesheet"
-	href="${context}/resources/css/studycard/studycard.css" type="text/css">
+<link rel="stylesheet" href="${context}/resources/css/nice-select.css"
+	type="text/css">
 
 
 
@@ -60,19 +58,9 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 <script src="${context}/resources/js/main.js"></script>
 <script src="${context}/resources/js/dropbox.js"></script>
 
-
-<script>
-	$(document).ready(function() {
-		var element = $('.studycard-body-header');
-		element.forEach()
-		{
-
-			alert(element.html());
-		}
-
-	});
-</script>
 </head>
+
+
 <body>
 	<!-- Page Preloder -->
 	<div id="preloder">
@@ -117,8 +105,9 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 							<li><a href="./shop-grid.html">스터디 검색</a></li>
 							<li><a href="./shop-grid.html">스터디 추가</a></li>
 							<li><a href="#">채팅</a>
-							<li><a href="${context}/manage/mystudy">스터디 관리</a></li>
-							<li class="active"><a href="${context}/mypage/myinfo">마이페이지</a></li>
+							<li class="active"><a href="${context}/manage/mystudy">스터디
+									관리</a></li>
+							<li><a href="${context}/mypage/myinfo">마이페이지</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -137,7 +126,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 			<div class="row">
 				<div class="col-lg-12 text-center">
 					<div class="breadcrumb__text">
-						<h2>지원한 스터디</h2>
+						<h2>스터디 관리</h2>
 					</div>
 				</div>
 			</div>
@@ -152,18 +141,12 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 				<div class="col-lg-3 col-md-5 pl-5 pr-5">
 					<div class="sidebar">
 						<div class="sidebar__item pr-5">
-							<h4>마이페이지</h4>
+							<h4>스터디 관리</h4>
 							<ul>
-								<li><a href="./myinfo">내 정보 수정</a></li>
-								<li class="active"><a href="./myapply">지원한 스터디</a></li>
-								<li><a class="dropbox" href="#">내 스터디 관리<i
-										class="bi small bi-caret-down-fill"></i></a>
-									<ul class="submenu collapse">
-										<li><a class="nav-link" href="#">Submenu item 4 </a></li>
-										<li><a class="nav-link" href="#">Submenu item 5 </a></li>
-										<li><a class="nav-link" href="#">Submenu item 6 </a></li>
-										<li><a class="nav-link" href="#">Submenu item 7 </a></li>
-									</ul></li>
+								<li class="active"><a href="./studyinfo">스터디 정보 수정</a></li>
+								<li><a href="./studyabil">스터디 역량 수정</a></li>
+								<li><a href="./studyapply">스터디 신청자 현황</a></li>
+								<li><a href="./studymember">스터디 멤버 현황</a></li>
 							</ul>
 						</div>
 
@@ -171,68 +154,110 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 				</div>
 
 				<div class="col-lg-9 col-md-7">
-					<h4 class="mb-3 border__bottom">지원한 스터디</h4>
+					<h4 class="mb-3 border__bottom">스터디 정보 수정</h4>
 					<div class="row">
-
-						<c:forEach items="${memberStudyList}" var="ms">
-							<c:set var="current_cnt" value="${ms.study_member_count}" />
-							<c:set var="max_cnt" value="${ms.study_capacity}" />
-							<c:set var="study_status" value="${ms.enroll_status}" />
-							<!-- 카드 시작 -->
-							<div class="col-lg-4">
-								<a href=""> <!-- 클릭 시 링크 설정 -->
-									<div class="studycard ml-2 mr-2">
-										<!-- 카드 헤더 -->
-										<div class="studycard-header"
-											style="background-image: url('${context}/resources/img/categories/test.jpg')">
-											<c:choose>
-												<c:when test="${study_status=='종료'}">
-													<div class="studycard-header-is_closed end">
-														<div class="studycard-header-text">종료</div>
-													</div>
-												</c:when>
-												<c:when test="${current_cnt == max_cnt}">
-													<div class="studycard-header-is_closed impossible">
-														<div class="studycard-header-text">모집완료</div>
-														<div class="studycard-header-number">${ms.study_member_count}
-															/ ${ms.study_capacity}</div>
-													</div>
-
-												</c:when>
-												<c:otherwise>
-													<div class="studycard-header-is_closed possible">
-														<div class="studycard-header-text">모집중</div>
-														<div class="studycard-header-number">${ms.study_member_count}
-															/ ${ms.study_capacity}</div>
-													</div>
-												</c:otherwise>
-											</c:choose>
-										</div>
-										<!--  카드 바디 -->
-										<div class="studycard-body">
-											<!--  카드 바디 헤더 -->
-											<div class="studycard-body-header">
-												<h1>${ms.study_name}</h1>
-												<p>${ms.study_category}스터디</p>
-											</div>
-											<p class="studycard-body-description">${ms.study_content}</p>
-											<!--  카드 바디 본문 -->
-
-											<!--  카드 바디 푸터 -->
-											<div class="studycard-body-footer">
-												<hr
-													style="margin-bottom: 8px; opacity: 0.5; border-color: #EF5A31">
-												${ms.study_startdate} ~ ${ms.study_enddate} <img
-													class="status-img mt-1 ml-1 mr-1"
-													src="${context}${ms.statusImg}"> <i class="status">
-													${ms.enroll_status }&nbsp;&nbsp; </i>
-											</div>
-										</div>
+						<div class="col-lg-7">
+							<div class="studyinfo" id="studyinfo">
+								<form id="studyInfoForm" name="studyInfoForm" method="post">
+									<div>
+										<h4>아이디</h4>
+										<input type="text" id="id" name="id"
+											value="${sessionScope.userInfo.id}" disabled>
 									</div>
-								</a>
+									<div>
+										<h4>비밀번호</h4>
+										<input type="password" id="password" name="password">
+									</div>
+									<div>
+										<h4>비밀번호 확인</h4>
+										<input type="password" id="password-confirm"
+											name="password-confirm">
+									</div>
+									<div>
+										<h4>이름</h4>
+										<input type="text" id="name" name="name"
+											value="<%=((MemberDTO) session.getAttribute("userInfo")).getName()%>">
+									</div>
+									<div>
+										<h4>관심분야 1</h4>
+									</div>
+									<div>
+										<select id="interest1" name="interest1"
+											class="form-control mt-1">
+											<option value="0">선택안함</option>
+											<option value="5">알고리즘</option>
+											<option value="8">웹</option>
+											<option value="6">안드로이드</option>
+											<option value="12">IOS</option>
+											<option value="9">자료구조</option>
+											<option value="3">머신러닝</option>
+											<option value="10">프로그래밍 언어</option>
+											<option value="7">운영체제</option>
+											<option value="11">컴퓨터구조</option>
+											<option value="2">디자인패턴</option>
+											<option value="4">컴뷰터 보안</option>
+											<option value="1">네트워크</option>
+											<option value="13">데이터베이스</option>
+										</select>
+
+									</div>
+									<div>
+										<h4>관심분야 2</h4>
+									</div>
+									<div>
+										<select id="interest2" name="interest2"
+											class="form-control mt-1">
+											<option value="0">선택안함</option>
+											<option value="5">알고리즘</option>
+											<option value="8">웹</option>
+											<option value="6">안드로이드</option>
+											<option value="12">IOS</option>
+											<option value="9">자료구조</option>
+											<option value="3">머신러닝</option>
+											<option value="10">프로그래밍 언어</option>
+											<option value="7">운영체제</option>
+											<option value="11">컴퓨터구조</option>
+											<option value="2">디자인패턴</option>
+											<option value="4">컴뷰터 보안</option>
+											<option value="1">네트워크</option>
+											<option value="13">데이터베이스</option>
+										</select>
+
+									</div>
+									<div>
+										<h4>관심분야 3</h4>
+									</div>
+									<div>
+										<select id="interest3" name="interest3"
+											class="form-control mt-1">
+											<option value="0">선택안함</option>
+											<option value="5">알고리즘</option>
+											<option value="8">웹</option>
+											<option value="6">안드로이드</option>
+											<option value="12">IOS</option>
+											<option value="9">자료구조</option>
+											<option value="3">머신러닝</option>
+											<option value="10">프로그래밍 언어</option>
+											<option value="7">운영체제</option>
+											<option value="11">컴퓨터구조</option>
+											<option value="2">디자인패턴</option>
+											<option value="4">컴뷰터 보안</option>
+											<option value="1">네트워크</option>
+											<option value="13">데이터베이스</option>
+										</select>
+
+									</div>
+
+								</form>
 							</div>
-							<!-- 카드 끝 -->
-						</c:forEach>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-7"></div>
+						<div class="col-lg-2 mt-3 float-right">
+							<button type="button" id="btnUpdate" class="site-btn"
+								onclick="updateInfo()">저장</button>
+						</div>
 					</div>
 				</div>
 			</div>
