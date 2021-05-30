@@ -9,4 +9,9 @@
 		from category
 		where no=#{category_no}
 	</select>
+	
+	<select id="getCategoryAll" resultType="CategoryDTO">
+		select *
+		from category	
+	</select>
 </mapper>

@@ -1,4 +1,5 @@
 
+<%@page import="dev.team3.wantudy.dto.CategoryDTO"%>
 <%@page import="dev.team3.wantudy.dto.MemberDTO"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
@@ -8,7 +9,7 @@
 <c:set var="interestList" value="${interestList}" />
 <!DOCTYPE html>
 <html lang="zxx">
-<% MemberDTO userInfo = (MemberDTO)session.getAttribute("userInfo"); %>
+<% MemberDTO userInfo = (MemberDTO)session.getAttribute("userInfo");%>
 <head>
 <meta charset="UTF-8">
 <meta name="description" content="Ogani Template">
@@ -134,8 +135,8 @@ function updateInfo(){
 							<li><a href="./shop-grid.html">스터디 검색</a></li>
 							<li><a href="./shop-grid.html">스터디 추가</a></li>
 							<li><a href="#">채팅</a>
-							<li><a href="./blog.html">스터디 관리</a></li>
-							<li class="active"><a href="./myinfo">마이페이지</a></li>
+							<li><a href="${context}/manage/mystudy">스터디 관리</a></li>
+							<li class="active"><a href="${context}/mypage/myinfo">마이페이지</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -219,19 +220,9 @@ function updateInfo(){
 										<select id="interest1" name="interest1"
 											class="form-control mt-1">
 											<option value="0">선택안함</option>
-											<option value="5">알고리즘</option>
-											<option value="8">웹</option>
-											<option value="6">안드로이드</option>
-											<option value="12">IOS</option>
-											<option value="9">자료구조</option>
-											<option value="3">머신러닝</option>
-											<option value="10">프로그래밍 언어</option>
-											<option value="7">운영체제</option>
-											<option value="11">컴퓨터구조</option>
-											<option value="2">디자인패턴</option>
-											<option value="4">컴뷰터 보안</option>
-											<option value="1">네트워크</option>
-											<option value="13">데이터베이스</option>
+											<c:forEach items="${categoryList}" var="category">
+												<option value="${category.no}">${category.name}</option>
+											</c:forEach>
 										</select>
 
 									</div>
@@ -242,19 +233,9 @@ function updateInfo(){
 										<select id="interest2" name="interest2"
 											class="form-control mt-1">
 											<option value="0">선택안함</option>
-											<option value="5">알고리즘</option>
-											<option value="8">웹</option>
-											<option value="6">안드로이드</option>
-											<option value="12">IOS</option>
-											<option value="9">자료구조</option>
-											<option value="3">머신러닝</option>
-											<option value="10">프로그래밍 언어</option>
-											<option value="7">운영체제</option>
-											<option value="11">컴퓨터구조</option>
-											<option value="2">디자인패턴</option>
-											<option value="4">컴뷰터 보안</option>
-											<option value="1">네트워크</option>
-											<option value="13">데이터베이스</option>
+											<c:forEach items="${categoryList}" var="category">
+												<option value="${category.no}">${category.name}</option>
+											</c:forEach>
 										</select>
 
 									</div>
@@ -265,19 +246,9 @@ function updateInfo(){
 										<select id="interest3" name="interest3"
 											class="form-control mt-1">
 											<option value="0">선택안함</option>
-											<option value="5">알고리즘</option>
-											<option value="8">웹</option>
-											<option value="6">안드로이드</option>
-											<option value="12">IOS</option>
-											<option value="9">자료구조</option>
-											<option value="3">머신러닝</option>
-											<option value="10">프로그래밍 언어</option>
-											<option value="7">운영체제</option>
-											<option value="11">컴퓨터구조</option>
-											<option value="2">디자인패턴</option>
-											<option value="4">컴뷰터 보안</option>
-											<option value="1">네트워크</option>
-											<option value="13">데이터베이스</option>
+											<c:forEach items="${categoryList}" var="category">
+												<option value="${category.no}">${category.name}</option>
+											</c:forEach>
 										</select>
 
 									</div>

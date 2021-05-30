@@ -9,4 +9,10 @@
 		from study
 		where no = #{study_no}
 	</select>
+	
+	<select id="getMemberStudy" parameterType="int" resultType="StudyDTO">
+		select *
+		from study
+		where member_no=${member_no}
+	</select>
 </mapper>

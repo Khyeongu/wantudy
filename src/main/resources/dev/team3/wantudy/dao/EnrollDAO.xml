@@ -10,10 +10,17 @@
 		where member_no = #{no}
 	</select>
 	
+	<select id="selectMemberStudyEnroll" parameterType="StudyDTO" resultType="EnrollDTO">
+		select status
+		from enroll
+		where member_no = #{member_no}
+		and study_no=#{no}
+	</select>
+	
 	<select id="getMemberCount" parameterType="int" resultType="int">
 		select count(*)
 		from enroll
 		where study_no=#{study_no}
-	
+		and status='진행중'
 	</select>
 </mapper>
