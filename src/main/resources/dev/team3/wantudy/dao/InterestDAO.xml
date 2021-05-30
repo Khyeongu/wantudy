@@ -17,4 +17,12 @@
 		where member_no=#{member_no} and
 			interest_no=#{interest_no}
 	</update>
+	
+	<insert id="signupInterest" parameterType="InterestDTO">
+		insert into interest
+		(member_no, interest_no, category_no)
+		values 
+		(#{member_no}, #{interest_no}, #{category_no})
+		
+	</insert>
 </mapper>

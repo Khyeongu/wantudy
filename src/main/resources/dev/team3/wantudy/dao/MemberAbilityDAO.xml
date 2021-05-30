@@ -4,5 +4,14 @@
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="dev.team3.wantudy.dao.MemberAbilityDAO">
-
+	<select id="signupAbilitylvl" parameterType="hashmap"
+		statementType="CALLABLE">
+		{
+		CALL PACK_SIGNUP_PKG.PROC_INSERT_ABILITY_LEVEL(
+		#{memberNo},
+		#{abilityLevelDTO.name},
+		#{abilityLevelDTO.score}
+		)
+		}
+	</select>
 </mapper>
