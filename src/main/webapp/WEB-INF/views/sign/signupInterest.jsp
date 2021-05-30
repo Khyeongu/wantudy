@@ -37,9 +37,9 @@
 
 
 <body>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark ftco-navbar-light" id="ftco-navbar">
+	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 		<div class="container">
-			<a class="navbar-brand" href="../"><span class="navbar-name">wantudy</span></a>
+			<a class="navbar-brand" href="../"><span>wantudy</span></a>
 		</div>
 	</nav>
 	<!-- END nav -->
@@ -48,108 +48,92 @@
 		<div class="overlay"></div>
 
 
-		 			<section class="ftco-section ftco-no-pb ftco-no-pt"> 
-		<div class="container">
-			<div class="row">
-				<div class="col-md-3"></div>
-				<div class="col-md-6">
-					<div class="signupAbilityLvl-wrap p-4 p-md-5">
+		<section class="ftco-section ftco-no-pb ftco-no-pt">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-3"></div>
+
+					<div class="col-md-6 signupAbilityLvl-wrap p-4 p-md-5">
 						<h3 class="mb-4">Ability Level</h3>
-						<!-- <form class="signup-form" method="POST">  -->
-						<div class="form-group">
-							<label class="label" for="python">관심분야 1</label>
-							<div>
-										<select id="interest1" name="interest1"
-											class="form-control mt-1">
-											<option value="0">선택안함</option>
-											<option value="5">알고리즘</option>
-											<option value="8">웹</option>
-											<option value="6">안드로이드</option>
-											<option value="12">IOS</option>
-											<option value="9">자료구조</option>
-											<option value="3">머신러닝</option>
-											<option value="10">프로그래밍 언어</option>
-											<option value="7">운영체제</option>
-											<option value="11">컴퓨터구조</option>
-											<option value="2">디자인패턴</option>
-											<option value="4">컴뷰터 보안</option>
-											<option value="1">네트워크</option>
-											<option value="13">데이터베이스</option>
-										</select>
+						<form class="signup-form" method="POST">
+							<div class="form-group">
+								<label class="label" for="interest1">관심분야 1</label>
+								<div>
+									<select id="interest1" name="interest1" class="form-control mt-1">
+										<option value="0">선택안함</option>
+										<option value="5">알고리즘</option>
+										<option value="8">웹</option>
+										<option value="6">안드로이드</option>
+										<option value="12">IOS</option>
+										<option value="9">자료구조</option>
+										<option value="3">머신러닝</option>
+										<option value="10">프로그래밍 언어</option>
+										<option value="7">운영체제</option>
+										<option value="11">컴퓨터구조</option>
+										<option value="2">디자인패턴</option>
+										<option value="4">컴뷰터 보안</option>
+										<option value="1">네트워크</option>
+										<option value="13">데이터베이스</option>
+									</select>
 
-									</div>
-						</div>
-						<div class="form-group">
-							<label class="label" for="python">관심분야 2</label>
-							<div>
-										<select id="interest1" name="interest1"
-											class="form-control mt-1">
-											<option value="0">선택안함</option>
-											<option value="5">알고리즘</option>
-											<option value="8">웹</option>
-											<option value="6">안드로이드</option>
-											<option value="12">IOS</option>
-											<option value="9">자료구조</option>
-											<option value="3">머신러닝</option>
-											<option value="10">프로그래밍 언어</option>
-											<option value="7">운영체제</option>
-											<option value="11">컴퓨터구조</option>
-											<option value="2">디자인패턴</option>
-											<option value="4">컴뷰터 보안</option>
-											<option value="1">네트워크</option>
-											<option value="13">데이터베이스</option>
-										</select>
-
-									</div>
-						</div>
-						<div class="form-group">
-							<label class="label" for="python">관심분야 3</label>
-							<div>
-										<select id="interest1" name="interest1"
-											class="form-control mt-1">
-											<option value="0">선택안함</option>
-											<option value="5">알고리즘</option>
-											<option value="8">웹</option>
-											<option value="6">안드로이드</option>
-											<option value="12">IOS</option>
-											<option value="9">자료구조</option>
-											<option value="3">머신러닝</option>
-											<option value="10">프로그래밍 언어</option>
-											<option value="7">운영체제</option>
-											<option value="11">컴퓨터구조</option>
-											<option value="2">디자인패턴</option>
-											<option value="4">컴뷰터 보안</option>
-											<option value="1">네트워크</option>
-											<option value="13">데이터베이스</option>
-										</select>
-
-									</div>
-						</div>
-						
-						<!-- <div class="form-group">
-							<label class="label" for="mongodb">Mongodb</label>
-							<div class="ability-form-control">
-								&nbsp;&nbsp;(low)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="mongodb" value="1" checked="checked"  />&nbsp;1 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="mongodb" value="2"  />&nbsp;2 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="mongodb" value="3"  />&nbsp;3 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="mongodb" value="4"  />&nbsp;4 &nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="mongodb" value="5"  />&nbsp;5 &nbsp;&nbsp;&nbsp; 
-								&nbsp;&nbsp;(high)&nbsp;&nbsp;
+								</div>
 							</div>
-						</div> -->
-						<div class="form-group d-flex justify-content-end mt-4">
-							<button type="submit" class="btn btn-primary submit" id="name_all_save">
-								<span class="fa fa-paper-plane"></span>
-							</button>
-						</div>
-						<!-- </form>  -->
+							<div class="form-group">
+								<label class="label" for="interest2">관심분야 2</label>
+								<div>
+									<select id="interest2" name="interest2" class="form-control mt-1">
+										<option value="0">선택안함</option>
+										<option value="5">알고리즘</option>
+										<option value="8">웹</option>
+										<option value="6">안드로이드</option>
+										<option value="12">IOS</option>
+										<option value="9">자료구조</option>
+										<option value="3">머신러닝</option>
+										<option value="10">프로그래밍 언어</option>
+										<option value="7">운영체제</option>
+										<option value="11">컴퓨터구조</option>
+										<option value="2">디자인패턴</option>
+										<option value="4">컴뷰터 보안</option>
+										<option value="1">네트워크</option>
+										<option value="13">데이터베이스</option>
+									</select>
+
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="label" for="interest3">관심분야 3</label>
+								<div>
+									<select id="interest3" name="interest3" class="form-control mt-1">
+										<option value="0">선택안함</option>
+										<option value="5">알고리즘</option>
+										<option value="8">웹</option>
+										<option value="6">안드로이드</option>
+										<option value="12">IOS</option>
+										<option value="9">자료구조</option>
+										<option value="3">머신러닝</option>
+										<option value="10">프로그래밍 언어</option>
+										<option value="7">운영체제</option>
+										<option value="11">컴퓨터구조</option>
+										<option value="2">디자인패턴</option>
+										<option value="4">컴뷰터 보안</option>
+										<option value="1">네트워크</option>
+										<option value="13">데이터베이스</option>
+									</select>
+
+								</div>
+							</div>
+
+							<div class="form-group d-flex justify-content-end mt-4">
+								<button type="submit" class="btn btn-primary submit" id="get_all_interests">
+									<span class="fa fa-paper-plane"></span>
+								</button>
+							</div>
+						</form>
 					</div>
+					<div class="col-md-3"></div>
 				</div>
-				<div class="col-md-3"></div>
 			</div>
-		</div>
-		 	</section> 
+		</section>
 
 	</div>
 
@@ -236,8 +220,8 @@
 	<!-- loader -->
 	<div id="ftco-loader" class="show fullscreen">
 		<svg class="circular" width="48px" height="48px">
-			<circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
-			<circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg>
+         <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+         <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg>
 	</div>
 
 
@@ -256,74 +240,6 @@
 	<script src="https://ma/resourcesps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 	<script src="${context}/resources/js/sign/google-map.js"></script>
 	<script src="${context}/resources/js/sign/main.js"></script>
-
-
-	
-	<script type="text/javascript">
- 	$(function(){ 
- 		$("#name_all_save").click(function () {		
-			var radio_name = [];//array
-			var raido_name_val = {};//object
-			var radio = $("input[type=radio]"); //라디오 정보를 가져옵니다.
-			var arr = new Array();
-			
-			
-			
-			$.each(radio, function (key, value) { // input radio의 name 값을 가져옵니다.
-				radio_name.push($(value).attr('name'));
-			});
-			
-			//console.log(radio_name);
-			
-			radio_name = $.unique(radio_name.sort()).sort(); //중복요소 이름을 제거
-			//console.log(radio_name);
-			
-			for (var i = 0; i < radio_name.length; i++) {
-				var obj_length = document.getElementsByName(radio_name[i]).length;
-				var obj = {
-						'name': '',
-						'score': ''
-						};
-				
-				 for (var j=0; j<obj_length; j++) {
-			            if (document.getElementsByName(radio_name[i])[j].checked == true) {
-			                //alert(document.getElementsByName(radio_name[i])[j].value);
-			                
-			                obj.name=radio_name[i];
-			                obj.score=document.getElementsByName(radio_name[i])[j].value;
-			                
-							//console.log(obj.name);
-							//console.log(obj.score);
-							//console.log(obj);
-							
-							arr.push(obj);
-			            }
-			        }
-
-				}	
-			
-			var jsonData = JSON.stringify(arr) ;
-			//console.log(jsonData) ;
-			
-			//alert('console.log 확인용');
-
-			
-			  $.ajax({
-	    		url:'${pageContext.request.contextPath}/sign/signupAbilitylvl',		    	      
-	    		type:'post',
-				contentType:'application/json; charset=UTF-8',
-		   		data:jsonData,
-				success:function(data){
-					 //alert("됨.");
-					 location.href='${pageContext.request.contextPath}/sign/signupInterest';
-		 		}
-				// ,error:function(){
-			 	// alert("안됨.");
-				// }
-		   	})	  
-		});
-	}); 
-	</script>
 
 
 </body>

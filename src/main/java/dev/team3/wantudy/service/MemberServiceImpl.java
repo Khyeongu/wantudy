@@ -1,7 +1,5 @@
 package dev.team3.wantudy.service;
 
-import java.util.HashMap;
-
 import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,16 +43,7 @@ public class MemberServiceImpl implements MemberService {
 		}
 	}
 
-	@Override
-	public void signupAbilitylvl(HashMap<String, Object> map) throws Exception {
-		try {
-			memberDAO.signupAbilitylvl(map);
-		} catch (Exception e) {
-			log.info(e.getMessage());
-			throw e;
-		}
 
-	}
 
 	@Override
 	public void modifyMemberInfo(MemberDTO memberDTO) throws Exception {

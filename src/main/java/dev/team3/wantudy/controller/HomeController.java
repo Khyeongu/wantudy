@@ -17,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
-@RequestMapping({ "home"})
+@RequestMapping({ "home" })
 public class HomeController {
 
 	@Autowired

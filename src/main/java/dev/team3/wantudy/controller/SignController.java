@@ -20,7 +20,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import dev.team3.wantudy.dto.AbilityLevelDTO;
+import dev.team3.wantudy.dto.InterestDTO;
+import dev.team3.wantudy.dto.InterestInfoDTO;
 import dev.team3.wantudy.dto.MemberDTO;
+import dev.team3.wantudy.service.AbilitylvlService;
+import dev.team3.wantudy.service.InterestService;
 import dev.team3.wantudy.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
 
@@ -31,6 +35,12 @@ public class SignController {
 
 	@Autowired
 	private MemberService memberService;
+
+	@Autowired
+	private InterestService interestService;
+
+	@Autowired
+	private AbilitylvlService abilitylvlService;
 
 	/* 처음 웹 페이지 */
 	@GetMapping(value = { "" })
@@ -56,6 +66,30 @@ public class SignController {
 			return mav;
 		}
 
+	}
+
+	/* 로그인(signin) 페이지 */
+	@GetMapping(value = { "/signin" })
+	public String signin() {
+		return "sign/signin";
+	}
+
+	@PostMapping(value = { "/signin" })
+	public ModelAndView signin(@ModelAttribute MemberDTO memberDTO, Model model, HttpSession session) {
+		log.info(memberDTO.toString());
+		try {
+			MemberDTO userInfo = memberService.getUser(memberDTO);
+			log.info(userInfo.toString());
+			ModelAndView mav = new ModelAndView("redirect:/home");
+			session.setAttribute("userInfo", userInfo);
+			return mav;
+		} catch (Exception e) {
+			log.info(e.getMessage());
+			ModelAndView mav = new ModelAndView("/sign/result");
+			mav.addObject("msg", "아이디가 없거나 비밀번호가 일치하지 않습니다.");
+			mav.addObject("url", "javascript:history.back();");
+			return mav;
+		}
 	}
 
 	/* 개인 역량 입력 페이지 */
@@ -93,7 +127,7 @@ public class SignController {
 			map.put("abilityLevelDTO", abilityLevelDTO);
 			map.put("memberNo", userInfo.getNo());
 			try {
-				memberService.signupAbilitylvl(map);
+				abilitylvlService.signupAbilitylvl(map);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -110,46 +144,38 @@ public class SignController {
 	}
 
 	@PostMapping(value = { "/signupInterest" })
-	public ModelAndView signupInterest(@ModelAttribute MemberDTO memberDTO, HttpSession session,
+	public ModelAndView signupInterest(@ModelAttribute InterestInfoDTO interestInfoDTO, HttpSession session,
 			HttpServletRequest request) {
+		MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 
 		try {
-			memberService.signup(memberDTO);
-			log.info(memberDTO.toString());
-			ModelAndView mav = new ModelAndView("signupInterest");
-			mav.addObject("url", "sign/signupInterest");
+			InterestDTO interestDTO = new InterestDTO();
+
+			interestDTO.setMember_no(userInfo.getNo());
+			interestDTO.setInterest_no(1);
+			interestDTO.setCategory_no(interestInfoDTO.getInterest1());
+			interestService.signupInterest(interestDTO);
+
+			interestDTO.setMember_no(userInfo.getNo());
+			interestDTO.setInterest_no(2);
+			interestDTO.setCategory_no(interestInfoDTO.getInterest2());
+			interestService.signupInterest(interestDTO);
+
+			interestDTO.setMember_no(userInfo.getNo());
+			interestDTO.setInterest_no(3);
+			interestDTO.setCategory_no(interestInfoDTO.getInterest3());
+			interestService.signupInterest(interestDTO);
+
+			ModelAndView mav = new ModelAndView("redirect:/home");
 			return mav;
 		} catch (Exception e) {
 			e.printStackTrace();
-			ModelAndView mav = new ModelAndView("sign/result");
-			mav.addObject("msg", "에러 발생.");
-			mav.addObject("url", "javascript:history.back();");
-			return mav;
-		}
-
-	}
-
-	/* 로그인(signin) 페이지 */
-	@GetMapping(value = { "/signin" })
-	public String signin() {
-		return "sign/signin";
-	}
-
-	@PostMapping(value = { "/signin" })
-	public ModelAndView signin(@ModelAttribute MemberDTO memberDTO, Model model, HttpSession session) {
-		log.info(memberDTO.toString());
-		try {
-			MemberDTO userInfo = memberService.getUser(memberDTO);
-			log.info(userInfo.toString());
-			ModelAndView mav = new ModelAndView("redirect:/home");
-			session.setAttribute("userInfo", userInfo);
-			return mav;
-		} catch (Exception e) {
-			log.info(e.getMessage());
 			ModelAndView mav = new ModelAndView("/sign/result");
-			mav.addObject("msg", "아이디가 없거나 비밀번호가 일치하지 않습니다.");
+			mav.addObject("msg", "이미 존재하는 아이디입니다.");
 			mav.addObject("url", "javascript:history.back();");
 			return mav;
 		}
+
 	}
+
 }
