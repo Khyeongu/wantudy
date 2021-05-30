@@ -60,4 +60,9 @@ public class ChattingController {
 		chattingloglistmap.put("chattingloglist", chattingloglist);
 		return chattingloglistmap;
 	}
+	
+	@RequestMapping(value="/insertlog")
+	public void insertchattinglog(@ModelAttribute ChattinglogDTO chattinglogDTO) {
+		chattingService.insertchattinglog(chattinglogDTO);
+	}
 }

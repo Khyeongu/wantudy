@@ -110,6 +110,25 @@
 	
 	//메세지 전송 시 chattinglog 기록
 	function insertChattinglog(){
+		var message = $('#chatting').val();
+		var study_no = $('.nowstudy_no').val();
+		var uN = $('#userName').val();
+		
+		$.ajax({
+			 type:'POST',
+			 url:'${pageContext.request.contextPath}/chatting/insertlog',
+			 data:{
+				 "study_no":study_no,
+				 "content":message,
+				 "member_no":uN
+			 },
+			 success:function(data){
+				 alert("채팅로그를 저장했습니다.");
+				 
+			 },error:function(request,status,error){
+				 alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			 }
+		 })
 		
 	}
 
@@ -234,7 +253,7 @@
 						<tr>
 							<th>메시지</th>
 							<th><input id="chatting" placeholder="보내실 메시지를 입력하세요."></th>
-							<th><button onclick="sendChat()" id="sendBtn">보내기</button></th>
+							<th><button onclick="insertChattinglog(); sendChat();" id="sendBtn">보내기</button></th>
 						</tr>
 					</table>
 				</div>

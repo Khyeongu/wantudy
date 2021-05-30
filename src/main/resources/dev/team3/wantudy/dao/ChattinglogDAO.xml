@@ -7,4 +7,8 @@
 	<select id="getCattinglog" parameterType="int" resultType="ChattinglogDTO">
 		select * from chattinglog where study_no = #{study_no} order by no 
 	</select>
+	
+	<insert id="insertchattinglog" parameterType="ChattinglogDTO">
+		insert into chattinglog values(chattinglog_no_seq.nextval, #{member_no},#{study_no},#{content},sysdate)
+	</insert>
 </mapper>
