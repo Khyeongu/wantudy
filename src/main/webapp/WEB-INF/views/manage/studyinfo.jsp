@@ -5,7 +5,6 @@
 	pageEncoding="utf-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="context" value="${pageContext.request.contextPath}" />
-<c:set var="interestList" value="${interestList}" />
 <!DOCTYPE html>
 <html lang="zxx">
 <%
@@ -57,6 +56,22 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 <script src="${context}/resources/js/owl.carousel.min.js"></script>
 <script src="${context}/resources/js/main.js"></script>
 <script src="${context}/resources/js/dropbox.js"></script>
+<script type="text/javascript"
+	src="${context}/resources/js/datepicker/datepicker.js"></script>
+
+<script>
+$(document).ready(function(){
+	$("#category_no").val('<c:out value="${studyDTO.category_no}"/>').prop("selected", true);
+});
+
+function updateInfo(){
+	if (confirm("정말 수정하시겠습니까?")) {
+		document.getElementById("studyInfoForm").submit();
+	} else {
+		return false;
+	}
+}
+</script>
 
 </head>
 
@@ -104,8 +119,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 							<li><a href="./index.html">홈</a></li>
 							<li><a href="./shop-grid.html">스터디 검색</a></li>
 							<li><a href="./shop-grid.html">스터디 추가</a></li>
-							<li><a href="#">채팅</a>
-							<li class="active"><a href="${context}/manage/mystudy">스터디
+							<li><a href="#">채팅</a> <li class="active"><a href="${context}/manage/mystudy">스터디
 									관리</a></li>
 							<li><a href="${context}/mypage/myinfo">마이페이지</a></li>
 						</ul>
@@ -160,94 +174,44 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 							<div class="studyinfo" id="studyinfo">
 								<form id="studyInfoForm" name="studyInfoForm" method="post">
 									<div>
-										<h4>아이디</h4>
-										<input type="text" id="id" name="id"
-											value="${sessionScope.userInfo.id}" disabled>
-									</div>
-									<div>
-										<h4>비밀번호</h4>
-										<input type="password" id="password" name="password">
-									</div>
-									<div>
-										<h4>비밀번호 확인</h4>
-										<input type="password" id="password-confirm"
-											name="password-confirm">
-									</div>
-									<div>
-										<h4>이름</h4>
+										<h4>스터디 이름</h4>
 										<input type="text" id="name" name="name"
-											value="<%=((MemberDTO) session.getAttribute("userInfo")).getName()%>">
+											value="${studyDTO.name}">
 									</div>
 									<div>
-										<h4>관심분야 1</h4>
+										<h4>스터디 내용 //글상자 크기 변경해야함</h4>
+										<input type="text" id="content" name="content"
+											value="${studyDTO.content}">
 									</div>
 									<div>
-										<select id="interest1" name="interest1"
+										<h4>시작 날짜</h4>
+										<input autocomplete="off" class="form-control" id="startdate"
+											name="startdate" type="text" value="${studyDTO.startdate}"
+											placeholder="시작 날짜" disabled="disabled" />
+									</div>
+									<div>
+										<h4>종료 날짜</h4>
+										<input autocomplete="off" class="form-control" id="enddate"
+											name="enddate" type="text" value="${studyDTO.enddate}"
+											placeholder="종료 날짜" />
+									</div>
+									<div>
+										<h4>최대 인원</h4>
+										<input type="text" id="capacity" name="capacity"
+											value="${studyDTO.capacity}">
+									</div>
+									<div>
+										<h4>카테고리</h4>
+									</div>
+									<div>
+										<select id="category_no" name="category_no"
 											class="form-control mt-1">
 											<option value="0">선택안함</option>
-											<option value="5">알고리즘</option>
-											<option value="8">웹</option>
-											<option value="6">안드로이드</option>
-											<option value="12">IOS</option>
-											<option value="9">자료구조</option>
-											<option value="3">머신러닝</option>
-											<option value="10">프로그래밍 언어</option>
-											<option value="7">운영체제</option>
-											<option value="11">컴퓨터구조</option>
-											<option value="2">디자인패턴</option>
-											<option value="4">컴뷰터 보안</option>
-											<option value="1">네트워크</option>
-											<option value="13">데이터베이스</option>
+											<c:forEach items="${categoryList}" var="category">
+												<option value="${category.no}">${category.name}</option>
+											</c:forEach>
 										</select>
-
 									</div>
-									<div>
-										<h4>관심분야 2</h4>
-									</div>
-									<div>
-										<select id="interest2" name="interest2"
-											class="form-control mt-1">
-											<option value="0">선택안함</option>
-											<option value="5">알고리즘</option>
-											<option value="8">웹</option>
-											<option value="6">안드로이드</option>
-											<option value="12">IOS</option>
-											<option value="9">자료구조</option>
-											<option value="3">머신러닝</option>
-											<option value="10">프로그래밍 언어</option>
-											<option value="7">운영체제</option>
-											<option value="11">컴퓨터구조</option>
-											<option value="2">디자인패턴</option>
-											<option value="4">컴뷰터 보안</option>
-											<option value="1">네트워크</option>
-											<option value="13">데이터베이스</option>
-										</select>
-
-									</div>
-									<div>
-										<h4>관심분야 3</h4>
-									</div>
-									<div>
-										<select id="interest3" name="interest3"
-											class="form-control mt-1">
-											<option value="0">선택안함</option>
-											<option value="5">알고리즘</option>
-											<option value="8">웹</option>
-											<option value="6">안드로이드</option>
-											<option value="12">IOS</option>
-											<option value="9">자료구조</option>
-											<option value="3">머신러닝</option>
-											<option value="10">프로그래밍 언어</option>
-											<option value="7">운영체제</option>
-											<option value="11">컴퓨터구조</option>
-											<option value="2">디자인패턴</option>
-											<option value="4">컴뷰터 보안</option>
-											<option value="1">네트워크</option>
-											<option value="13">데이터베이스</option>
-										</select>
-
-									</div>
-
 								</form>
 							</div>
 						</div>
@@ -327,23 +291,20 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 								Copyright &copy;
 								<script>
 									document.write(new Date().getFullYear());
-								</script>
-								All rights reserved | This template is made with <i
-									class="fa fa-heart" aria-hidden="true"></i> by <a
-									href="https://colorlib.com" target="_blank">Colorlib</a>
-								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-							</p>
-						</div>
-						<div class="footer__copyright__payment"></div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</footer>
-	<!-- Footer Section End -->
+								</script> All rights reserved | This template
+								is made with <i class="fa fa-heart" aria-hidden="true"></i> by
+<a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+</p>
 
-
-
+							</div>
+<div class="footer__copyright__payment"></div>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<!-- Footer Section End -->
 </body>
 
 </html>

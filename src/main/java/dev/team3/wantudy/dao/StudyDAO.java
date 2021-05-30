@@ -9,4 +9,6 @@ public interface StudyDAO {
 	public StudyDTO getStudy(int study_no) throws SQLException;
 
 	public List<StudyDTO> getMemberStudy(int member_no) throws SQLException;
+
+	public void updateStudyInfo(StudyDTO studyDTO) throws SQLException;
 }
