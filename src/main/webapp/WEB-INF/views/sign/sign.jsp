@@ -198,12 +198,12 @@
 					if(pwd1 == pwd2){ 
 						$("#alert-success").show();
 						$("#alert-danger").hide(); 
-						$("#signinbutton").removeAttr("disabled"); 
+						$("#signupbutton").removeAttr("disabled"); 
 					} 
 					else { 
 						$("#alert-success").hide();
 						$("#alert-danger").show(); 
-						$("#signinbutton").attr("disabled", "disabled"); 
+						$("#signupbutton").attr("disabled", "disabled"); 
 					} 
 				}
 			});
