@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import dev.team3.wantudy.dto.EnrollDTO;
 import dev.team3.wantudy.dto.MemberDTO;
 import dev.team3.wantudy.dto.StudyDTO;
-import dev.team3.wantudy.service.ChattingService;
+import dev.team3.wantudy.service.MemberStudyService;
 
 @Controller
 public class ChattingController {
 	
 	@Autowired
-	private ChattingService chattingService;
+	private MemberStudyService chattingService;
 	
 	@GetMapping(value="/chattingmain")
 	public String chattingmain(@ModelAttribute MemberDTO memberDTO ,Model model) {

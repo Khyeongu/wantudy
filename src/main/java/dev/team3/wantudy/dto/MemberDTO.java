@@ -12,5 +12,4 @@ public class MemberDTO {
 	String id;
 	String password;
 	String name;
-	
 }	

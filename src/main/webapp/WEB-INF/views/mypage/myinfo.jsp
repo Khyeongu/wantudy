@@ -166,15 +166,15 @@ function updateInfo(){
 	<section class="blog spad">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-3 col-md-5">
+				<div class="col-lg-3 col-md-5 pl-5 pr-5">
 					<div class="sidebar">
 						<div class="sidebar__item pr-5">
 							<h4>마이페이지</h4>
 							<ul>
 								<li class="active"><a href="./myinfo">내 정보 수정</a></li>
 								<li><a href="./myapply">지원한 스터디</a></li>
-								<li><a class="dropbox" href="#">내 스터디 관리<i
-										class="bi small bi-caret-down-fill"></i></a>
+								<li><a class="dropbox" href="#">내 스터디 관리 
+									<i class="bi small bi-caret-down-fill"></i></a>
 									<ul class="submenu collapse">
 										<li><a class="nav-link" href="#">Submenu item 4 </a></li>
 										<li><a class="nav-link" href="#">Submenu item 5 </a></li>

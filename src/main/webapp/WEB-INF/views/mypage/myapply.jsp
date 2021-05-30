@@ -44,8 +44,8 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 	type="text/css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
-<link rel="stylesheet" href="${context}/resources/css/studycard/studycard.css"
-	type="text/css">
+<link rel="stylesheet"
+	href="${context}/resources/css/studycard/studycard.css" type="text/css">
 
 
 
@@ -63,7 +63,12 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 
 <script>
 	$(document).ready(function() {
+		var element=$('.studycard-body-header');
+		element.forEach(){
 
+			alert(element.html());
+		}
+		
 	});
 </script>
 </head>
@@ -143,7 +148,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 	<section class="blog spad">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-3 col-md-5">
+				<div class="col-lg-3 col-md-5 pl-5 pr-5">
 					<div class="sidebar">
 						<div class="sidebar__item pr-5">
 							<h4>마이페이지</h4>
@@ -167,40 +172,58 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 				<div class="col-lg-9 col-md-7">
 					<h4 class="mb-3 border__bottom">지원한 스터디</h4>
 					<div class="row">
-					<div class="col-lg-12">
-						<a href=""> <!-- 클릭 시 링크 설정 -->
-							<div class="card">
-								<!-- 카드 헤더 -->
-								<div class="card-header">
-									<div class="card-header-is_closed">
-										<div class="card-header-text">모집중</div>
-										<div class="card-header-number">2 / 5</div>
+
+						<c:forEach items="${memberStudyList}" var="ms">
+						<c:set var="current_cnt" value="${ms.study_member_count}"/>
+						<c:set var="max_cnt" value="${ms.study_capacity}"/>
+							<!-- 카드 시작 -->
+							<div class="col-lg-4">
+								<a href=""> <!-- 클릭 시 링크 설정 -->
+									<div class="studycard ml-2 mr-2">
+										<!-- 카드 헤더 -->
+										<div class="studycard-header"
+											style="background-image: url('${context}/resources/img/categories/test.jpg')">
+											<c:if test="${current_cnt == max_cnt}">
+												<div class="studycard-header-is_closed impossible">
+													<div class="studycard-header-text">모집완료</div>
+													<div class="studycard-header-number">${ms.study_member_count}
+														/ ${ms.study_capacity}</div>
+												</div>
+
+											</c:if>
+											<c:if test="${current_cnt!=max_cnt}">
+												<div class="studycard-header-is_closed possible">
+													<div class="studycard-header-text">모집중</div>
+													<div class="studycard-header-number">${ms.study_member_count}
+														/ ${ms.study_capacity}</div>
+												</div>
+											</c:if>
+										</div>
+										<!--  카드 바디 -->
+										<div class="studycard-body">
+											<!--  카드 바디 헤더 -->
+											<div class="studycard-body-header">
+												<h1>${ms.study_name}</h1>
+												<p>${ms.study_category}스터디</p>
+											</div>
+											<p class="studycard-body-description">${ms.study_content}</p>
+											<!--  카드 바디 본문 -->
+
+											<!--  카드 바디 푸터 -->
+											<div class="studycard-body-footer">
+												<hr
+													style="margin-bottom: 8px; opacity: 0.5; border-color: #EF5A31">
+												${ms.study_startdate} ~ ${ms.study_enddate} <img
+													class="status-img mt-1 ml-1 mr-1"
+													src="${context}${ms.statusImg}"> <i class="status">
+													${ms.enroll_status }&nbsp;&nbsp; </i>
+											</div>
+										</div>
 									</div>
-								</div>
-								<!--  카드 바디 -->
-								<div class="card-body">
-									<!--  카드 바디 헤더 -->
-									<div class="card-body-header">
-										<h1>4월 15일 순천만 동행구해요!</h1>
-										<p class="card-body-hashtag">#여수 #순천 #광양</p>
-										<p class="card-body-nickname">작성자: ENDORPHIN0710</p>
-									</div>
-									<p class="card-body-description">안녕하세요! 4월 15일 순천만 동행구합니다!
-									</p>
-									<!--  카드 바디 본문 -->
-									
-									<!--  카드 바디 푸터 -->
-									<div class="card-body-footer">
-										<hr
-											style="margin-bottom: 8px; opacity: 0.5; border-color: #EF5A31">
-										<i class="icon icon-view_count"></i>조회 38회 <i
-											class="icon icon-comments_count"></i>댓글 4개 <i
-											class="reg_date"> 2018/04/12 </i>
-									</div>
-								</div>
+								</a>
 							</div>
-						</a>
-						</div>
+							<!-- 카드 끝 -->
+						</c:forEach>
 					</div>
 				</div>
 			</div>
