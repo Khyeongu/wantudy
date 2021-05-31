@@ -88,7 +88,7 @@ public class ManageController {
 	}             
 	
 	@GetMapping(value = "/manage/studyinfo/{study_no}")
-	public String mystudy(@PathVariable int study_no, Model model, HttpSession session) {
+	public String studyinfo(@PathVariable int study_no, Model model, HttpSession session) {
 		
 		//세션과 스터디 장 일치하는지 확인기능 추가해야함
 		List<CategoryDTO> categoryList = null;
@@ -124,6 +124,57 @@ public class ManageController {
 			return "result";
 		}
 		
+	}
+	
+	@GetMapping(value = "/manage/studyability/{study_no}")
+	public String studyability(@PathVariable int study_no, Model model, HttpSession session) {
+		
+		//세션과 스터디 장 일치하는지 확인기능 추가해야함
+		List<CategoryDTO> categoryList = null;
+		try {
+			categoryList = categoryService.getCategoryAll();
+			model.addAttribute("categoryList", categoryList);
+			StudyDTO studyDTO = studyService.getStudy(study_no);
+			model.addAttribute("studyDTO", studyDTO);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "/manage/studyability";
+	}
+	
+	@GetMapping(value = "/manage/studyapply/{study_no}")
+	public String studyapply(@PathVariable int study_no, Model model, HttpSession session) {
+		
+		//세션과 스터디 장 일치하는지 확인기능 추가해야함
+		List<CategoryDTO> categoryList = null;
+		try {
+			categoryList = categoryService.getCategoryAll();
+			model.addAttribute("categoryList", categoryList);
+			StudyDTO studyDTO = studyService.getStudy(study_no);
+			model.addAttribute("studyDTO", studyDTO);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "/manage/studyapply";
+	}
+	
+	@GetMapping(value = "/manage/studymember/{study_no}")
+	public String studymember(@PathVariable int study_no, Model model, HttpSession session) {
+		
+		//세션과 스터디 장 일치하는지 확인기능 추가해야함
+		List<CategoryDTO> categoryList = null;
+		try {
+			categoryList = categoryService.getCategoryAll();
+			model.addAttribute("categoryList", categoryList);
+			StudyDTO studyDTO = studyService.getStudy(study_no);
+			model.addAttribute("studyDTO", studyDTO);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "/manage/studymember";
 	}
 
 }

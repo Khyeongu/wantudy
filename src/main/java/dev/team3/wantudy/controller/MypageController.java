@@ -51,12 +51,6 @@ public class MypageController {
 	
 	@GetMapping(value = "/mypage/myinfo")
 	public String mypage(Locale locale, Model model, HttpSession session) {
-		MemberDTO memberdto = new MemberDTO();
-		memberdto.setNo(1);
-		memberdto.setId("id");
-		memberdto.setPassword("password");
-		memberdto.setName("name");
-		session.setAttribute("userInfo", memberdto);
 		
 		List<InterestDTO> interestList = null;
 		List<CategoryDTO> categoryList = null;
