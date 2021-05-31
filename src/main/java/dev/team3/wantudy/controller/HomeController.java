@@ -24,7 +24,10 @@ public class HomeController {
 
 	/* �솃 �럹�씠吏� */
 	@GetMapping(value = { "" })
-	public String sign() {
+	public String sign(HttpSession session) {
+		MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
+		session.setAttribute("userInfo", userInfo);
+
 		return "home/home";
 	}
 
@@ -32,9 +35,9 @@ public class HomeController {
 	public ModelAndView sign(@ModelAttribute MemberDTO memberDTO, HttpSession session, HttpServletRequest request) {
 
 		try {
-			memberService.signup(memberDTO);
-			MemberDTO userInfo = memberService.getUser(memberDTO);
+			MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 			session.setAttribute("userInfo", userInfo);
+
 			log.info(userInfo.toString());
 			ModelAndView mav = new ModelAndView("redirect:/sign/signupAbilitylvl");
 			return mav;
