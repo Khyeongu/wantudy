@@ -40,6 +40,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 			var username = $('#userName').val();
 			var msg = all.msg; 
 			var cmd = all.cmd;
+			var time = new Date().toLocaleTimeString();
 			console.log(msg);
 			console.log("받아온msg:"+msg);
 			if(cmd == "Enter"){
@@ -63,14 +64,14 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 					 str += username;
 					 str += "</div>";
 					 str += "<div class='chattinglogtime'>"
-					 str += now_time;
+					 str += time;
 					 str += "</div>";
 					 str += "</div>";
 				}
 				else{
 					var str = "<div class='chattinglogcontainer'>";
 					 str += "<div class='chattinglogtime'>"
-					 str += now_time;
+					 str += time;
 					 str += "</div>";
 					 str += "<div class='chattinglogname'>"
 					 str += username;
@@ -163,7 +164,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 	}
 	
 	
-
+	
 
 	function getStudyNo(study){
 		var study_no = $(study).data("value");
@@ -182,7 +183,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 				 type:'POST',
 				 url:'${pageContext.request.contextPath}/chatting/getlog',
 				 data:{
-					 "study_no":study_no
+					 "study_no":study_no,
 				 },
 				 datatype:"json",
 				 async:false,
@@ -195,6 +196,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 					 
 					 for(var i = 0; i<data.chattingloglist.length; i++){
 						 var content = data.chattingloglist[i].content;
+						 var chattinglogno = data.chattingloglist[i].no;
 						 var time = new Date(data.chattingloglist[i].time);
 						 var message_year = time.getFullYear();
 						 var now_year = new Date().getFullYear();
@@ -242,7 +244,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 						 var username = $('#userName').val()
 						 
 						 if(member_no!=userno){
-							 var str = "<div class='chattinglogcontainer'>";
+							 var str = "<div class='chattinglogcontainer' data-value='"+chattinglogno+"'>";
 							 str += "<div class='chattinglogname'>"
 							 str += username;
 							 str += ":</div>";
@@ -255,7 +257,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 							 str += "</div>";
 						 }
 						 else{
-							 var str = "<div class='chattinglogcontainer mylog'>";
+							 var str = "<div class='chattinglogcontainer mylog' data-value='"+chattinglogno+"'>";
 							 str += "<div class='chattinglogtime'>"
 							 str += message_time;
 							 str += "</div>";

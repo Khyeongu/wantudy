@@ -5,7 +5,10 @@
 
 <mapper namespace="dev.team3.wantudy.dao.ChattinglogDAO">
 	<select id="getCattinglog" parameterType="int" resultType="ChattinglogDTO">
-		select * from chattinglog where study_no = #{study_no} order by no 
+		select *
+		from
+		(select rownum as rownumber, c.* from chattinglog c where study_no = #{study_no} order by no desc) a
+		where a.rownumber between 1 and 10
 	</select>
 	
 	<insert id="insertchattinglog" parameterType="ChattinglogDTO">

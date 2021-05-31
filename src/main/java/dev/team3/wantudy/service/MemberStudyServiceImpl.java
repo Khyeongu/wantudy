@@ -62,7 +62,8 @@ public class MemberStudyServiceImpl implements MemberStudyService{
 	public void insertchattinglog(ChattinglogDTO chattinglogDTO) {
 		chattinglogDAO.insertchattinglog(chattinglogDTO);
 	}
-	
+
+
 	
 	
 }
