@@ -157,10 +157,10 @@ function updateInfo(){
 						<div class="sidebar__item pr-5">
 							<h4>스터디 관리</h4>
 							<ul>
-								<li class="active"><a href="./studyinfo">스터디 정보 수정</a></li>
-								<li><a href="./studyabil">스터디 역량 수정</a></li>
-								<li><a href="./studyapply">스터디 신청자 현황</a></li>
-								<li><a href="./studymember">스터디 멤버 현황</a></li>
+								<li class="active"><a href="../studyinfo/${studyDTO.no}">스터디 정보 수정</a></li>
+								<li><a href="../studyability/${studyDTO.no}">스터디 역량 수정</a></li>
+								<li><a href="../studyapply/${studyDTO.no}">스터디 신청자 현황</a></li>
+								<li><a href="../studymember/${studyDTO.no}">스터디 멤버 현황</a></li>
 							</ul>
 						</div>
 

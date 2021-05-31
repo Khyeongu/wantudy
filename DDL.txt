@@ -486,6 +486,7 @@ insert into abilitylevel (no,name,score) values (110,'mongodb',5);
 
 /*insert category
 =====================================*/
+insert into category (no, name) values (0, '선택안함');
 insert into category (no, name) values (1, '네트워크');
 insert into category (no, name) values (2, '디자인패턴');
 insert into category (no, name) values (3, '머신러닝');
