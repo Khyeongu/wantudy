@@ -55,8 +55,8 @@ public class ChattingController {
 	
 	@ResponseBody
 	@PostMapping(value="/getlog",produces = "application/json; charset = utf-8")
-	public HashMap getchattinglog(@RequestParam("study_no") int study_no ,Model model, HttpSession session) {
-		List<ChattinglogDTO> chattingloglist = chattingService.getChattinglog(study_no);
+	public HashMap getchattinglog(@RequestParam("study_no") int study_no ,@RequestParam("endNo") int endNo ,Model model, HttpSession session) {
+		List<ChattinglogDTO> chattingloglist = chattingService.getChattinglogscroll(study_no,endNo);
 		HashMap<String, List<ChattinglogDTO>> chattingloglistmap = new HashMap<String, List<ChattinglogDTO>>();
 		
 		chattingloglistmap.put("chattingloglist", chattingloglist);

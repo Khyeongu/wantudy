@@ -163,7 +163,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 		$('#chatting').val("");
 	}
 	
-	
+	var endNo = $('.chattinglogcontainer').first().data("value")||1;
 	
 
 	function getStudyNo(study){
@@ -184,6 +184,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 				 url:'${pageContext.request.contextPath}/chatting/getlog',
 				 data:{
 					 "study_no":study_no,
+					 "endNo":endNo
 				 },
 				 datatype:"json",
 				 async:false,

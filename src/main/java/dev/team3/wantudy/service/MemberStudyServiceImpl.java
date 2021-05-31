@@ -54,8 +54,8 @@ public class MemberStudyServiceImpl implements MemberStudyService{
 	}
 
 	@Override
-	public List<ChattinglogDTO> getChattinglog(int study_no) {
-		return chattinglogDAO.getCattinglog(study_no);
+	public List<ChattinglogDTO> getChattinglogscroll(int study_no, int endNo) {
+		return chattinglogDAO.getChattinglogscroll(study_no, endNo);
 	}
 
 	@Override
