@@ -45,6 +45,7 @@ public class SocketHandler extends TextWebSocketHandler {
 			
 			System.out.println("입장controller");
 			System.out.println("sessionList:"+sessionList);
+			
 			for(int i = 0; i<sessionList.size(); i++) {
 				Map<String,Object> mapSessionList = sessionList.get(i);
 				String study_no = (String) mapSessionList.get("study_no");

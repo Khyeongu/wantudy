@@ -41,6 +41,7 @@
 	overflow: auto;
 	color: #fff;
 	text-align: left;
+	overflow-y:scroll;
 }
 
 .chattinglogcontainer{

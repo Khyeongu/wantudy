@@ -19,7 +19,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 </head>
 
 <script type="text/javascript">
-
+	var now_time;
 	var ws;
 	wsOpen();
 
@@ -51,7 +51,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 				 str += msg;
 				 str += "</div>";
 				str += "</div>";
-				$("#chattingloglistcontainer").append(str);
+
 			}
 			else{
 				if(member_no == userno ){
@@ -62,10 +62,16 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 					 str += "<div class='chattinglogname'>"
 					 str += username;
 					 str += "</div>";
+					 str += "<div class='chattinglogtime'>"
+					 str += now_time;
+					 str += "</div>";
 					 str += "</div>";
 				}
 				else{
 					var str = "<div class='chattinglogcontainer'>";
+					 str += "<div class='chattinglogtime'>"
+					 str += now_time;
+					 str += "</div>";
 					 str += "<div class='chattinglogname'>"
 					 str += username;
 					 str += ":</div>";
@@ -76,9 +82,9 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 
 				}
 
-				$("#chattingloglistcontainer").append(str);
+				
 			}
-
+			$("#chattingloglistcontainer").append(str);
 		}
 		
 		ws.onclose = function(data){
@@ -118,6 +124,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 		var message = $('#chatting').val();
 		var study_no = $('.nowstudy_no').val();
 		var uN = $('#userNo').val();
+		now_time = new Date().toLocaleTimeString();
 		
 		$.ajax({
 			 type:'POST',
