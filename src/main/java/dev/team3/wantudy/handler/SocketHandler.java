@@ -29,7 +29,7 @@ public class SocketHandler extends TextWebSocketHandler {
 	
 	@Override
 	public void handleTextMessage(WebSocketSession session, TextMessage message) throws IOException {
-		System.out.println("¹Ş±âcontroller");
+		System.out.println("ï¿½Ş±ï¿½controller");
 		String msg = message.getPayload();
 		ObjectMapper objectMapper = new ObjectMapper();
 		Map<String,String> mapReceive = objectMapper.readValue(msg,Map.class);
@@ -43,7 +43,7 @@ public class SocketHandler extends TextWebSocketHandler {
 			map.put("member_no", mapReceive.get("member_no"));
 			sessionList.add(map);
 			
-			System.out.println("ÀÔÀåcontroller");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½controller");
 			System.out.println("sessionList:"+sessionList);
 			for(int i = 0; i<sessionList.size(); i++) {
 				Map<String,Object> mapSessionList = sessionList.get(i);
@@ -58,7 +58,7 @@ public class SocketHandler extends TextWebSocketHandler {
 					mapToSend.put("study_no", study_no);
 					mapToSend.put("member_no", (String)map.get("member_no"));
 					mapToSend.put("cmd", "Enter");
-					mapToSend.put("msg","´ÔÀÌ ÀÔÀåÇÏ¼Ì½À´Ï´Ù.");
+					mapToSend.put("msg","ë‹˜ì´ ì…ì¥í–ˆìŠµë‹ˆë‹¤.");
 					
 					String jsonStr = objectMapper.writeValueAsString(mapToSend);
 					sess.sendMessage(new TextMessage(jsonStr));
@@ -107,6 +107,6 @@ public class SocketHandler extends TextWebSocketHandler {
 				break;
 			}
 		}
-		log.info("²÷°å½À´Ï´Ù.");
+		log.info("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
 	}
 }

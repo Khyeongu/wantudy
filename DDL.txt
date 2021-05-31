@@ -12,6 +12,7 @@ quota unlimited on users;
 
 grant connect, resource to wantudy;
 
+
 /*create sequence
 =====================================*/
 -- 시퀀스 삭제
