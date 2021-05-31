@@ -46,6 +46,13 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 
 
 
+
+<!-- 설문조사 Styles -->
+<link rel="stylesheet"
+	href="${context}/resources/css/abilitycheck/abilitycheck.css">
+
+
+
 <!-- Js Plugins -->
 <script src="${context}/resources/js/jquery-3.3.1.min.js"></script>
 <script src="${context}/resources/js/bootstrap.min.js"></script>
@@ -60,17 +67,20 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 	src="${context}/resources/js/datepicker/datepicker.js"></script>
 
 <script>
-$(document).ready(function(){
-	$("#category_no").val('<c:out value="${studyDTO.category_no}"/>').prop("selected", true);
-});
+	$(document).ready(
+			function() {
+				$("#category_no").val(
+						'<c:out value="${studyDTO.category_no}"/>').prop(
+						"selected", true);
+			});
 
-function updateInfo(){
-	if (confirm("정말 수정하시겠습니까?")) {
-		document.getElementById("studyAbilityForm").submit();
-	} else {
-		return false;
+	function updateInfo() {
+		if (confirm("정말 수정하시겠습니까?")) {
+			document.getElementById("studyAbilityForm").submit();
+		} else {
+			return false;
+		}
 	}
-}
 </script>
 
 </head>
@@ -119,7 +129,8 @@ function updateInfo(){
 							<li><a href="${context}/home/home">홈</a></li>
 							<li><a href="./shop-grid.html">스터디 검색</a></li>
 							<li><a href="./shop-grid.html">스터디 추가</a></li>
-							<li><a href="#">채팅</a> <li class="active"><a href="${context}/manage/mystudy">스터디
+							<li><a href="#">채팅</a>
+							<li class="active"><a href="${context}/manage/mystudy">스터디
 									관리</a></li>
 							<li><a href="${context}/mypage/myinfo">마이페이지</a></li>
 						</ul>
@@ -158,7 +169,8 @@ function updateInfo(){
 							<h4>스터디 관리</h4>
 							<ul>
 								<li><a href="../studyinfo/${studyDTO.no}">스터디 정보 수정</a></li>
-								<li  class="active"><a href="../studyability/${studyDTO.no}">스터디 역량 수정</a></li>
+								<li class="active"><a href="../studyability/${studyDTO.no}">스터디
+										역량 수정</a></li>
 								<li><a href="../studyapply/${studyDTO.no}">스터디 신청자 현황</a></li>
 								<li><a href="../studymember/${studyDTO.no}">스터디 멤버 현황</a></li>
 							</ul>
@@ -168,12 +180,38 @@ function updateInfo(){
 				</div>
 
 				<div class="col-lg-9 col-md-7">
-					<h4 class="mb-3 border__bottom">스터디 정보 수정</h4>
+					<h4 class="mb-3 border__bottom">스터디 역량 수정</h4>
 					<div class="row">
 						<div class="col-lg-7">
-							<div class="studyinfo" id="studyinfo">
-								<form id="studyAbilityForm" name="studyAbilityForm" method="post">
+							<div class="studyability" id="studyability">
+								<form id="studyAbilityForm" name="studyAbilityForm"
+									method="post">
+									<div class="abilitycheck">
 									
+									
+									
+									
+									<c:forEach items="${abilityList}" var="abilityname">
+									<div class="form-group">
+										<label class="label" for="python">${abilityname}</label>
+										
+										<div class="ability-form-control">
+											<div class="row">
+											<div class="col-md-1 text-center pl-3">(low)</div>
+											<div class="col-md-2 text-center"><input class="mr-2" type="radio" name="${abilityname}" value="1" />1</div>
+											<div class="col-md-2 text-center"><input class="mr-2" type="radio" name="${abilityname}" value="2" />2 </div>
+											<div class="col-md-2 text-center"><input class="mr-2" type="radio" name="${abilityname}" value="3" />3</div>
+											<div class="col-md-2 text-center"><input class="mr-2" type="radio" name="${abilityname}" value="4" />4 </div>
+											<div class="col-md-2 text-center"><input class="mr-2" type="radio" name="${abilityname}" value="5" />5</div>
+											<div class="col-md-1 text-center pr-3">(high)</div>
+											</div>
+										</div>
+										</div>
+										</c:forEach>
+										
+										
+										
+									</div>
 								</form>
 							</div>
 						</div>
@@ -253,20 +291,21 @@ function updateInfo(){
 								Copyright &copy;
 								<script>
 									document.write(new Date().getFullYear());
-								</script> All rights reserved | This template
-								is made with <i class="fa fa-heart" aria-hidden="true"></i> by
-<a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-</p>
+								</script>
+								All rights reserved | This template is made with <i
+									class="fa fa-heart" aria-hidden="true"></i> by <a
+									href="https://colorlib.com" target="_blank">Colorlib</a>
+								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+							</p>
 
-							</div>
-<div class="footer__copyright__payment"></div>
-</div>
-</div>
-</div>
-</div>
-</footer>
-<!-- Footer Section End -->
+						</div>
+						<div class="footer__copyright__payment"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- Footer Section End -->
 </body>
 
 </html>

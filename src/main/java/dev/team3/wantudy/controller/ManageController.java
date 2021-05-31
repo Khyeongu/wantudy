@@ -20,6 +20,7 @@ import dev.team3.wantudy.dto.InterestDTO;
 import dev.team3.wantudy.dto.MemberDTO;
 import dev.team3.wantudy.dto.MemberStudyDTO;
 import dev.team3.wantudy.dto.StudyDTO;
+import dev.team3.wantudy.service.AbilitylvlService;
 import dev.team3.wantudy.service.CategoryService;
 import dev.team3.wantudy.service.EnrollService;
 import dev.team3.wantudy.service.InterestService;
@@ -40,6 +41,9 @@ public class ManageController {
 		
 	@Autowired
 	private StudyService studyService;
+	
+	@Autowired
+	private AbilitylvlService abilitylvlService;
 	
 	
 	@GetMapping(value = "/manage/mystudy")
@@ -129,13 +133,12 @@ public class ManageController {
 	@GetMapping(value = "/manage/studyability/{study_no}")
 	public String studyability(@PathVariable int study_no, Model model, HttpSession session) {
 		
-		//세션과 스터디 장 일치하는지 확인기능 추가해야함
-		List<CategoryDTO> categoryList = null;
 		try {
-			categoryList = categoryService.getCategoryAll();
-			model.addAttribute("categoryList", categoryList);
-			StudyDTO studyDTO = studyService.getStudy(study_no);
-			model.addAttribute("studyDTO", studyDTO);
+			List<String> abilityList = abilitylvlService.getAbilityName();
+			for(String al : abilityList) {
+				log.info(al);
+			}
+			model.addAttribute("abilityList", abilityList);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
