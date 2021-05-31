@@ -52,19 +52,19 @@
 					<form class="signup-form" method="post">
 						<div class="form-group">
 							<label class="label" for="name">Name</label>
-							<input type="text" class="form-control" placeholder="Name" name="name" id="name" required="required" />
+							<input type="text" class="form-control" placeholder="Name" name="name" id="name" required="required" autocomplete="off"/>
 						</div>
 						<div class="form-group">
 							<label class="label" for="id">ID</label>
-							<input type="text" class="form-control" placeholder="ID" name="id" id="id" required="required" />
+							<input type="text" class="form-control" placeholder="ID" name="id" id="id" required="required" autocomplete="off" />
 						</div>
 						<div class="form-group">
 							<label class="label" for="password">Password</label>
-							<input type="password" class="form-control" placeholder="Password" name="password" id="password" required="required" / >
+							<input type="password" class="form-control" placeholder="Password" name="password" id="password" required="required"  autocomplete="off"/ >
 						</div>
 						<div class="form-group">
 							<label class="label" for="password">Confirm Password</label>
-							<input type="password" class="form-control" placeholder="Confirm Password" name="confirmPassword" id="confirmPassword" required="required" />
+							<input type="password" class="form-control" placeholder="Confirm Password" name="confirmPassword" id="confirmPassword" required="required" autocomplete="off" />
 						</div>
 						<div class="alert alert-success" id="alert-success">비밀번호가 일치합니다.</div>
 						<div class="alert alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다.</div>
