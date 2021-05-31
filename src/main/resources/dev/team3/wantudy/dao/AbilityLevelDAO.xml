@@ -4,5 +4,10 @@
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="dev.team3.wantudy.dao.AbilityLevelDAO">
-
+	<select id="getAbilityName" resultType="string">
+		select INITCAP(name)
+		from abilitylevel
+		group by name
+		order by sum(no)
+	</select>
 </mapper>
