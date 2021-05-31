@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import dev.team3.wantudy.dao.StudyDAO;
+import dev.team3.wantudy.dto.EnrollDTO;
 import dev.team3.wantudy.dto.StudyDTO;
 
 @Service
@@ -17,14 +18,8 @@ public class StudyServiceImpl implements StudyService {
 	@Qualifier(value = "studyDAO")
 	private StudyDAO studyDAO;
 
-	@Override
-	public void createStudy(StudyDTO studyDTO) {
-		try {
-			studyDAO.createStudy(studyDTO);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public void createStudy(StudyDTO studyDTO) throws Exception {
+		studyDAO.createStudy(studyDTO);
 	}
 
 	public List<StudyDTO> getMemberStudy(int member_no) throws Exception {
@@ -42,6 +37,18 @@ public class StudyServiceImpl implements StudyService {
 	public void updateStudyInfo(StudyDTO studyDTO) throws Exception {
 		// TODO Auto-generated method stub
 		studyDAO.updateStudyInfo(studyDTO);
+	}
+
+	@Override
+	public void insertStudyMasterEnroll(EnrollDTO enrollDTO) throws Exception {
+		// TODO Auto-generated method stub
+		studyDAO.insertStudyMasterEnroll(enrollDTO);
+	}
+
+	@Override
+	public int createStudyNo() throws Exception {
+		// TODO Auto-generated method stub
+		return studyDAO.createStudyNo();
 	}
 
 }

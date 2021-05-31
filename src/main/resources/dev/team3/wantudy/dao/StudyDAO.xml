@@ -10,26 +10,41 @@
 		where no = #{study_no}
 	</select>
 	
-	
+	<select id="createStudyNo" resultType="int">
+		select STUDY_NO_SEQ.nextval from dual 
+	</select>
+
 	<select id="createStudy" parameterType="StudyDTO">
 		insert into study
-		(no, name, content, startdate, enddate, capacity, member_no, category_no)
+		(no,
+		name, content, startdate, enddate, capacity, member_no, category_no)
 		values
-		(STUDY_NO_SEQ.nextval, #{content}, #{startdate}, #{enddate}, #{capacity}, #{member_no}, #{category_no})
+		(#{no},#{name}, #{content}, #{startdate}, #{enddate},
+		#{capacity}, #{member_no}, #{category_no})
 	</select>
-	<select id="getMemberStudy" parameterType="int" resultType="StudyDTO">
+
+	<select id="insertStudyMasterEnroll" parameterType="EnrollDTO">
+		insert into enroll
+		(member_no, study_no)
+		values
+		(#{member_no}, #{study_no})
+	</select>
+
+	<select id="getMemberStudy" parameterType="int"
+		resultType="StudyDTO">
 		select *
 		from study
 		where member_no=#{member_no}
 	</select>
-	
+
 	<update id="updateStudyInfo" parameterType="StudyDTO">
 		update study
-		set name=#{name},
-			content=#{content},
-			enddate=#{enddate},
-			capacity=#{capacity},
-			category_no=#{category_no}		
+		set
+		name=#{name},
+		content=#{content},
+		enddate=#{enddate},
+		capacity=#{capacity},
+		category_no=#{category_no}
 		where no=#{no}
 	</update>
 </mapper>
