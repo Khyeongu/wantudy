@@ -10,6 +10,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
+
 public class StudyDTO {
 	int no;
 	String name;
@@ -19,4 +20,6 @@ public class StudyDTO {
 	int capacity;
 	int member_no;
 	int category_no;
+
+	
 }

@@ -7,7 +7,8 @@
 	<select id="selectAllEnrolls" parameterType="MemberDTO" resultType="EnrollDTO">
 		select * 
 		from enroll
-		where member_no = #{no}
+		where member_no = #{no} 
+
 	</select>
 	
 	<select id="selectMemberStudyEnroll" parameterType="StudyDTO" resultType="EnrollDTO">
@@ -22,5 +23,6 @@
 		from enroll
 		where study_no=#{study_no}
 		and status='진행중'
+>>>>>>> 68e8751570a78a1454a4b579f55391f2e817a972
 	</select>
 </mapper>
