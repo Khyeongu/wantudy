@@ -9,4 +9,12 @@
 		from study
 		where no = #{study_no}
 	</select>
+	
+	
+	<select id="createStudy" parameterType="StudyDTO">
+		insert into study
+		(no, name, content, startdate, enddate, capacity, member_no, category_no)
+		values
+		(STUDY_NO_SEQ.nextval, #{content}, #{startdate}, #{enddate}, #{capacity}, #{member_no}, #{category_no})
+	</select>
 </mapper>

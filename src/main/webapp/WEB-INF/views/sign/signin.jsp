@@ -56,10 +56,10 @@
 						<h3 class="mb-4">Sign In</h3>
 						<form class="signup-form" method="post" >
 							<div class="form-group">
-								<label class="label" for="id">ID</label> <input type="text" class="form-control" placeholder="ID" name="id" required="required">
+								<label class="label" for="id">ID</label> <input type="text" class="form-control" placeholder="ID" name="id" required="required" autocomplete="off">
 							</div>
 							<div class="form-group">
-								<label class="label" for="password">Password</label> <input type="password" class="form-control" placeholder="Password" name="password" required="required">
+								<label class="label" for="password">Password</label> <input type="password" class="form-control" placeholder="Password" name="password" required="required" autocomplete="off">
 							</div>
 							<div class="form-group d-flex justify-content-end mt-4">
 								<button type="submit" class="btn btn-primary submit">
