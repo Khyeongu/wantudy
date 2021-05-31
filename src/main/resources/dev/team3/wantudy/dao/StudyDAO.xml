@@ -17,4 +17,19 @@
 		values
 		(STUDY_NO_SEQ.nextval, #{content}, #{startdate}, #{enddate}, #{capacity}, #{member_no}, #{category_no})
 	</select>
+	<select id="getMemberStudy" parameterType="int" resultType="StudyDTO">
+		select *
+		from study
+		where member_no=#{member_no}
+	</select>
+	
+	<update id="updateStudyInfo" parameterType="StudyDTO">
+		update study
+		set name=#{name},
+			content=#{content},
+			enddate=#{enddate},
+			capacity=#{capacity},
+			category_no=#{category_no}		
+		where no=#{no}
+	</update>
 </mapper>

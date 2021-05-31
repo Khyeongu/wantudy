@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import dev.team3.wantudy.dto.CategoryDTO;
 import dev.team3.wantudy.dto.EnrollDTO;
 import dev.team3.wantudy.dto.InterestDTO;
 import dev.team3.wantudy.dto.MemberDTO;
@@ -26,6 +27,7 @@ import dev.team3.wantudy.service.EnrollService;
 import dev.team3.wantudy.service.InterestService;
 import dev.team3.wantudy.service.MemberService;
 import dev.team3.wantudy.service.MemberStudyService;
+import dev.team3.wantudy.service.StudyService;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -49,29 +51,25 @@ public class MypageController {
 	
 	@GetMapping(value = "/mypage/myinfo")
 	public String mypage(Locale locale, Model model, HttpSession session) {
-		MemberDTO memberdto = new MemberDTO();
-		memberdto.setNo(1);
-		memberdto.setId("id");
-		memberdto.setPassword("password");
-		memberdto.setName("name");
-		session.setAttribute("userInfo", memberdto);
 		
 		List<InterestDTO> interestList = null;
+		List<CategoryDTO> categoryList = null;
 		try {
+			categoryList = categoryService.getCategoryAll();
 			interestList = interestService.getInterest(((MemberDTO)session.getAttribute("userInfo")).getNo());
 			log.info(interestList.get(0).toString());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		model.addAttribute("categoryList", categoryList);
 		model.addAttribute("interestList", interestList);
-		
 		
 		return "mypage/myinfo";
 	}
 	
 	@PostMapping(value="/mypage/myinfo")
-	public void modifyMemberInfo(@ModelAttribute MemberInfoDTO memberinfoDTO, HttpSession session ) {
+	public String modifyMemberInfo(@ModelAttribute MemberInfoDTO memberinfoDTO, Model model, HttpSession session ) {
 		memberinfoDTO.setNo(((MemberDTO)session.getAttribute("userInfo")).getNo());
 		memberinfoDTO.setId(((MemberDTO)session.getAttribute("userInfo")).getId());
 		log.info(memberinfoDTO.toString());
@@ -95,8 +93,14 @@ public class MypageController {
 			
 			memberService.modifyMemberInfo(memberDTO);
 			session.setAttribute("userInfo", memberDTO);
+			
+			return "redirect:/mypage/myinfo";
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.info(e.getMessage());
+			model.addAttribute("msg",e.getMessage());
+			model.addAttribute("title", "에러");
+			model.addAttribute("url", "./");
+			return "result";
 		}
 	}
 	
@@ -130,7 +134,7 @@ public class MypageController {
 					ms.setStatusImg("/resources/img/status/yellow.png");
 				}else if(ms.getEnroll_status().equals("진행중")) {
 					ms.setStatusImg("/resources/img/status/green.png");
-				}else if(ms.getEnroll_status().equals("완료")) {
+				}else if(ms.getEnroll_status().equals("종료")) {
 					ms.setStatusImg("/resources/img/status/black.png");
 				}else if(ms.getEnroll_status().equals("탈락")) {
 					ms.setStatusImg("/resources/img/status/red.png");
@@ -138,9 +142,6 @@ public class MypageController {
 				ms.setStudy_member_count(enrollService.getMemberCount(ms.getEnroll_study_no()));
 				index++;
 				memberStudyList.add(ms);
-			}
-			for(MemberStudyDTO msdto : memberStudyList) {
-				log.info(msdto.toString());
 			}
 			model.addAttribute("memberStudyList", memberStudyList);
 			
