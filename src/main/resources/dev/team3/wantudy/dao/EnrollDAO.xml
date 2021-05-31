@@ -23,6 +23,5 @@
 		from enroll
 		where study_no=#{study_no}
 		and status='진행중'
->>>>>>> 68e8751570a78a1454a4b579f55391f2e817a972
 	</select>
 </mapper>

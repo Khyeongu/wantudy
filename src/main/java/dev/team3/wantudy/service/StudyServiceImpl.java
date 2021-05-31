@@ -1,6 +1,7 @@
 package dev.team3.wantudy.service;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -24,6 +25,7 @@ public class StudyServiceImpl implements StudyService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
 
 	public List<StudyDTO> getMemberStudy(int member_no) throws Exception {
 		// TODO Auto-generated method stub
