@@ -62,20 +62,27 @@
 }
 
 .chattinglogcontent{
-	width:200px;
 	height:100%;
+	margin-right:5px;
 }
 
 
 
 .chattinglogtime{
-	width:150px;
 	height:100%;
+	margin-right:5px;
 }
 
 
 input {
 	width: 330px;
 	height: 25px;
+}
+
+.chattinglogdate{
+	width:200px;
+	height:20px;
+	margin:0 auto;
+	text-align: center;
 }
 

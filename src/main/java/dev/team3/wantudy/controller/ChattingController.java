@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import dev.team3.wantudy.dto.ChattinglogDTO;
 import dev.team3.wantudy.dto.EnrollDTO;
@@ -62,7 +63,8 @@ public class ChattingController {
 	}
 	
 	@RequestMapping(value="/insertlog")
-	public void insertchattinglog(@ModelAttribute ChattinglogDTO chattinglogDTO) {
+	public ModelAndView insertchattinglog(@ModelAttribute ChattinglogDTO chattinglogDTO) {
 		chattingService.insertchattinglog(chattinglogDTO);
+		return new ModelAndView("chat");
 	}
 }

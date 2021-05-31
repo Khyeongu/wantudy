@@ -177,10 +177,54 @@
 				 success:function(data){
 					 alert("채팅로그를 불러왔습니다.");
 					 console.log(data.chattingloglist);
+					 var formal_year ='';
+					 var formal_month = '';
+					 var formal_day = '';
 					 
 					 for(var i = 0; i<data.chattingloglist.length; i++){
 						 var content = data.chattingloglist[i].content;
-						 var time = data.chattingloglist[i].time;
+						 var time = new Date(data.chattingloglist[i].time);
+						 var message_year = time.getFullYear();
+						 var now_year = new Date().getFullYear();
+
+						 var message_month = time.getMonth()+1;
+
+						 var message_day = time.getDate();
+
+						 var message_time = time.toLocaleTimeString();
+						 
+				
+						 if(message_year==formal_year){
+							 //이전 월과 같을때
+							 if(formal_month==message_month){
+								 if(formal_day!=message_day){
+									 //월,일 시간출력
+									 var str = "<div class='chattinglogdate'>"
+									 str += message_month+"월 "+message_day+"일";
+									 str += "</div>"
+									 $("#chattingloglistcontainer").append(str);
+								 }
+							 }else{
+								 //월,일
+								 var str = "<div class='chattinglogdate'>"
+								 str += message_month+"월 "+message_day+"일";
+								 str += "</div>"
+								 $("#chattingloglistcontainer").append(str);
+							 }
+						//년도 다를때
+						 }else{
+							 //년,월,일 출력
+							 var str = "<div class='chattinglogdate'>"
+							 str += message_year+"년 "+message_month+"월 "+message_day+"일";
+							 str += "</div>"
+							 $("#chattingloglistcontainer").append(str);
+						 }
+						 formal_year = message_year;
+						 formal_month = message_month;
+						 formal_day = message_day;
+				
+						 
+
 						 var member_no = data.chattingloglist[i].member_no;
 						 var username = $('#userName').val();
 						 
@@ -193,20 +237,20 @@
 							 str += content;
 							 str += "</div>";
 							 str += "<div class='chattinglogtime'>"
-							 str += time;
+							 str += message_time;
 							 str += "</div>";
 							 str += "</div>";
 						 }
 						 else{
 							 var str = "<div class='chattinglogcontainer mylog'>";
 							 str += "<div class='chattinglogtime'>"
-							 str += time;
+							 str += message_time;
+							 str += "</div>";
+							 str += "<div class='chattinglogcontent'>"
+							 str += content;
 							 str += "</div>";
 							 str += "<div class='chattinglogname'>"
 							 str += member_no;
-							 str += ":</div>";
-							 str += "<div class='chattinglogcontent'>"
-							 str += content;
 							 str += "</div>";
 							 str += "</div>";
 						 }
