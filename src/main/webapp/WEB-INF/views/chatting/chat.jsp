@@ -1,7 +1,11 @@
+<%@page import="dev.team3.wantudy.dto.MemberDTO"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
+%>
 <c:set var="context" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="zxx">
@@ -32,7 +36,8 @@
 		ws.onmessage = function(data) {
 			var all = JSON.parse(data.data);
 			var member_no = all.member_no;
-			var user_no = $('#userName').val();
+			var userno = $('#userNo').val();
+			var username = $('#userName').val();
 			var msg = all.msg; 
 			var cmd = all.cmd;
 			console.log(msg);
@@ -40,7 +45,7 @@
 			if(cmd == "Enter"){
 				var str = "<div class='enterchattinglogcontainer'>";
 				 str += "<div class='chattinglogname'>"
-				 str += member_no;
+				 str += username;
 				 str += "</div>";
 				 str += "<div class='chattinglogcontent'>"
 				 str += msg;
@@ -49,20 +54,20 @@
 				$("#chattingloglistcontainer").append(str);
 			}
 			else{
-				if(member_no == user_no ){
+				if(member_no == userno ){
 					var str = "<div class='mychattinglogcontainer'>";
-					 str += "<div clashattis='cnglogcontent'>"
+					 str += "<div class='chattinglogcontent'>"
 					 str += msg;
 					 str += "</div>";
 					 str += "<div class='chattinglogname'>"
-					 str += member_no;
+					 str += username;
 					 str += "</div>";
 					 str += "</div>";
 				}
 				else{
 					var str = "<div class='chattinglogcontainer'>";
 					 str += "<div class='chattinglogname'>"
-					 str += member_no;
+					 str += username;
 					 str += ":</div>";
 					 str += "<div class='chattinglogcontent'>"
 					 str += msg;
@@ -112,7 +117,7 @@
 	function insertChattinglog(){
 		var message = $('#chatting').val();
 		var study_no = $('.nowstudy_no').val();
-		var uN = $('#userName').val();
+		var uN = $('#userNo').val();
 		
 		$.ajax({
 			 type:'POST',
@@ -135,7 +140,7 @@
 
 	//message send
 	function send(msg,cmd) {
-		var uN = $('#userName').val();
+		var uN = $('#userNo').val();
 		var study_no = $('.nowstudy_no').val();
 		console.log("send보내기"+uN+study_no);
 		console.log("msg:"+msg+"cmd:"+cmd);
@@ -226,12 +231,13 @@
 						 
 
 						 var member_no = data.chattingloglist[i].member_no;
-						 var username = $('#userName').val();
+						 var userno = $('#userNo').val();
+						 var username = $('#userName').val()
 						 
-						 if(member_no!=username){
+						 if(member_no!=userno){
 							 var str = "<div class='chattinglogcontainer'>";
 							 str += "<div class='chattinglogname'>"
-							 str += member_no;
+							 str += username;
 							 str += ":</div>";
 							 str += "<div class='chattinglogcontent'>"
 							 str += content;
@@ -250,7 +256,7 @@
 							 str += content;
 							 str += "</div>";
 							 str += "<div class='chattinglogname'>"
-							 str += member_no;
+							 str += username;
 							 str += "</div>";
 							 str += "</div>";
 						 }
@@ -291,7 +297,10 @@
 				<div id="chattingloglistcontainer" class="chattingloglistcontainer">
 				</div>
 				<input type="hidden" id="userName"
-					value="<%=session.getAttribute("member_no")%>">
+					value="<%=((MemberDTO)session.getAttribute("userInfo")).getName()%>">
+				<input type="hidden" id="userNo"
+					value="<%=((MemberDTO)session.getAttribute("userInfo")).getNo()%>">
+				
 				<div id="yourMsg">
 					<table class="inputTable">
 						<tr>
