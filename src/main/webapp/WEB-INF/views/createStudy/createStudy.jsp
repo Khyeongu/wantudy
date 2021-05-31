@@ -31,50 +31,71 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 <link rel="stylesheet" href="${context}/resources/css/owl.carousel.min.css" type="text/css">
 <link rel="stylesheet" href="${context}/resources/css/slicknav.min.css" type="text/css">
 <link rel="stylesheet" href="${context}/resources/css/style.css" type="text/css">
+<link rel="stylesheet" href="${context}/resources/css/createStudy/createStudyCalendar.css" type="text/css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
 
 
 
 <!-- Js Plugins -->
 <script src="${context}/resources/js/jquery-3.3.1.min.js"></script>
-<script src="${context}/resources/js/bootstrap.min.js"></script>
 <script src="${context}/resources/js/jquery.nice-select.min.js"></script>
 <script src="${context}/resources/js/jquery-ui.min.js"></script>
 <script src="${context}/resources/js/jquery.slicknav.js"></script>
+<script src="${context}/resources/js/bootstrap.min.js"></script>
 <script src="${context}/resources/js/mixitup.min.js"></script>
 <script src="${context}/resources/js/owl.carousel.min.js"></script>
 <script src="${context}/resources/js/main.js"></script>
 <script src="${context}/resources/js/dropbox.js"></script>
 
 
-<script>
-$(document).ready(function(){
-	$("#interest1").val('<c:out value="${interestList[0].category_no}"/>').prop("selected", true);
-	$("#interest2").val('<c:out value="${interestList[1].category_no}"/>').prop("selected", true);
-	$("#interest3").val('<c:out value="${interestList[2].category_no}"/>').prop("selected", true);
-});
+<script type="text/javascript">
+	$(function() {
+		$.datepicker.setDefaults({
+			autoclose : true,
+			dateFormat : 'yy-mm-dd',
+			startDate : "now"
+		});
 
-function updateInfo(){
-	var password=document.getElementById("password").value;
-	var password_confirm=document.getElementById("password-confirm").value;
-	var session_password = '<%=((MemberDTO) session.getAttribute("userInfo")).getPassword()%>
-	';
+		$("#start-date").datepicker().change('change', function() {
+			var start = $('#start-date')
+			var end = $('#start-date');
+			var start2 = document.getElementById("start-date").value;
 
-		if (password == password_confirm) {
-			if (password == session_password) {
-				if (confirm("정말 수정하시겠습니까?")) {
-					document.getElementById("memberInfoForm").submit();
-				} else {
-					return false;
-				}
-			} else {
-				alert("비밀번호가 일치하지 않습니다.");
+			var yyyy = start2.substr(0, 4);
+			var mm = start2.substr(5, 2);
+			var dd = start2.substr(8, 2);
+			var com_ymd = new Date(yyyy, mm - 1, dd);
+
+			$('.date-depart').text(start2);
+			//$('#start-date').val(start);
+			document.getElementById("end-date").value = start2;
+			console.log(com_ymd);
+		});
+
+		$("#end-date").datepicker().change('change', function() {
+			var start = $('#start-date')
+			var end = $('#end-date');
+			var end = $('#end-date');
+			$('.date-return').text(end);
+		});
+
+	});
+
+	$("#insertStudyInfo").click(function (){
+		$.ajax({
+			type : "POST",
+			url : "${context}/createStudy/createStudy",
+			success : function(data) {
+				console.log('success', data);
+			},
+			error : function(exception) {
+				alert('Exeption:' + exception);
 			}
-		} else {
-			alert("비밀번호가 서로 일치하지 않습니다.");
-		}
-	}
+		});
+	});
+
 </script>
+
 
 </head>
 
@@ -112,18 +133,18 @@ function updateInfo(){
 			<div class="row">
 				<div class="col-lg-3">
 					<div class="header__logo  align-self-center">
-						<a class="navbar-brand" href="home"><span class="navbar-name">wantudy</span></a>
+						<a class="navbar-brand" href="login"><span class="navbar-name">wantudy</span></a>
 					</div>
 				</div>
 				<div class="col-lg-7">
 					<nav class="header__menu">
 						<ul>
-							<li class="active"><a href="${context}/home/home">홈</a></li>
+							<li><a href="home/home">홈</a></li>
 							<li><a href="./shop-grid.html">스터디 검색</a></li>
-							<li><a href="createStudy">스터디 추가</a></li>
+							<li class="active"><a href="createStudy/createStudy">스터디 추가</a></li>
 							<li><a href="#">채팅</a>
-							<li><a href="${context}/manage/mystudy">스터디 관리</a></li>
-							<li><a href="${context}/mypage/myinfo">마이페이지</a></li>
+							<li><a href="./blog.html">스터디 관리</a></li>
+							<li><a href="mypage/myinfo">마이페이지</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -141,7 +162,7 @@ function updateInfo(){
 			<div class="row">
 				<div class="col-lg-12 text-center">
 					<div class="breadcrumb__text">
-						<h2>wantudy</h2>
+						<h2>스터디 추가</h2>
 					</div>
 				</div>
 			</div>
@@ -153,11 +174,79 @@ function updateInfo(){
 	<section class="blog spad">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-3 col-md-5">
-					
-				</div>
+				<div class="col-lg-3 col-md-5 pl-5 pr-5"></div>
 
-				
+				<div class="col-lg-9 col-md-7">
+					<h4 class="mb-3 border__bottom">스터디 정보</h4>
+					<div class="row">
+						<div class="col-lg-7">
+							<div class="studyInfo" id="studyInfo">
+								<form class="studyInfoForm" method="post">
+									<div>
+										<h4>스터디 이름</h4>
+										<input type="text" id="name" name="name" autocomplete="off">
+									</div>
+									<div>
+										<h4>스터디 내용</h4>
+										<textarea cols="50" rows="8" id="content" name="content" placeholder="스터디 내용 입력" autocomplete="off"></textarea>
+									</div>
+									<div>
+										<h4>스터디 종류</h4>
+									</div>
+									<div>
+										<select id="category" name="category" class="form-control mt-1">
+											<option value="0">선택안함</option>
+											<option value="5">알고리즘</option>
+											<option value="8">웹</option>
+											<option value="6">안드로이드</option>
+											<option value="12">IOS</option>
+											<option value="9">자료구조</option>
+											<option value="3">머신러닝</option>
+											<option value="10">프로그래밍 언어</option>
+											<option value="7">운영체제</option>
+											<option value="11">컴퓨터구조</option>
+											<option value="2">디자인패턴</option>
+											<option value="4">컴뷰터 보안</option>
+											<option value="1">네트워크</option>
+											<option value="13">데이터베이스</option>
+										</select>
+
+									</div>
+									<div>
+										<h4>요구사항</h4>
+										<input type="text" id="requirement" name="requirement" autocomplete="off">
+									</div>
+									<div>
+										<h4>기간</h4>
+									</div>
+									<div class="input-daterange input-group" id="flight-datepicker">
+										<div class="form-item">
+											<label>시작 날짜</label> <span class="fontawesome-calendar"></span> <input class="input-sm form-control" type="text" id="start-date" name="start" placeholder="Select depart date" data-date-format="DD, MM d" /> <span class="date-text date-depart"></span>
+										</div>
+										<div class="form-item">
+											<label>종료 날짜</label> <span class="fontawesome-calendar"></span> <input class="input-sm form-control" type="text" id="end-date" name="end" placeholder="Select return date" data-date-format="DD, MM d" /> <span class="date-text date-return"></span>
+										</div>
+									</div>
+
+
+
+									<div>
+										<h4>인원 수</h4>
+										<input type="text" id="capacity" name="capacity" autocomplete="off">
+									</div>
+									<div></div>
+
+								</form>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-7"></div>
+						<div class="col-lg-2 mt-3 float-right">
+							<button type="button" id="insertStudyInfo" class="site-btn">스터디 만들기</button>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</section>
