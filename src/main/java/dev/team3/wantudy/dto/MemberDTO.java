@@ -14,11 +14,4 @@ public class MemberDTO {
 	String id;
 	String password;
 	String name;
-	
-	MemberDTO(int no, String id, String password, String name){
-		this.no=no;
-		this.id=id;
-		this.password=password;
-		this.name=name;
-	}
 }	

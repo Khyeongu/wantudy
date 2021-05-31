@@ -4,5 +4,25 @@
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="dev.team3.wantudy.dao.InterestDAO">
+	<select id="getInterest" parameterType="int" resultType="InterestDTO">
+		select member_no, interest_no, category_no
+		from interest
+		where member_no=#{member_no}
+		order by interest_no asc
+	</select>
 
+	<update id="updateInterest">
+		update interest
+		set category_no=#{category_no}
+		where member_no=#{member_no} and
+			interest_no=#{interest_no}
+	</update>
+	
+	<insert id="signupInterest" parameterType="InterestDTO">
+		insert into interest
+		(member_no, interest_no, category_no)
+		values 
+		(#{member_no}, #{interest_no}, #{category_no})
+		
+	</insert>
 </mapper>

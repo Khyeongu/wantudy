@@ -1,5 +1,7 @@
 package dev.team3.wantudy.service;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,9 +11,11 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
-public class SignServiceImpl implements SignService {
+
+public class MemberServiceImpl implements MemberService {
 
 	@Autowired
+	@Resource(name = "memberDAO")
 	private MemberDAO memberDAO;
 
 	@Override
@@ -38,6 +42,12 @@ public class SignServiceImpl implements SignService {
 			throw e;
 		}
 	}
-	
+
+
+
+	@Override
+	public void modifyMemberInfo(MemberDTO memberDTO) throws Exception {
+		memberDAO.modifyMemberInfo(memberDTO);
+	}
 
 }

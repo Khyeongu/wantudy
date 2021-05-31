@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -14,19 +13,16 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import dev.team3.wantudy.dto.StudyDTO;
-import dev.team3.wantudy.service.ChattingService;
+import dev.team3.wantudy.service.MemberStudyService;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Component
 public class SocketHandler extends TextWebSocketHandler {
 	@Autowired
-	private ChattingService chattingService;
+	private MemberStudyService chattingService;
 	
 	private List<Map<String, Object>> sessionList = new ArrayList<Map<String, Object>>();
 

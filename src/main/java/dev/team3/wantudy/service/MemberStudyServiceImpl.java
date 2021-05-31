@@ -1,5 +1,6 @@
 package dev.team3.wantudy.service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ import dev.team3.wantudy.dto.MemberDTO;
 import dev.team3.wantudy.dto.StudyDTO;
 
 @Service
-public class ChattingServiceImpl implements ChattingService{
+public class MemberStudyServiceImpl implements MemberStudyService{
 
 	@Autowired
 	@Qualifier(value = "enrollDAO")
@@ -33,12 +34,24 @@ public class ChattingServiceImpl implements ChattingService{
 
 	@Override
 	public List<EnrollDTO> selectAllEnrolls(MemberDTO memberDTO) {
-		return enrollDAO.selectAllEnrolls(memberDTO);
+		try {
+			return enrollDAO.selectAllEnrolls(memberDTO);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override
 	public StudyDTO getStudy(int study_no) {
-		return studyDAO.getStudy(study_no);
+		try {
+			return studyDAO.getStudy(study_no);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override

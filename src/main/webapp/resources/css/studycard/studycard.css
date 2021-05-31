@@ -1,0 +1,141 @@
+@charset "UTF-8";
+
+.studycard .studycard-body-header h1 {
+	height: 48px;
+	width: 310px;
+	font-size: 20px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
+
+.studycard {
+	height: 400px;
+	width: 350px;
+	border-radius: 15px;
+	display: inline-block;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	position: relative;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
+		rgba(0, 0, 0, 0.19);
+	overflow: hidden;
+}
+
+.studycard-header {
+	-webkit-transition: 0.5s; /*사파리 & 크롬*/
+	-moz-transition: 0.5s; /*파이어폭스*/
+	-ms-transition: 0.5s; /*인터넷 익스플로러*/
+	-o-transition: 0.5s; /*오페라*/
+	transition: 0.5s;
+	width: 100%;
+	height: 270px;
+	border-radius: 15px 15px 0 0;
+	background-image: url("images/korea.jpeg");
+	background-size: 100% 280px;
+	background-repeat: no-repeat;
+}
+
+.studycard:hover .studycard-header {
+	opacity: 0.8;
+	height: 100px;
+}
+
+.studycard-header-is_closed {
+	color: #FFF;
+	font-weight: bold;
+	text-align: center;
+	float: right;
+	margin: 15px 15px 0 0;
+	border-radius: 50%;
+	font-weight: bold;
+	padding: 10px 10px;
+	line-height: 20px;
+}
+
+.possible{
+	background-color: #7fad39;
+}
+
+.impossible{
+	background-color: #FF0000;
+}
+
+.end{
+	background-color: #000000;
+}
+
+h1 {
+	font-size: 22px;
+	font-weight: bold;
+}
+
+.studycard-body {
+	
+}
+
+.studycard-body-header {
+	line-height: 25px;
+	margin: 10px 20px 0px 20px;
+}
+
+.studycard-body-description {
+	opacity: 0;
+	color: #757B82;
+	line-height: 25px;
+	-webkit-transition: .2s ease-in-out; /*사파리&크롬*/
+	-moz-transition: .2s ease-in-out; /*파이어폭스*/
+	-ms-transition: .2s ease-in-out; /*익스플로러*/
+	-o-transition: .2s ease-in-out; /*오페라*/
+	transition: .2s ease-in-out;
+	overflow: hidden;
+	height: 160px;
+	margin: 5px 20px;
+}
+
+.studycard:hover .studycard-body-description {
+	opacity: 1;
+	-webkit-transition: .5s ease-in-out;
+	-moz-transition: .5s ease-in-out;
+	-ms-transition: .5s ease-in-out;
+	-o-transition: .5s ease-in-out;
+	transition: .5s ease-in-out;
+	overflow: auto;
+}
+
+.studycard-body-hashtag {
+	color: #2478FF;
+}
+
+.studycard-body-footer {
+	position: absolute;
+	margin-top: 15px;
+	margin-bottom: 6px;
+	bottom: 0;
+	width: 350px;
+	font-size: 14px;
+	color: #9FA5A8;
+	padding: 0 15px;
+}
+
+.studycard-body-footer i {
+	font-style: normal;
+}
+
+.studycard-body-footer img {
+	width: 10px;
+	height: 10px;
+	float: right;
+}
+
+.icon {
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 2px;
+}
+.status {
+	float: right;
+}
+

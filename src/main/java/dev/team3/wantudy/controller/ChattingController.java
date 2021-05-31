@@ -21,14 +21,14 @@ import dev.team3.wantudy.dto.ChattinglogDTO;
 import dev.team3.wantudy.dto.EnrollDTO;
 import dev.team3.wantudy.dto.MemberDTO;
 import dev.team3.wantudy.dto.StudyDTO;
-import dev.team3.wantudy.service.ChattingService;
+import dev.team3.wantudy.service.MemberStudyService;
 
 @Controller
 @RequestMapping(value="/chatting")
 public class ChattingController {
 	
 	@Autowired
-	private ChattingService chattingService;
+	private MemberStudyService chattingService;
 	
 	
 	@GetMapping(value="/member")

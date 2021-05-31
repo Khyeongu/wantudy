@@ -29,6 +29,25 @@
 /*----------------------------------------*/
 /* Template default CSS
 /*----------------------------------------*/
+.studyinfo form button{
+	font-size: 13px;
+	border-radius: 5px;
+}
+.studyinfo form input {
+	    width: 100%;
+    font-size: 16px;
+    padding-left: 20px;
+    color: #1c1c1c;
+    height: 46px;
+    border: 1px solid #ededed;
+}
+
+.studyinfo form h4{
+	font-size: 20px;
+	margin-top: 20px;
+	margin-bottom: 5px;
+}
+
 .memberinfo form button{
 	font-size: 13px;
 	border-radius: 5px;
@@ -2977,7 +2996,7 @@ transparent;
 /*--------------------------------- Responsive Media Quaries -----------------------------*/
 @media only screen and (min-width: 1200px) {
 	.container {
-		max-width: 1170px;
+		max-width: 1650px;
 	}
 }
 
