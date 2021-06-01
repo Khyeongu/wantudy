@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import dev.team3.wantudy.dao.AbilityLevelDAO;
 import dev.team3.wantudy.dao.MemberAbilityDAO;
+import dev.team3.wantudy.dto.AbilityLevelDTO;
 
 @Service
 public class AbilitylvlServiceImpl implements AbilitylvlService {
@@ -37,6 +38,12 @@ public class AbilitylvlServiceImpl implements AbilitylvlService {
 	public List<String> getAbilityName() throws Exception {
 		// TODO Auto-generated method stub
 		return abilityLevelDAO.getAbilityName();
+	}
+
+	@Override
+	public int getAbilityScore(AbilityLevelDTO al) throws Exception {
+		// TODO Auto-generated method stub
+		return abilityLevelDAO.getAbilityScore(al);
 	}
 
 }
