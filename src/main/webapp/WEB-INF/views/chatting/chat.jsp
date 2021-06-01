@@ -167,6 +167,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 	var formal_day = now_time.getDate();
 	var endNo;
 	var last_data_no;
+	
 
 	function getStudyNo(study) {
 
@@ -304,9 +305,9 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 	var isEnd = false;
 
 	function logscroll() {
-		console.log("scroll함수 호출");
+
 		var scrollTop = $('.chattingloglistcontainer').scrollTop();
-		console.log(scrollTop);
+
 		
 		console.log("isScrolled:"+isScrolled);
 		
