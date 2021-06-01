@@ -41,8 +41,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 			var msg = all.msg; 
 			var cmd = all.cmd;
 			var time = new Date().toLocaleTimeString();
-			console.log(msg);
-			console.log("받아온msg:"+msg);
+
 			if(cmd == "Enter"){
 				var str = "<div class='enterchattinglogcontainer'>";
 				 str += "<div class='chattinglogname'>"
@@ -163,9 +162,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 		ws.send(jsonData);
 		$('#chatting').val("");
 	}
-	
-	var endNo = 1;
-	
+
 	var now_time = new Date();
 	var formal_year = now_time.getFullYear();
 	var formal_month = now_time.getMonth()+1;
@@ -174,12 +171,14 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 	function getStudyNo(study){
 		var study_no = $(study).data("value");
 		
+		var endNo = $('.chattingloglistcontainer').first().data("no")||0;
 		
 		if($('.nowstudy_no').val()!=study_no){
 			$('.nowstudy_no').val(study_no);
 			$('#chattingloglistcontainer').text('');
 		
 	
+			console.log("처음 endNO:"+endNo);
 		
 			//입장
 			sendEnter();
@@ -198,10 +197,13 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 						
 					 console.log(data.chattingloglist);
 			
+					 var length = data.chattingloglist.length;
+					 
+					
 					 
 
 					 
-					 for(var i = 0; i<data.chattingloglist.length; i++){
+					 for(var i = 0; i<length; i++){
 						 var content = data.chattingloglist[i].content;
 						 var chattinglogno = data.chattingloglist[i].no;
 						 var time = new Date(data.chattingloglist[i].time);
@@ -214,6 +216,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 
 						 var message_time = time.toLocaleTimeString();
 						 
+
 				
 						 if(message_year==formal_year){
 							 //이전 월과 같을때
@@ -280,7 +283,9 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 
 						 $("#chattingloglistcontainer").prepend(str);
 					 }
-					
+				    var wd = $('.chattingloglistcontainer');
+	        		wd.scrollTop = wd.scrollHeight;
+				        
 					 
 					 
 				 },error:function(){
@@ -291,6 +296,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 
 	     var isScrolled = false;
 	     var isEnd = false;
+	     var last_data_no;
 	     
 	     $('.chattingloglistcontainer').scroll(function(){
 	        var $window = $(this);
@@ -309,8 +315,11 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 	           return;
 	        }
 	        
-	        endNo += 10;
+	        var endNo = $('.chattingloglistcontainer').first().data("no")||0;
 	        
+	        console.log("endNo"+endNo);
+	        
+	        var study_no=$('.nowstudy_no').val();
 			$.ajax({
 				 type:'POST',
 				 url:'${pageContext.request.contextPath}/chatting/getlog',
@@ -323,9 +332,9 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 				 success:function(data){
 					 alert("채팅로그를 불러왔습니다.");
 					
-					 console.log(data.chattingloglist);
-					 
+
 					 var length = data.chattingloglist.length;
+					 
 					 
 					 if(length < 10){
 						 isEnd = true;
@@ -333,7 +342,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 
 					 
 					 
-					 for(var i = 0; i<data.chattingloglist.length; i++){
+					 for(var i = 0; i<length; i++){
 						 var content = data.chattingloglist[i].content;
 						 var chattinglogno = data.chattingloglist[i].no;
 						 var time = new Date(data.chattingloglist[i].time);
@@ -346,7 +355,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 
 						 var message_time = time.toLocaleTimeString();
 						 
-				
+			
 						 if(message_year==formal_year){
 							 //이전 월과 같을때
 							 if(formal_month==message_month){
@@ -413,9 +422,11 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 						 $("#chattingloglistcontainer").prepend(str);
 					 }
 					
-					 var position = $('[data-no='+endNo+']').prev().offset();
+					 var position = $('.[data-no='+last_data_no-10+']').prev().offset().top;
 					 
-					 document.querySelector('.chattinglogcontainer').scrollTo({top:position.top,behavior:'auto'});
+					 console.log("position:"+position);
+					 
+					 $('.chattinglogcontainer').animate({scrolltop:position,behavior:'auto'});
 					 
 					 isSrolled = false;
 					 

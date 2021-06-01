@@ -5,10 +5,11 @@
 
 <mapper namespace="dev.team3.wantudy.dao.ChattinglogDAO">
 	<select id="getChattinglogscroll" parameterType="int" resultType="ChattinglogDTO">
-		select *
-		from
-		(select rownum as rownumber, c.* from chattinglog c where study_no = #{study_no} order by no desc) a
-		where a.rownumber between #{endNo} and #{endNo}+9
+        select * 
+        from chattinglog
+        where study_no = #{study_no}
+        order by no desc
+        offset #{endNo} rows fetch first 10 rows only
 	</select>
 	
 	<insert id="insertchattinglog" parameterType="ChattinglogDTO">
