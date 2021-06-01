@@ -11,7 +11,7 @@ public interface MemberStudyService {
 
 	public List<EnrollDTO> selectAllEnrolls(MemberDTO memberDTO);
 	public StudyDTO getStudy(int study_no);
-	public List<ChattinglogDTO> getChattinglog (int study_no);
+	public List<ChattinglogDTO> getChattinglogscroll (int study_no,int endNo);
 	public void insertchattinglog(ChattinglogDTO chattinglogDTO);
 
 }
