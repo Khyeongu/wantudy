@@ -5,9 +5,15 @@
 
 <mapper namespace="dev.team3.wantudy.dao.AbilityLevelDAO">
 	<select id="getAbilityName" resultType="string">
-		select INITCAP(name)
+		select name
 		from abilitylevel
 		group by name
 		order by sum(no)
+	</select>
+	
+	<select id="getAbilityScore" parameterType="AbilityLevelDTO" resultType="int">
+		select no
+		from abilitylevel
+		where name=#{name} and score=#{score}
 	</select>
 </mapper>
