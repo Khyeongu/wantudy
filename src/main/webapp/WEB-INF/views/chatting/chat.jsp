@@ -308,6 +308,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 		var scrollTop = $('.chattingloglistcontainer').scrollTop();
 		console.log(scrollTop);
 		
+		console.log("isScrolled:"+isScrolled);
 		
 		if (scrollTop < 1 && isScrolled == false) {
 			isScrolled = true;
@@ -442,7 +443,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 									behavior : 'auto'
 								});
 
-						isSrolled = false;
+						isScrolled = false;
 
 					},
 					error : function() {
