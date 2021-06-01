@@ -46,8 +46,20 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 <script src="${context}/resources/js/dropbox.js"></script>
 <script type="text/javascript" src="${context}/resources/js/datepicker/datepicker.js"></script>
 
+
+<!-- 설문조사 Styles -->
+<link rel="stylesheet" href="${context}/resources/css/abilitycheck/abilitycheck.css">
+
 <script>
-	function createStudy() {
+	var name;
+	var content;
+	var startdate;
+	var enddate;
+	var capacity;
+	var category_no;
+
+	/* 스터디 기본 정보 입력 후 다음으로 넘어간는 function */
+	function next() {
 		if (document.getElementById("name").value === "") {
 			alert("스터디 이름을 입력해 주세요.")
 		} else if (document.getElementById("content").value === "") {
@@ -59,12 +71,89 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 		} else if (document.getElementById("capacity").value === "") {
 			alert("스터디 최대 인원을 입력해 주세요.")
 		} else {
-			if (confirm("정말 생성하시겠습니까?")) {
-				document.getElementById("studyInfoForm").submit();
-			} else {
-				return false;
-			}
+			name = document.getElementById("name").value;
+			content = document.getElementById("content").value;
+			startdate = document.getElementById("startdate").value;
+			enddate = document.getElementById("enddate").value;
+			capacity = document.getElementById("capacity").value;
+			category_no = document.getElementById("category_no").value;
+
+			document.all.studyBasicInfo.style.display = "none";
+			document.all.studyRequirement.style.display = "";
 		}
+
+	}
+
+	/* 최종 study 생성 function */
+	function createStudy() {
+
+		//document.getElementById("studyInfoForm");
+
+		var radio_name = [];//array
+		var raido_name_val = {};//object
+		var radio = $("input[type=radio]"); //라디오 정보를 가져옵니다.
+		var arr = new Array();
+
+		$.each(radio, function(key, value) { // input radio의 name 값을 가져옵니다.
+			radio_name.push($(value).attr('name'));
+		});
+
+		//console.log(radio_name);
+
+		radio_name = $.unique(radio_name.sort()).sort(); //중복요소 이름을 제거
+		//console.log(radio_name);
+
+		for (var i = 0; i < radio_name.length; i++) {
+			var obj_length = document.getElementsByName(radio_name[i]).length;
+			var obj = {
+				'name' : '',
+				'score' : ''
+			};
+
+			for (var j = 0; j < obj_length; j++) {
+				if (document.getElementsByName(radio_name[i])[j].checked == true) {
+					//alert(document.getElementsByName(radio_name[i])[j].value);
+
+					obj.name = radio_name[i];
+					obj.score = document.getElementsByName(radio_name[i])[j].value;
+
+					//console.log(obj.name);
+					//console.log(obj.score);
+					//console.log(obj);
+
+					arr.push(obj);
+				}
+			}
+
+		}
+
+		var newobj = {
+			'name' : name,
+			'content' : content,
+			'startdate' : startdate,
+			'enddate' : enddate,
+			'capacity' : capacity,
+			'category_no' : category_no,
+			'abilityarry' : arr
+		};
+		//var jsonData = JSON.stringify(arr);
+		var jsonData = JSON.stringify(newobj);
+		//console.log(jsonData);
+
+		$.ajax({
+			url : '${pageContext.request.contextPath}/createStudy',
+			type : 'post',
+			contentType : 'application/json; charset=UTF-8',
+			data : jsonData,
+			success : function(data) {
+				//alert("됨.");
+				location.href = '${pageContext.request.contextPath}/home';
+			}
+		// ,error:function(){
+		// alert("안됨.");
+		// }
+		});
+
 
 	}
 </script>
@@ -148,7 +237,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 			<div class="row">
 				<div class="col-lg-3 col-md-5 pl-5 pr-5"></div>
 
-				<div class="col-lg-9 col-md-7">
+				<div class="col-lg-9 col-md-7" id="studyBasicInfo" style="display:;">
 					<h4 class="mb-3 border__bottom">스터디 정보 수정</h4>
 					<div class="row">
 						<div class="col-lg-7">
@@ -192,10 +281,69 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 					<div class="row">
 						<div class="col-lg-7"></div>
 						<div class="col-lg-2 mt-3 float-right">
+							<button type="button" id="btnUpdate" class="site-btn" onclick="next()">다음</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-9 col-md-7" id="studyRequirement" style="display: none;">
+					<h4 class="mb-3 border__bottom">스터디 역량 수정</h4>
+					<div class="row">
+						<div class="col-lg-7">
+							<div class="studyability" id="studyability">
+								<form id="studyAbilityForm" name="studyAbilityForm" method="post">
+									<div class="abilitycheck">
+
+
+
+
+										<c:forEach items="${abilityList}" var="abilityname">
+											<div class="form-group">
+												<label class="label" for="python">${abilityname}</label>
+
+												<div class="ability-form-control">
+													<div class="row">
+														<div class="col-md-1 text-center pl-3">(low)</div>
+														<div class="col-md-2 text-center">
+															<input class="mr-2" type="radio" name="${abilityname}" value="1" checked="checked" />1
+														</div>
+														<div class="col-md-2 text-center">
+															<input class="mr-2" type="radio" name="${abilityname}" value="2" />2
+														</div>
+														<div class="col-md-2 text-center">
+															<input class="mr-2" type="radio" name="${abilityname}" value="3" />3
+														</div>
+														<div class="col-md-2 text-center">
+															<input class="mr-2" type="radio" name="${abilityname}" value="4" />4
+														</div>
+														<div class="col-md-2 text-center">
+															<input class="mr-2" type="radio" name="${abilityname}" value="5" />5
+														</div>
+														<div class="col-md-1 text-center pr-3">(high)</div>
+													</div>
+												</div>
+											</div>
+										</c:forEach>
+
+
+
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-7"></div>
+						<div class="col-lg-2 mt-3 float-right">
 							<button type="button" id="btnUpdate" class="site-btn" onclick="createStudy()">만들기</button>
 						</div>
 					</div>
 				</div>
+
+
+
+
+
 			</div>
 		</div>
 	</section>

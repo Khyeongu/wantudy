@@ -33,8 +33,6 @@ IS
         DATE       AUTHOR           DESCRIPTION
   ----------------------------------------------------------------------------
      2021-05-27    KSY              최초 작성
-     2021-05-27    KHG              최초 작성
-     2021-05-27    LYL              최초 작성
 
 ******************************************************************************/
   IS
@@ -57,5 +55,66 @@ IS
   END;
   
 END PACK_SIGNUP_PKG;
+/
+
+
+
+/* 스터디 생성(추가) 패키지 */
+
+CREATE OR REPLACE PACKAGE PACK_CREATESTUDY_PKG
+IS
+  PROCEDURE PROC_INSERT_REQUIREMENT  
+  (
+      p_study_no            in  STUDY.no%type
+    , p_abilitylevel_name   in  ABILITYLEVEL.name%type
+    , p_abilitylevel_score  in  ABILITYLEVEL.score%type 
+  );
+     
+end PACK_CREATESTUDY_PKG;
+/
+
+CREATE OR REPLACE PACKAGE BODY PACK_CREATESTUDY_PKG
+IS
+  PROCEDURE PROC_INSERT_REQUIREMENT
+  (
+      p_study_no           in  STUDY.no%type            -- 스터디 번호
+	, p_abilitylevel_name  in  ABILITYLEVEL.name%type   -- 역량 이름
+    , p_abilitylevel_score in  ABILITYLEVEL.score%type  -- 역량 단계 
+  )
+  /*****************************************************************************
+      PROCEDURE NAME     : PROC_INSERT_REQUIREMENT
+      DESCRIPTION        : 스터디 생성 시 ABILITY LEVEL 정보 INSERT
+      PARAMETERS         : p_study_no               -- 스터디 번호
+	                       p_abilitylevel_name       -- 역량 이름
+                           p_abilitylevel_score      -- 역량 단계
+						   
+      OUTPUT PARAMETER   :
+      특이사항       :
+  ----------------------------------------------------------------------------
+        DATE       AUTHOR           DESCRIPTION
+  ----------------------------------------------------------------------------
+     2021-05-31    KSY              최초 작성
+
+******************************************************************************/
+  IS
+	p_abilitylevel_no ABILITYLEVEL.no%type;
+  BEGIN
+      -- p_abilitylevel_name, p_abilitylevel_score 와 일치하는 NO 값을 가져옴
+      SELECT no
+        INTO p_abilitylevel_no
+      FROM ABILITYLEVEL
+     WHERE UPPER(name) = UPPER(p_abilitylevel_name)
+	   AND score = p_abilitylevel_score;
+	   
+	   -- 가져온 NO 값(p_abilitylevel_no)을 REQUIREMENT 테이블에 INSERT
+	   INSERT INTO REQUIREMENT ( study_no , abilitylevel_no
+	                             )
+	                      VALUES ( p_study_no , p_abilitylevel_no
+                                 );
+							 
+	   COMMIT;
+  END;
+  
+END PACK_CREATESTUDY_PKG;
 /
 

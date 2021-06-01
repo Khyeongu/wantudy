@@ -4,6 +4,18 @@
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="dev.team3.wantudy.dao.RequirementDAO">
+
+	<select id="insertRequirement" parameterType="hashmap"
+		statementType="CALLABLE">
+		{
+		CALL PACK_CREATESTUDY_PKG.PROC_INSERT_REQUIREMENT(
+		#{studyNo},
+		#{abilityLevelDTO.name},
+		#{abilityLevelDTO.score}
+		)
+		}
+	</select>
+
 	<select id="getStudyRequirementScore" parameterType="int" resultType="int">
 		select a.score
 		from requirement r inner join abilitylevel a
@@ -22,4 +34,5 @@
 		values (#{study_no}, #{abilityLevel_no})	
 	</insert>
 	
+
 </mapper>
