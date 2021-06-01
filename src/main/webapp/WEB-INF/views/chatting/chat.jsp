@@ -167,13 +167,16 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 	var formal_day = now_time.getDate();
 	var endNo;
 	var last_data_no;
-	
+	var isScrolled = false;
+	var isEnd = false;
 
 	function getStudyNo(study) {
 
 		var study_no = $(study).data("value");
 
 		endNo = 0;
+		isScrolled = false;
+		isEnd = false;
 
 		if ($('.nowstudy_no').val() != study_no) {
 			$('.nowstudy_no').val(study_no);
@@ -301,8 +304,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 	}
 	
 	
-	var isScrolled = false;
-	var isEnd = false;
+
 
 	function logscroll() {
 
