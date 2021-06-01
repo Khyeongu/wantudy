@@ -334,6 +334,12 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 	function fetchList() {
 		console.log("fetchlist호출");
 		if (isEnd == true) {
+			var str = "<div class='chattinglogdate'>"
+				str += formal_month + "월 "
+						+ formal_day + "일";
+				str += "</div>"
+				$("#chattingloglistcontainer")
+						.prepend(str);
 			return;
 		}
 
