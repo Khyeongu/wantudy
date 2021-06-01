@@ -9,9 +9,10 @@
 		from study
 		where no = #{study_no}
 	</select>
-	
+
 	<select id="createStudyNo" resultType="int">
-		select STUDY_NO_SEQ.nextval from dual 
+		select
+		STUDY_NO_SEQ.nextval from dual
 	</select>
 
 	<select id="createStudy" parameterType="StudyDTO">
@@ -24,7 +25,8 @@
 	</select>
 
 	<select id="insertStudyMasterEnroll" parameterType="EnrollDTO">
-		insert into enroll
+		insert into
+		enroll
 		(member_no, study_no)
 		values
 		(#{member_no}, #{study_no})
@@ -47,4 +49,5 @@
 		category_no=#{category_no}
 		where no=#{no}
 	</update>
+
 </mapper>

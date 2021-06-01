@@ -1,5 +1,6 @@
 package dev.team3.wantudy.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import dev.team3.wantudy.dto.EnrollDTO;
@@ -18,5 +19,7 @@ public interface StudyService {
 	void insertStudyMasterEnroll(EnrollDTO enrollDTO) throws Exception;
 
 	int createStudyNo() throws Exception;
+
+	void insertRequirement(HashMap<String, Object> map) throws Exception;
 
 }
