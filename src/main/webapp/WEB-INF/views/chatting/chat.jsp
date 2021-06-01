@@ -97,6 +97,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 			var message = $('#chatting').val();
 			if(e.keyCode == 13){ //enter press
 				if(message != ""){
+					insertChattinglog();
 					sendChat();
 				}
 
@@ -163,7 +164,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 		$('#chatting').val("");
 	}
 	
-	var endNo = $('.chattinglogcontainer').first().data("value")||1;
+	var endNo = $('.chattinglogcontainer').first().data("no")||1;
 	
 
 	function getStudyNo(study){
@@ -245,7 +246,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 						 var username = $('#userName').val()
 						 
 						 if(member_no!=userno){
-							 var str = "<div class='chattinglogcontainer' data-value='"+chattinglogno+"'>";
+							 var str = "<div class='chattinglogcontainer' data-no='"+chattinglogno+"'>";
 							 str += "<div class='chattinglogname'>"
 							 str += username;
 							 str += ":</div>";
@@ -258,7 +259,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 							 str += "</div>";
 						 }
 						 else{
-							 var str = "<div class='chattinglogcontainer mylog' data-value='"+chattinglogno+"'>";
+							 var str = "<div class='chattinglogcontainer mylog' data-no='"+chattinglogno+"'>";
 							 str += "<div class='chattinglogtime'>"
 							 str += message_time;
 							 str += "</div>";
@@ -272,7 +273,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 						 }
 						 
 
-						 $("#chattingloglistcontainer").append(str);
+						 $("#chattingloglistcontainer").prepend(str);
 					 }
 					
 					 
@@ -283,7 +284,145 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 			 })
 		}
 
-		
+	     var isScrolled = false;
+	     var isEnd = false;
+	     
+	     $('.chattingloglistcontainer').scroll(function(){
+	        var $window = $(this);
+	        var scrollTop = $window.scrollTop();
+	        
+	        if(scrollTop < 1 && isScrolled == false){
+	           isScrolled = true;
+	           fetchList();
+	        }
+	     
+	     });
+	     
+	     function fetchList(){
+	        if(isEnd == true){
+	           return;
+	        }
+	        
+	        var endNo = $(".chattinglogcontainer").first().data("no")+1||1;
+	        
+			$.ajax({
+				 type:'POST',
+				 url:'${pageContext.request.contextPath}/chatting/getlog',
+				 data:{
+					 "study_no":study_no,
+					 "endNo":endNo
+				 },
+				 datatype:"json",
+				 async:false,
+				 success:function(data){
+					 alert("채팅로그를 불러왔습니다.");
+					
+					 console.log(data.chattingloglist);
+					 
+					 var length = data.chattingloglist.length;
+					 
+					 if(length < 10){
+						 isEnd = true;
+					 }
+					 var now_time = new Date();
+					 
+					 var formal_year = now_time.getFullYear();
+					 var formal_month = now_time.getMonth()+1;
+					 var formal_day = now_time.getDate();
+					 
+					 for(var i = 0; i<data.chattingloglist.length; i++){
+						 var content = data.chattingloglist[i].content;
+						 var chattinglogno = data.chattingloglist[i].no;
+						 var time = new Date(data.chattingloglist[i].time);
+						 var message_year = time.getFullYear();
+						
+
+						 var message_month = time.getMonth()+1;
+
+						 var message_day = time.getDate();
+
+						 var message_time = time.toLocaleTimeString();
+						 
+				
+						 if(message_year==formal_year){
+							 //이전 월과 같을때
+							 if(formal_month==message_month){
+								 if(formal_day!=message_day){
+									 //월,일 시간출력
+									 var str = "<div class='chattinglogdate'>"
+									 str += formal_month+"월 "+formal_day+"일";
+									 str += "</div>"
+									 $("#chattingloglistcontainer").prepend(str);
+								 }
+							 }else{
+								 //월,일
+								 var str = "<div class='chattinglogdate'>"
+								 str += formal_month+"월 "+formal_day+"일";
+								 str += "</div>"
+								 $("#chattingloglistcontainer").prepend(str);
+							 }
+						//년도 다를때
+						 }else{
+							 //년,월,일 출력
+							 var str = "<div class='chattinglogdate'>"
+							 str += formal_year+"년 "+formal_month+"월 "+formal_day+"일";
+							 str += "</div>"
+							 $("#chattingloglistcontainer").prepend(str);
+						 }
+						 formal_year = message_year;
+						 formal_month = message_month;
+						 formal_day = message_day;
+				
+						 
+
+						 var member_no = data.chattingloglist[i].member_no;
+						 var userno = $('#userNo').val();
+						 var username = $('#userName').val()
+						 
+						 if(member_no!=userno){
+							 var str = "<div class='chattinglogcontainer' data-no='"+chattinglogno+"'>";
+							 str += "<div class='chattinglogname'>"
+							 str += username;
+							 str += ":</div>";
+							 str += "<div class='chattinglogcontent'>"
+							 str += content;
+							 str += "</div>";
+							 str += "<div class='chattinglogtime'>"
+							 str += message_time;
+							 str += "</div>";
+							 str += "</div>";
+						 }
+						 else{
+							 var str = "<div class='chattinglogcontainer mylog' data-no='"+chattinglogno+"'>";
+							 str += "<div class='chattinglogtime'>"
+							 str += message_time;
+							 str += "</div>";
+							 str += "<div class='chattinglogcontent'>"
+							 str += content;
+							 str += "</div>";
+							 str += "<div class='chattinglogname'>"
+							 str += username;
+							 str += "</div>";
+							 str += "</div>";
+						 }
+						 
+
+						 $("#chattingloglistcontainer").prepend(str);
+					 }
+					
+					 var position = $('[data-no='+endNo+']').prev().offset();
+					 
+					 document.querySelector('.chattinglogcontainer').scrollTo({top:position.top,behavior:'auto'});
+					 
+					 isSrolled = false;
+					 
+					 
+				 },error:function(){
+					 alert("로그 불러오기 실패.");
+				 }
+			 })
+	        
+	     }
 
 	}
 	
