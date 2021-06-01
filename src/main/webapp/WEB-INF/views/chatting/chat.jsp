@@ -44,14 +44,6 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 			var time = new Date().toLocaleTimeString();
 
 			if (cmd == "Enter") {
-				var str = "<div class='enterchattinglogcontainer'>";
-				str += "<div class='chattinglogname'>"
-				str += username;
-				str += "</div>";
-				str += "<div class='chattinglogcontent'>"
-				str += msg;
-				str += "</div>";
-				str += "</div>";
 
 			} else {
 				if (member_no == userno) {
@@ -66,6 +58,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 					str += username;
 					str += "</div>";
 					str += "</div>";
+					$("#chattingloglistcontainer").append(str);
 				} else {
 					var str = "<div class='chattinglogcontainer'>";
 					str += "<div class='chattinglogtime'>"
@@ -78,11 +71,11 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 					str += msg;
 					str += "</div>";
 					str += "</div>";
-
+					$("#chattingloglistcontainer").append(str);
 				}
 
 			}
-			$("#chattingloglistcontainer").append(str);
+			
 		}
 
 		ws.onclose = function(data) {
@@ -113,8 +106,11 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 		var message = $('#chatting').val();
 		console.log("send누르고" + message);
 		var cmd = 'Send';
-		send(message, cmd);
-		$('#chatting').val("");
+		if(message!=''){
+			send(message, cmd);
+			$('#chatting').val("");
+		}
+
 	}
 
 	//메세지 전송 시 chattinglog 기록
@@ -161,19 +157,30 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 		$('#chatting').val("");
 	}
 
-	var now_time = new Date();
-	var formal_year = now_time.getFullYear();
-	var formal_month = now_time.getMonth() + 1;
-	var formal_day = now_time.getDate();
+	var now_time ;
+	var formal_year ;
+	var formal_month;
+	var formal_day ;
 	var endNo;
 	var last_data_no;
-	
+	var isScrolled = false;
+	var isEnd = false;
 
 	function getStudyNo(study) {
 
 		var study_no = $(study).data("value");
 
+		now_time = new Date();
+		formal_year = now_time.getFullYear();
+		formal_month = now_time.getMonth() + 1;
+		formal_day = now_time.getDate();
+		
 		endNo = 0;
+		isScrolled = false;
+		isEnd = false;
+		if($('.nowstudy_no').val() == ''){
+			
+		}
 
 		if ($('.nowstudy_no').val() != study_no) {
 			$('.nowstudy_no').val(study_no);
@@ -181,6 +188,8 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 
 			console.log("처음 endNO:" + endNo);
 
+			//websocket끊었다 다시연결
+			
 			//입장
 			sendEnter();
 
@@ -201,7 +210,13 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 
 							var length = data.chattingloglist.length;
 
-							last_data_no = data.chattingloglist[0].no;
+							if (length < 10) {
+								isEnd = true;
+							}else{
+								last_data_no = data.chattingloglist[0].no;
+							}
+
+
 
 							for (var i = 0; i < length; i++) {
 								var content = data.chattingloglist[i].content;
@@ -283,13 +298,16 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 								$("#chattingloglistcontainer").prepend(str);
 							}
 
-							var position = $('.chattinglogcontainer').offset().top;
+							if(!isEnd){
+								var position = $('.chattinglogcontainer').offset().top;
 
-							document.querySelector('.chattingloglistcontainer')
-									.scrollTo({
-										top : position,
-										behavior : 'auto'
-									});
+								document.querySelector('.chattingloglistcontainer')
+										.scrollTo({
+											top : position,
+											behavior : 'auto'
+										});
+							}
+
 
 						},
 						error : function() {
@@ -301,8 +319,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 	}
 	
 	
-	var isScrolled = false;
-	var isEnd = false;
+
 
 	function logscroll() {
 
@@ -321,6 +338,12 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 	function fetchList() {
 		console.log("fetchlist호출");
 		if (isEnd == true) {
+			var str = "<div class='chattinglogdate'>"
+				str += formal_month + "월 "
+						+ formal_day + "일";
+				str += "</div>"
+				$("#chattingloglistcontainer")
+						.prepend(str);
 			return;
 		}
 

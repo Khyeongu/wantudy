@@ -33,7 +33,8 @@ public class SocketHandler extends TextWebSocketHandler {
 		String msg = message.getPayload();
 		ObjectMapper objectMapper = new ObjectMapper();
 		Map<String,String> mapReceive = objectMapper.readValue(msg,Map.class);
-
+		int alreadyin = 0;
+		
 		System.out.println("session:" + session);
 		System.out.println("cmd:"+mapReceive.get("cmd"));
 		if(mapReceive.get("cmd").equals("Enter")) {
@@ -41,7 +42,27 @@ public class SocketHandler extends TextWebSocketHandler {
 			map.put("study_no", mapReceive.get("study_no"));
 			map.put("session", session);
 			map.put("member_no", mapReceive.get("member_no"));
-			sessionList.add(map);
+			
+			//이미 있는 session이면 등록 안함
+			for(int i = 0; i<sessionList.size(); i++) {
+				Map<String,Object> mapSessionList = sessionList.get(i);
+				String study_no = (String) mapSessionList.get("study_no");
+				String member_no = (String) mapSessionList.get("member_no");
+				WebSocketSession sess = (WebSocketSession) mapSessionList.get("session");
+				
+				System.out.println("sess:"+sess);
+				System.out.println(mapReceive.get("study_no"));
+				
+				if(session == sess) {
+					alreadyin = 1;
+				}
+			
+			}
+			
+			if(alreadyin == 0) {
+				sessionList.add(map);
+			}
+
 			
 			System.out.println("입장controller");
 			System.out.println("sessionList:"+sessionList);
@@ -51,7 +72,7 @@ public class SocketHandler extends TextWebSocketHandler {
 				String study_no = (String) mapSessionList.get("study_no");
 				String member_no = (String) mapSessionList.get("member_no");
 				WebSocketSession sess = (WebSocketSession) mapSessionList.get("session");
-				
+				System.out.println("sess:"+sess);
 				System.out.println(mapReceive.get("study_no"));
 				
 				if(study_no.equals(mapReceive.get("study_no"))) {
