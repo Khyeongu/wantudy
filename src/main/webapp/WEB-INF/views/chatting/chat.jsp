@@ -44,14 +44,6 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 			var time = new Date().toLocaleTimeString();
 
 			if (cmd == "Enter") {
-				var str = "<div class='enterchattinglogcontainer'>";
-				str += "<div class='chattinglogname'>"
-				str += username;
-				str += "</div>";
-				str += "<div class='chattinglogcontent'>"
-				str += msg;
-				str += "</div>";
-				str += "</div>";
 
 			} else {
 				if (member_no == userno) {
@@ -66,6 +58,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 					str += username;
 					str += "</div>";
 					str += "</div>";
+					$("#chattingloglistcontainer").append(str);
 				} else {
 					var str = "<div class='chattinglogcontainer'>";
 					str += "<div class='chattinglogtime'>"
@@ -78,11 +71,11 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 					str += msg;
 					str += "</div>";
 					str += "</div>";
-
+					$("#chattingloglistcontainer").append(str);
 				}
 
 			}
-			$("#chattingloglistcontainer").append(str);
+			
 		}
 
 		ws.onclose = function(data) {
@@ -195,6 +188,8 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 
 			console.log("처음 endNO:" + endNo);
 
+			//websocket끊었다 다시연결
+			
 			//입장
 			sendEnter();
 
@@ -215,7 +210,13 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 
 							var length = data.chattingloglist.length;
 
-							last_data_no = data.chattingloglist[0].no;
+							if (length < 10) {
+								isEnd = true;
+							}else{
+								last_data_no = data.chattingloglist[0].no;
+							}
+
+
 
 							for (var i = 0; i < length; i++) {
 								var content = data.chattingloglist[i].content;
@@ -297,13 +298,16 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 								$("#chattingloglistcontainer").prepend(str);
 							}
 
-							var position = $('.chattinglogcontainer').offset().top;
+							if(!isEnd){
+								var position = $('.chattinglogcontainer').offset().top;
 
-							document.querySelector('.chattingloglistcontainer')
-									.scrollTo({
-										top : position,
-										behavior : 'auto'
-									});
+								document.querySelector('.chattingloglistcontainer')
+										.scrollTo({
+											top : position,
+											behavior : 'auto'
+										});
+							}
+
 
 						},
 						error : function() {
