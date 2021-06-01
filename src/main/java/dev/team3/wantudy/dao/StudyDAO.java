@@ -16,8 +16,6 @@ public interface StudyDAO {
 
 	public void updateStudyInfo(StudyDTO studyDTO) throws SQLException;
 
-	public void insertStudyMasterEnroll(EnrollDTO enrollDTO) throws SQLException;
-
 	public int createStudyNo() throws SQLException;
 
 }

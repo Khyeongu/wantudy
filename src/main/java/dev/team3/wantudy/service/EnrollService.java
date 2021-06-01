@@ -9,4 +9,6 @@ public interface EnrollService {
 
 	EnrollDTO selectMemberStudyEnroll(StudyDTO s) throws Exception;
 
+	void insertStudyMasterEnroll(EnrollDTO enrollDTO) throws Exception;
+
 }

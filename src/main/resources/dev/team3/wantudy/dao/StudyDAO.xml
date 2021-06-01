@@ -24,14 +24,6 @@
 		#{capacity}, #{member_no}, #{category_no})
 	</select>
 
-	<select id="insertStudyMasterEnroll" parameterType="EnrollDTO">
-		insert into
-		enroll
-		(member_no, study_no)
-		values
-		(#{member_no}, #{study_no})
-	</select>
-
 	<select id="getMemberStudy" parameterType="int"
 		resultType="StudyDTO">
 		select *

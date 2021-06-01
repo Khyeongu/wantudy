@@ -24,6 +24,7 @@ import dev.team3.wantudy.dto.MemberDTO;
 import dev.team3.wantudy.dto.StudyDTO;
 import dev.team3.wantudy.service.AbilitylvlService;
 import dev.team3.wantudy.service.CategoryService;
+import dev.team3.wantudy.service.EnrollService;
 import dev.team3.wantudy.service.RequirementService;
 import dev.team3.wantudy.service.StudyService;
 import lombok.extern.slf4j.Slf4j;
@@ -44,6 +45,9 @@ public class CreateStudyController {
 
 	@Autowired
 	private RequirementService requirementService;
+	
+	@Autowired
+	private EnrollService enrollService;
 
 	/* 스터디 추가 페이지 */
 	@GetMapping(value = { "" })
@@ -101,7 +105,7 @@ public class CreateStudyController {
 			EnrollDTO enrollDTO = new EnrollDTO();
 			enrollDTO.setMember_no(userInfo.getNo());
 			enrollDTO.setStudy_no(studyDTO.getNo());
-			studyService.insertStudyMasterEnroll(enrollDTO);
+			enrollService.insertStudyMasterEnroll(enrollDTO);
 
 			// requirement 테이블에 insert
 			JSONArray abilityArry = (JSONArray) insertParam.get("abilityarry");
