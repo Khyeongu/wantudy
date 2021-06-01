@@ -113,8 +113,11 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 		var message = $('#chatting').val();
 		console.log("send누르고" + message);
 		var cmd = 'Send';
-		send(message, cmd);
-		$('#chatting').val("");
+		if(message!=''){
+			send(message, cmd);
+			$('#chatting').val("");
+		}
+
 	}
 
 	//메세지 전송 시 chattinglog 기록
@@ -161,10 +164,10 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 		$('#chatting').val("");
 	}
 
-	var now_time = new Date();
-	var formal_year = now_time.getFullYear();
-	var formal_month = now_time.getMonth() + 1;
-	var formal_day = now_time.getDate();
+	var now_time ;
+	var formal_year ;
+	var formal_month;
+	var formal_day ;
 	var endNo;
 	var last_data_no;
 	var isScrolled = false;
@@ -174,9 +177,17 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 
 		var study_no = $(study).data("value");
 
+		now_time = new Date();
+		formal_year = now_time.getFullYear();
+		formal_month = now_time.getMonth() + 1;
+		formal_day = now_time.getDate();
+		
 		endNo = 0;
 		isScrolled = false;
 		isEnd = false;
+		if($('.nowstudy_no').val() == ''){
+			
+		}
 
 		if ($('.nowstudy_no').val() != study_no) {
 			$('.nowstudy_no').val(study_no);
