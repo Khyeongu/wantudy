@@ -61,12 +61,12 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 
 <script>
 $(document).ready(function(){
-	$("#category_no").val('<c:out value="${studyDTO.category_no}"/>').prop("selected", true);
+	
 });
 
 function updateInfo(){
 	if (confirm("정말 수정하시겠습니까?")) {
-		document.getElementById("studyInfoForm").submit();
+		
 	} else {
 		return false;
 	}
@@ -110,15 +110,15 @@ function updateInfo(){
 			<div class="row">
 				<div class="col-lg-3">
 					<div class="header__logo  align-self-center">
-						<a class="navbar-brand" href="login"><span class="navbar-name">wantudy</span></a>
+						<a class="navbar-brand" href="home"><span class="navbar-name">wantudy</span></a>
 					</div>
 				</div>
 				<div class="col-lg-7">
 					<nav class="header__menu">
 						<ul>
-							<li><a href="${context}/home/home">홈</a></li>
+							<li><a href="${context}/home">홈</a></li>
 							<li><a href="./shop-grid.html">스터디 검색</a></li>
-							<li><a href="./shop-grid.html">스터디 추가</a></li>
+							<li><a href="${context}/createStudy">스터디 추가</a></li>
 							<li><a href="#">채팅</a> <li class="active"><a href="${context}/manage/mystudy">스터디
 									관리</a></li>
 							<li><a href="${context}/mypage/myinfo">마이페이지</a></li>
@@ -159,7 +159,7 @@ function updateInfo(){
 							<ul>
 								<li><a href="../studyinfo/${studyDTO.no}">스터디 정보 수정</a></li>
 								<li><a href="../studyability/${studyDTO.no}">스터디 역량 수정</a></li>
-								<li class="active"><a href="../studyapply/${studyDTO.no}">스터디 신청자 현황</a></li>
+								<li class="active"><a href="../studyapply/${studyDTO.no}">스터디 신청자 관리</a></li>
 								<li><a href="../studymember/${studyDTO.no}">스터디 멤버 현황</a></li>
 							</ul>
 						</div>
@@ -168,17 +168,10 @@ function updateInfo(){
 				</div>
 
 				<div class="col-lg-9 col-md-7">
-					<h4 class="mb-3 border__bottom">스터디 정보 수정</h4>
+					<h4 class="mb-3 border__bottom">스터디 신청자 관리</h4>
 					<div class="row">
 						<div class="col-lg-7">
 							
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-lg-7"></div>
-						<div class="col-lg-2 mt-3 float-right">
-							<button type="button" id="btnUpdate" class="site-btn"
-								onclick="updateInfo()">저장</button>
 						</div>
 					</div>
 				</div>

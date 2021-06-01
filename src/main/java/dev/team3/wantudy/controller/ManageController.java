@@ -1,6 +1,7 @@
 package dev.team3.wantudy.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -13,18 +14,25 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import dev.team3.wantudy.dto.AbilityLevelDTO;
 import dev.team3.wantudy.dto.CategoryDTO;
 import dev.team3.wantudy.dto.EnrollDTO;
 import dev.team3.wantudy.dto.InterestDTO;
 import dev.team3.wantudy.dto.MemberDTO;
 import dev.team3.wantudy.dto.MemberStudyDTO;
+import dev.team3.wantudy.dto.RequirementDTO;
 import dev.team3.wantudy.dto.StudyDTO;
+import dev.team3.wantudy.service.AbilitylvlService;
 import dev.team3.wantudy.service.CategoryService;
 import dev.team3.wantudy.service.EnrollService;
 import dev.team3.wantudy.service.InterestService;
 import dev.team3.wantudy.service.MemberService;
 import dev.team3.wantudy.service.MemberStudyService;
+import dev.team3.wantudy.service.RequirementService;
 import dev.team3.wantudy.service.StudyService;
 import lombok.extern.slf4j.Slf4j;
 
@@ -41,6 +49,11 @@ public class ManageController {
 	@Autowired
 	private StudyService studyService;
 	
+	@Autowired
+	private AbilitylvlService abilitylvlService;
+	
+	@Autowired
+	private RequirementService requirementService;
 	
 	@GetMapping(value = "/manage/mystudy")
 	public String mystudy(Locale locale, Model model, HttpSession session) {
@@ -129,18 +142,46 @@ public class ManageController {
 	@GetMapping(value = "/manage/studyability/{study_no}")
 	public String studyability(@PathVariable int study_no, Model model, HttpSession session) {
 		
-		//세션과 스터디 장 일치하는지 확인기능 추가해야함
-		List<CategoryDTO> categoryList = null;
 		try {
-			categoryList = categoryService.getCategoryAll();
-			model.addAttribute("categoryList", categoryList);
-			StudyDTO studyDTO = studyService.getStudy(study_no);
-			model.addAttribute("studyDTO", studyDTO);
+			List<String> abilityList = abilitylvlService.getAbilityName();//역량 리스트
+			List<Integer> requirementScore = requirementService.getStudyRequirementScore(study_no);
+			ArrayList<AbilityLevelDTO> abilityScoreList = new ArrayList<>();
+			for(int i=0; i<requirementScore.size(); i++) {
+				AbilityLevelDTO abilityScore = new AbilityLevelDTO();
+				abilityScore.setNo(i);
+				abilityScore.setName(abilityList.get(i));
+				abilityScore.setScore(requirementScore.get(i));
+				abilityScoreList.add(abilityScore);
+			}
+			model.addAttribute("abilityScoreList", abilityScoreList);
+			model.addAttribute("study_no", study_no);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return "/manage/studyability";
+	}
+	
+	@PostMapping(value = "/manage/studyability/{study_no}")
+	@ResponseBody
+	public String updateStudyAbility(@PathVariable int study_no, @RequestBody List<AbilityLevelDTO> abilityLevelDTOList, HttpSession session) {
+		
+		
+		try {
+			requirementService.deleteStudyRequirementScore(study_no);
+			
+			for(AbilityLevelDTO al : abilityLevelDTOList) {
+				RequirementDTO requirementDTO = new RequirementDTO();
+				requirementDTO.setStudy_no(study_no);
+				requirementDTO.setAbilityLevel_no(abilitylvlService.getAbilityScore(al));
+				requirementService.insertStudyRequirementScore(requirementDTO);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "/manage/studyability/"+study_no;
 	}
 	
 	@GetMapping(value = "/manage/studyapply/{study_no}")

@@ -81,7 +81,7 @@ DROP TABLE STUDY     		CASCADE CONSTRAINTS PURGE;
 CREATE TABLE ABILITYLEVEL (
       no     NUMBER NOT NULL -- 역량 단계 번호
     , name   VARCHAR2(50)    -- 역량 이름
-    , score  VARCHAR2(50)    -- 역량 단계
+    , score  NUMBER NOT NULL    -- 역량 단계
 /*****************************************************************************
       TABLE NAME  	: ABILITYLEVEL
       DESCRIPTION   : 역량단계를 저장하는 테이블
@@ -159,7 +159,7 @@ CREATE TABLE ENROLL (
       member_no  NUMBER NOT NULL  -- 회원 번호
     , study_no   NUMBER NOT NULL  -- 스터디 번호
     , status     VARCHAR2(20)     -- 회원 상태
-    , skip       NUMBER NOT NULL     -- skip 여부
+    , skip       NUMBER DEFAULT 0     -- skip 여부
 /*****************************************************************************
       TABLE NAME  	: ENROLL
       DESCRIPTION   : 스터디에 대한 회원 상태를 저장하는 테이블

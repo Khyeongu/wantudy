@@ -5,4 +5,34 @@
 
 <mapper namespace="dev.team3.wantudy.dao.RequirementDAO">
 
+	<select id="insertRequirement" parameterType="hashmap"
+		statementType="CALLABLE">
+		{
+		CALL PACK_CREATESTUDY_PKG.PROC_INSERT_REQUIREMENT(
+		#{studyNo},
+		#{abilityLevelDTO.name},
+		#{abilityLevelDTO.score}
+		)
+		}
+	</select>
+
+	<select id="getStudyRequirementScore" parameterType="int" resultType="int">
+		select a.score
+		from requirement r inner join abilitylevel a
+        on r.abilitylevel_no=a.no
+		where study_no=#{study_no}
+		order by abilitylevel_no asc
+	</select>
+	
+	<delete id="deleteStudyRequirementScore" parameterType="int">
+		delete from requirement
+		where study_no=#{study_no}	
+	</delete>
+	
+	<insert id="insertStudyRequirementScore" parameterType="RequirementDTO">
+		insert into requirement (study_no, abilitylevel_no)
+		values (#{study_no}, #{abilityLevel_no})	
+	</insert>
+	
+
 </mapper>

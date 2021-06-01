@@ -13,4 +13,6 @@ public interface EnrollDAO {
 	public int getMemberCount(int study_no) throws SQLException;
 
 	public EnrollDTO selectMemberStudyEnroll(StudyDTO studyDTO) throws SQLException;
+
+	public void insertStudyMasterEnroll(EnrollDTO enrollDTO) throws SQLException;;
 }
