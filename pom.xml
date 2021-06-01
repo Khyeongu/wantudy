@@ -16,6 +16,11 @@
 		<com.jackson-databind>2.12.3</com.jackson-databind>
 	</properties>
 	<dependencies>
+	<dependency>
+  <groupId>com.sun.activation</groupId>
+  <artifactId>jakarta.activation</artifactId>
+  <version>2.0.0</version>
+</dependency>
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>

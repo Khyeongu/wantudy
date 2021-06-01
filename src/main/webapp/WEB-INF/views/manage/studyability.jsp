@@ -1,10 +1,11 @@
-
 <%@page import="dev.team3.wantudy.dto.MemberDTO"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="context" value="${pageContext.request.contextPath}" />
+<c:set var="abilityScoreList" value="${abilityScoreList}" />
+<c:set var="study_no" value="${study_no}" />
 <!DOCTYPE html>
 <html lang="zxx">
 <%
@@ -67,19 +68,43 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 	src="${context}/resources/js/datepicker/datepicker.js"></script>
 
 <script>
-	$(document).ready(
-			function() {
-				$("#category_no").val(
-						'<c:out value="${studyDTO.category_no}"/>').prop(
-						"selected", true);
-			});
-
+	$(document).ready(function(){
+		<c:forEach items="${abilityScoreList}" var="abilityScore">
+			$('input:radio[name="${abilityScore.name}"]:input[value=${abilityScore.score}]').attr("checked", true);
+		</c:forEach>				
+	});
+	
+	var url;
 	function updateInfo() {
 		if (confirm("정말 수정하시겠습니까?")) {
-			document.getElementById("studyAbilityForm").submit();
+			var score=[];
+			var i=1;
+			<c:forEach items="${abilityScoreList}" var="abilityScore">
+				$("input[name='${abilityScore.name}']:checked").each(function(element){
+					score.push({"no":i, "name":"${abilityScore.name}", "score": parseInt($(this).val())});
+				});
+				i++;
+			</c:forEach>	
+			console.log(score);
+			
+			$.ajax({
+				url: "${context}/manage/studyability/${study_no}",
+				traditional: true,
+				type: "POST",
+				data: JSON.stringify(score),
+				dataType: 'text',
+				contentType : "application/json; charset=utf-8",
+				async:false,
+				success : function(page) {
+					url=page;
+					console.log(url);
+				}
+			});
+			
 		} else {
 			return false;
 		}
+		window.location.href="${context}/manage/studyability/${study_no}";
 	}
 </script>
 
@@ -168,11 +193,11 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 						<div class="sidebar__item pr-5">
 							<h4>스터디 관리</h4>
 							<ul>
-								<li><a href="../studyinfo/${studyDTO.no}">스터디 정보 수정</a></li>
-								<li class="active"><a href="../studyability/${studyDTO.no}">스터디
+								<li><a href="../studyinfo/${study_no}">스터디 정보 수정</a></li>
+								<li class="active"><a href="../studyability/${study_no}">스터디
 										역량 수정</a></li>
-								<li><a href="../studyapply/${studyDTO.no}">스터디 신청자 현황</a></li>
-								<li><a href="../studymember/${studyDTO.no}">스터디 멤버 현황</a></li>
+								<li><a href="../studyapply/${study_no}">스터디 신청자 현황</a></li>
+								<li><a href="../studymember/${study_no}">스터디 멤버 현황</a></li>
 							</ul>
 						</div>
 
@@ -183,7 +208,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 					<h4 class="mb-3 border__bottom">스터디 역량 수정</h4>
 					<div class="row">
 						<div class="col-lg-7">
-							<div class="studyability" id="studyability">
+							<div class="studyability mt-3 ml-3" id="studyability">
 								<form id="studyAbilityForm" name="studyAbilityForm"
 									method="post">
 									<div class="abilitycheck">
@@ -191,18 +216,18 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 									
 									
 									
-									<c:forEach items="${abilityList}" var="abilityname">
+									<c:forEach items="${abilityScoreList}" var="abilityScore">
 									<div class="form-group">
-										<label class="label" for="python">${abilityname}</label>
+										<label class="label" for="${abilityScore.name}">${abilityScore.name}</label>
 										
 										<div class="ability-form-control">
 											<div class="row">
 											<div class="col-md-1 text-center pl-3">(low)</div>
-											<div class="col-md-2 text-center"><input class="mr-2" type="radio" name="${abilityname}" value="1" />1</div>
-											<div class="col-md-2 text-center"><input class="mr-2" type="radio" name="${abilityname}" value="2" />2 </div>
-											<div class="col-md-2 text-center"><input class="mr-2" type="radio" name="${abilityname}" value="3" />3</div>
-											<div class="col-md-2 text-center"><input class="mr-2" type="radio" name="${abilityname}" value="4" />4 </div>
-											<div class="col-md-2 text-center"><input class="mr-2" type="radio" name="${abilityname}" value="5" />5</div>
+											<div class="col-md-2 text-center"><input class="mr-2" type="radio" id="${abilityScore.name}1" name="${abilityScore.name}" value="1" />1</div>
+											<div class="col-md-2 text-center"><input class="mr-2" type="radio" id="${abilityScore.name}2" name="${abilityScore.name}" value="2" />2 </div>
+											<div class="col-md-2 text-center"><input class="mr-2" type="radio" id="${abilityScore.name}3" name="${abilityScore.name}" value="3" />3</div>
+											<div class="col-md-2 text-center"><input class="mr-2" type="radio" id="${abilityScore.name}4" name="${abilityScore.name}" value="4" />4 </div>
+											<div class="col-md-2 text-center"><input class="mr-2" type="radio" id="${abilityScore.name}5" name="${abilityScore.name}" value="5" />5</div>
 											<div class="col-md-1 text-center pr-3">(high)</div>
 											</div>
 										</div>

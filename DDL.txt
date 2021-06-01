@@ -81,7 +81,7 @@ DROP TABLE STUDY     		CASCADE CONSTRAINTS PURGE;
 CREATE TABLE ABILITYLEVEL (
       no     NUMBER NOT NULL -- 역량 단계 번호
     , name   VARCHAR2(50)    -- 역량 이름
-    , score  VARCHAR2(50)    -- 역량 단계
+    , score  NUMBER NOT NULL    -- 역량 단계
 /*****************************************************************************
       TABLE NAME  	: ABILITYLEVEL
       DESCRIPTION   : 역량단계를 저장하는 테이블
