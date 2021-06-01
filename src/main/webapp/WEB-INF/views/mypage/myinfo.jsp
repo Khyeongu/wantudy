@@ -125,15 +125,15 @@ function updateInfo(){
 			<div class="row">
 				<div class="col-lg-3">
 					<div class="header__logo  align-self-center">
-						<a class="navbar-brand" href="login"><span class="navbar-name">wantudy</span></a>
+						<a class="navbar-brand" href="home"><span class="navbar-name">wantudy</span></a>
 					</div>
 				</div>
 				<div class="col-lg-7">
 					<nav class="header__menu">
 						<ul>
-							<li><a href="./index.html">홈</a></li>
+							<li><a href="${context}/home">홈</a></li>
 							<li><a href="./shop-grid.html">스터디 검색</a></li>
-							<li><a href="./shop-grid.html">스터디 추가</a></li>
+							<li><a href="${context}/createStudy">스터디 추가</a></li>
 							<li><a href="#">채팅</a>
 							<li><a href="${context}/manage/mystudy">스터디 관리</a></li>
 							<li class="active"><a href="${context}/mypage/myinfo">마이페이지</a></li>

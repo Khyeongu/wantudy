@@ -44,11 +44,7 @@ public class StudyServiceImpl implements StudyService {
 		studyDAO.updateStudyInfo(studyDTO);
 	}
 
-	@Override
-	public void insertStudyMasterEnroll(EnrollDTO enrollDTO) throws Exception {
-		// TODO Auto-generated method stub
-		studyDAO.insertStudyMasterEnroll(enrollDTO);
-	}
+
 
 	@Override
 	public int createStudyNo() throws Exception {
@@ -56,16 +52,5 @@ public class StudyServiceImpl implements StudyService {
 		return studyDAO.createStudyNo();
 	}
 
-	@Override
-	public void insertRequirement(HashMap<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		try {
-			requirementDAO.insertRequirement(map);
-		} catch (Exception e) {
-			// log.info(e.getMessage());
-			throw e;
-		}
-
-	}
 
 }

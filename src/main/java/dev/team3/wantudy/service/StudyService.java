@@ -16,10 +16,6 @@ public interface StudyService {
 
 	void updateStudyInfo(StudyDTO studyDTO) throws Exception;
 
-	void insertStudyMasterEnroll(EnrollDTO enrollDTO) throws Exception;
-
 	int createStudyNo() throws Exception;
-
-	void insertRequirement(HashMap<String, Object> map) throws Exception;
 
 }
