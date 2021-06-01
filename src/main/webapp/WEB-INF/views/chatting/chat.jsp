@@ -167,12 +167,14 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 	var formal_year = now_time.getFullYear();
 	var formal_month = now_time.getMonth()+1;
 	var formal_day = now_time.getDate();
+	var endNo;
+	
 	
 	function getStudyNo(study){
 		var study_no = $(study).data("value");
 		
-		var endNo = $('.chattingloglistcontainer').first().data("no")||0;
-		
+		endNo = 0;
+
 		if($('.nowstudy_no').val()!=study_no){
 			$('.nowstudy_no').val(study_no);
 			$('#chattingloglistcontainer').text('');
@@ -296,7 +298,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 
 	     var isScrolled = false;
 	     var isEnd = false;
-	     var last_data_no;
+
 	     
 	     $('.chattingloglistcontainer').scroll(function(){
 	        var $window = $(this);
@@ -315,7 +317,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 	           return;
 	        }
 	        
-	        var endNo = $('.chattingloglistcontainer').first().data("no")||0;
+	        endNo+=10;
 	        
 	        console.log("endNo"+endNo);
 	        
