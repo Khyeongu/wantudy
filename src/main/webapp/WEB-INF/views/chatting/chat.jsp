@@ -39,6 +39,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 			var member_no = all.member_no;
 			var userno = $('#userNo').val();
 			var username = $('#userName').val();
+			
 			var msg = all.msg;
 			var cmd = all.cmd;
 			var time = new Date().toLocaleTimeString();
@@ -65,7 +66,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 					str += time;
 					str += "</div>";
 					str += "<div class='chattinglogname'>"
-					str += username;
+					str += member_no;
 					str += ":</div>";
 					str += "<div class='chattinglogcontent'>"
 					str += msg;
@@ -219,6 +220,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 
 
 							for (var i = 0; i < length; i++) {
+								
 								var content = data.chattingloglist[i].content;
 								var chattinglogno = data.chattingloglist[i].no;
 								var time = new Date(
@@ -272,7 +274,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 								if (member_no != userno) {
 									var str = "<div class='chattinglogcontainer' data-no='"+chattinglogno+"'>";
 									str += "<div class='chattinglogname'>"
-									str += username;
+									str += member_no;
 									str += ":</div>";
 									str += "<div class='chattinglogcontent'>"
 									str += content;

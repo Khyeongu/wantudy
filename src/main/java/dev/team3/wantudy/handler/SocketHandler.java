@@ -53,7 +53,7 @@ public class SocketHandler extends TextWebSocketHandler {
 				System.out.println("sess:"+sess);
 				System.out.println(mapReceive.get("study_no"));
 				
-				if(session == sess) {
+				if(session == sess && member_no == mapReceive.get("member_no")) {
 					alreadyin = 1;
 				}
 			
