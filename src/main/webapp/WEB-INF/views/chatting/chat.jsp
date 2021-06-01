@@ -429,7 +429,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 							if (member_no != userno) {
 								var str = "<div class='chattinglogcontainer' data-no='"+chattinglogno+"'>";
 								str += "<div class='chattinglogname'>"
-								str += username;
+								str += member_no;
 								str += ":</div>";
 								str += "<div class='chattinglogcontent'>"
 								str += content;
