@@ -49,7 +49,7 @@ public class EnrollServiceImpl implements EnrollService {
 	public void kickMember(HashMap<String, Object> memberInfo) throws Exception {
 		// TODO Auto-generated method stub
 		enrollDAO.kickMember(memberInfo);
-
+	}
 	@Override
 	public void insertMemberEnroll(EnrollDTO enrollDTO) throws Exception {
 		enrollDAO.insertMemberEnroll(enrollDTO);

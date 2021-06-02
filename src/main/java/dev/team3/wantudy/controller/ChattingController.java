@@ -41,12 +41,15 @@ public class ChattingController {
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("userInfo");
 		List<EnrollDTO> enrolllist = chattingService.selectavailableEnrolls(memberDTO);
 		List<StudyDTO> studylist = new ArrayList<StudyDTO>();
+		List<MemberDTO> memberlist = new ArrayList<MemberDTO>();
+		
 		System.out.println();
 		for(EnrollDTO enroll : enrolllist) {
 			int study_no = enroll.getStudy_no();
 			StudyDTO studyDTO = chattingService.getStudy(study_no);
 			System.out.println(studyDTO.getName());
 			studylist.add(studyDTO);
+			
 		}
 		model.addAttribute("enrolllist",enrolllist);
 		model.addAttribute("studylist",studylist);
