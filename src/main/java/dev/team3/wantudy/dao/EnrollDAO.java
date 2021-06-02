@@ -9,6 +9,9 @@ import dev.team3.wantudy.dto.StudyDTO;
 
 public interface EnrollDAO {
 	public List<EnrollDTO> selectAllEnrolls(MemberDTO memberDTO) throws SQLException;
+	
+	public List<EnrollDTO> selectavailableEnrolls(MemberDTO memberDTO) throws SQLException;
+	
 
 	public int getMemberCount(int study_no) throws SQLException;
 

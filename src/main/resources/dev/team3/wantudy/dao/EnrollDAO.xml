@@ -9,8 +9,15 @@
 		select *
 		from enroll
 		where member_no = #{no}
-
 	</select>
+	
+	<select id="selectavailableEnrolls" parameterType="MemberDTO"
+		resultType="EnrollDTO">
+		select *
+		from enroll
+		where member_no = #{no} and status='진행중'
+	</select>
+
 
 	<select id="selectMemberStudyEnroll" parameterType="StudyDTO"
 		resultType="EnrollDTO">

@@ -41,11 +41,40 @@
 }
 
 .studycontainer{
-	text-overflow: ellipsis;
-	width:100px;	
-	overflow:hidden;
+	display:flex;
+	align-items:center;
+	width:100%;	
 	height:50px;
 	white-space:nowrap;
+	margin-bottom:10px;
+}
+
+.studyimgcontainer{
+	width:65px;
+	height:100%;
+	border:1px solid black;
+
+}
+.studynameandlogcontainer{
+	display:flex;
+	flex-direction:column;
+	width:100%;
+	height:100%;
+	border:1px solid black;	
+}
+.studynamecontainer{
+	text-overflow: ellipsis;
+	overflow:hidden;
+	overflow:hidden;
+	width:100px;
+	height:20px;
+	margin-bottom:3px;
+}
+
+.studylastlogcontainer{
+	height:25px;
+	width:100%;
+	border:1px solid black;
 }
 
 .studycontainertitlecontainer{
@@ -59,11 +88,13 @@
 
 hr{
 	margin:0 !important;
+	margin-bottom:10px !important;
 }
 
 .studycontainertitle{
 	width:100px;
 	height:25px;
+
 }
 
 

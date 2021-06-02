@@ -221,7 +221,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 	function getStudyNo(study) {
 
 		var study_no = $(study).data("value");
-		var title = $(study).text();
+		var title = $(study).children('.studynameandlogcontainer').children('.studynamecontainer').text();
 		
 		
 		$('.chattingtitle').text(title);
@@ -616,7 +616,21 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 				<input class="nowstudy_no" type="hidden" name="nowstudy_no" value="">
 				<c:forEach var="studylist" items="${studylist}">
 					<div class="studycontainer" data-value="${studylist.no}"
-						onClick="getStudyNo(this)">${studylist.name}</div>
+						onClick="getStudyNo(this)">
+						<div class="studyimgcontainer">
+						</div>
+						<div class="studynameandlogcontainer">
+							<div class="studynamecontainer">
+								${studylist.name}
+							</div>	
+							<div class="studylastlogcontainer">
+								마지막 채팅로그
+							</div>
+						</div>
+					
+						
+						
+						</div>
 
 				</c:forEach>
 			</div>

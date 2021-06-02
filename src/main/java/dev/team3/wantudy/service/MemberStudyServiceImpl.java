@@ -63,6 +63,17 @@ public class MemberStudyServiceImpl implements MemberStudyService{
 		chattinglogDAO.insertchattinglog(chattinglogDTO);
 	}
 
+	@Override
+	public List<EnrollDTO> selectavailableEnrolls(MemberDTO memberDTO) {
+		try {
+			return enrollDAO.selectavailableEnrolls(memberDTO);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 
 	
 	
