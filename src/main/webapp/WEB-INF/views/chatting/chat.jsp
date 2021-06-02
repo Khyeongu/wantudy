@@ -7,7 +7,8 @@
 MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 %>
 <c:set var="context" value="${pageContext.request.contextPath}" />
-<c:set var="interestList" value="${interestList}" />
+
+
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -610,6 +611,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 							<h4>스터디 목록</h4>
 	
 								<input class="nowstudy_no" type="hidden" name="nowstudy_no" value="">
+								
 								<c:forEach var="studylist" items="${studylist}">
 									<div class="studycontainer" data-value="${studylist.no}"
 										onClick="getStudyNo(this)">
@@ -620,13 +622,17 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 												${studylist.name}
 											</div>	
 											<div class="studylastlogcontainer">
-												마지막 채팅로그
+												<c:forEach var="lastloglist" items="${lastloglist}">
+													<c:if test="${lastloglist.key == studylist.no}">
+														<c:out value="${lastloglist.value}"/>
+													</c:if>
+												</c:forEach>
 											</div>
 										</div>
 									
 										
 										
-										</div>
+									</div>
 				
 								</c:forEach>
 							

@@ -46,7 +46,6 @@
 	width:100%;	
 	height:50px;
 	white-space:nowrap;
-	margin-bottom:10px;
 }
 
 .studyimgcontainer{
@@ -296,7 +295,8 @@ input {
 }
 
 #chatting{
-	width:94%;
+	margin-left:10px;
+	width:93%;
 }
 
 input{border:0};
