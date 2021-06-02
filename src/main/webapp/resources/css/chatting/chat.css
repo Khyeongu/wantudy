@@ -177,6 +177,7 @@ hr{
 	height:30px;
 	width:100%;
 	margin:2px;
+	padding-right:18px;
 
 	
 }
@@ -247,11 +248,13 @@ hr{
 	height:100%;
 }
 
+
 .chattinglogcontent{
 	height:100%;
 	margin-right:5px;
 	margin-left:5px;
 	color:white;
+
 
 }
 

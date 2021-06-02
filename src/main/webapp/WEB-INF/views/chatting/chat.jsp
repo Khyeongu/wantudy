@@ -94,9 +94,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 					str += msg;
 					str += "</div>";
 					str += "</div>";
-					str += "<div class='chattinglogname myname'>"
-					str += username;
-					str += "</div>";
+
 					str += "</div>";
 					$("#chattingloglistcontainer").append(str);
 				} else {
@@ -350,9 +348,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 									str += content;
 									str += "</div>";
 									str += "</div>"
-									str += "<div class='chattinglogname myname'>"
-									str += username;
-									str += "</div>";
+			
 									str += "</div>";
 								}
 
@@ -512,9 +508,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 								str += content;
 								str += "</div>";
 								str += "</div>";
-								str += "<div class='chattinglogname myname'>"
-								str += username;
-								str += "</div>";
+					
 								str += "</div>";
 							}
 
