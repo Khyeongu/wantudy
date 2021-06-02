@@ -39,6 +39,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 <script src="${context}/resources/js/owl.carousel.min.js"></script>
 <script src="${context}/resources/js/main.js"></script>
 <script src="${context}/resources/js/dropbox.js"></script>
+<script src="${context}/resources/js/chatting/chatting.js"></script>
 
 
 
@@ -53,16 +54,6 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 
 
 </head>
-
-
-
-
-
-
-
-
-
-
 
 
 <script type="text/javascript">
@@ -216,7 +207,11 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 	function getStudyNo(study) {
 
 		var study_no = $(study).data("value");
-
+		var title = $(study).text();
+		
+		
+		$('.chattingtitle').text(title);
+		
 		now_time = new Date();
 		formal_year = now_time.getFullYear();
 		formal_month = now_time.getMonth() + 1;
@@ -565,11 +560,11 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 				<div class="col-lg-7">
 					<nav class="header__menu">
 						<ul>
-							<li class="active"><a href="${context}/home">홈</a></li>
+							<li ><a href="${context}/home">홈</a></li>
 							<li><a href="./shop-grid.html">스터디 검색</a></li>
 
 							<li><a href="createStudy">스터디 추가</a></li>
-							<li><a href="${context}/chatting/main">채팅</a>
+							<li class="active"><a href="${context}/chatting/main">채팅</a>
 							<li><a href="${context}/createStudy">스터디 추가</a></li>
 
 							<li><a href="${context}/manage/mystudy">스터디 관리</a></li>
@@ -584,11 +579,29 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 		</div>
 	</header>
 	<!-- Header Section End -->
+	<!-- Breadcrumb Section Begin -->
+	<section class="breadcrumb-section set-bg" style="background-image: url('${context}/resources/img/breadcrumb.jpg')">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<div class="breadcrumb__text">
+						<h2>chatting</h2>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Breadcrumb Section End -->
 
 	<div id="maincontainer" class="maincontainer">
-		<h1>채팅</h1>
+	
 		<div class="innercontainer">
 			<div class="studylistcontainer">
+				<div class="studycontainertitlecontainer">
+					<div class="studycontainertitle">스터디 목록</div>
+					<hr color="#7fad39" width="100%">
+				</div>
+				
 				<input class="nowstudy_no" type="hidden" name="nowstudy_no" value="">
 				<c:forEach var="studylist" items="${studylist}">
 					<div class="studycontainer" data-value="${studylist.no}"
@@ -596,26 +609,33 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 
 				</c:forEach>
 			</div>
-			<div class="chattingcontainer">
-				<div id="chattingloglistcontainer" class="chattingloglistcontainer" onscroll="logscroll()">
+			<div class="chattingwholecontainer">
+				<div class="chattingtitlecontainer">
+					<div class="chattingtitle"></div>
 				</div>
-				<input type="hidden" id="userName"
-					value="<%=((MemberDTO) session.getAttribute("userInfo")).getName()%>">
-				<input type="hidden" id="userNo"
-					value="<%=((MemberDTO) session.getAttribute("userInfo")).getNo()%>">
-
-				<div id="yourMsg">
-					<table class="inputTable">
-						<tr>
-							<th>메시지</th>
-							<th><input id="chatting" placeholder="보내실 메시지를 입력하세요."></th>
-							<th><button onclick="insertChattinglog(); sendChat();"
-									id="sendBtn">보내기</button></th>
-						</tr>
-					</table>
+				
+				<div class="chattingcontainer">
+					<div id="chattingloglistcontainer" class="chattingloglistcontainer" onscroll="logscroll()">
+					</div>
+					<input type="hidden" id="userName"
+						value="<%=((MemberDTO) session.getAttribute("userInfo")).getName()%>">
+					<input type="hidden" id="userNo"
+						value="<%=((MemberDTO) session.getAttribute("userInfo")).getNo()%>">
+	
+					<div id="yourMsg">
+						<table class="inputTable">
+							<tr>
+								<th>메시지</th>
+								<th><input id="chatting" placeholder="보내실 메시지를 입력하세요."></th>
+								<th><button onclick="insertChattinglog(); sendChat();"
+										id="sendBtn">보내기</button></th>
+							</tr>
+						</table>
+					</div>
 				</div>
+			
 			</div>
-
+			
 		</div>
 
 	</div>

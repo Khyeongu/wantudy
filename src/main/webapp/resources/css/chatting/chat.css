@@ -6,8 +6,13 @@
 
 .maincontainer {
 	width: 1000px;
+	height:800px;
 	margin: 0 auto;
-	padding: 25px
+	padding: 25px;
+	display:flex;
+	justify-content:center;
+		align-items:center;
+
 }
 
 .maincontainer h1 {
@@ -23,31 +28,66 @@
 }
 
 .studylistcontainer{
-	width:100px;
+	width:255px;
+	border-radius: 10px;
+	border:1px solid #7fad39;
+	padding:10px;
 }
 
 .studycontainer{
 	text-overflow: ellipsis;
 	width:100px;	
 	overflow:hidden;
-	height:20px;
+	height:50px;
 	white-space:nowrap;
 }
 
+.studycontainertitlecontainer{
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	flex-direction:column;
+	height:100px;
+	width:100%;
+}
+
+.studycontainertitle{
+	width:100px;
+	height:25px;
+}
+
+
+
 .chattingloglistcontainer {
-	background-color: #000;
+	border-radius: 10px;
+	background-color:#ECF7DC;
 	width: 700px;
-	height: 200px;
+	height: 400px;
 	overflow: auto;
-	color: #fff;
+	color: black;
 	text-align: left;
 	overflow-y:scroll;
+}
+.chattingtitlecontainer{
+	width:100%;
+	height:50px;
+	border:1px solid black;
+	display:flex;
+
+	align-items:center;
+}
+.chattingtitle{
+	width:200px;
+	height:25px;
+	
+	
 }
 
 .chattinglogcontainer{
 	display:flex;
 	height:20px;
 	width:100%;
+	
 }
 
 .enterchattinglogcontainer{
