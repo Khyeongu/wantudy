@@ -317,7 +317,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 									str += "<div class='chattinglogname'>"
 									str += member_no;
 									str += ":</div>";
-									str += "<div class='chattinglogcontent'>"
+									str += "<div class='chattinglogcontent yourballoon'>"
 									str += content;
 									str += "</div>";
 									str += "<div class='chattinglogtime'>"
@@ -329,10 +329,12 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 									str += "<div class='chattinglogtime'>"
 									str += message_time;
 									str += "</div>";
+									str += "<div class='myballoon'>"
 									str += "<div class='chattinglogcontent'>"
 									str += content;
 									str += "</div>";
-									str += "<div class='chattinglogname'>"
+									str += "</div>"
+									str += "<div class='chattinglogname myname'>"
 									str += username;
 									str += "</div>";
 									str += "</div>";

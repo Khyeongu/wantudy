@@ -85,8 +85,9 @@
 
 .chattinglogcontainer{
 	display:flex;
-	height:20px;
+	height:25px;
 	width:100%;
+	margin:2px;
 	
 }
 
@@ -96,6 +97,8 @@
 	width:250px;
 	margin:0 auto;
 }
+
+
 
 .mychattinglogcontainer{
 	display:flex;
@@ -109,14 +112,42 @@
 	width:100%;	
 }
 
+.myballoon{
+	display:flex;
+
+	justify-content:center;
+	border-radius: 8px;
+	background-color:#7fad39;
+	position:relative;
+	
+}
+
+
+.myballoon:after {
+ border-top:11px solid transparent;
+ border-left: 0px solid transparent;
+ border-right: 7px solid transparent;
+ border-bottom: 9px solid #7fad39;
+ content:"";
+ position:absolute;
+ top:-1px;
+ right:-7px;
+}
+.myname{
+	margin-left:8px;
+}
+
 .chattinglogname{
 	width: 50px;
 	height:100%;
 }
 
 .chattinglogcontent{
-	height:100%;
+	height:18px;
 	margin-right:5px;
+	margin-left:5px;
+	color:white;
+
 }
 
 
