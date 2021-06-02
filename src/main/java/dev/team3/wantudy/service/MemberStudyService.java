@@ -21,5 +21,5 @@ public interface MemberStudyService {
 	public List<ApplyMemberDTO> getApplyMemberList(HashMap<String, Object> pagingInfo) throws Exception;
 	public int studyMemberListCount(int study_no) throws Exception;
 	public List<ApplyMemberDTO> getStudyMemberList(HashMap<String, Object> pagingInfo) throws Exception;
-
+	public ChattinglogDTO getlastlog(int study_no) throws Exception;
 }

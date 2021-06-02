@@ -7,7 +7,8 @@
 MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 %>
 <c:set var="context" value="${pageContext.request.contextPath}" />
-<c:set var="interestList" value="${interestList}" />
+
+
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -17,14 +18,14 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
 
 <!-- Css Styles -->
-<link rel="stylesheet" href="${context}/resources/css/bootstrap.min.css" type="text/css">
-<link rel="stylesheet" href="${context}/resources/css/font-awesome.min.css" type="text/css">
-<link rel="stylesheet" href="${context}/resources/css/elegant-icons.css" type="text/css">
-<link rel="stylesheet" href="${context}/resources/css/nice-select.css" type="text/css">
-<link rel="stylesheet" href="${context}/resources/css/jquery-ui.min.css" type="text/css">
-<link rel="stylesheet" href="${context}/resources/css/owl.carousel.min.css" type="text/css">
-<link rel="stylesheet" href="${context}/resources/css/slicknav.min.css" type="text/css">
-<link rel="stylesheet" href="${context}/resources/css/style.css" type="text/css">
+<link rel="stylesheet" href="${context}/resources/css/chatting/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="${context}/resources/css/chatting/font-awesome.min.css" type="text/css">
+<link rel="stylesheet" href="${context}/resources/css/chatting/elegant-icons.css" type="text/css">
+<link rel="stylesheet" href="${context}/resources/css/chatting/nice-select.css" type="text/css">
+<link rel="stylesheet" href="${context}/resources/css/chatting/jquery-ui.min.css" type="text/css">
+<link rel="stylesheet" href="${context}/resources/css/chatting/owl.carousel.min.css" type="text/css">
+<link rel="stylesheet" href="${context}/resources/css/chatting/slicknav.min.css" type="text/css">
+<link rel="stylesheet" href="${context}/resources/css/chatting/style.css" type="text/css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
 	
 <script
@@ -599,73 +600,86 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 	</header>
 	<!-- Header Section End -->
 	
-	<div class="wholecontainer">
-	<div id="maincontainer" class="maincontainer">
+	<!-- template -->
 	
-		<div class="innercontainer">
-			<div class="studylistcontainer">
-				<div class="studycontainertitlecontainer">
-					<div class="studycontainertitle">스터디 목록</div>
-					
-				</div>
-				<hr color="#7fad39" width="100%">
-				<input class="nowstudy_no" type="hidden" name="nowstudy_no" value="">
-				<c:forEach var="studylist" items="${studylist}">
-					<div class="studycontainer" data-value="${studylist.no}"
-						onClick="getStudyNo(this)">
-						<div class="studyimgcontainer">
-						</div>
-						<div class="studynameandlogcontainer">
-							<div class="studynamecontainer">
-								${studylist.name}
-							</div>	
-							<div class="studylastlogcontainer">
-								마지막 채팅로그
-							</div>
-						</div>
-					
-						
-						
-						</div>
-
-				</c:forEach>
-			</div>
-			<div class="chattingwholecontainer">
-				<div class="chattingtitlecontainer">
-					<div class="titleandimgcontainer">
-						<div class="chattingimgcontainer"></div>
-						<div class="chattingtitle"></div>
-					</div>
-					<div class="showchattinglistbuttoncontainer"><div class="showchattinglistbutton">목록 보기</div></div>
-				</div>
-				
-				<div class="chattingcontainer">
-					<div id="chattingloglistcontainer" class="chattingloglistcontainer" onscroll="logscroll()">
-					</div>
-					<input type="hidden" id="userName"
-						value="<%=((MemberDTO) session.getAttribute("userInfo")).getName()%>">
-					<input type="hidden" id="userNo"
-						value="<%=((MemberDTO) session.getAttribute("userInfo")).getNo()%>">
+	<section class="blog spad">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-5 pl-5 pr-5">
+					<div class="sidebar">
+						<div class="sidebar__item pr-5">
+							<h4>스터디 목록</h4>
 	
-					<div id="yourMsg">
-						<table class="inputTable">
-							<tr>
+								<input class="nowstudy_no" type="hidden" name="nowstudy_no" value="">
 								
-								<th><input id="chatting" placeholder="보내실 메시지를 입력하세요."></th>
-								<th><button onclick="insertChattinglog(); sendChat();"
-										id="sendBtn">보내기</button></th>
-							</tr>
-						</table>
+								<c:forEach var="studylist" items="${studylist}">
+									<div class="studycontainer" data-value="${studylist.no}"
+										onClick="getStudyNo(this)">
+										<div class="studyimgcontainer">
+										</div>
+										<div class="studynameandlogcontainer">
+											<div class="studynamecontainer">
+												${studylist.name}
+											</div>	
+											<div class="studylastlogcontainer">
+												<c:forEach var="lastloglist" items="${lastloglist}">
+													<c:if test="${lastloglist.key == studylist.no}">
+														<c:out value="${lastloglist.value}"/>
+													</c:if>
+												</c:forEach>
+											</div>
+										</div>
+									
+										
+										
+									</div>
+				
+								</c:forEach>
+							
+						</div>
+
 					</div>
 				</div>
-			
-			</div>
-			
-		</div>
 
-	</div>
-	</div>
+				<div class="col-lg-9 col-md-7">
+					<h4 class="mb-3 border__bottom">대화창</h4>
+					<div class="row">
+						<div class="col-lg-10">
+							<div class="chattingwholecontainer">
+								<div class="chattingtitlecontainer">
+									<div class="titleandimgcontainer">
+										<div class="chattingimgcontainer"></div>
+										<div class="chattingtitle"></div>
+									</div>
+									<div class="showchattinglistbuttoncontainer"><div class="showchattinglistbutton">목록 보기</div></div>
+								</div>
+								
+								<div class="chattingcontainer">
+									<div id="chattingloglistcontainer" class="chattingloglistcontainer" onscroll="logscroll()">
+									</div>
+									<input type="hidden" id="userName"
+										value="<%=((MemberDTO) session.getAttribute("userInfo")).getName()%>">
+									<input type="hidden" id="userNo"
+										value="<%=((MemberDTO) session.getAttribute("userInfo")).getNo()%>">
+									<div id="yourMsg">
+											
+										<input id="chatting" placeholder="보내실 메시지를 입력하세요.">
+										<button onclick="insertChattinglog(); sendChat();"
+												id="sendBtn">보내기</button>
+										
+									</div>
+								</div>
+							
+							</div>
+							
+						</div>
+					</div>
 	
+				</div>
+			</div>
+		</div>
+	</section>
+
 		<!-- Footer Section Begin -->
 	<footer class="footer spad">
 		<div class="container">
