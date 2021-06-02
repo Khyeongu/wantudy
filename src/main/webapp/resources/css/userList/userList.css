@@ -1,0 +1,224 @@
+@charset "UTF-8";
+
+body{margin-top:20px;}
+
+
+.user-table {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+}
+/* USER LIST user-table */
+.user-list tbody td > img {
+    position: relative;
+	max-width: 50px;
+	float: left;
+	margin-right: 15px;
+	border-radius: 50%;
+}
+.user-list tbody td .user-link {
+	display: block;
+	font-size: 1.25em;
+	padding-top: 3px;
+	margin-left: 60px;
+	color: #7fad39;
+}
+
+.user-table tbody td .user-link:hover {
+	text-decoration: underline;
+	color: #2aa493;
+}
+
+.user-list tbody td .user-subhead {
+	font-size: 0.875em;
+	font-style: italic;
+}
+
+/* user-tableS */
+.user-table-hover > tbody > tr:hover > td,
+.user-table-hover > tbody > tr:hover > th {
+	background-color: #808080;
+}
+.user-table thead > tr > th {
+	border-bottom: 1px solid #C2C2C2;
+	padding-bottom: 0;
+}
+.user-table tbody > tr > td {
+	font-size: 0.875em;
+	background: #f5f5f5;
+	border-top: 10px solid #fff;
+	vertical-align: middle;
+	padding: 12px 8px;
+}
+.user-table tbody > tr > td:first-child,
+.user-table thead > tr > th:first-child {
+	padding-left: 20px;
+}
+.user-table thead > tr > th span {
+	border-bottom: 2px solid #C2C2C2;
+	display: inline-block;
+	padding: 0 5px;
+	padding-bottom: 5px;
+	font-weight: normal;
+}
+.user-table thead > tr > th > a span {
+	color: #7fad39;
+}
+.user-table thead > tr > th > a span:after {
+	content: "\f0dc";
+	font-family: FontAwesome;
+	font-style: normal;
+	font-weight: normal;
+	text-decoration: inherit;
+	margin-left: 5px;
+	font-size: 0.75em;
+}
+.user-table thead > tr > th > a.asc span:after {
+	content: "\f0dd";
+}
+.user-table thead > tr > th > a.desc span:after {
+	content: "\f0de";
+}
+.user-table thead > tr > th > a:hover span {
+	text-decoration: none;
+	color: #2bb6a3;
+	border-color: #2bb6a3;
+}
+.user-table.user-table-hover tbody > tr > td {
+	-webkit-transition: background-color 0.15s ease-in-out 0s;
+	transition: background-color 0.15s ease-in-out 0s;
+}
+.user-table tbody tr td .call-type {
+	display: block;
+	font-size: 0.75em;
+	text-align: center;
+}
+.user-table tbody tr td .first-line {
+	line-height: 1.5;
+	font-weight: 400;
+	font-size: 1.125em;
+}
+.user-table tbody tr td .first-line span {
+	font-size: 0.875em;
+	color: #969696;
+	font-weight: 300;
+}
+.user-table tbody tr td .second-line {
+	font-size: 0.875em;
+	line-height: 1.2;
+}
+.user-table a.user-table-link {
+	margin: 0 5px;
+	font-size: 1.125em;
+	color: #7fad39;
+}
+.user-table a.user-table-link:hover {
+	text-decoration: none;
+	color: #2aa493;
+}
+
+.user-table a.user-table-link.info {
+	color: #8497B0;
+}
+.user-table a.user-table-link.info:hover {
+	color: #333F50;
+}
+
+.user-table a.user-table-link.refuse {
+	color: #fe635f;
+}
+.user-table a.user-table-link.refuse:hover {
+	color: #dd504c;
+}
+
+.user-table-products tbody > tr > td {
+	background: none;
+	border: none;
+	border-bottom: 1px solid #ebebeb;
+	-webkit-transition: background-color 0.15s ease-in-out 0s;
+	transition: background-color 0.15s ease-in-out 0s;
+	position: relative;
+}
+.user-table-products tbody > tr:hover > td {
+	text-decoration: none;
+	background-color: #f6f6f6;
+}
+.user-table-products .name {
+	display: block;
+	font-weight: 600;
+	padding-bottom: 7px;
+}
+.user-table-products .price {
+	display: block;
+	text-decoration: none;
+	width: 50%;
+	float: left;
+	font-size: 0.875em;
+}
+.user-table-products .price > i {
+	color: #8dc859;
+}
+.user-table-products .warranty {
+	display: block;
+	text-decoration: none;
+	width: 50%;
+	float: left;
+	font-size: 0.875em;
+}
+.user-table-products .warranty > i {
+	color: #f1c40f;
+}
+.user-table tbody > tr.user-table-line-fb > td {
+	background-color: #9daccb;
+	color: #262525;
+}
+.user-table tbody > tr.user-table-line-twitter > td {
+	background-color: #9fccff;
+	color: #262525;
+}
+.user-table tbody > tr.user-table-line-plus > td {
+	background-color: #eea59c;
+	color: #262525;
+}
+.user-table-stats .status-social-icon {
+	font-size: 1.9em;
+	vertical-align: bottom;
+}
+.user-table-stats .user-table-line-fb .status-social-icon {
+	color: #556484;
+}
+.user-table-stats .user-table-line-twitter .status-social-icon {
+	color: #5885b8;
+}
+.user-table-stats .user-table-line-plus .status-social-icon {
+	color: #a75d54;
+}
+
+.label-default {
+    background-color: #777;
+}
+
+.label-success {
+    background-color: #5cb85c;
+}
+
+.label-danger {
+    background-color: #d9534f;
+}
+
+.label-waiting {
+    background-color: #f0ad4e;
+}
+
+.label {
+    display: inline;
+    padding: .2em .6em .3em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+}
