@@ -29,39 +29,65 @@
 /*----------------------------------------*/
 /* Template default CSS
 /*----------------------------------------*/
-.studyinfo form button{
+select {
+	-webkit-appearance: none; /* 네이티브 외형 감추기 */
+	-moz-appearance: none;
+	appearance: none;
+	/* background: url(이미지 경로) no-repeat 95% 50%; */ /* 화살표 모양의 이미지 */
+} /* IE 10, 11의 네이티브 화살표 숨기기 */
+select::-ms-expand {
+	display: none;
+}
+
+select {
+	width: 200px; /* 원하는 너비설정 */
+	padding: .8em .5em; /* 여백으로 높이 설정 */
+	font-family: inherit; /* 폰트 상속 */
+	background:
+		url(https://farm1.staticflickr.com/379/19928272501_4ef877c265_t.jpg)
+		no-repeat 95% 50%; /* 네이티브 화살표 대체 */
+	border: 1px solid #ffffff;
+	border-radius: 0px; /* iOS 둥근모서리 제거 */
+	-webkit-appearance: none; /* 네이티브 외형 감추기 */
+	-moz-appearance: none;
+	appearance: none;
+}
+
+.studyinfo form button {
 	font-size: 13px;
 	border-radius: 5px;
 }
+
 .studyinfo form input {
-	    width: 100%;
-    font-size: 16px;
-    padding-left: 20px;
-    color: #1c1c1c;
-    height: 46px;
-    border: 1px solid #ededed;
+	width: 100%;
+	font-size: 16px;
+	padding-left: 20px;
+	color: #1c1c1c;
+	height: 46px;
+	border: 1px solid #ededed;
 }
 
-.studyinfo form h4{
+.studyinfo form h4 {
 	font-size: 20px;
 	margin-top: 20px;
 	margin-bottom: 5px;
 }
 
-.memberinfo form button{
+.memberinfo form button {
 	font-size: 13px;
 	border-radius: 5px;
 }
+
 .memberinfo form input {
-	    width: 100%;
-    font-size: 16px;
-    padding-left: 20px;
-    color: #1c1c1c;
-    height: 46px;
-    border: 1px solid #ededed;
+	width: 100%;
+	font-size: 16px;
+	padding-left: 20px;
+	color: #1c1c1c;
+	height: 46px;
+	border: 1px solid #ededed;
 }
 
-.memberinfo form h4{
+.memberinfo form h4 {
 	font-size: 20px;
 	margin-top: 20px;
 	margin-bottom: 5px;
@@ -69,29 +95,26 @@
 
 .navbar-brand {
 	color: #7fad39;
-    font-weight: 700;
-    font-size: 24px;
-    line-height: 1.2;
-    background: #ffffff;
-    padding: 0 20px;
-    background: #ffffff;
-    background: -moz-linear-gradient(-45deg, #7fad39 0%, #ffffff 100%);
-    background: -webkit-gradient(left top, right bottom, color-stop(0%, #7fad39), color-stop(100%, #ffffff));
-    background: -webkit-linear-gradient(
--45deg
-, #7fad39 0%, #ffffff 100%);
-    background: -o-linear-gradient(-45deg, #7fad39 0%, #ffffff 100%);
-    background: -ms-linear-gradient(-45deg, #7fad39 0%, #ffffff 100%);
-    background: -webkit-linear-gradient(
-315deg
-, #7fad39 0%, #ffffff 100%);
-    background: -o-linear-gradient(315deg, #7fad39 0%, #ffffff 100%);
-    background: linear-gradient(
-135deg
-, rgba( 255, 255, 255, 0.6 ) 0%, rgba( 255, 255, 255, 0.6 ) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7fad39', endColorstr='#ffffff', GradientType=1 );
+	font-weight: 700;
+	font-size: 24px;
+	line-height: 1.2;
+	background: #ffffff;
+	padding: 0 20px;
+	background: #ffffff;
+	background: -moz-linear-gradient(-45deg, #7fad39 0%, #ffffff 100%);
+	background: -webkit-gradient(left top, right bottom, color-stop(0%, #7fad39),
+		color-stop(100%, #ffffff));
+	background: -webkit-linear-gradient(-45deg, #7fad39 0%, #ffffff 100%);
+	background: -o-linear-gradient(-45deg, #7fad39 0%, #ffffff 100%);
+	background: -ms-linear-gradient(-45deg, #7fad39 0%, #ffffff 100%);
+	background: -webkit-linear-gradient(315deg, #7fad39 0%, #ffffff 100%);
+	background: -o-linear-gradient(315deg, #7fad39 0%, #ffffff 100%);
+	background: linear-gradient(135deg, rgba(255, 255, 255, 0.6) 0%,
+		rgba(255, 255, 255, 0.6) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7fad39',
+		endColorstr='#ffffff', GradientType=1);
 }
-    
+
 html, body {
 	height: 100%;
 	font-family: "Cairo", sans-serif;
@@ -162,9 +185,9 @@ ul, ol {
   Helper CSS
 -----------------------*/
 .border__bottom {
-		border-bottom: 2px solid #7fad39;
-	}
-	
+	border-bottom: 2px solid #7fad39;
+}
+
 .section-title {
 	margin-bottom: 50px;
 	text-align: center;
@@ -261,48 +284,288 @@ keyframes loader { 0% {
 }
 
 50
+
+
+
+
+
+
 %
 {
 -webkit-transform
+
+
+
+
+
+
 :
-rotate(
+
+
+
+
+
+
+rotate
+
+
+
+
+(
+
+
+
+
+
+
 180deg
-);
+
+
+
+
+
+
+)
+
+
+
+
+;
 transform
+
+
+
+
+
+
 :
-rotate(
+
+
+
+
+
+
+rotate
+
+
+
+
+(
+
+
+
+
+
+
 180deg
-);
+
+
+
+
+
+
+)
+
+
+
+
+;
 border
+
+
+
+
+
+
 :
+
+
+
+
+
+
 4px
+
+
+
+
+
+
 solid
-#673ab7;
+
+
+
+
+
+
+#673ab7
+
+
+
+
+;
 border-left-color
+
+
+
+
+
+
 :
-transparent;
+
+
+
+
+
+
+transparent
+
+
+
+
+;
 }
 100
+
+
+
+
+
+
 %
 {
 -webkit-transform
+
+
+
+
+
+
 :
-rotate(
+
+
+
+
+
+
+rotate
+
+
+
+
+(
+
+
+
+
+
+
 360deg
-);
+
+
+
+
+
+
+)
+
+
+
+
+;
 transform
+
+
+
+
+
+
 :
-rotate(
+
+
+
+
+
+
+rotate
+
+
+
+
+(
+
+
+
+
+
+
 360deg
-);
+
+
+
+
+
+
+)
+
+
+
+
+;
 border
+
+
+
+
+
+
 :
+
+
+
+
+
+
 4px
+
+
+
+
+
+
 solid
-#f44336;
+
+
+
+
+
+
+#f44336
+
+
+
+
+;
 border-left-color
+
+
+
+
+
+
 :
-transparent;
+
+
+
+
+
+
+transparent
+
+
+
+
+;
 }
 }
 @
@@ -313,38 +576,210 @@ transparent;
 }
 
 50
+
+
+
+
+
+
 %
 {
 -webkit-transform
+
+
+
+
+
+
 :
-rotate(
+
+
+
+
+
+
+rotate
+
+
+
+
+(
+
+
+
+
+
+
 180deg
-);
+
+
+
+
+
+
+)
+
+
+
+
+;
 border
+
+
+
+
+
+
 :
+
+
+
+
+
+
 4px
+
+
+
+
+
+
 solid
-#673ab7;
+
+
+
+
+
+
+#673ab7
+
+
+
+
+;
 border-left-color
+
+
+
+
+
+
 :
-transparent;
+
+
+
+
+
+
+transparent
+
+
+
+
+;
 }
 100
+
+
+
+
+
+
 %
 {
 -webkit-transform
+
+
+
+
+
+
 :
-rotate(
+
+
+
+
+
+
+rotate
+
+
+
+
+(
+
+
+
+
+
+
 360deg
-);
+
+
+
+
+
+
+)
+
+
+
+
+;
 border
+
+
+
+
+
+
 :
+
+
+
+
+
+
 4px
+
+
+
+
+
+
 solid
-#f44336;
+
+
+
+
+
+
+#f44336
+
+
+
+
+;
 border-left-color
+
+
+
+
+
+
 :
-transparent;
+
+
+
+
+
+
+transparent
+
+
+
+
+;
 }
 }
 
@@ -747,13 +1182,13 @@ transparent;
 }
 
 .hero__search__form form .hero__search__categories {
-	width: 30%;
+	width: 24%;
 	float: left;
 	font-size: 16px;
 	color: #1c1c1c;
 	font-weight: 700;
 	padding-left: 18px;
-	padding-top: 11px;
+	padding-top: 16px;
 	position: relative;
 }
 
@@ -779,7 +1214,7 @@ transparent;
 	border: none;
 	height: 48px;
 	font-size: 16px;
-	color: #b2b2b2;
+	color: #1c1c1c;
 	padding-left: 20px;
 }
 
@@ -3560,5 +3995,4 @@ transparent;
 		padding-left: 1rem;
 		padding-right: 1rem;
 	}
-	
 }
