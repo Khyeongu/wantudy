@@ -9,6 +9,10 @@ public interface EnrollService {
 
 	EnrollDTO selectMemberStudyEnroll(StudyDTO s) throws Exception;
 
+	void insertMemberEnroll(EnrollDTO enrollDTO) throws Exception;
+
 	void insertStudyMasterEnroll(EnrollDTO enrollDTO) throws Exception;
+
+	int checkAlreadyEnrolled(EnrollDTO enrollDTO) throws Exception;
 
 }

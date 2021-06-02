@@ -14,5 +14,10 @@ public interface EnrollDAO {
 
 	public EnrollDTO selectMemberStudyEnroll(StudyDTO studyDTO) throws SQLException;
 
-	public void insertStudyMasterEnroll(EnrollDTO enrollDTO) throws SQLException;;
+	public void insertMemberEnroll(EnrollDTO enrollDTO) throws SQLException;
+
+	public void insertStudyMasterEnroll(EnrollDTO enrollDTO) throws SQLException;
+
+	public int checkAlreadyEnrolled(EnrollDTO enrollDTO) throws SQLException;
+
 }

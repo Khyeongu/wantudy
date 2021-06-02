@@ -147,7 +147,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 			data : jsonData,
 			success : function(data) {
 				//alert("됨.");
-				location.href = '${pageContext.request.contextPath}/home';
+				location.href = '${pageContext.request.contextPath}/search';
 			}
 		// ,error:function(){
 		// alert("안됨.");
@@ -193,7 +193,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 			<div class="row">
 				<div class="col-lg-3">
 					<div class="header__logo  align-self-center">
-						<a class="navbar-brand" href="home"><span class="navbar-name">wantudy</span></a>
+						<a class="navbar-brand" href="search"><span class="navbar-name">wantudy</span></a>
 					</div>
 				</div>
 				<div class="col-lg-7">
@@ -222,7 +222,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 			<div class="row">
 				<div class="col-lg-12 text-center">
 					<div class="breadcrumb__text">
-						<h2>스터디 관리</h2>
+						<h2>스터디 추가</h2>
 					</div>
 				</div>
 			</div>

@@ -42,4 +42,25 @@
 		where no=#{no}
 	</update>
 
+	<select id="getRecentStudy" resultType="StudyRnumDTO">
+	<![CDATA[
+
+		select RECENTSTUDY.*
+        from (select rownum as rnum, ORDEREDSTUDY.*
+              from (select *
+                    from study S
+                    where sysdate <= S.startdate
+                    and (select count(*)
+                         from enroll
+                         where study_no=S.no
+                               and status='진행중') < S.capacity
+                    order by no desc
+                    )ORDEREDSTUDY
+              )RECENTSTUDY
+        where rnum between 1 and 6
+
+	]]>
+	</select>
+
+
 </mapper>

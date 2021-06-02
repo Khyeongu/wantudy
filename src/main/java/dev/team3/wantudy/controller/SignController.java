@@ -80,7 +80,7 @@ public class SignController {
 		try {
 			MemberDTO userInfo = memberService.getUser(memberDTO);
 			log.info(userInfo.toString());
-			ModelAndView mav = new ModelAndView("redirect:/home");
+			ModelAndView mav = new ModelAndView("redirect:/search");
 			session.setAttribute("userInfo", userInfo);
 			return mav;
 		} catch (Exception e) {
@@ -166,7 +166,7 @@ public class SignController {
 			interestDTO.setCategory_no(interestInfoDTO.getInterest3());
 			interestService.signupInterest(interestDTO);
 
-			ModelAndView mav = new ModelAndView("redirect:/home");
+			ModelAndView mav = new ModelAndView("redirect:/search");
 			return mav;
 		} catch (Exception e) {
 			e.printStackTrace();
