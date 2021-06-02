@@ -112,16 +112,16 @@ function updateInfo(){
 			<div class="row">
 				<div class="col-lg-3">
 					<div class="header__logo  align-self-center">
-						<a class="navbar-brand" href="home"><span class="navbar-name">wantudy</span></a>
+						<a class="navbar-brand" href="search"><span class="navbar-name">wantudy</span></a>
 					</div>
 				</div>
 				<div class="col-lg-7">
 					<nav class="header__menu">
 						<ul>
-							<li class="active"><a href="${context}/home/home">홈</a></li>
-							<li><a href="./shop-grid.html">스터디 검색</a></li>
-							<li><a href="createStudy">스터디 추가</a></li>
-							<li><a href="#">채팅</a>
+							<li class="active"><a href="${context}/home">홈</a></li>
+							<li><a href="${context}/search">스터디 검색</a></li>
+							<li><a href="${context}/createStudy">스터디 추가</a></li>
+							<li><a href="${context}/chatting/main">채팅</a>
 							<li><a href="${context}/manage/mystudy">스터디 관리</a></li>
 							<li><a href="${context}/mypage/myinfo">마이페이지</a></li>
 						</ul>
@@ -153,11 +153,9 @@ function updateInfo(){
 	<section class="blog spad">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-3 col-md-5">
-					
-				</div>
+				<div class="col-lg-3 col-md-5"></div>
 
-				
+
 			</div>
 		</div>
 	</section>

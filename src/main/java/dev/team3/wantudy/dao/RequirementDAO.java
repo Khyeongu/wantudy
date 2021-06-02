@@ -14,7 +14,7 @@ public interface RequirementDAO {
 	public void deleteStudyRequirementScore(int study_no) throws SQLException;
 
 	public void insertStudyRequirementScore(RequirementDTO requirementDTO) throws SQLException;
-  
-  public void insertRequirement(HashMap<String, Object> map) throws SQLException;
+
+	public void insertRequirement(HashMap<String, Object> map) throws SQLException;
 
 }

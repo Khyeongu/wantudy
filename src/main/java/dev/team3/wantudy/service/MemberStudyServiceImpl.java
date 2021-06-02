@@ -8,7 +8,6 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
 import dev.team3.wantudy.dao.ChattinglogDAO;
 import dev.team3.wantudy.dao.EnrollDAO;
@@ -63,14 +62,15 @@ public class MemberStudyServiceImpl implements MemberStudyService{
 	}
 
 	@Override
-	public List<ChattinglogDTO> getChattinglog(int study_no) {
-		return chattinglogDAO.getCattinglog(study_no);
+	public List<ChattinglogDTO> getChattinglogscroll(int study_no, int endNo) {
+		return chattinglogDAO.getChattinglogscroll(study_no, endNo);
 	}
 
 	@Override
 	public void insertchattinglog(ChattinglogDTO chattinglogDTO) {
 		chattinglogDAO.insertchattinglog(chattinglogDTO);
 	}
+
 
 	@Override
 	public int applyMemberListCount(int study_no) {
@@ -113,7 +113,7 @@ public class MemberStudyServiceImpl implements MemberStudyService{
 			return null;
 		}
 	}
-	
+
 	
 	
 }

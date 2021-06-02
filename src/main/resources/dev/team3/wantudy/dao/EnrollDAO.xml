@@ -4,20 +4,23 @@
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="dev.team3.wantudy.dao.EnrollDAO">
-	<select id="selectAllEnrolls" parameterType="MemberDTO" resultType="EnrollDTO">
-		select * 
+	<select id="selectAllEnrolls" parameterType="MemberDTO"
+		resultType="EnrollDTO">
+		select *
 		from enroll
-		where member_no = #{no} 
+		where member_no = #{no}
 
 	</select>
-	
-	<select id="selectMemberStudyEnroll" parameterType="StudyDTO" resultType="EnrollDTO">
+
+	<select id="selectMemberStudyEnroll" parameterType="StudyDTO"
+		resultType="EnrollDTO">
 		select status
 		from enroll
 		where member_no = #{member_no}
-		and study_no=#{no}
+		and
+		study_no=#{no}
 	</select>
-	
+
 	<select id="getMemberCount" parameterType="int" resultType="int">
 		select count(*)
 		from enroll
@@ -45,4 +48,31 @@
 		where study_no=#{study_no}
 			and member_no=#{member_no}
 	</update>
+
+
+	<select id="insertMemberEnroll" parameterType="EnrollDTO">
+		insert into
+		enroll
+		(member_no, study_no, status)
+		values
+		(#{member_no}, #{study_no},
+		'심사중')
+	</select>
+
+	<select id="insertStudyMasterEnroll" parameterType="EnrollDTO">
+		insert into
+		enroll
+		(member_no, study_no, status)
+		values
+		(#{member_no}, #{study_no},
+		'진행중')
+	</select>
+
+	<select id="checkAlreadyEnrolled" parameterType="EnrollDTO"
+		resultType="int">
+		select count(*) from enroll
+		where member_no=#{member_no} and
+		study_no=#{study_no} and (status='진행중' or status='심사중')
+	</select>
+
 </mapper>

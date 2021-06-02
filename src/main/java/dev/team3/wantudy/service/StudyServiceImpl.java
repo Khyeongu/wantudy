@@ -1,6 +1,5 @@
 package dev.team3.wantudy.service;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +8,8 @@ import org.springframework.stereotype.Service;
 
 import dev.team3.wantudy.dao.RequirementDAO;
 import dev.team3.wantudy.dao.StudyDAO;
-import dev.team3.wantudy.dto.EnrollDTO;
 import dev.team3.wantudy.dto.StudyDTO;
+import dev.team3.wantudy.dto.StudyRnumDTO;
 
 @Service
 public class StudyServiceImpl implements StudyService {
@@ -45,27 +44,15 @@ public class StudyServiceImpl implements StudyService {
 	}
 
 	@Override
-	public void insertStudyMasterEnroll(EnrollDTO enrollDTO) throws Exception {
-		// TODO Auto-generated method stub
-		studyDAO.insertStudyMasterEnroll(enrollDTO);
-	}
-
-	@Override
 	public int createStudyNo() throws Exception {
 		// TODO Auto-generated method stub
 		return studyDAO.createStudyNo();
 	}
 
 	@Override
-	public void insertRequirement(HashMap<String, Object> map) throws Exception {
+	public List<StudyRnumDTO> getRecentStudy() throws Exception {
 		// TODO Auto-generated method stub
-		try {
-			requirementDAO.insertRequirement(map);
-		} catch (Exception e) {
-			// log.info(e.getMessage());
-			throw e;
-		}
-
+		return studyDAO.getRecentStudy();
 	}
 
 }

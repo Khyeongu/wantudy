@@ -4,7 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="context" value="${pageContext.request.contextPath}" />
-<c:set var="interestList" value="${interestList}" />
+
 <!DOCTYPE html>
 <html lang="zxx">
 <%
@@ -49,15 +49,35 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 
 
 <script>
-	$(document).ready(function() {
-		var element = $('.studycard-body-header');
-		element.forEach()
-		{
 
-			alert(element.html());
-		}
-
-	});
+	function enroll(studyno) {
+		var obj = {
+				'studyno' : studyno
+			};
+		
+		var jsonData = JSON.stringify(obj);
+		
+		var message;
+		
+		$.ajax({
+			type : 'POST',
+			url : "${pageContext.request.contextPath}/search/enrollMember",
+			data : jsonData,
+			dataType : 'json',
+			contentType : 'application/json; charset=UTF-8',
+			success : function(data) {
+				console.log('success');
+				//var msg = data.msg;
+				console.log(data.message);
+				alert(data.message)
+				location.href = '${pageContext.request.contextPath}/search';
+			},
+			error : function(request, error) {
+				alert('exception');
+				console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			}
+		});
+	}
 </script>
 </head>
 <body>
@@ -93,17 +113,17 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 			<div class="row">
 				<div class="col-lg-3">
 					<div class="header__logo  align-self-center">
-						<a class="navbar-brand" href="home"><span class="navbar-name">wantudy</span></a>
+						<a class="navbar-brand" href="search"><span class="navbar-name">wantudy</span></a>
 					</div>
 				</div>
 				<div class="col-lg-7">
 					<nav class="header__menu">
 						<ul>
 							<li><a href="${context}/home">홈</a></li>
-							<li><a href="${context}/search/searchMain">스터디 검색</a></li>
+							<li class="active"><a href="${context}/search">스터디 검색</a></li>
 							<li><a href="${context}/createStudy">스터디 추가</a></li>
 							<li><a href="#">채팅</a>
-							<li class="active"><a href="${context}/manage/mystudy">스터디 관리</a></li>
+							<li><a href="${context}/manage/mystudy">스터디 관리</a></li>
 							<li><a href="${context}/mypage/myinfo">마이페이지</a></li>
 						</ul>
 					</nav>
@@ -122,7 +142,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 			<div class="row">
 				<div class="col-lg-12 text-center">
 					<div class="breadcrumb__text">
-						<h2>내가 만든 스터디</h2>
+						<h2>스터디 검색</h2>
 					</div>
 				</div>
 			</div>
@@ -137,58 +157,93 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 				<div class="col-lg-1 col-md-5 pl-5 pr-5"></div>
 
 				<div class="col-lg-10 col-md-7">
-					<h4 class="mb-3 border__bottom">관리할 스터디 선택</h4>
+					<h4 class="mb-3 border__bottom">최근 생긴 스터디</h4>
 					<div class="row">
 
-						<c:forEach items="${memberStudyList}" var="ms">
-							<c:set var="current_cnt" value="${ms.study_member_count}" />
-							<c:set var="max_cnt" value="${ms.study_capacity}" />
-							<c:set var="study_status" value="${ms.enroll_status}" />
+						<c:forEach items="${recentStudyList}" var="rsl">
+							<c:set var="current_cnt" value="${rsl.member_count}" />
+							<c:set var="max_cnt" value="${rsl.capacity}" />
 							<!-- 카드 시작 -->
-							<div class="col-lg-4">
-								<a href="studyinfo/${ms.enroll_study_no}"> <!-- 클릭 시 링크 설정 -->
-									<div class="studycard ml-2 mr-2">
-										<!-- 카드 헤더 -->
-										<div class="studycard-header" style="background-image: url('${context}/resources/img/categories/test.jpg')">
-											<c:choose>
-												<c:when test="${study_status=='종료'}">
-													<div class="studycard-header-is_closed end">
-														<div class="studycard-header-text">종료</div>
-													</div>
-												</c:when>
-												<c:when test="${current_cnt == max_cnt}">
-													<div class="studycard-header-is_closed impossible">
-														<div class="studycard-header-text">모집완료</div>
-														<div class="studycard-header-number">${ms.study_member_count}/${ms.study_capacity}</div>
-													</div>
-
-												</c:when>
-												<c:otherwise>
-													<div class="studycard-header-is_closed possible">
-														<div class="studycard-header-text">모집중</div>
-														<div class="studycard-header-number">${ms.study_member_count}/${ms.study_capacity}</div>
-													</div>
-												</c:otherwise>
-											</c:choose>
-										</div>
-										<!--  카드 바디 -->
-										<div class="studycard-body">
-											<!--  카드 바디 헤더 -->
-											<div class="studycard-body-header">
-												<h1>${ms.study_name}</h1>
-												<p>${ms.study_category}스터디</p>
+							<div class="col-lg-4" data-toggle="modal" data-target="#exampleModal${rsl.no}" style="cursor: pointer;">
+								<!-- Modal -->
+								<div class="modal fade" id="exampleModal${rsl.no}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+									<div class="modal-dialog" role="document">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title" id="exampleModalLabel">${rsl.name}</h5>
+												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
 											</div>
-											<p class="studycard-body-description">${ms.study_content}</p>
-											<!--  카드 바디 본문 -->
+											<div class="modal-body">
+												<div class="row">
+													<div class="col-lg-12">
+														<div class="studyinfo" id="studyinfo">
+															<form id="studyInfoForm" name="studyInfoForm" method="post">
+																<div>
+																	<h4>스터디 이름</h4>
+																	<input type="text" id="name" name="name" value="${rsl.name}" disabled="disabled">
+																</div>
+																<div>
+																	<h4>스터디 내용 //글상자 크기 변경해야함</h4>
+																	<input type="text" id="content" name="content" value="${rsl.content}" disabled="disabled">
+																</div>
+																<div>
+																	<h4>시작 날짜</h4>
+																	<input autocomplete="off" class="form-control" id="startdate" name="startdate" type="text" value="${rsl.startdate}" placeholder="시작 날짜" disabled="disabled" />
+																</div>
+																<div>
+																	<h4>종료 날짜</h4>
+																	<input autocomplete="off" class="form-control" id="enddate" name="enddate" type="text" value="${rsl.enddate}" placeholder="종료 날짜" disabled="disabled" />
+																</div>
+																<div>
+																	<h4>최대 인원</h4>
+																	<input type="text" id="capacity" name="capacity" value="${rsl.capacity}" disabled="disabled">
+																</div>
+																<div>
+																	<h4>카테고리</h4>
+																</div>
+																<div>
+																	<input type="text" id="capacity" name="capacity" value="${rsl.category}" disabled="disabled">
+																</div>
+															</form>
+														</div>
+													</div>
+												</div>
 
-											<!--  카드 바디 푸터 -->
-											<div class="studycard-body-footer">
-												<hr style="margin-bottom: 8px; opacity: 0.5; border-color: #EF5A31">
-												${ms.study_startdate} ~ ${ms.study_enddate} <img class="status-img mt-1 ml-1 mr-1" src="${context}${ms.statusImg}"> <i class="status"> ${ms.enroll_status }&nbsp;&nbsp; </i>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-primary" onclick="enroll(${rsl.no})">신청하기</button>
+												<button type="button" class="btn btn-secondary" data-dismiss="modal">창 닫기</button>
 											</div>
 										</div>
 									</div>
-								</a>
+								</div>
+								<div class="studycard ml-2 mr-2">
+									<!-- 카드 헤더 -->
+									<div class="studycard-header" style="background-image: url('${context}/resources/img/categories/test.jpg')">
+										<div class="studycard-header-is_closed possible">
+											<div class="studycard-header-text">모집중</div>
+											<div class="studycard-header-number">${rsl.member_count}/${rsl.capacity}</div>
+										</div>
+									</div>
+									<!--  카드 바디 -->
+									<div class="studycard-body">
+										<!--  카드 바디 헤더 -->
+										<div class="studycard-body-header">
+											<h1>${rsl.name}</h1>
+											<p>${rsl.category}스터디</p>
+										</div>
+										<p class="studycard-body-description">${rsl.content}</p>
+										<!--  카드 바디 본문 -->
+
+										<!--  카드 바디 푸터 -->
+										<div class="studycard-body-footer">
+											<hr style="margin-bottom: 8px; opacity: 0.5; border-color: #EF5A31">
+											${rsl.startdate} ~ ${rsl.enddate}
+										</div>
+									</div>
+								</div>
 							</div>
 							<!-- 카드 끝 -->
 						</c:forEach>

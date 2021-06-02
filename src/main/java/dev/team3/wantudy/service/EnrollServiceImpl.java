@@ -12,19 +12,17 @@ import dev.team3.wantudy.dto.EnrollDTO;
 import dev.team3.wantudy.dto.StudyDTO;
 
 @Service
-public class EnrollServiceImpl implements EnrollService{
+public class EnrollServiceImpl implements EnrollService {
 
 	@Autowired
-	@Resource(name="enrollDAO")
+	@Resource(name = "enrollDAO")
 	EnrollDAO enrollDAO;
-	
-	
+
 	@Override
 	public int getMemberCount(int study_no) throws Exception {
 		// TODO Auto-generated method stub
 		return enrollDAO.getMemberCount(study_no);
 	}
-
 
 	@Override
 	public EnrollDTO selectMemberStudyEnroll(StudyDTO studyDTO) throws Exception {
@@ -51,6 +49,24 @@ public class EnrollServiceImpl implements EnrollService{
 	public void kickMember(HashMap<String, Object> memberInfo) throws Exception {
 		// TODO Auto-generated method stub
 		enrollDAO.kickMember(memberInfo);
+
+	@Override
+	public void insertMemberEnroll(EnrollDTO enrollDTO) throws Exception {
+		enrollDAO.insertMemberEnroll(enrollDTO);
+
+	}
+
+	@Override
+	public void insertStudyMasterEnroll(EnrollDTO enrollDTO) throws Exception {
+		// TODO Auto-generated method stub
+		enrollDAO.insertStudyMasterEnroll(enrollDTO);
+	}
+
+	@Override
+	public int checkAlreadyEnrolled(EnrollDTO enrollDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return enrollDAO.checkAlreadyEnrolled(enrollDTO);
+
 	}
 
 }

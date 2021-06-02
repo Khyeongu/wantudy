@@ -17,4 +17,10 @@ public interface EnrollService {
 
 	void kickMember(HashMap<String, Object> memberInfo) throws Exception;
 
+	void insertMemberEnroll(EnrollDTO enrollDTO) throws Exception;
+
+	void insertStudyMasterEnroll(EnrollDTO enrollDTO) throws Exception;
+
+	int checkAlreadyEnrolled(EnrollDTO enrollDTO) throws Exception;
+
 }

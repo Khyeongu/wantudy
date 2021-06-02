@@ -147,13 +147,12 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 			data : jsonData,
 			success : function(data) {
 				//alert("됨.");
-				location.href = '${pageContext.request.contextPath}/home';
+				location.href = '${pageContext.request.contextPath}/search';
 			}
 		// ,error:function(){
 		// alert("안됨.");
 		// }
 		});
-
 
 	}
 </script>
@@ -194,17 +193,17 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 			<div class="row">
 				<div class="col-lg-3">
 					<div class="header__logo  align-self-center">
-						<a class="navbar-brand" href="login"><span class="navbar-name">wantudy</span></a>
+						<a class="navbar-brand" href="search"><span class="navbar-name">wantudy</span></a>
 					</div>
 				</div>
 				<div class="col-lg-7">
 					<nav class="header__menu">
 						<ul>
-							<li><a href="./index.html">홈</a></li>
+							<li><a href="${context}/home">홈</a></li>
 							<li><a href="./shop-grid.html">스터디 검색</a></li>
-							<li><a href="./shop-grid.html">스터디 추가</a></li>
+							<li class="active"><a href="${context}/createStudy">스터디 추가</a></li>
 							<li><a href="#">채팅</a>
-							<li class="active"><a href="${context}/manage/mystudy">스터디 관리</a></li>
+							<li><a href="${context}/manage/mystudy">스터디 관리</a></li>
 							<li><a href="${context}/mypage/myinfo">마이페이지</a></li>
 						</ul>
 					</nav>
@@ -223,7 +222,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 			<div class="row">
 				<div class="col-lg-12 text-center">
 					<div class="breadcrumb__text">
-						<h2>스터디 관리</h2>
+						<h2>스터디 추가</h2>
 					</div>
 				</div>
 			</div>
@@ -245,23 +244,23 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 								<form id="studyInfoForm" name="studyInfoForm" method="post">
 									<div>
 										<h4>스터디 이름</h4>
-										<input type="text" id="name" name="name">
+										<input type="text" id="name" name="name" autocomplete="off">
 									</div>
 									<div>
 										<h4>스터디 내용 //글상자 크기 변경해야함</h4>
-										<input type="text" id="content" name="content" required="required">
+										<input type="text" id="content" name="content" required="required" autocomplete="off">
 									</div>
 									<div>
 										<h4>시작 날짜</h4>
-										<input autocomplete="off" class="form-control" id="startdate" name="startdate" type="text" placeholder="시작 날짜" required="required" />
+										<input autocomplete="off" class="form-control" id="startdate" name="startdate" type="text" placeholder="시작 날짜" required="required" autocomplete="off" />
 									</div>
 									<div>
 										<h4>종료 날짜</h4>
-										<input autocomplete="off" class="form-control" id="enddate" name="enddate" type="text" placeholder="종료 날짜" required="required" />
+										<input autocomplete="off" class="form-control" id="enddate" name="enddate" type="text" placeholder="종료 날짜" required="required" autocomplete="off" />
 									</div>
 									<div>
 										<h4>최대 인원</h4>
-										<input type="text" id="capacity" name="capacity" required="required" />
+										<input type="text" id="capacity" name="capacity" required="required" autocomplete="off" />
 									</div>
 									<div>
 										<h4>카테고리</h4>

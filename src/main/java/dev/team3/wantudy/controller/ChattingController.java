@@ -33,14 +33,15 @@ public class ChattingController {
 	
 	@GetMapping(value="/member")
 	public String chattingmember() {
-		return "member";
+		return "chatting/member";
 	}
 	
-	@PostMapping(value="/main")
-	public String getchattinglist(@ModelAttribute MemberDTO memberDTO ,Model model, HttpSession session) {
-		session.setAttribute("member_no", memberDTO.getNo());
+	@GetMapping(value="/main")
+	public String getchattinglist(Model model, HttpSession session) {
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("userInfo");
 		List<EnrollDTO> enrolllist = chattingService.selectAllEnrolls(memberDTO);
 		List<StudyDTO> studylist = new ArrayList<StudyDTO>();
+		System.out.println();
 		for(EnrollDTO enroll : enrolllist) {
 			int study_no = enroll.getStudy_no();
 			StudyDTO studyDTO = chattingService.getStudy(study_no);
@@ -49,13 +50,13 @@ public class ChattingController {
 		}
 		model.addAttribute("enrolllist",enrolllist);
 		model.addAttribute("studylist",studylist);
-		return "chat";
+		return "chatting/chat";
 	}
 	
 	@ResponseBody
 	@PostMapping(value="/getlog",produces = "application/json; charset = utf-8")
-	public HashMap getchattinglog(@RequestParam("study_no") int study_no ,Model model, HttpSession session) {
-		List<ChattinglogDTO> chattingloglist = chattingService.getChattinglog(study_no);
+	public HashMap getchattinglog(@RequestParam("study_no") int study_no ,@RequestParam("endNo") int endNo ,Model model, HttpSession session) {
+		List<ChattinglogDTO> chattingloglist = chattingService.getChattinglogscroll(study_no,endNo);
 		HashMap<String, List<ChattinglogDTO>> chattingloglistmap = new HashMap<String, List<ChattinglogDTO>>();
 		
 		chattingloglistmap.put("chattingloglist", chattingloglist);
@@ -65,6 +66,6 @@ public class ChattingController {
 	@RequestMapping(value="/insertlog")
 	public ModelAndView insertchattinglog(@ModelAttribute ChattinglogDTO chattinglogDTO) {
 		chattingService.insertchattinglog(chattinglogDTO);
-		return new ModelAndView("chat");
+		return new ModelAndView("chatting/chat");
 	}
 }
