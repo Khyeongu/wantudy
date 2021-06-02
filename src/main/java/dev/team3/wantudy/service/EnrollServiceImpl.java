@@ -29,9 +29,21 @@ public class EnrollServiceImpl implements EnrollService {
 	}
 
 	@Override
-	public void insertStudyMasterEnroll(EnrollDTO enrollDTO) throws Exception {
-		enrollDAO.insertStudyMasterEnroll(enrollDTO);
+	public void insertMemberEnroll(EnrollDTO enrollDTO) throws Exception {
+		enrollDAO.insertMemberEnroll(enrollDTO);
 
+	}
+
+	@Override
+	public void insertStudyMasterEnroll(EnrollDTO enrollDTO) throws Exception {
+		// TODO Auto-generated method stub
+		enrollDAO.insertStudyMasterEnroll(enrollDTO);
+	}
+
+	@Override
+	public int checkAlreadyEnrolled(EnrollDTO enrollDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return enrollDAO.checkAlreadyEnrolled(enrollDTO);
 	}
 
 }

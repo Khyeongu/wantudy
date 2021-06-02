@@ -28,11 +28,28 @@
 		and status='진행중'
 	</select>
 
+	<select id="insertMemberEnroll" parameterType="EnrollDTO">
+		insert into
+		enroll
+		(member_no, study_no, status)
+		values
+		(#{member_no}, #{study_no},
+		'심사중')
+	</select>
+
 	<select id="insertStudyMasterEnroll" parameterType="EnrollDTO">
 		insert into
 		enroll
 		(member_no, study_no, status)
 		values
-		(#{member_no}, #{study_no}, '진행중')
+		(#{member_no}, #{study_no},
+		'진행중')
+	</select>
+
+	<select id="checkAlreadyEnrolled" parameterType="EnrollDTO"
+		resultType="int">
+		select count(*) from enroll
+		where member_no=#{member_no} and
+		study_no=#{study_no} and (status='진행중' or status='심사중')
 	</select>
 </mapper>
