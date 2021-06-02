@@ -431,9 +431,11 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 
 						if (length < 20) {
 							isEnd = true;
+						}else{
+							last_data_no = data.chattingloglist[19].no;
 						}
 
-						last_data_no = data.chattingloglist[19].no;
+						
 
 						for (var i = 0; i < length; i++) {
 							var content = data.chattingloglist[i].content;
@@ -636,7 +638,10 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 			</div>
 			<div class="chattingwholecontainer">
 				<div class="chattingtitlecontainer">
-					<div class="chattingtitle"></div>
+					<div class="titleandimgcontainer">
+						<div class="chattingimgcontainer"></div>
+						<div class="chattingtitle"></div>
+					</div>
 					<div class="showchattinglistbuttoncontainer"><div class="showchattinglistbutton">목록 보기</div></div>
 				</div>
 				
