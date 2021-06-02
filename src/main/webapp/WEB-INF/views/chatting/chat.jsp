@@ -602,29 +602,17 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 		</div>
 	</header>
 	<!-- Header Section End -->
-	<!-- Breadcrumb Section Begin -->
-	<section class="breadcrumb-section set-bg" style="background-image: url('${context}/resources/img/breadcrumb.jpg')">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12 text-center">
-					<div class="breadcrumb__text">
-						<h2>chatting</h2>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- Breadcrumb Section End -->
-
+	
+	<div class="wholecontainer">
 	<div id="maincontainer" class="maincontainer">
 	
 		<div class="innercontainer">
 			<div class="studylistcontainer">
 				<div class="studycontainertitlecontainer">
 					<div class="studycontainertitle">스터디 목록</div>
-					<hr color="#7fad39" width="100%">
+					
 				</div>
-				
+				<hr color="#7fad39" width="100%">
 				<input class="nowstudy_no" type="hidden" name="nowstudy_no" value="">
 				<c:forEach var="studylist" items="${studylist}">
 					<div class="studycontainer" data-value="${studylist.no}"
@@ -635,6 +623,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 			<div class="chattingwholecontainer">
 				<div class="chattingtitlecontainer">
 					<div class="chattingtitle"></div>
+					<div class="showchattinglistbuttoncontainer"><div class="showchattinglistbutton">목록 보기</div></div>
 				</div>
 				
 				<div class="chattingcontainer">
@@ -648,7 +637,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 					<div id="yourMsg">
 						<table class="inputTable">
 							<tr>
-								<th>메시지</th>
+								
 								<th><input id="chatting" placeholder="보내실 메시지를 입력하세요."></th>
 								<th><button onclick="insertChattinglog(); sendChat();"
 										id="sendBtn">보내기</button></th>
@@ -662,7 +651,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 		</div>
 
 	</div>
-	
+	</div>
 	
 		<!-- Footer Section Begin -->
 	<footer class="footer spad">
