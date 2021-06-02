@@ -1,0 +1,72 @@
+@charset "UTF-8";
+
+@import url('https://rsms.me/inter/inter-ui.css');
+
+.pagination {
+	justify-content: center;
+}
+.move-page {
+  align-items: center;
+  color: #555;
+  display: flex;
+  font-family: 'Inter UI', sans-serif;
+  font-size: 1.25em;
+  margin: 0;
+  display: inline-block;
+  position: relative;
+}
+.move-page-index {
+  cursor: pointer;
+  display: inline;
+  margin-right: 30px;
+  padding: 5px;
+  user-select: none;
+  -moz-user-select: none;
+}
+.move-page-index:last-child {
+  margin: 0;
+}
+svg {
+  left: -13px;
+  position: absolute;
+  top: -8px;
+  transition: transform 500ms;
+  width: 46px;
+}
+path {
+  fill:none;
+  stroke:#7fad39;
+  stroke-dasharray: 150 150;
+  stroke-width:15;
+}
+.move-page.open:not(.flip) path {
+  animation: OpenRight 500ms;
+}
+.move-page.open.flip path {
+  animation: OpenLeft 500ms;
+}
+.move-page.i1 svg {
+  transform: translateX(0);
+}
+.move-page.i2 svg {
+  transform: translateX(50px);
+}
+.move-page.i3 svg {
+  transform: translateX(102px);
+}
+.move-page.i4 svg {
+  transform: translateX(154px);
+}
+.move-page.i5 svg {
+  transform: translateX(206px);
+}
+@keyframes OpenRight {
+  25% { stroke-dasharray: 100 150; }
+  60% { stroke-dasharray: 100 150; }
+  100% { stroke-dasharray: 150 150; }
+}
+@keyframes OpenLeft {
+  25% { stroke-dashoffset: -50px; }
+  60% { stroke-dashoffset: -50px; }
+  100% { stroke-dashoffset: 0; }
+}

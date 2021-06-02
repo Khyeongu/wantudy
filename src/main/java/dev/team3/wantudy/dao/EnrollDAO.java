@@ -1,6 +1,7 @@
 package dev.team3.wantudy.dao;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 
 import dev.team3.wantudy.dto.EnrollDTO;
@@ -13,4 +14,10 @@ public interface EnrollDAO {
 	public int getMemberCount(int study_no) throws SQLException;
 
 	public EnrollDTO selectMemberStudyEnroll(StudyDTO studyDTO) throws SQLException;
+
+	public void acceptMember(HashMap<String, Object> memberInfo) throws SQLException;
+
+	public void refuseMember(HashMap<String, Object> memberInfo) throws SQLException;
+
+	public void kickMember(HashMap<String, Object> memberInfo) throws SQLException;
 }

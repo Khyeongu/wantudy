@@ -24,4 +24,25 @@
 		where study_no=#{study_no}
 		and status='진행중'
 	</select>
+	
+	<update id="acceptMember" parameterType="hashMap">
+		update enroll
+		set status='진행중'
+		where study_no=#{study_no}
+			and member_no=#{member_no}
+	</update>
+	
+	<update id="refuseMember" parameterType="hashMap">
+		update enroll
+		set status='탈락'
+		where study_no=#{study_no}
+			and member_no=#{member_no}
+	</update>
+	
+	<update id="kickMember" parameterType="hashMap">
+		update enroll
+		set status='무단이탈', skip=1
+		where study_no=#{study_no}
+			and member_no=#{member_no}
+	</update>
 </mapper>

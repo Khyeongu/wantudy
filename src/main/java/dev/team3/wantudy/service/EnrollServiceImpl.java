@@ -1,5 +1,7 @@
 package dev.team3.wantudy.service;
 
+import java.util.HashMap;
+
 import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,27 @@ public class EnrollServiceImpl implements EnrollService{
 	public EnrollDTO selectMemberStudyEnroll(StudyDTO studyDTO) throws Exception {
 		// TODO Auto-generated method stub
 		return enrollDAO.selectMemberStudyEnroll(studyDTO);
+	}
+
+
+	@Override
+	public void acceptMember(HashMap<String, Object> memberInfo) throws Exception {
+		// TODO Auto-generated method stub
+		enrollDAO.acceptMember(memberInfo);
+	}
+
+
+	@Override
+	public void refuseMember(HashMap<String, Object> memberInfo) throws Exception {
+		// TODO Auto-generated method stub
+		enrollDAO.refuseMember(memberInfo);
+	}
+
+
+	@Override
+	public void kickMember(HashMap<String, Object> memberInfo) throws Exception {
+		// TODO Auto-generated method stub
+		enrollDAO.kickMember(memberInfo);
 	}
 
 }
