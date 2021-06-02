@@ -13,6 +13,7 @@ import dev.team3.wantudy.dto.StudyDTO;
 public interface MemberStudyService {
 
 	public List<EnrollDTO> selectAllEnrolls(MemberDTO memberDTO);
+	public List<EnrollDTO> selectavailableEnrolls(MemberDTO memberDTO);
 	public StudyDTO getStudy(int study_no);
 	public List<ChattinglogDTO> getChattinglogscroll (int study_no,int endNo);
 	public void insertchattinglog(ChattinglogDTO chattinglogDTO);

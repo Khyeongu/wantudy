@@ -10,7 +10,7 @@
         from chattinglog
         where study_no = #{study_no}
         order by no desc
-        offset #{endNo} rows fetch first 10 rows only
+        offset #{endNo} rows fetch first 20 rows only
 	</select>
 
 	<select id="getChattinglog" parameterType="int" resultType="ChattinglogDTO">

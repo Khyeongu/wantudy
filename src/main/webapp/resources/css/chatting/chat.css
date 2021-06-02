@@ -4,13 +4,23 @@
 	padding: 0;
 }
 
-.container {
-	width: 1000px;
-	margin: 0 auto;
-	padding: 25px
+.wholecontainer{
+	width:100%;
+	background-color: #d8eabd;
 }
 
-.container h1 {
+.maincontainer {
+	width: 1000px;
+	height:800px;
+	margin: 0 auto;
+	padding: 25px;
+	display:flex;
+	justify-content:center;
+		align-items:center;
+
+}
+
+.maincontainer h1 {
 	text-align: left;
 	padding: 5px 5px 5px 15px;
 	color: #7fad39;
@@ -23,31 +33,153 @@
 }
 
 .studylistcontainer{
-	width:100px;
+	background-color:white;
+	width:255px;
+	border-radius: 10px;
+
+	padding:10px;
 }
 
 .studycontainer{
-	text-overflow: ellipsis;
-	width:100px;	
-	overflow:hidden;
-	height:20px;
+	display:flex;
+	align-items:center;
+	width:100%;	
+	height:50px;
 	white-space:nowrap;
+	margin-bottom:10px;
 }
 
+.studyimgcontainer{
+	width:65px;
+	height:100%;
+	border:1px solid black;
+
+}
+.studynameandlogcontainer{
+	display:flex;
+	flex-direction:column;
+	width:100%;
+	height:100%;
+	border:1px solid black;	
+}
+.studynamecontainer{
+	text-overflow: ellipsis;
+	overflow:hidden;
+	overflow:hidden;
+	width:100px;
+	height:20px;
+	margin-bottom:3px;
+}
+
+.studylastlogcontainer{
+	height:25px;
+	width:100%;
+	border:1px solid black;
+}
+
+.studycontainertitlecontainer{
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	flex-direction:column;
+	width:100%;
+	margin-bottom:10px;
+}
+
+hr{
+	margin:0 !important;
+	margin-bottom:10px !important;
+}
+
+.studycontainertitle{
+	width:100px;
+	height:25px;
+
+}
+
+
 .chattingloglistcontainer {
-	background-color: #000;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+	background-color:#ECF7DC;
 	width: 700px;
-	height: 200px;
+	height: 400px;
 	overflow: auto;
-	color: #fff;
+	color: black;
 	text-align: left;
 	overflow-y:scroll;
+	overflow-x:hidden;
+}
+
+.chattingloglistcontainer::-webkit-scrollbar{
+	  background-color: transparent;
+	  width:5px;
+	  
+}
+
+  .chattingloglistcontainer::-webkit-scrollbar-thumb {
+    background-color: #7fad39;
+    border-radius: 10px;
+
+  }
+  
+  .chattingloglistcontainer::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.chattingtitlecontainer{
+	border-radius: 10px;
+	background-color:white;
+	width:100%;
+	height:50px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 0px;
+	border-bottom-left-radius: 0px;
+	display:flex;
+	padding:10px;
+	justify-content:space-between;
+	align-items:center;
+}
+.chattingtitle{
+	width:200px;
+	height:25px;
+	color:black;
+	margin-left:10px;
+	
+	
+}
+
+.titleandimgcontainer{
+	display:flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.chattingimgcontainer{
+	width:40px;
+	height:40px;
+	border: 1px solid black;
+}
+
+.showchattinglistbuttoncontainer{
+	height:25px;
+	width:100px;
+	border:1px solid black;
+	display:flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .chattinglogcontainer{
 	display:flex;
-	height:20px;
+	align-items:center;
+	height:30px;
 	width:100%;
+	margin:2px;
+	padding-right:18px;
+
+	
 }
 
 .enterchattinglogcontainer{
@@ -57,16 +189,58 @@
 	margin:0 auto;
 }
 
-.mychattinglogcontainer{
-	display:flex;
-	height:20px;
-	justify-content:flex-end;
-}
+
 
 .mylog{
 	display:flex;
-	justify-content:flex-end;
+
 	width:100%;	
+	justify-content:flex-end;
+}
+
+.myballoon{
+	display:flex;
+
+	justify-content:center;
+	border-radius: 8px;
+	background-color:#7fad39;
+	position:relative;
+	
+}
+
+.yourballoon{
+	display:flex;
+	justify-content:center;
+	border-radius: 8px;
+	background-color:#dbdbdb;
+	position:relative;
+	margin-right:5px;
+	
+}
+
+.yourballoon:after {
+ border-top:11px solid transparent;
+ border-left: 7px solid transparent;
+ border-right: 0px solid transparent;
+ border-bottom: 9px solid #e6e6e6;
+ content:"";
+ position:absolute;
+ top:-1px;
+ left:-6px;
+}
+
+.myballoon:after {
+ border-top:11px solid transparent;
+ border-left: 0px solid transparent;
+ border-right: 7px solid transparent;
+ border-bottom: 9px solid #7fad39;
+ content:"";
+ position:absolute;
+ top:-1px;
+ right:-6px;
+}
+.myname{
+	margin-left:8px;
 }
 
 .chattinglogname{
@@ -74,16 +248,23 @@
 	height:100%;
 }
 
+
 .chattinglogcontent{
 	height:100%;
 	margin-right:5px;
+	margin-left:5px;
+	color:white;
+
+
 }
 
 
 
 .chattinglogtime{
-	height:100%;
+	height:10px;
 	margin-right:5px;
+	font-size:10px;
+	
 }
 
 
@@ -97,5 +278,33 @@ input {
 	height:20px;
 	margin:0 auto;
 	text-align: center;
+	color:#7fad39;
 }
 
+#yourMsg{
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+	background-color:white;
+	display:flex;
+	align-items: center;
+	padding-left:5px;
+	padding-right:5px;
+	height:50px;
+	
+}
+
+#chatting{
+	width:640px;
+}
+
+input{border:0};
+
+input:focus {outline:none;}
+
+button{
+	border:0;
+	border-radius: 10px;
+	background-color:#7fad39;
+}

@@ -39,7 +39,7 @@ public class ChattingController {
 	@GetMapping(value="/main")
 	public String getchattinglist(Model model, HttpSession session) {
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("userInfo");
-		List<EnrollDTO> enrolllist = chattingService.selectAllEnrolls(memberDTO);
+		List<EnrollDTO> enrolllist = chattingService.selectavailableEnrolls(memberDTO);
 		List<StudyDTO> studylist = new ArrayList<StudyDTO>();
 		System.out.println();
 		for(EnrollDTO enroll : enrolllist) {
