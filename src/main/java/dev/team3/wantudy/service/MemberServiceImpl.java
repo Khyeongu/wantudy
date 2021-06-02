@@ -1,5 +1,10 @@
 package dev.team3.wantudy.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import dev.team3.wantudy.dao.MemberDAO;
 import dev.team3.wantudy.dto.MemberDTO;
+import dev.team3.wantudy.utils.PagingUtil;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -49,5 +55,5 @@ public class MemberServiceImpl implements MemberService {
 	public void modifyMemberInfo(MemberDTO memberDTO) throws Exception {
 		memberDAO.modifyMemberInfo(memberDTO);
 	}
-
+	
 }

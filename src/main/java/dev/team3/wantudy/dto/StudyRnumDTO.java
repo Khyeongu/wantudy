@@ -10,8 +10,8 @@ import lombok.ToString;
 @Setter
 @ToString
 
-public class StudyDTO {
-
+public class StudyRnumDTO {
+	int rnum; // sql에서 가져온 rownumber
 	int no;
 	String name;
 	String content;

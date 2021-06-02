@@ -45,7 +45,7 @@ public class CreateStudyController {
 
 	@Autowired
 	private RequirementService requirementService;
-	
+
 	@Autowired
 	private EnrollService enrollService;
 
@@ -126,7 +126,7 @@ public class CreateStudyController {
 
 			}
 
-			mav = new ModelAndView("redirect:/home");
+			mav = new ModelAndView("redirect:/search");
 
 		} catch (Exception e) {
 			e.printStackTrace();

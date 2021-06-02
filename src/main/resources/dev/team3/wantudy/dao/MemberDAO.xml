@@ -26,5 +26,54 @@
 		name=#{name}
 		where no=#{no}
 	</update>
+	
+	<select id="applyMemberListCount" parameterType="int" resultType="int">
+		select count(*)
+		from(select m.no, m.name, i.category_no as interest, (select sum(skip) from enroll where member_no=m.no) as skip
+			from enroll e
+				inner join interest i on e.member_no=i.member_no
+				inner join member m on i.member_no=m.no
+			where i.interest_no=1 
+				and	e.study_no= #{study_no}
+				and	e.status='심사중'
+			order by e.no desc)
+	</select>
 
+	<select id="getApplyMemberList" parameterType="hashMap" resultType="ApplyMemberDTO">
+		select *
+		from (
+				select rownum num, no, name, interest_no, interest_name,  skip
+				from(select m.no, m.name, i.category_no as interest_no, (select name from category where no=i.category_no) as interest_name, (select sum(skip) from enroll where member_no=m.no) as skip
+					from enroll e
+						inner join interest i on e.member_no=i.member_no
+						inner join member m on i.member_no=m.no
+					where i.interest_no=1 
+						and	e.study_no= #{study_no}
+						and	e.status='심사중'
+					order by e.no desc)
+    			)
+		where num between 1+#{limit}*(#{page_num}-1) and #{limit}+#{limit}*(#{page_num}-1)
+	</select>
+	
+	<select id="studyMemberListCount" parameterType="int" resultType="int">
+		select count(*)
+		from enroll e inner join interest i on e.member_no=i.member_no
+		where e.study_no=#{study_no} and e.status='진행중' and i.interest_no=1
+	</select>
+	
+	<select id="getStudyMemberList" parameterType="int" resultType="ApplyMemberDTO">
+		select *
+		from (
+				select rownum num, no, name, interest_no, interest_name,  skip
+				from(select m.no, m.name, i.category_no as interest_no, (select name from category where no=i.category_no) as interest_name, (select sum(skip) from enroll where member_no=m.no) as skip
+					from enroll e
+						inner join interest i on e.member_no=i.member_no
+						inner join member m on i.member_no=m.no
+					where i.interest_no=1 
+						and	e.study_no= #{study_no}
+						and	e.status='진행중'
+					order by m.name asc)
+    			)
+		where num between 1+#{limit}*(#{page_num}-1) and #{limit}+#{limit}*(#{page_num}-1)
+	</select>
 </mapper>

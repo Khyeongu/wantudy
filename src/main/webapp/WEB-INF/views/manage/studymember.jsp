@@ -5,6 +5,9 @@
 	pageEncoding="utf-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="context" value="${pageContext.request.contextPath}" />
+<c:set var="studyDTO" value="${studyDTO}" />
+<c:set var="startpage" value="${startpage}" />
+<c:set var="endpage" value="${endpage}" />
 <!DOCTYPE html>
 <html lang="zxx">
 <%
@@ -28,7 +31,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 <link rel="stylesheet" href="${context}/resources/css/bootstrap.min.css"
 	type="text/css">
 <link rel="stylesheet"
-	href="${context}/resources/css/font-awesome.min.css" type="text/css">
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <link rel="stylesheet" href="${context}/resources/css/elegant-icons.css"
 	type="text/css">
 <link rel="stylesheet" href="${context}/resources/css/jquery-ui.min.css"
@@ -43,6 +46,12 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
 <link rel="stylesheet" href="${context}/resources/css/nice-select.css"
 	type="text/css">
+	<link rel="stylesheet"
+	href="${context}/resources/css/userList/userList.css" type="text/css">
+<link rel="stylesheet"
+	href="${context}/resources/css/pagination/pagination.css"
+	type="text/css">
+	
 
 
 
@@ -61,16 +70,145 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 
 <script>
 $(document).ready(function(){
-	$("#category_no").val('<c:out value="${studyDTO.category_no}"/>').prop("selected", true);
+	studyMemberList(${studyDTO.no}, 1);
+	makePage(${startpage}, ${endpage});
 });
+function makePage(startpage, endpage){
+	var move_page = '';
 
-function updateInfo(){
-	if (confirm("정말 수정하시겠습니까?")) {
-		document.getElementById("studyInfoForm").submit();
-	} else {
-		return false;
-	}
+    var page_num = 1;
+	move_page += '<span>';
+    
+    for (var num=startpage; num<=endpage; num++) {
+        if (num == page_num) {
+            move_page += '<div class="move-page-index" onclick="studyMemberList('+${studyDTO.no}+', '+num+'); return false;">'+ num +'</div>';
+        } else {
+        	move_page += '<div class="move-page-index" onclick="studyMemberList('+${studyDTO.no}+', '+num+'); return false;">'+ num +'</div>';
+        }
+     }
+    
+    move_page += '</span>';
+    move_page += '<svg viewBox="0 0 100 100">';
+    move_page += '      <path';
+    move_page += '            d="m 7.1428558,49.999998 c -1e-7,-23.669348 19.1877962,-42.8571447 42.8571442,-42.8571446 23.669347,0 42.857144,19.1877966 42.857144,42.8571446" />';
+    move_page += '    </svg>';
+    move_page += '    <svg viewBox="0 0 100 100">';
+    move_page += '      <path';
+    move_page += '            d="m 7.1428558,49.999998 c -1e-7,23.669347 19.1877962,42.857144 42.8571442,42.857144 23.669347,0 42.857144,-19.187797 42.857144,-42.857144" />';
+    move_page += '    </svg>';
+    
+    $('.move-page').html(move_page);
+    
+    const c = document.querySelector('.move-page');
+    const indexs = Array.from(document.querySelectorAll('.move-page-index'));
+    var cur = -1;
+    indexs.forEach((index, i) => {
+      index.addEventListener('click', (e) => {
+        // clear
+        console.log(${first});
+        c.className = 'move-page';
+        void c.offsetWidth; // Reflow
+        c.classList.add('open');
+        c.classList.add('i'+(i+1));
+        if (cur > i) {
+          c.classList.add('flip');
+        }
+        cur = i;
+      })
+    });
 }
+
+
+function studyMemberList(study_no, page_num, first){
+	$.ajax({
+        url : '${context}/manage/studymember/${studyDTO.no}',
+        type : 'POST',
+        data : 
+        	{
+        	'page_num' : page_num
+       		},
+        dataType:"json",
+        success : function(data) {
+            var table_row = '';
+            var move_page = '';
+            var page_num = data.page_num;
+            var startpage = data.startpage;
+            var endpage = data.endpage;
+            var maxpage = data.maxpage;
+            var studyMemberList = data.studyMemberList;
+            var session_no = data.session_no;
+            var roll;
+            <c:set var="startpage" value="startpage"/>
+            <c:set var="endpage" value="endpage"/>
+
+
+            $.each(studyMemberList, function(key, value) {
+               if(${userInfo.no}==value.no){
+            	   roll="팀장";
+               }else{
+            	   roll="팀원"
+               }
+               table_row+='<tr>';
+               table_row+='							<td>';
+               table_row+='								<img src="${context}/resources/img/userimg.png" alt="">';
+               table_row+='								<a href="#" class="user-link">'+value.name+'</a>';
+               table_row+='								<span class="user-subhead">지원자</span>';
+               table_row+='							</td>';
+               table_row+='							<td>';
+               table_row+= 								roll;
+               table_row+='							</td>';
+               table_row+='							<td class="text-center">';
+               table_row+='								<span class="label label-waiting '+value.no+'-status">심사중</span>';
+               table_row+='							</td>';
+               table_row+='							<td>';
+               table_row+='								<a href="#">'+value.interest_name+'</a>';
+               table_row+='							</td>';
+               table_row+='							<td style="width: 20%;">';
+               table_row+='								<a href="javascript:callFunction();" class="user-table-link info">';
+               table_row+='									<span class="fa-stack">';
+               table_row+='										<i class="fa fa-square fa-stack-2x"></i>';
+               table_row+='										<i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>';
+               table_row+='									</span>';
+               table_row+='								</a>';
+               table_row+='								<a href="javascript:kickMember('+"'"+value.name+"'"+','+value.no+');" class="user-table-link refuse '+value.no+'-refuse">';
+               table_row+='									<span class="fa-stack">';
+               table_row+='										<i class="fa fa-square fa-stack-2x"></i>';
+               table_row+='										<i class="fa fa-user-times fa-stack-1x fa-inverse"></i>';
+               table_row+='									</span>';
+               table_row+='								</a>';
+               table_row+='							</td>';
+               table_row+='						</tr>';
+               
+            });
+         $('.applyMemberList').html(table_row);  
+       }
+	});
+}
+function memberDetail(){
+	alert("세부정보")	
+}
+
+function kickMember(member_name, member_no){
+	if (confirm(member_name+" 님을 퇴출하시겠습니까?")) {
+		$.ajax({
+	        url : '${context}/manage/studymember/kickmember/${studyDTO.no}',
+	        type : 'POST',
+	        data : 
+	        	{
+	        	'member_no' : member_no
+	       		},
+	        success : function(data) {
+	        	$("."+member_no+"-status").attr("class", "label label-danger "+member_no+"-status");
+	        	$("."+member_no+"-status").html("퇴출");
+	        	$("a").remove("."+member_no+"-accept, ."+member_no+"-refuse");
+	        
+	        }
+		});
+		} else{
+			return false;
+		}
+}
+
 </script>
 
 </head>
@@ -110,7 +248,7 @@ function updateInfo(){
 			<div class="row">
 				<div class="col-lg-3">
 					<div class="header__logo  align-self-center">
-						<a class="navbar-brand" href="home"><span class="navbar-name">wantudy</span></a>
+						<a class="navbar-brand" href="search"><span class="navbar-name">wantudy</span></a>
 					</div>
 				</div>
 				<div class="col-lg-7">
@@ -160,7 +298,7 @@ function updateInfo(){
 								<li><a href="../studyinfo/${studyDTO.no}">스터디 정보 수정</a></li>
 								<li><a href="../studyability/${studyDTO.no}">스터디 역량 수정</a></li>
 								<li><a href="../studyapply/${studyDTO.no}">스터디 신청자 현황</a></li>
-								<li class="active"><a href="../studymember/${studyDTO.no}">스터디 멤버 현황</a></li>
+								<li class="active"><a href="../studymember/${studyDTO.no}">스터디 멤버 관리</a></li>
 							</ul>
 						</div>
 
@@ -168,17 +306,40 @@ function updateInfo(){
 				</div>
 
 				<div class="col-lg-9 col-md-7">
-					<h4 class="mb-3 border__bottom">스터디 정보 수정</h4>
+					<h4 class="mb-3 border__bottom">스터디 멤버 관리</h4>
 					<div class="row">
-						<div class="col-lg-7">
+						<div class="col-lg-10 ml-3">
+							
+							
+							<table class="user-table user-list">
+								<thead>
+									<tr>
+										<th><span>지원자</span></th>
+										<th><span>구분</span></th>
+										<th class="text-center"><span>상태</span></th>
+										<th><span>흥미</span></th>
+										<th>&nbsp;</th>
+									</tr>
+								</thead>
+								<tbody class="applyMemberList">
+
+								</tbody>
+							</table>
+							<div class="pagination mt-5">
+
+								<div class="move-page "></div>
+
+							</div>
+							
+							
 							
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-lg-7"></div>
 						<div class="col-lg-2 mt-3 float-right">
-							<button type="button" id="btnUpdate" class="site-btn"
-								onclick="updateInfo()">저장</button>
+							
+							
 						</div>
 					</div>
 				</div>

@@ -156,6 +156,7 @@ ALTER TABLE CHATTINGLOG ADD CONSTRAINT chattinglog_pk PRIMARY KEY ( no );
 
 -- ENROLL 테이블 생성 
 CREATE TABLE ENROLL (
+      no         NUMBER NOT NULL  -- 등록 번호
       member_no  NUMBER NOT NULL  -- 회원 번호
     , study_no   NUMBER NOT NULL  -- 스터디 번호
     , status     VARCHAR2(20)     -- 회원 상태
@@ -178,8 +179,7 @@ CREATE TABLE ENROLL (
 ******************************************************************************/
 );
 
-ALTER TABLE ENROLL ADD CONSTRAINT enroll_pk PRIMARY KEY ( member_no,
-                                                          study_no );
+ALTER TABLE ENROLL ADD CONSTRAINT enroll_pk PRIMARY KEY ( no );
 
 
 -- INTEREST 테이블 생성 
