@@ -4,13 +4,13 @@
 	padding: 0;
 }
 
-.container {
+.maincontainer {
 	width: 1000px;
 	margin: 0 auto;
 	padding: 25px
 }
 
-.container h1 {
+.maincontainer h1 {
 	text-align: left;
 	padding: 5px 5px 5px 15px;
 	color: #7fad39;
