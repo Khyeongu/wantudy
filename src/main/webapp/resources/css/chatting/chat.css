@@ -85,9 +85,11 @@
 
 .chattinglogcontainer{
 	display:flex;
-	height:25px;
+	align-items:center;
+	height:30px;
 	width:100%;
 	margin:2px;
+
 	
 }
 
@@ -100,16 +102,11 @@
 
 
 
-.mychattinglogcontainer{
-	display:flex;
-	height:20px;
-	justify-content:flex-end;
-}
-
 .mylog{
 	display:flex;
-	justify-content:flex-end;
+
 	width:100%;	
+	justify-content:flex-end;
 }
 
 .myballoon{
@@ -122,6 +119,25 @@
 	
 }
 
+.yourballoon{
+	display:flex;
+	justify-content:center;
+	border-radius: 8px;
+	background-color:#e6e6e6;
+	position:relative;
+	
+}
+
+.yourballoon:after {
+ border-top:11px solid transparent;
+ border-left: 7px solid transparent;
+ border-right: 0px solid transparent;
+ border-bottom: 9px solid #e6e6e6;
+ content:"";
+ position:absolute;
+ top:-1px;
+ left:-6px;
+}
 
 .myballoon:after {
  border-top:11px solid transparent;
@@ -131,7 +147,7 @@
  content:"";
  position:absolute;
  top:-1px;
- right:-7px;
+ right:-6px;
 }
 .myname{
 	margin-left:8px;
@@ -143,7 +159,7 @@
 }
 
 .chattinglogcontent{
-	height:18px;
+	height:100%;
 	margin-right:5px;
 	margin-left:5px;
 	color:white;
@@ -153,8 +169,10 @@
 
 
 .chattinglogtime{
-	height:100%;
+	height:10px;
 	margin-right:5px;
+	font-size:10px;
+	
 }
 
 
@@ -168,5 +186,6 @@ input {
 	height:20px;
 	margin:0 auto;
 	text-align: center;
+	color:#7fad39;
 }
 

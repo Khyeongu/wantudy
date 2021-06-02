@@ -85,14 +85,16 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 
 			} else {
 				if (member_no == userno) {
-					var str = "<div class='mychattinglogcontainer'>";
+					var str = "<div class='chattinglogcontainer mylog'>";
 					str += "<div class='chattinglogtime'>"
 					str += time;
 					str += "</div>";
+					str += "<div class = 'myballoon'>"
 					str += "<div class='chattinglogcontent'>"
 					str += msg;
 					str += "</div>";
-					str += "<div class='chattinglogname'>"
+					str += "</div>";
+					str += "<div class='chattinglogname myname'>"
 					str += username;
 					str += "</div>";
 					str += "</div>";
@@ -104,16 +106,26 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 					str += "</div>";
 					str += "<div class='chattinglogname'>"
 					str += member_no;
-					str += ":</div>";
+					str += "</div>";
+					str += "<div class='yourballoon'>"
 					str += "<div class='chattinglogcontent'>"
 					str += msg;
+					str += "</div>";
 					str += "</div>";
 					str += "</div>";
 					$("#chattingloglistcontainer").append(str);
 				}
 
+
+
 			}
-			
+			var position = $('.chattinglogcontainer').last().offset().top;
+			console.log("position:"+position);
+			document.querySelector('.chattingloglistcontainer')
+			.scrollTo({
+				top : position,
+				behavior : 'auto'
+			});
 		}
 
 		ws.onclose = function(data) {
@@ -126,6 +138,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 				if (message != "") {
 					insertChattinglog();
 					sendChat();
+
 				}
 
 			}
@@ -147,6 +160,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 		if(message!=''){
 			send(message, cmd);
 			$('#chatting').val("");
+
 		}
 
 	}
@@ -252,10 +266,10 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 
 							var length = data.chattingloglist.length;
 
-							if (length < 10) {
+							if (length < 20) {
 								isEnd = true;
 							}else{
-								last_data_no = data.chattingloglist[0].no;
+								last_data_no = data.chattingloglist[19].no;
 							}
 
 
@@ -316,9 +330,11 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 									var str = "<div class='chattinglogcontainer' data-no='"+chattinglogno+"'>";
 									str += "<div class='chattinglogname'>"
 									str += member_no;
-									str += ":</div>";
-									str += "<div class='chattinglogcontent yourballoon'>"
+									str += "</div>";
+									str += "<div class='yourballoon'>"
+									str += "<div class='chattinglogcontent'>"
 									str += content;
+									str += "</div>";
 									str += "</div>";
 									str += "<div class='chattinglogtime'>"
 									str += message_time;
@@ -372,6 +388,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 
 		
 		console.log("isScrolled:"+isScrolled);
+
 		
 		if (scrollTop < 1 && isScrolled == false) {
 			isScrolled = true;
@@ -392,7 +409,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 			return;
 		}
 
-		endNo += 10;
+		endNo += 20;
 
 		console.log("endNo" + endNo);
 
@@ -412,11 +429,11 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 
 						var length = data.chattingloglist.length;
 
-						if (length < 10) {
+						if (length < 20) {
 							isEnd = true;
 						}
 
-						last_data_no = data.chattingloglist[0].no;
+						last_data_no = data.chattingloglist[19].no;
 
 						for (var i = 0; i < length; i++) {
 							var content = data.chattingloglist[i].content;
@@ -473,9 +490,11 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 								var str = "<div class='chattinglogcontainer' data-no='"+chattinglogno+"'>";
 								str += "<div class='chattinglogname'>"
 								str += member_no;
-								str += ":</div>";
+								str += "</div>";
+								str += "<div class='yourballoon'>"
 								str += "<div class='chattinglogcontent'>"
 								str += content;
+								str += "</div>";
 								str += "</div>";
 								str += "<div class='chattinglogtime'>"
 								str += message_time;
@@ -486,10 +505,12 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 								str += "<div class='chattinglogtime'>"
 								str += message_time;
 								str += "</div>";
+								str += "<div class='myballoon'>"
 								str += "<div class='chattinglogcontent'>"
 								str += content;
 								str += "</div>";
-								str += "<div class='chattinglogname'>"
+								str += "</div>";
+								str += "<div class='chattinglogname myname'>"
 								str += username;
 								str += "</div>";
 								str += "</div>";
