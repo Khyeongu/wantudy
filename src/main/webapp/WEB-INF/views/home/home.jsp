@@ -61,7 +61,6 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 
 <script>
 function addStudyNoToSession(study_no){
-	alert(study_no);
 	
 	$.ajax({
         url : '${context}/home',
