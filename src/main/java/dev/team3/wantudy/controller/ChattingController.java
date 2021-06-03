@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import dev.team3.wantudy.dto.CategoryDTO;
 import dev.team3.wantudy.dto.ChattinglogDTO;
 import dev.team3.wantudy.dto.EnrollDTO;
 import dev.team3.wantudy.dto.MemberDTO;
@@ -38,7 +39,7 @@ public class ChattingController {
 	}
 	
 	@GetMapping(value="/main")
-	public String getchattinglist(Model model, HttpSession session) {
+	public String getchattinglist(Model model, HttpSession session) throws Exception {
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("userInfo");
 		List<EnrollDTO> enrolllist = chattingService.selectavailableEnrolls(memberDTO);
 		List<StudyDTO> studylist = new ArrayList<StudyDTO>();
@@ -49,6 +50,7 @@ public class ChattingController {
 			int study_no = enroll.getStudy_no();
 			StudyDTO studyDTO = chattingService.getStudy(study_no);
 			System.out.println(studyDTO.getName());
+			String categoryimgpath = chattingService.getCategoryImgpath(studyDTO.getCategory_no());
 			studylist.add(studyDTO);
 			
 			try {

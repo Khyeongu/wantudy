@@ -7,13 +7,13 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Service;
-
+import org.springframework.stereotype.Service;import dev.team3.wantudy.dao.CategoryDAO;
 import dev.team3.wantudy.dao.ChattinglogDAO;
 import dev.team3.wantudy.dao.EnrollDAO;
 import dev.team3.wantudy.dao.MemberDAO;
 import dev.team3.wantudy.dao.StudyDAO;
 import dev.team3.wantudy.dto.ApplyMemberDTO;
+import dev.team3.wantudy.dto.CategoryDTO;
 import dev.team3.wantudy.dto.ChattinglogDTO;
 import dev.team3.wantudy.dto.EnrollDTO;
 import dev.team3.wantudy.dto.MemberDTO;
@@ -39,6 +39,12 @@ public class MemberStudyServiceImpl implements MemberStudyService{
 	@Qualifier(value = "memberDAO")
 	private MemberDAO memberDAO;
 
+	
+	
+	@Autowired
+	@Qualifier(value = "categoryDAO")
+	private CategoryDAO categoryDAO;
+	
 	@Override
 	public List<EnrollDTO> selectAllEnrolls(MemberDTO memberDTO) {
 		try {
@@ -133,6 +139,12 @@ public class MemberStudyServiceImpl implements MemberStudyService{
 	@Override
 	public String getmembername(int member_no) throws Exception {
 		return chattinglogDAO.getmembername(member_no);
+	}
+
+	@Override
+	public String getCategoryImgpath(int category_no) throws Exception {
+		// TODO Auto-generated method stub
+		return categoryDAO.getCategoryImgpath(category_no);
 	}
 
 	
