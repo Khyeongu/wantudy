@@ -159,7 +159,6 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 		if(message!=''){
 			send(message, cmd);
 			$('#chatting').val("");
-
 		}
 
 	}
@@ -170,6 +169,12 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 		var study_no = $('.nowstudy_no').val();
 		var uN = $('#userNo').val();
 		now_time = new Date().toLocaleTimeString();
+		
+		
+		//스터디 목록에 마지막 채팅 로그 바꿔주기
+		$('.studycontainer[data-value='+study_no+']').children('.studynameandlogcontainer').children('.studylastlogcontainer').text(message);
+		
+		
 
 		$.ajax({
 			type : 'POST',
