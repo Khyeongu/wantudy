@@ -23,5 +23,7 @@ public interface StudyDAO {
 	public List<StudyRnumDTO> getRecentStudy() throws SQLException;
 
 	public List<StudyRnumDTO> getStudyListWithSearch(SearchDTO searchDTO) throws SQLException;
+  
+	public String getStudyName(int study_no) throws SQLException;
 
 }

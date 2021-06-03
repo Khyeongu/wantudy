@@ -31,4 +31,6 @@ public interface EnrollDAO {
 
 	public int checkAlreadyEnrolled(EnrollDTO enrollDTO) throws SQLException;
 
+	public List<EnrollDTO> memberDetail(int member_no) throws SQLException;
+
 }

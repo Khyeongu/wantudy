@@ -91,5 +91,9 @@
 		     ) B
 		where rnum between 1 and 9
 
+	<select id="getStudyName" parameterType="int" resultType="string">
+		select name
+		from study
+		where no=#{study_no}
 	</select>
 </mapper>

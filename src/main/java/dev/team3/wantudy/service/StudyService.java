@@ -21,5 +21,6 @@ public interface StudyService {
 	List<StudyRnumDTO> getRecentStudy() throws Exception;
 
 	List<StudyRnumDTO> getStudyListWithSearch(SearchDTO searchDTO) throws Exception;
+	String getStudyName(int study_no) throws Exception;
 
 }

@@ -125,6 +125,16 @@ public class MemberStudyServiceImpl implements MemberStudyService{
 		}
 	}
 
+	@Override
+	public ChattinglogDTO getlastlog(int study_no) throws SQLException {
+		return chattinglogDAO.getlastlog(study_no);
+	}
+
+	@Override
+	public String getmembername(int member_no) throws Exception {
+		return chattinglogDAO.getmembername(member_no);
+	}
+
 	
 	
 }

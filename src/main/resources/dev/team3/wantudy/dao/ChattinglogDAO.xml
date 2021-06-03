@@ -21,4 +21,19 @@
 	<insert id="insertchattinglog" parameterType="ChattinglogDTO">
 		insert into chattinglog values(chattinglog_no_seq.nextval, #{member_no},#{study_no},#{content},sysdate)
 	</insert>
+	
+	<select id="getlastlog" parameterType="int" resultType="ChattinglogDTO">
+       select * 
+       from chattinglog
+       where study_no = #{study_no}
+       order by no desc
+       offset 0 rows fetch first 1 rows only
+
+	</select>
+	
+	<select id="getmembername" parameterType="int" resultType="String">
+		select name from member where no = #{member_no}
+
+	</select>
+	
 </mapper>

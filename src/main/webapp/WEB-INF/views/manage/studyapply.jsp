@@ -52,6 +52,9 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 <link rel="stylesheet"
 	href="${context}/resources/css/pagination/pagination.css"
 	type="text/css">
+<link rel="stylesheet"
+	href="${context}/resources/css/memberDetailModal/memberDetailModal.css"
+	type="text/css">
 
 
 
@@ -66,6 +69,13 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 <script src="${context}/resources/js/main.js"></script>
 <script src="${context}/resources/js/dropbox.js"></script>
 <script src="${context}/resources/js/pagination/pagination.js"></script>
+
+<!--  Modal Plugins  -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+	integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+	crossorigin="anonymous"></script>
+
 
 <script>
 $(document).ready(function(){
@@ -141,23 +151,23 @@ function applyMemberList(study_no, page_num, first){
             
 
             $.each(applyMemberList, function(key, value) {
-               table_row+='<tr>';
-               table_row+='							<td>';
-               table_row+='								<img src="${context}/resources/img/userimg.png" alt="">';
+               table_row+='<tr class='+value.no+'>';
+               table_row+='							<td class="member-info">';
+               table_row+='								<img class="member-image" src="'+value.member_img+'" alt="">';
                table_row+='								<a href="#" class="user-link">'+value.name+'</a>';
                table_row+='								<span class="user-subhead">지원자</span>';
                table_row+='							</td>';
-               table_row+='							<td>';
+               table_row+='							<td class="member-skip">';
                table_row+= 								value.skip+" 회";
                table_row+='							</td>';
                table_row+='							<td class="text-center">';
                table_row+='								<span class="label label-waiting '+value.no+'-status">심사중</span>';
                table_row+='							</td>';
-               table_row+='							<td>';
+               table_row+='							<td class="member-interest">';
                table_row+='								<a href="#">'+value.interest_name+'</a>';
                table_row+='							</td>';
                table_row+='							<td style="width: 20%;">';
-               table_row+='								<a href="javascript:callFunction();" class="user-table-link info">';
+               table_row+='								<a href="javascript:memberDetail('+value.no+','+"'"+value.name+"'"+","+"'"+value.member_img+"'"+","+"'"+value.interest_name+"'"+","+value.skip+');" class="user-table-link info">';
                table_row+='									<span class="fa-stack">';
                table_row+='										<i class="fa fa-square fa-stack-2x"></i>';
                table_row+='										<i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>';
@@ -183,8 +193,62 @@ function applyMemberList(study_no, page_num, first){
        }
 	});
 }
-function memberDetail(){
-	alert("세부정보")	
+
+function memberDetail(member_no, member_name, member_img, member_interest, member_skip){
+	var memberNo = member_no;
+	var memberName = member_name
+	var memberImg = "<img class='member-image' src='"+member_img+"' >";
+	var memberInterest = member_interest;
+	var memberSkip = member_skip+" 회";
+	$('.modal-body .image').html(memberImg);
+	$('.modal-body .name').html(memberName);
+	$('.modal-body .interest').html(member_interest);
+	$('.modal-body .skip').html(memberSkip);
+	$('#myModal').modal('show');
+	
+	$.ajax({
+		url : '${context}/manage/studyapply/memberDetail/${studyDTO.no}',
+        type : 'POST',
+        data : 
+        	{
+        	'member_no' : member_no
+       		},
+       	dataType : "json",
+        success : function(data) {
+        	var memberDetailList = data.memberDetailList;
+        	var table_row = '';
+        	
+        	$.each(memberDetailList, function(key, value) {
+        		if(value.skip==0){
+        			table_row += '                              <div class="row">';
+        			table_row += '									<div class="col-md-2 icon-box"></div>';
+        			table_row += '										<div class="col-md-8" id="finish-list">';
+        			table_row += '											<div class="row">';
+        			table_row += '												<div class="col-md-1 icon-box">';
+        			table_row += '													<i class="far fa-circle" style="color:green; font-size:10px;"></i>';
+        			table_row += '												</div>';
+        			table_row += '												<p style="margin-bottom:0px;">'+value.studyName+'</p>';
+        			table_row += '											</div>';
+        			table_row += '										</div>';
+        			table_row += '									</div>';
+        		}else{
+        			table_row += '                              <div class="row">';
+        			table_row += '									<div class="col-md-2 icon-box"></div>';
+        			table_row += '										<div class="col-md-8" id="finish-list">';
+        			table_row += '											<div class="row">';
+        			table_row += '												<div class="col-md-1 icon-box">';
+        			table_row += '													<i class="fas fa-times" style="color:red; font-size:10px;"></i>';
+        			table_row += '												</div>';
+        			table_row += '												<p style="margin-bottom:0px;">'+value.studyName+'</p>';
+        			table_row += '											</div>';
+        			table_row += '										</div>';
+        			table_row += '									</div>';
+        		}
+             });
+          $('.studyName').html(table_row);  
+        }
+	});
+	
 }
 
 function acceptMember(member_name, member_no){
@@ -239,6 +303,92 @@ function refuseMember(member_name, member_no){
 	<div id="preloder">
 		<div class="loader"></div>
 	</div>
+
+
+	<div class="row">
+		<div class="col-md-12">
+			<div class="modal-box">
+
+				<!-- Modal -->
+				<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+					aria-labelledby="myModalLabel">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">×</span>
+							</button>
+							<div class="modal-body">
+								<div class="image"></div>
+								<h3 class="name" id="name"></h3>
+								<div id="interest-content">
+								<div class="row">
+									<div class="col-md-4"></div>
+									<span class="col-md-1 fa-stack">
+										<i class="fas fa-heart" style="color:red;"></i>
+									</span>
+									<p class="col-md-7 interest pt-1" style="margin-bottom:0;" id="interest"></p>
+								</div>
+								</div>
+								<div id="skip-content">
+									<div class="row">
+									<div class="col-md-4"></div>
+									<span class="col-md-1 fa-stack">
+										<i class="fas fa-running"></i>
+									</span>
+									<p class="col-md-7 skip pt-1" style="margin-bottom:0;" id="skip"></p>
+									</div>
+								</div>
+								<hr class="hr">
+								<div class="row">
+									<div class="col-md-1 icon-box">
+										<i class="fas fa-square" style="color:#7fad39; font-size:10px;"></i>
+									</div>
+									<h5>수강한 스터디 목록</h5>
+								</div>
+								
+								<div class="studyName">
+								<!-- 스터디 이름추가 시작 -->
+								<div class="row">
+									<div class="col-md-2 icon-box"></div>
+										<div class="col-md-8" id="finish-list">
+											<div class="row">
+												<div class="col-md-1 icon-box">
+													<i class="far fa-circle" style="color:green; font-size:10px;"></i>
+												</div>
+												<p style="margin-bottom:0px;">수강한 스터디 이름</p>
+											</div>
+										</div>
+									</div>
+								<!-- 스터디 이름 추가 끝 -->
+								
+								<!-- 스터디 이름추가 시작 -->
+								<div class="row">
+									<div class="col-md-2 icon-box"></div>
+										<div class="col-md-8" id="finish-list">
+											<div class="row">
+												<div class="col-md-1 icon-box">
+													<i class="fas fa-times" style="color:red; font-size:10px;"></i>
+												</div>
+												<p style="margin-bottom:0px;">수강한 스터디 이름</p>
+											</div>
+										</div>
+									</div>
+								<!-- 스터디 이름 추가 끝 -->
+									
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button class="subscribe">Subscribe</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
 	<!-- Header Section Begin -->
 	<header class="header">
 		<div class="header__top">
@@ -268,7 +418,8 @@ function refuseMember(member_name, member_no){
 			<div class="row">
 				<div class="col-lg-3">
 					<div class="header__logo  align-self-center">
-						<a class="navbar-brand" href="search"><span class="navbar-name">wantudy</span></a>
+						<a class="navbar-brand" href="search"><span
+							class="navbar-name">wantudy</span></a>
 					</div>
 				</div>
 				<div class="col-lg-7">
@@ -342,7 +493,7 @@ function refuseMember(member_name, member_no){
 									</tr>
 								</thead>
 								<tbody class="applyMemberList">
-									
+
 
 								</tbody>
 							</table>

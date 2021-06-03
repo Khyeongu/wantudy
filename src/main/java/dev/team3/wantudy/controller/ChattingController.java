@@ -3,6 +3,7 @@ package dev.team3.wantudy.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -41,13 +42,25 @@ public class ChattingController {
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("userInfo");
 		List<EnrollDTO> enrolllist = chattingService.selectavailableEnrolls(memberDTO);
 		List<StudyDTO> studylist = new ArrayList<StudyDTO>();
+		Map<Integer,String> lastloglist = new HashMap<Integer,String>();
+		
 		System.out.println();
 		for(EnrollDTO enroll : enrolllist) {
 			int study_no = enroll.getStudy_no();
 			StudyDTO studyDTO = chattingService.getStudy(study_no);
 			System.out.println(studyDTO.getName());
 			studylist.add(studyDTO);
+			
+			try {
+				ChattinglogDTO chattinglogDTO = chattingService.getlastlog(study_no);
+				lastloglist.put(study_no, chattinglogDTO.getContent());
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		}
+		model.addAttribute("lastloglist",lastloglist);
 		model.addAttribute("enrolllist",enrolllist);
 		model.addAttribute("studylist",studylist);
 		return "chatting/chat";
@@ -62,6 +75,23 @@ public class ChattingController {
 		chattingloglistmap.put("chattingloglist", chattingloglist);
 		return chattingloglistmap;
 	}
+	
+	@ResponseBody
+	@PostMapping(value="/getmembername",produces = "application/json; charset = utf-8")
+	public Map getmembername(@RequestParam("member_no") int member_no ) {
+		Map<String,String> member = new HashMap<String,String>();
+		System.out.println("getmembernameController:"+member_no);
+		try {
+			String member_name = chattingService.getmembername(member_no);
+			System.out.println("serviceÈÄ member_name:"+member_name);
+			member.put("member_name", member_name);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return member;
+	}
+	
 	
 	@RequestMapping(value="/insertlog")
 	public ModelAndView insertchattinglog(@ModelAttribute ChattinglogDTO chattinglogDTO) {
