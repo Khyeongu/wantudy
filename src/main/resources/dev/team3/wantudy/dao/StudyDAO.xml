@@ -62,5 +62,34 @@
 	]]>
 	</select>
 
+	<sql id="searchType">
+		<where>
+			<choose>
+				<when test="searchCondition == 'name'">
+					name like '%' || #{searchKeyword} || '%'
+				</when>
+				<when test="searchCondition == 'content'">
+					content like '%' || #{searchKeyword} || '%'
+				</when>
+				<when test="searchCondition == 'category'">
+					category like '%' || #{searchKeyword} || '%'
+				</when>
+				<otherwise>
+					no > 0
+				</otherwise>
+			</choose>
+		</where>
+	</sql>
 
+	<select id="getStudyListWithSearch" resultType="StudyRnumDTO"
+		parameterType="SearchDTO">
+		select B.*
+		from ( select rownum as rnum, A.*
+		       from (select * from study
+		             <include refid="searchType" />
+		             order by no desc) A
+		     ) B
+		where rnum between 1 and 9
+
+	</select>
 </mapper>

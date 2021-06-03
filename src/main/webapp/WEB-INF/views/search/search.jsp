@@ -3,7 +3,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="context" value="${pageContext.request.contextPath}" />
+<c:set var="searchDTO" value="${searchDTO}" />
+
 
 <!DOCTYPE html>
 <html lang="zxx">
@@ -73,11 +76,38 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 				location.href = '${pageContext.request.contextPath}/search';
 			},
 			error : function(request, error) {
-				alert('exception');
 				console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				alert('exception');
 			}
 		});
 	}
+	
+	
+	function search() {
+		var searchCondition = document.getElementById("searchCondition").value;
+		var searchKeyword = document.getElementById("searchKeyword").value;
+
+		$.ajax({
+			type : 'POST',
+			url : "${pageContext.request.contextPath}/search/list",
+			data:{
+				"searchCondition" : searchCondition,
+				"searchKeyword" : searchKeyword
+			},
+			contentType : "application/x-www-form-urlencoded; charset=utf-8",
+		    dataType : "json",
+			success : function(data) {
+				alert('success');
+				location.href = '${pageContext.request.contextPath}/search';
+			},
+			error : function(request, error) {
+				console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				alert('exception');
+				
+			}
+		});
+	}
+	
 </script>
 </head>
 <body>
@@ -163,14 +193,14 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 						<div class="col-lg-3 col-md-3"></div>
 						<div class="hero__search col-lg-8 col-md-8">
 							<div class="hero__search__form">
-								<form action="#">
-									<select name="searchCondition" class="hero__search__categories arrow_carrot-down">
-										<option value="title" <c:if test="${searchDTO.searchCondition == 'title'}"> selected </c:if>>제목</option>
-										<option value="name" <c:if test="${searchDTO.searchCondition == 'name'}"> selected </c:if>>이름</option>
+								<form>
+									<select id="searchCondition" class="hero__search__categories arrow_carrot-down">
+										<option value="name" <c:if test="${searchDTO.searchCondition == 'name'}"> selected </c:if>>제목</option>
 										<option value="content" <c:if test="${searchDTO.searchCondition == 'content'}"> selected </c:if>>내용</option>
+										<option value="categoty" <c:if test="${searchDTO.searchCondition == 'category'}"> selected </c:if>>카테고리</option>
 									</select>
-									<input type="text" name="searchKeyword" required="required" autocomplete=off placeholder="검색" value="${searchDTO.searchKeyword}" />
-									<button type="submit" class="site-btn">SEARCH</button>
+									<input type="text" id="searchKeyword" required="required" autocomplete=off placeholder="검색" value="${searchDTO.searchKeyword}" />
+									<button type="submit" class="site-btn" onclick="search()">SEARCH</button>
 								</form>
 							</div>
 
@@ -283,6 +313,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 					</div>
 				</div>
 			</div>
+		</div>
 	</section>
 	<!-- Blog Section End -->
 
