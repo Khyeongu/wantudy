@@ -28,6 +28,7 @@ int study_no = (Integer)session.getAttribute("study_no");
 <link rel="stylesheet" href="${context}/resources/css/chatting/slicknav.min.css" type="text/css">
 <link rel="stylesheet" href="${context}/resources/css/chatting/style.css" type="text/css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
+<link rel="stylesheet" href="${context}/resources/css/font-awesome.min.css" type="text/css">
 	
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
