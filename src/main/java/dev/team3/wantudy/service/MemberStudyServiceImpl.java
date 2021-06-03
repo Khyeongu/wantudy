@@ -153,6 +153,12 @@ public class MemberStudyServiceImpl implements MemberStudyService{
 		return enrollDAO.selectStudyingEnrolls(memberDTO);
 	}
 
+	@Override
+	public List<EnrollDTO> selectApplyEnrolls(MemberDTO memberDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return enrollDAO.selectApplyEnrolls(memberDTO);
+	}
+
 	
 	
 }

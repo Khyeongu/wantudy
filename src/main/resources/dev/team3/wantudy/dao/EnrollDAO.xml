@@ -94,5 +94,12 @@
 		from enroll
 		where member_no = #{no} and status='진행중'
 	</select>
+	
+	<select id="selectApplyEnrolls" parameterType="MemberDTO"
+		resultType="EnrollDTO">
+		select *
+		from enroll
+		where member_no = #{no} and status='심사중'
+	</select>
 
 </mapper>
