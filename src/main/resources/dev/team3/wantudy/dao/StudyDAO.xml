@@ -90,6 +90,7 @@
 		             order by no desc) A
 		     ) B
 		where rnum between 1 and 9
+	</select>
 
 	<select id="getStudyName" parameterType="int" resultType="string">
 		select name

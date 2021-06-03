@@ -60,6 +60,7 @@ public class StudyServiceImpl implements StudyService {
 	public List<StudyRnumDTO> getStudyListWithSearch(SearchDTO searchDTO) throws Exception {
 		// TODO Auto-generated method stub
 		return studyDAO.getStudyListWithSearch(searchDTO);
+	}
     
 	public String getStudyName(int study_no) throws Exception {
 		// TODO Auto-generated method stub
