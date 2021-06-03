@@ -78,8 +78,8 @@ public class ChattingController {
 	
 	@ResponseBody
 	@PostMapping(value="/getmembername",produces = "application/json; charset = utf-8")
-	public HashMap getmembername(@RequestParam("member_no") int member_no ) {
-		HashMap<String,String> member = new HashMap<String,String>();
+	public Map getmembername(@RequestParam("member_no") int member_no ) {
+		Map<String,String> member = new HashMap<String,String>();
 		System.out.println("getmembernameController:"+member_no);
 		try {
 			String member_name = chattingService.getmembername(member_no);

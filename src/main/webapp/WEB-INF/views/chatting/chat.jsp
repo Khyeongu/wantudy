@@ -109,8 +109,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 						dataType:"json",
 						async : false,
 						success : function(data) {
-							member_name = data.member_name[0];
-							
+							member_name = data.member_name;							
 						},
 						error : function() {
 							alert("로그 불러오기 실패.");
@@ -118,9 +117,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 					});
 					
 					var str = "<div class='chattinglogcontainer'>";
-					str += "<div class='chattinglogtime'>"
-					str += time;
-					str += "</div>";
+
 					str += "<div class='chattinglogname'>"
 					str += member_name;
 					str += "</div>";
@@ -128,6 +125,9 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 					str += "<div class='chattinglogcontent'>"
 					str += msg;
 					str += "</div>";
+					str += "</div>";
+					str += "<div class='chattinglogtime'>"
+					str += time;
 					str += "</div>";
 					str += "</div>";
 					$("#chattingloglistcontainer").append(str);
@@ -364,7 +364,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 									dataType:"json",
 									async : false,
 									success : function(data) {
-										member_name = data.member_name[0];
+										member_name = data.member_name;
 										
 									},
 									error : function() {
@@ -545,8 +545,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 									dataType:"json",
 									async : false,
 									success : function(data) {
-										member_name = data.member_name[0];
-										
+										member_name = data.member_name;										
 									},
 									error : function() {
 										alert("로그 불러오기 실패.");
@@ -716,10 +715,10 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 					</div>
 				</div>
 
-				<div class="col-lg-9 col-md-7">
+				<div class="col-lg-8 col-md-7">
 					<h4 class="mb-3 border__bottom">대화창</h4>
 					<div class="row">
-						<div class="col-lg-10">
+						<div class="col-lg-12">
 							<div class="chattingwholecontainer">
 								<div class="chattingtitlecontainer">
 									<div class="titleandimgcontainer">
