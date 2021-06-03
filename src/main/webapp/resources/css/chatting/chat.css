@@ -46,12 +46,16 @@
 	width:100%;	
 	height:50px;
 	white-space:nowrap;
+	border-bottom: 1px solid #7fad39;
+}
+.studycontainerclicked{
+	background-color: #ECF7DC;
 }
 
 .studyimgcontainer{
 	width:65px;
 	height:100%;
-	border:1px solid black;
+
 
 }
 .studynameandlogcontainer{
@@ -59,7 +63,7 @@
 	flex-direction:column;
 	width:100%;
 	height:100%;
-	border:1px solid black;	
+	
 }
 .studynamecontainer{
 	text-overflow: ellipsis;
@@ -73,7 +77,8 @@
 .studylastlogcontainer{
 	height:25px;
 	width:100%;
-	border:1px solid black;
+	color:#7fad39;
+
 }
 
 .studycontainertitlecontainer{
@@ -244,7 +249,8 @@ hr{
 }
 
 .chattinglogname{
-	width: 50px;
+	margin-left:10px;
+	margin-right:10px;
 	height:100%;
 }
 

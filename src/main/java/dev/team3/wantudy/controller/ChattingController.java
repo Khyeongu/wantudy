@@ -76,6 +76,23 @@ public class ChattingController {
 		return chattingloglistmap;
 	}
 	
+	@ResponseBody
+	@PostMapping(value="/getmembername",produces = "application/json; charset = utf-8")
+	public Map getmembername(@RequestParam("member_no") int member_no ) {
+		Map<String,String> member = new HashMap<String,String>();
+		System.out.println("getmembernameController:"+member_no);
+		try {
+			String member_name = chattingService.getmembername(member_no);
+			System.out.println("serviceÈÄ member_name:"+member_name);
+			member.put("member_name", member_name);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return member;
+	}
+	
+	
 	@RequestMapping(value="/insertlog")
 	public ModelAndView insertchattinglog(@ModelAttribute ChattinglogDTO chattinglogDTO) {
 		chattingService.insertchattinglog(chattinglogDTO);

@@ -130,6 +130,11 @@ public class MemberStudyServiceImpl implements MemberStudyService{
 		return chattinglogDAO.getlastlog(study_no);
 	}
 
+	@Override
+	public String getmembername(int member_no) throws Exception {
+		return chattinglogDAO.getmembername(member_no);
+	}
+
 	
 	
 }

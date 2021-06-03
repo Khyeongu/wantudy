@@ -10,4 +10,5 @@ public interface ChattinglogDAO {
 	public List<ChattinglogDTO> getChattinglogscroll(@Param("study_no") int study_no,@Param("endNo") int endNo);
 	public void insertchattinglog(ChattinglogDTO chattingDTO);
 	public ChattinglogDTO getlastlog(int study_no);
+	public String getmembername(int member_no);
 }

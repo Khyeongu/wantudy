@@ -77,6 +77,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 			var member_no = all.member_no;
 			var userno = $('#userNo').val();
 			var username = $('#userName').val();
+			var member_name;
 			
 			var msg = all.msg;
 			var cmd = all.cmd;
@@ -99,21 +100,41 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 					str += "</div>";
 					$("#chattingloglistcontainer").append(str);
 				} else {
+					$.ajax({
+						type : 'POST',
+						url : '${pageContext.request.contextPath}/chatting/getmembername',
+						data : {
+							"member_no" : member_no
+						},
+						dataType:"json",
+						async : false,
+						success : function(data) {
+							member_name = data.member_name;							
+						},
+						error : function() {
+							alert("로그 불러오기 실패.");
+						}
+					});
+					
 					var str = "<div class='chattinglogcontainer'>";
-					str += "<div class='chattinglogtime'>"
-					str += time;
-					str += "</div>";
+
 					str += "<div class='chattinglogname'>"
-					str += member_no;
+					str += member_name;
 					str += "</div>";
 					str += "<div class='yourballoon'>"
 					str += "<div class='chattinglogcontent'>"
 					str += msg;
 					str += "</div>";
 					str += "</div>";
+					str += "<div class='chattinglogtime'>"
+					str += time;
+					str += "</div>";
 					str += "</div>";
 					$("#chattingloglistcontainer").append(str);
 				}
+				
+				
+				
 
 
 
@@ -159,7 +180,6 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 		if(message!=''){
 			send(message, cmd);
 			$('#chatting').val("");
-
 		}
 
 	}
@@ -170,6 +190,12 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 		var study_no = $('.nowstudy_no').val();
 		var uN = $('#userNo').val();
 		now_time = new Date().toLocaleTimeString();
+		
+		
+		//스터디 목록에 마지막 채팅 로그 바꿔주기
+		$('.studycontainer[data-value='+study_no+']').children('.studynameandlogcontainer').children('.studylastlogcontainer').text(message);
+		
+		
 
 		$.ajax({
 			type : 'POST',
@@ -222,6 +248,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 		var study_no = $(study).data("value");
 		var title = $(study).children('.studynameandlogcontainer').children('.studynamecontainer').text();
 		
+		selectstudy(study);
 		
 		$('.chattingtitle').text(title);
 		
@@ -324,11 +351,31 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 								var member_no = data.chattingloglist[i].member_no;
 								var userno = $('#userNo').val();
 								var username = $('#userName').val()
-
+								var member_name;
+								
 								if (member_no != userno) {
+								//membername 가져오기
+								$.ajax({
+									type : 'POST',
+									url : '${pageContext.request.contextPath}/chatting/getmembername',
+									data : {
+										"member_no" : member_no
+									},
+									dataType:"json",
+									async : false,
+									success : function(data) {
+										member_name = data.member_name;
+										
+									},
+									error : function() {
+										alert("로그 불러오기 실패.");
+									}
+								});
+										
+									
 									var str = "<div class='chattinglogcontainer' data-no='"+chattinglogno+"'>";
 									str += "<div class='chattinglogname'>"
-									str += member_no;
+									str += member_name;
 									str += "</div>";
 									str += "<div class='yourballoon'>"
 									str += "<div class='chattinglogcontent'>"
@@ -339,7 +386,8 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 									str += message_time;
 									str += "</div>";
 									str += "</div>";
-								} else {
+								
+							} else {
 									var str = "<div class='chattinglogcontainer mylog' data-no='"+chattinglogno+"'>";
 									str += "<div class='chattinglogtime'>"
 									str += message_time;
@@ -484,11 +532,30 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 							var member_no = data.chattingloglist[i].member_no;
 							var userno = $('#userNo').val();
 							var username = $('#userName').val()
+							var member_name;
 
 							if (member_no != userno) {
+								//membername 가져오기
+								$.ajax({
+									type : 'POST',
+									url : '${pageContext.request.contextPath}/chatting/getmembername',
+									data : {
+										"member_no" : member_no
+									},
+									dataType:"json",
+									async : false,
+									success : function(data) {
+										member_name = data.member_name;										
+									},
+									error : function() {
+										alert("로그 불러오기 실패.");
+									}
+								});
+										
+								
 								var str = "<div class='chattinglogcontainer' data-no='"+chattinglogno+"'>";
 								str += "<div class='chattinglogname'>"
-								str += member_no;
+								str += member_name;
 								str += "</div>";
 								str += "<div class='yourballoon'>"
 								str += "<div class='chattinglogcontent'>"
@@ -499,6 +566,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 								str += message_time;
 								str += "</div>";
 								str += "</div>";
+								
 							} else {
 								var str = "<div class='chattinglogcontainer mylog' data-no='"+chattinglogno+"'>";
 								str += "<div class='chattinglogtime'>"
@@ -538,6 +606,11 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 					}
 				});
 
+	}
+	
+	function selectstudy(study){
+		$('.studycontainer').removeClass('studycontainerclicked');
+		$(study).addClass('studycontainerclicked');
 	}
 </script>
 
@@ -633,6 +706,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 										
 										
 									</div>
+									
 				
 								</c:forEach>
 							
@@ -641,17 +715,16 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 					</div>
 				</div>
 
-				<div class="col-lg-9 col-md-7">
+				<div class="col-lg-8 col-md-7">
 					<h4 class="mb-3 border__bottom">대화창</h4>
 					<div class="row">
-						<div class="col-lg-10">
+						<div class="col-lg-12">
 							<div class="chattingwholecontainer">
 								<div class="chattingtitlecontainer">
 									<div class="titleandimgcontainer">
 										<div class="chattingimgcontainer"></div>
 										<div class="chattingtitle"></div>
 									</div>
-									<div class="showchattinglistbuttoncontainer"><div class="showchattinglistbutton">목록 보기</div></div>
 								</div>
 								
 								<div class="chattingcontainer">
