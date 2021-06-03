@@ -217,6 +217,7 @@ function memberDetail(member_no, member_name, member_img, member_interest, membe
         success : function(data) {
         	var memberDetailList = data.memberDetailList;
         	var table_row = '';
+        	var accept_button = '';
         	
         	$.each(memberDetailList, function(key, value) {
         		if(value.skip==0){
@@ -245,7 +246,11 @@ function memberDetail(member_no, member_name, member_img, member_interest, membe
         			table_row += '									</div>';
         		}
              });
+        	
+        	accept_button += '<button class="subscribe" onclick="acceptMember('+"'"+memberName+"'"+','+memberNo+')">수락하기</button>';
+
           $('.studyName').html(table_row);  
+          $('.accept-button').html(accept_button);
         }
 	});
 	
@@ -270,6 +275,7 @@ function acceptMember(member_name, member_no){
 	} else{
 		return false;
 	}
+	$('#myModal').modal('hide');
 }
 
 function refuseMember(member_name, member_no){
@@ -348,38 +354,12 @@ function refuseMember(member_name, member_no){
 								</div>
 								
 								<div class="studyName">
-								<!-- 스터디 이름추가 시작 -->
-								<div class="row">
-									<div class="col-md-2 icon-box"></div>
-										<div class="col-md-8" id="finish-list">
-											<div class="row">
-												<div class="col-md-1 icon-box">
-													<i class="far fa-circle" style="color:green; font-size:10px;"></i>
-												</div>
-												<p style="margin-bottom:0px;">수강한 스터디 이름</p>
-											</div>
-										</div>
-									</div>
-								<!-- 스터디 이름 추가 끝 -->
-								
-								<!-- 스터디 이름추가 시작 -->
-								<div class="row">
-									<div class="col-md-2 icon-box"></div>
-										<div class="col-md-8" id="finish-list">
-											<div class="row">
-												<div class="col-md-1 icon-box">
-													<i class="fas fa-times" style="color:red; font-size:10px;"></i>
-												</div>
-												<p style="margin-bottom:0px;">수강한 스터디 이름</p>
-											</div>
-										</div>
-									</div>
-								<!-- 스터디 이름 추가 끝 -->
 									
 								</div>
 							</div>
-							<div class="modal-footer">
-								<button class="subscribe">Subscribe</button>
+							<div class="modal-footer accept-button">
+								<button class="subscribe" onclick="acceptMember()">수락하기</button>
+								
 							</div>
 						</div>
 					</div>
@@ -425,11 +405,11 @@ function refuseMember(member_name, member_no){
 				<div class="col-lg-7">
 					<nav class="header__menu">
 						<ul>
-							<li><a href="${context}/home">홈</a></li>
-							<li><a href="./shop-grid.html">스터디 검색</a></li>
-							<li><a href="./shop-grid.html">스터디 추가</a></li>
-							<li><a href="#">채팅</a>
-							<li class="active"><a href="${context}/manage/mystudy">스터디관리</a></li>
+							<li><a href="${context}/home">내 스터디</a></li>
+							<li><a href="${context}/search">스터디 검색</a></li>
+							<li><a href="${context}/createStudy">스터디 추가</a></li>
+							<li><a href="${context}/chatting/main">채팅</a>
+							<li class="active"><a href="${context}/manage/mystudy">스터디 관리</a></li>
 							<li><a href="${context}/mypage/myinfo">마이페이지</a></li>
 						</ul>
 					</nav>
@@ -444,7 +424,7 @@ function refuseMember(member_name, member_no){
 
 	<!-- Breadcrumb Section Begin -->
 	<section class="breadcrumb-section set-bg"
-		style="background-image: url('${context}/resources/img/breadcrumb.jpg')">
+		style="background-image: url('${context}/resources/img/banner.jpg')">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 text-center">
@@ -515,52 +495,13 @@ function refuseMember(member_name, member_no){
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-3 col-md-6 col-sm-6">
-					<div class="footer__about">
-						<div class="footer__about__logo"></div>
-						<ul>
-							<li>Address: 60-49 Road 11378 New York</li>
-							<li>Phone: +65 11.188.888</li>
-							<li>Email: hello@colorlib.com</li>
-						</ul>
-					</div>
+					
 				</div>
 				<div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
-					<div class="footer__widget">
-						<h6>Useful Links</h6>
-						<ul>
-							<li><a href="#">About Us</a></li>
-							<li><a href="#">About Our Shop</a></li>
-							<li><a href="#">Secure Shopping</a></li>
-							<li><a href="#">Delivery infomation</a></li>
-							<li><a href="#">Privacy Policy</a></li>
-							<li><a href="#">Our Sitemap</a></li>
-						</ul>
-						<ul>
-							<li><a href="#">Who We Are</a></li>
-							<li><a href="#">Our Services</a></li>
-							<li><a href="#">Projects</a></li>
-							<li><a href="#">Contact</a></li>
-							<li><a href="#">Innovation</a></li>
-							<li><a href="#">Testimonials</a></li>
-						</ul>
-					</div>
+				
 				</div>
 				<div class="col-lg-4 col-md-12">
-					<div class="footer__widget">
-						<h6>Join Our Newsletter Now</h6>
-						<p>Get E-mail updates about our latest shop and special
-							offers.</p>
-						<form action="#">
-							<input type="text" placeholder="Enter your mail">
-							<button type="submit" class="site-btn">Subscribe</button>
-						</form>
-						<div class="footer__widget__social">
-							<a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i
-								class="fa fa-instagram"></i></a> <a href="#"><i
-								class="fa fa-twitter"></i></a> <a href="#"><i
-								class="fa fa-pinterest"></i></a>
-						</div>
-					</div>
+					
 				</div>
 			</div>
 			<div class="row">
@@ -569,16 +510,12 @@ function refuseMember(member_name, member_no){
 						<div class="footer__copyright__text">
 							<p>
 								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-								Copyright &copy;
-								<script>
-									document.write(new Date().getFullYear());
-								</script>
-								All rights reserved | This template is made with <i
-									class="fa fa-heart" aria-hidden="true"></i> by <a
-									href="https://colorlib.com" target="_blank">Colorlib</a>
+								Hyundai IT&E 2차 팀 프로젝트&nbsp;&nbsp;|&nbsp;&nbsp;Wantudy : 원하는 사람과 스터디를!&nbsp;&nbsp;|&nbsp;&nbsp;made by&nbsp;&nbsp; <i class="fa fa-heart" aria-hidden="true"></i>
+								&nbsp;&nbsp;<a href="https://github.com/Khyeongu" target="_blank">강현구</a> | 
+								<a href="https://github.com/gawibawibo" target="_blank">김석윤</a> | 
+								<a href="https://github.com/ImYurim" target="_blank">임유림</a>
 								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 							</p>
-
 						</div>
 						<div class="footer__copyright__payment"></div>
 					</div>
