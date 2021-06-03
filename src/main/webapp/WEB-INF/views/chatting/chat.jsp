@@ -5,6 +5,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
+int study_no = (Integer)session.getAttribute("study_no");
 %>
 <c:set var="context" value="${pageContext.request.contextPath}" />
 
@@ -59,6 +60,11 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 
 <script type="text/javascript">
 	document.addEventListener("DOMContentLoaded", function(){
+		if(${study_no}){
+		   	var study = $('.studycontainer[data-value='+${study_no}+']');
+		   	getStudyNo(study);
+		}
+
 	   	
 	});
 
