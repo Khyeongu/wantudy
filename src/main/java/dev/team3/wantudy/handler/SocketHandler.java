@@ -43,7 +43,7 @@ public class SocketHandler extends TextWebSocketHandler {
 			map.put("session", session);
 			map.put("member_no", mapReceive.get("member_no"));
 			
-			//이미 있는 session이면 등록 안함
+			//�씠誘� �엳�뒗 session�씠硫� �벑濡� �븞�븿
 			for(int i = 0; i<sessionList.size(); i++) {
 				Map<String,Object> mapSessionList = sessionList.get(i);
 				String study_no = (String) mapSessionList.get("study_no");
@@ -64,7 +64,7 @@ public class SocketHandler extends TextWebSocketHandler {
 			}
 
 			
-			System.out.println("입장controller");
+			System.out.println("�엯�옣controller");
 			System.out.println("sessionList:"+sessionList);
 			
 			for(int i = 0; i<sessionList.size(); i++) {
@@ -80,7 +80,7 @@ public class SocketHandler extends TextWebSocketHandler {
 					mapToSend.put("study_no", study_no);
 					mapToSend.put("member_no", (String)map.get("member_no"));
 					mapToSend.put("cmd", "Enter");
-					mapToSend.put("msg","님이 입장하셨습니다.");
+					mapToSend.put("msg","�떂�씠 �엯�옣�븯�뀲�뒿�땲�떎.");
 					
 					String jsonStr = objectMapper.writeValueAsString(mapToSend);
 					sess.sendMessage(new TextMessage(jsonStr));
@@ -116,19 +116,6 @@ public class SocketHandler extends TextWebSocketHandler {
 	
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-		ObjectMapper objectMapper = new ObjectMapper();
-		String now_study_no="";
-		for (int i = 0 ; i <sessionList.size(); i++) {
-			Map<String,Object> map = sessionList.get(i);
-			String study_no = (String) map.get("study_no");
-			WebSocketSession sess  = (WebSocketSession) map.get("session");
-			
-			if(session.equals(sess)) {
-				now_study_no = study_no;
-				sessionList.remove(map);
-				break;
-			}
-		}
-		log.info("socket연결끊김");
+		sessionList.clear();
 	}
 }

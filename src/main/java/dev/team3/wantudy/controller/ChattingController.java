@@ -103,4 +103,11 @@ public class ChattingController {
 		chattingService.insertchattinglog(chattinglogDTO);
 		return new ModelAndView("chatting/chat");
 	}
+	
+
+	@ResponseBody
+	@PostMapping(value="/deletesession")
+	public void deletesession(HttpSession session) {
+		session.removeAttribute("study_no");
+	}
 }
