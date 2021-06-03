@@ -31,6 +31,7 @@
 		where member_no=#{member_no}
 	</select>
 
+
 	<update id="updateStudyInfo" parameterType="StudyDTO">
 		update study
 		set

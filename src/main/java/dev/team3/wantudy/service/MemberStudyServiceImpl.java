@@ -147,6 +147,12 @@ public class MemberStudyServiceImpl implements MemberStudyService{
 		return categoryDAO.getCategoryImgpath(category_no);
 	}
 
+	@Override
+	public List<EnrollDTO> selectStudyingEnrolls(MemberDTO memberDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return enrollDAO.selectStudyingEnrolls(memberDTO);
+	}
+
 	
 	
 }

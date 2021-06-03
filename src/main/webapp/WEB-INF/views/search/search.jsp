@@ -311,7 +311,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 								<div class="studycard ml-2 mr-2">
 									<!-- 카드 헤더 -->
 									<div class="studycard-header"
-										style="background-image: url('${context}/resources/img/categories/test.jpg')">
+										style="background-image: url('${context}/${rsl.category_imgpath}')">
 										<div class="studycard-header-is_closed possible">
 											<div class="studycard-header-text">모집중</div>
 											<div class="studycard-header-number">${rsl.member_count}/${rsl.capacity}</div>
@@ -322,7 +322,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 										<!--  카드 바디 헤더 -->
 										<div class="studycard-body-header">
 											<h1>${rsl.name}</h1>
-											<p>${rsl.category}스터디</p>
+											<p>${rsl.category} 스터디</p>
 										</div>
 										<p class="studycard-body-description">${rsl.content}</p>
 										<!--  카드 바디 본문 -->
