@@ -87,6 +87,12 @@
 		from enroll
 		where member_no=#{member_no} and status in ('종료', '무단이탈')
 	</select>
-
+	
+	<select id="selectStudyingEnrolls" parameterType="MemberDTO"
+		resultType="EnrollDTO">
+		select *
+		from enroll
+		where member_no = #{no} and status='진행중'
+	</select>
 
 </mapper>

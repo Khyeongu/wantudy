@@ -49,6 +49,8 @@ public class MypageController {
 	@Autowired
 	private EnrollService enrollService;
 	
+	
+	
 	@GetMapping(value = "/mypage/myinfo")
 	public String mypage(Locale locale, Model model, HttpSession session) {
 		
@@ -130,6 +132,7 @@ public class MypageController {
 				ms.setStudy_capacity(studyDTO.getCapacity());
 				ms.setStudy_member_no(studyDTO.getMember_no());
 				ms.setStudy_category(categoryService.getCategory(studyDTO.getCategory_no()));
+				ms.setCategory_imgpath(memberStudyService.getCategoryImgpath(studyDTO.getCategory_no()));
 				if(ms.getEnroll_status().equals("심사중")) {
 					ms.setStatusImg("/resources/img/status/yellow.png");
 				}else if(ms.getEnroll_status().equals("진행중")) {

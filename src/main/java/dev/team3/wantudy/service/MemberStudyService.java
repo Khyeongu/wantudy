@@ -25,4 +25,5 @@ public interface MemberStudyService {
 	public ChattinglogDTO getlastlog(int study_no) throws Exception;
 	public String getmembername(int member_no) throws Exception;
 	public String getCategoryImgpath(int category_no) throws Exception;
+	public List<EnrollDTO> selectStudyingEnrolls(MemberDTO memberDTO) throws Exception;
 }

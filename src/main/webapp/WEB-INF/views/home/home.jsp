@@ -20,18 +20,31 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 
 
 <!-- Google Font -->
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap"
+	rel="stylesheet">
 
 <!-- Css Styles -->
-<link rel="stylesheet" href="${context}/resources/css/bootstrap.min.css" type="text/css">
-<link rel="stylesheet" href="${context}/resources/css/font-awesome.min.css" type="text/css">
-<link rel="stylesheet" href="${context}/resources/css/elegant-icons.css" type="text/css">
-<link rel="stylesheet" href="${context}/resources/css/nice-select.css" type="text/css">
-<link rel="stylesheet" href="${context}/resources/css/jquery-ui.min.css" type="text/css">
-<link rel="stylesheet" href="${context}/resources/css/owl.carousel.min.css" type="text/css">
-<link rel="stylesheet" href="${context}/resources/css/slicknav.min.css" type="text/css">
-<link rel="stylesheet" href="${context}/resources/css/style.css" type="text/css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
+<link rel="stylesheet" href="${context}/resources/css/bootstrap.min.css"
+	type="text/css">
+<link rel="stylesheet"
+	href="${context}/resources/css/font-awesome.min.css" type="text/css">
+<link rel="stylesheet" href="${context}/resources/css/elegant-icons.css"
+	type="text/css">
+<link rel="stylesheet" href="${context}/resources/css/nice-select.css"
+	type="text/css">
+<link rel="stylesheet" href="${context}/resources/css/jquery-ui.min.css"
+	type="text/css">
+<link rel="stylesheet"
+	href="${context}/resources/css/owl.carousel.min.css" type="text/css">
+<link rel="stylesheet" href="${context}/resources/css/slicknav.min.css"
+	type="text/css">
+<link rel="stylesheet" href="${context}/resources/css/style.css"
+	type="text/css">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
+<link rel="stylesheet"
+	href="${context}/resources/css/studycard/studycard.css" type="text/css">
 
 
 
@@ -46,35 +59,26 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 <script src="${context}/resources/js/main.js"></script>
 <script src="${context}/resources/js/dropbox.js"></script>
 
-
 <script>
-$(document).ready(function(){
-	$("#interest1").val('<c:out value="${interestList[0].category_no}"/>').prop("selected", true);
-	$("#interest2").val('<c:out value="${interestList[1].category_no}"/>').prop("selected", true);
-	$("#interest3").val('<c:out value="${interestList[2].category_no}"/>').prop("selected", true);
-});
+function addStudyNoToSession(study_no){
+	alert(study_no);
+	
+	$.ajax({
+        url : '${context}/home',
+        type : 'POST',
+        data : 
+        	{
+        	'study_no' : study_no
+       		},
+        success : function(data) {
+        	window.location.href="${context}/chatting/main";        	
+        }
+    });
+}
 
-function updateInfo(){
-	var password=document.getElementById("password").value;
-	var password_confirm=document.getElementById("password-confirm").value;
-	var session_password = '<%=((MemberDTO) session.getAttribute("userInfo")).getPassword()%>
-	';
 
-		if (password == password_confirm) {
-			if (password == session_password) {
-				if (confirm("정말 수정하시겠습니까?")) {
-					document.getElementById("memberInfoForm").submit();
-				} else {
-					return false;
-				}
-			} else {
-				alert("비밀번호가 일치하지 않습니다.");
-			}
-		} else {
-			alert("비밀번호가 서로 일치하지 않습니다.");
-		}
-	}
 </script>
+
 
 </head>
 
@@ -150,10 +154,76 @@ function updateInfo(){
 	<!-- Breadcrumb Section End -->
 
 	<!-- Blog Section Begin -->
-	<section class="blog spad">
+	<section class="blog spad"  style="padding-top: 50px;">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-3 col-md-5"></div>
+				<div class="col-lg-1 col-md-5 pl-5 pr-5"></div>
+				<div class="col-lg-10 col-md-7">
+					<h4 class="mb-3 border__bottom">진행중인 스터디</h4>
+					<div class="row">
+					
+					<c:forEach items="${memberStudyList}" var="ms">
+							<c:set var="current_cnt" value="${ms.study_member_count}" />
+							<c:set var="max_cnt" value="${ms.study_capacity}" />
+							<c:set var="study_status" value="${ms.enroll_status}" />
+							<!-- 카드 시작 -->
+							<div class="col-lg-4">
+								<a href="javascript:addStudyNoToSession(${ms.enroll_study_no})"> <!-- 클릭 시 링크 설정 -->
+									<div class="studycard ml-2 mr-2">
+										<!-- 카드 헤더 -->
+										<div class="studycard-header"
+											style="background-image: url('${context}/${ms.category_imgpath}')">
+											<c:choose>
+												<c:when test="${study_status=='종료'}">
+													<div class="studycard-header-is_closed end">
+														<div class="studycard-header-text">종료</div>
+													</div>
+												</c:when>
+												<c:when test="${current_cnt == max_cnt}">
+													<div class="studycard-header-is_closed impossible">
+														<div class="studycard-header-text">모집완료</div>
+														<div class="studycard-header-number">${ms.study_member_count}
+															/ ${ms.study_capacity}</div>
+													</div>
+
+												</c:when>
+												<c:otherwise>
+													<div class="studycard-header-is_closed possible">
+														<div class="studycard-header-text">모집중</div>
+														<div class="studycard-header-number">${ms.study_member_count}
+															/ ${ms.study_capacity}</div>
+													</div>
+												</c:otherwise>
+											</c:choose>
+										</div>
+										<!--  카드 바디 -->
+										<div class="studycard-body">
+											<!--  카드 바디 헤더 -->
+											<div class="studycard-body-header">
+												<h1>${ms.study_name}</h1>
+												<p>${ms.study_category} 스터디</p>
+											</div>
+											<p class="studycard-body-description">${ms.study_content}</p>
+											<!--  카드 바디 본문 -->
+
+											<!--  카드 바디 푸터 -->
+											<div class="studycard-body-footer">
+												<hr
+													style="margin-bottom: 8px; opacity: 0.5; border-color: #EF5A31">
+												${ms.study_startdate} ~ ${ms.study_enddate} <img
+													class="status-img mt-1 ml-1 mr-1"
+													src="${context}${ms.statusImg}"> <i class="status">
+													${ms.enroll_status }&nbsp;&nbsp; </i>
+											</div>
+										</div>
+									</div>
+								</a>
+							</div>
+							<!-- 카드 끝 -->
+						</c:forEach>
+						
+					</div>
+				</div>
 
 
 			</div>

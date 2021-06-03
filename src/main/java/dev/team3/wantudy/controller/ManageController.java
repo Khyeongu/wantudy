@@ -61,6 +61,8 @@ public class ManageController {
 
 	@Autowired
 	private MemberStudyService memberStudyService;
+	
+	
 
 	@GetMapping(value = "/manage/mystudy")
 	public String mystudy(Locale locale, Model model, HttpSession session) {
@@ -89,6 +91,7 @@ public class ManageController {
 				ms.setStudy_member_no(((MemberDTO) session.getAttribute("userInfo")).getNo());
 				ms.setStudy_category(categoryService.getCategory(s.getCategory_no()));
 				ms.setStudy_member_count(enrollService.getMemberCount(s.getNo()));
+				ms.setCategory_imgpath(memberStudyService.getCategoryImgpath(s.getCategory_no()));
 				if (ms.getEnroll_status().equals("심사중")) {
 					ms.setStatusImg("/resources/img/status/yellow.png");
 				} else if (ms.getEnroll_status().equals("진행중")) {
