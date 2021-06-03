@@ -58,6 +58,14 @@
 
 
 }
+
+img{
+
+	width:100%;
+	height:100%;
+}
+
+
 .studynameandlogcontainer{
 	display:flex;
 	flex-direction:column;
@@ -69,16 +77,17 @@
 	text-overflow: ellipsis;
 	overflow:hidden;
 	overflow:hidden;
-	width:100px;
+	width:100%;
 	height:20px;
 	margin-bottom:3px;
+	margin-left:5px;
 }
 
 .studylastlogcontainer{
 	height:25px;
 	width:100%;
 	color:#7fad39;
-
+	margin-left:5px;
 }
 
 .studycontainertitlecontainer{
@@ -168,7 +177,11 @@ hr{
 .chattingimgcontainer{
 	width:40px;
 	height:40px;
-	border: 1px solid black;
+	border-radius: 8px;
+}
+
+.chattingimgcontainer > img{
+		border-radius: 8px;
 }
 
 .showchattinglistbuttoncontainer{
