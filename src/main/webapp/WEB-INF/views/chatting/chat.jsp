@@ -5,7 +5,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
-int study_no = (Integer)session.getAttribute("study_no");
 %>
 <c:set var="context" value="${pageContext.request.contextPath}" />
 
@@ -60,14 +59,6 @@ int study_no = (Integer)session.getAttribute("study_no");
 
 
 <script type="text/javascript">
-	document.addEventListener("DOMContentLoaded", function(){
-		var study_no = $('#clickedstudyno').val();
-		if(study_no){
-		   	var study = $('.studycontainer[data-value='+${study_no}+']');
-		   	getStudyNo(study);
-		}
-	   	
-	});
 
 	var now_time;
 	var ws;
@@ -259,8 +250,8 @@ int study_no = (Integer)session.getAttribute("study_no");
 		var study_no = $(study).data("value");
 		var title = $(study).children('.studynameandlogcontainer').children('.studynamecontainer').text();
 		var categoryimgpath = $(study).children('.studyimgcontainer').children('img').attr("src");
-		var categoryimg = "<img src='"+categoryimgpath+"'>";
-		$('.chattingimgcontainer').append(categoryimg);
+		
+		$('.chattingimgcontainer').children('img').attr("src",categoryimgpath);
 		selectstudy(study);
 		
 		
@@ -644,7 +635,6 @@ int study_no = (Integer)session.getAttribute("study_no");
 							<ul>
 								<li><i class="fa fa-envelope"></i> ${sessionScope.userInfo.name}님 안녕하세요</li>
 								<li>새로운 스터디와 함께 공부해보세요!</li>
-								<input type="hidden" id ="clickedstudyno" name="clickedstudyno" var="${study_no}">
 							</ul>
 						</div>
 					</div>
@@ -709,7 +699,7 @@ int study_no = (Integer)session.getAttribute("study_no");
 					<div class="sidebar">
 						<div class="sidebar__item pr-5">
 							<h4>스터디 목록</h4>
-	
+								<input type="hidden" id ="clickedstudyno" name="clickedstudyno" var="${study_no}">	
 								<input class="nowstudy_no" type="hidden" name="nowstudy_no" value="">
 								
 								<c:forEach var="studylist" items="${studylist}">
@@ -754,7 +744,9 @@ int study_no = (Integer)session.getAttribute("study_no");
 							<div class="chattingwholecontainer">
 								<div class="chattingtitlecontainer">
 									<div class="titleandimgcontainer">
-										<div class="chattingimgcontainer"></div>
+										<div class="chattingimgcontainer">
+											<img>
+										</div>
 										<div class="chattingtitle"></div>
 									</div>
 								</div>
