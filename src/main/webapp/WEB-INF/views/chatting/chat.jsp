@@ -28,6 +28,7 @@ int study_no = (Integer) session.getAttribute("study_no");
 <link rel="stylesheet" href="${context}/resources/css/chatting/slicknav.min.css" type="text/css">
 <link rel="stylesheet" href="${context}/resources/css/chatting/style.css" type="text/css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
+<link rel="stylesheet" href="${context}/resources/css/font-awesome.min.css" type="text/css">
 	
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -672,7 +673,7 @@ int study_no = (Integer) session.getAttribute("study_no");
 	<!-- Header Section End -->
 	
 	<!-- Breadcrumb Section Begin -->
-	<section class="breadcrumb-section set-bg" style="background-image: url('${context}/resources/img/breadcrumb.jpg')">
+	<section class="breadcrumb-section set-bg" style="background-image: url('${context}/resources/img/banner.jpg')">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 text-center">

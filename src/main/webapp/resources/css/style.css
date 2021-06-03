@@ -25,6 +25,10 @@
 9.  Contact
 10.  Footer Style
 -------------------------------------------------------------------*/
+@font-face{
+	font-family: 'TmoneyRoundWindRegular';
+	src: url(../fonts/TmoneyRoundWind/TmoneyRoundWindRegular.ttf) format('truetype');
+}
 
 /*----------------------------------------*/
 /* Template default CSS
@@ -117,7 +121,7 @@ select {
 
 html, body {
 	height: 100%;
-	font-family: "Cairo", sans-serif;
+	font-family: "TmoneyRoundWindRegular", sans-serif;
 	-webkit-font-smoothing: antialiased;
 	font-smoothing: antialiased;
 }
@@ -126,7 +130,7 @@ h1, h2, h3, h4, h5, h6 {
 	margin: 0;
 	color: #111111;
 	font-weight: 400;
-	font-family: "Cairo", sans-serif;
+	font-family: "TmoneyRoundWindRegular", sans-serif;
 }
 
 h1 {
@@ -155,7 +159,7 @@ h6 {
 
 p {
 	font-size: 16px;
-	font-family: "Cairo", sans-serif;
+	font-family: "TmoneyRoundWindRegular", sans-serif;
 	color: #6f6f6f;
 	font-weight: 400;
 	line-height: 26px;
