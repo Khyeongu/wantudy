@@ -149,7 +149,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 								<a href="studyinfo/${ms.enroll_study_no}"> <!-- 클릭 시 링크 설정 -->
 									<div class="studycard ml-2 mr-2">
 										<!-- 카드 헤더 -->
-										<div class="studycard-header" style="background-image: url('${context}/resources/img/categories/test.jpg')">
+										<div class="studycard-header" style="background-image: url('${context}/${ms.category_imgpath}')">
 											<c:choose>
 												<c:when test="${study_status=='종료'}">
 													<div class="studycard-header-is_closed end">
@@ -176,7 +176,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 											<!--  카드 바디 헤더 -->
 											<div class="studycard-body-header">
 												<h1>${ms.study_name}</h1>
-												<p>${ms.study_category}스터디</p>
+												<p>${ms.study_category} 스터디</p>
 											</div>
 											<p class="studycard-body-description">${ms.study_content}</p>
 											<!--  카드 바디 본문 -->

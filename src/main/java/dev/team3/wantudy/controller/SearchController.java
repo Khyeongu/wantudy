@@ -30,6 +30,7 @@ import dev.team3.wantudy.dto.StudyStatusDTO;
 import dev.team3.wantudy.dto.StudyStatusForJspDTO;
 import dev.team3.wantudy.service.CategoryService;
 import dev.team3.wantudy.service.EnrollService;
+import dev.team3.wantudy.service.MemberStudyService;
 import dev.team3.wantudy.service.StudyService;
 import lombok.extern.slf4j.Slf4j;
 
@@ -46,6 +47,9 @@ public class SearchController {
 
 	@Autowired
 	private CategoryService categoryService;
+	
+	@Autowired
+	private MemberStudyService memberStudyService;
 
 	/* �솃 �럹�씠吏� */
 	@GetMapping(value = { "" })
@@ -79,6 +83,7 @@ public class SearchController {
 				ss.setCategory_no(s.getCategory_no());
 				ss.setMember_count(enrollService.getMemberCount(s.getNo()));
 				ss.setCategory(categoryService.getCategory(s.getCategory_no()));
+				ss.setCategory_imgpath(memberStudyService.getCategoryImgpath(s.getCategory_no()));
 
 				recentStudyList.add(ss);
 			}

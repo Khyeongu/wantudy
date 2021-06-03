@@ -5,6 +5,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
+int study_no = (Integer)session.getAttribute("study_no");
 %>
 <c:set var="context" value="${pageContext.request.contextPath}" />
 
@@ -27,6 +28,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 <link rel="stylesheet" href="${context}/resources/css/chatting/slicknav.min.css" type="text/css">
 <link rel="stylesheet" href="${context}/resources/css/chatting/style.css" type="text/css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
+<link rel="stylesheet" href="${context}/resources/css/font-awesome.min.css" type="text/css">
 	
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -58,6 +60,15 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 
 
 <script type="text/javascript">
+	document.addEventListener("DOMContentLoaded", function(){
+		var study_no = $('#clickedstudyno').val();
+		if(study_no){
+		   	var study = $('.studycontainer[data-value='+${study_no}+']');
+		   	getStudyNo(study);
+		}
+	   	
+	});
+
 	var now_time;
 	var ws;
 	wsOpen();
@@ -247,8 +258,12 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 
 		var study_no = $(study).data("value");
 		var title = $(study).children('.studynameandlogcontainer').children('.studynamecontainer').text();
-		
+		var categoryimgpath = $(study).children('.studyimgcontainer').children('img').attr("src");
+		var categoryimg = "<img src='"+categoryimgpath+"'>";
+		$('.chattingimgcontainer').append(categoryimg);
 		selectstudy(study);
+		
+		
 		
 		$('.chattingtitle').text(title);
 		
@@ -629,6 +644,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 							<ul>
 								<li><i class="fa fa-envelope"></i> ${sessionScope.userInfo.name}님 안녕하세요</li>
 								<li>새로운 스터디와 함께 공부해보세요!</li>
+								<input type="hidden" id ="clickedstudyno" name="clickedstudyno" var="${study_no}">
 							</ul>
 						</div>
 					</div>
@@ -671,7 +687,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 	<!-- Header Section End -->
 	
 	<!-- Breadcrumb Section Begin -->
-	<section class="breadcrumb-section set-bg" style="background-image: url('${context}/resources/img/breadcrumb.jpg')">
+	<section class="breadcrumb-section set-bg" style="background-image: url('${context}/resources/img/banner.jpg')">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 text-center">
@@ -700,6 +716,11 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 									<div class="studycontainer" data-value="${studylist.no}"
 										onClick="getStudyNo(this)">
 										<div class="studyimgcontainer">
+										<c:forEach var="categoryimg" items="${categoryimgpath}">
+													<c:if test="${categoryimg.key == studylist.no}">
+														<img src="${context}/<c:out value="${categoryimg.value}"/>">
+													</c:if>
+										</c:forEach>
 										</div>
 										<div class="studynameandlogcontainer">
 											<div class="studynamecontainer">
@@ -726,9 +747,9 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 					</div>
 				</div>
 
-				<div class="col-lg-8 col-md-7">
-					<h4 class="mb-3 border__bottom">대화창</h4>
-					<div class="row">
+				<div class="col-lg-8 col-md-7 ml-5 pl-5 px-5">
+				
+					<div class="row mt-4">
 						<div class="col-lg-12">
 							<div class="chattingwholecontainer">
 								<div class="chattingtitlecontainer">
@@ -747,7 +768,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 										value="<%=((MemberDTO) session.getAttribute("userInfo")).getNo()%>">
 									<div id="yourMsg">
 											
-										<input id="chatting" placeholder="보내실 메시지를 입력하세요.">
+										<input id="chatting" placeholder="보낼 메시지를 입력하세요.">
 										<button onclick="insertChattinglog(); sendChat();"
 												id="sendBtn">보내기</button>
 										

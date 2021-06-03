@@ -33,4 +33,8 @@ public interface EnrollDAO {
 
 	public List<EnrollDTO> memberDetail(int member_no) throws SQLException;
 
+	public List<EnrollDTO> selectStudyingEnrolls(MemberDTO memberDTO) throws SQLException;
+
+	public List<EnrollDTO> selectApplyEnrolls(MemberDTO memberDTO) throws SQLException;
+
 }
