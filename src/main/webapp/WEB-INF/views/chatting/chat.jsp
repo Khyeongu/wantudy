@@ -77,6 +77,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 			var member_no = all.member_no;
 			var userno = $('#userNo').val();
 			var username = $('#userName').val();
+			var member_name;
 			
 			var msg = all.msg;
 			var cmd = all.cmd;
@@ -99,12 +100,29 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 					str += "</div>";
 					$("#chattingloglistcontainer").append(str);
 				} else {
+					$.ajax({
+						type : 'POST',
+						url : '${pageContext.request.contextPath}/chatting/getmembername',
+						data : {
+							"member_no" : member_no
+						},
+						dataType:"json",
+						async : false,
+						success : function(data) {
+							member_name = data.member_name[0];
+							
+						},
+						error : function() {
+							alert("로그 불러오기 실패.");
+						}
+					});
+					
 					var str = "<div class='chattinglogcontainer'>";
 					str += "<div class='chattinglogtime'>"
 					str += time;
 					str += "</div>";
 					str += "<div class='chattinglogname'>"
-					str += member_no;
+					str += member_name;
 					str += "</div>";
 					str += "<div class='yourballoon'>"
 					str += "<div class='chattinglogcontent'>"
@@ -114,6 +132,9 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 					str += "</div>";
 					$("#chattingloglistcontainer").append(str);
 				}
+				
+				
+				
 
 
 
@@ -329,11 +350,31 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 								var member_no = data.chattingloglist[i].member_no;
 								var userno = $('#userNo').val();
 								var username = $('#userName').val()
-
+								var member_name;
+								
 								if (member_no != userno) {
+								//membername 가져오기
+								$.ajax({
+									type : 'POST',
+									url : '${pageContext.request.contextPath}/chatting/getmembername',
+									data : {
+										"member_no" : member_no
+									},
+									dataType:"json",
+									async : false,
+									success : function(data) {
+										member_name = data.member_name[0];
+										
+									},
+									error : function() {
+										alert("로그 불러오기 실패.");
+									}
+								});
+										
+									
 									var str = "<div class='chattinglogcontainer' data-no='"+chattinglogno+"'>";
 									str += "<div class='chattinglogname'>"
-									str += member_no;
+									str += member_name;
 									str += "</div>";
 									str += "<div class='yourballoon'>"
 									str += "<div class='chattinglogcontent'>"
@@ -344,7 +385,8 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 									str += message_time;
 									str += "</div>";
 									str += "</div>";
-								} else {
+								
+							} else {
 									var str = "<div class='chattinglogcontainer mylog' data-no='"+chattinglogno+"'>";
 									str += "<div class='chattinglogtime'>"
 									str += message_time;
