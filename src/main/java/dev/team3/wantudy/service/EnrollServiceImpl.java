@@ -1,6 +1,7 @@
 package dev.team3.wantudy.service;
 
 import java.util.HashMap;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -50,6 +51,7 @@ public class EnrollServiceImpl implements EnrollService {
 		// TODO Auto-generated method stub
 		enrollDAO.kickMember(memberInfo);
 	}
+
 	@Override
 	public void insertMemberEnroll(EnrollDTO enrollDTO) throws Exception {
 		enrollDAO.insertMemberEnroll(enrollDTO);
@@ -67,6 +69,12 @@ public class EnrollServiceImpl implements EnrollService {
 		// TODO Auto-generated method stub
 		return enrollDAO.checkAlreadyEnrolled(enrollDTO);
 
+	}
+
+	@Override
+	public List<EnrollDTO> memberDetail(int member_no) throws Exception {
+		// TODO Auto-generated method stub
+		return enrollDAO.memberDetail(member_no);
 	}
 
 }

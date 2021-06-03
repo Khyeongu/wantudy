@@ -19,6 +19,9 @@ grant connect, resource to wantudy;
 -- 멤버 번호 시퀀스
 DROP SEQUENCE MEMBER_NO_SEQ;
 
+-- 등록 번호 시퀀스
+DROP SEQUENCE ENROLL_NO_SEQ;
+
 -- 카테고리 번호 시퀀스
 DROP SEQUENCE CATEGORY_NO_SEQ;
 
@@ -34,6 +37,12 @@ DROP SEQUENCE ABILITYLEVEL_NO_SEQ;
 -- 시퀀스 생성
 -- 멤버 번호 시퀀스
 CREATE SEQUENCE MEMBER_NO_SEQ
+    START WITH 1
+    INCREMENT BY 1
+	NOCACHE;
+	
+-- 등록 번호 시퀀스
+CREATE SEQUENCE ENROLL_NO_SEQ
     START WITH 1
     INCREMENT BY 1
 	NOCACHE;
@@ -157,7 +166,7 @@ ALTER TABLE CHATTINGLOG ADD CONSTRAINT chattinglog_pk PRIMARY KEY ( no );
 -- ENROLL 테이블 생성 
 CREATE TABLE ENROLL (
       no         NUMBER NOT NULL  -- 등록 번호
-      member_no  NUMBER NOT NULL  -- 회원 번호
+    , member_no  NUMBER NOT NULL  -- 회원 번호
     , study_no   NUMBER NOT NULL  -- 스터디 번호
     , status     VARCHAR2(20)     -- 회원 상태
     , skip       NUMBER DEFAULT 0     -- skip 여부

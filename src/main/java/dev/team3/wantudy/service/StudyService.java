@@ -17,6 +17,8 @@ public interface StudyService {
 
 	int createStudyNo() throws Exception;
 
-	List<StudyRnumDTO> getRecentStudy() throws Exception;;
+	List<StudyRnumDTO> getRecentStudy() throws Exception;
+
+	String getStudyName(int study_no) throws Exception;
 
 }

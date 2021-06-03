@@ -247,7 +247,11 @@ public class ManageController {
 			pagingInfo.put("page_num", page_num);
 
 			List<ApplyMemberDTO> applyMemberList = memberStudyService.getApplyMemberList(pagingInfo);
-
+			
+			//img 경로
+			for(ApplyMemberDTO am : applyMemberList) {
+				am.setMember_img("/wantudy/resources/img/userimg.png");
+			}
 			result.put("applyMemberList", applyMemberList);
 			result.put("page_num", page_num);
 			result.put("startpage", startpage);
@@ -376,6 +380,29 @@ public class ManageController {
 			
 		} catch (Exception e) {
 
+		}
+	}
+	
+	@PostMapping(value = "/manage/studyapply/memberDetail/{study_no}")
+	@ResponseBody
+	public Map<String, Object> memberDetail(@PathVariable int study_no, @RequestParam(value = "member_no") int member_no, Model model, HttpSession session) {
+		try {
+			List<EnrollDTO> memberDetailEnrollList = enrollService.memberDetail(member_no);
+			List<Map<String, Object>> memberDetailList = new ArrayList<Map<String,Object>>();
+			
+			
+			Map<String, Object> result2 = new HashMap<String, Object>();
+			
+			for(EnrollDTO e : memberDetailEnrollList) {
+				Map<String, Object> result = new HashMap<String, Object>();
+				result.put("skip", e.getSkip());
+				result.put("studyName", studyService.getStudyName(e.getStudy_no()));
+				memberDetailList.add(result);
+			}
+			result2.put("memberDetailList", memberDetailList);
+			return result2;
+		} catch (Exception e) {
+			return null;
 		}
 	}
 

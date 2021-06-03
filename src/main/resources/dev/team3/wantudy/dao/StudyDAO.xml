@@ -62,5 +62,9 @@
 	]]>
 	</select>
 
-
+	<select id="getStudyName" parameterType="int" resultType="string">
+		select name
+		from study
+		where no=#{study_no}
+	</select>
 </mapper>
