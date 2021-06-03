@@ -61,11 +61,11 @@ int study_no = (Integer)session.getAttribute("study_no");
 
 <script type="text/javascript">
 	document.addEventListener("DOMContentLoaded", function(){
-		if(${study_no}){
+		var study_no = $('#clickedstudyno').val();
+		if(study_no){
 		   	var study = $('.studycontainer[data-value='+${study_no}+']');
 		   	getStudyNo(study);
 		}
-
 	   	
 	});
 
@@ -644,6 +644,7 @@ int study_no = (Integer)session.getAttribute("study_no");
 							<ul>
 								<li><i class="fa fa-envelope"></i> ${sessionScope.userInfo.name}님 안녕하세요</li>
 								<li>새로운 스터디와 함께 공부해보세요!</li>
+								<input type="hidden" id ="clickedstudyno" name="clickedstudyno" var="${study_no}">
 							</ul>
 						</div>
 					</div>
