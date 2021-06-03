@@ -113,7 +113,7 @@ public class MypageController {
 			
 			int index=0;
 			
-			List<EnrollDTO> enrollList = memberStudyService.selectAllEnrolls((MemberDTO)session.getAttribute("userInfo"));
+			List<EnrollDTO> enrollList = memberStudyService.selectApplyEnrolls((MemberDTO)session.getAttribute("userInfo"));
 			
 			List<MemberStudyDTO> memberStudyList = new ArrayList<MemberStudyDTO>();
 			for(EnrollDTO enroll : enrollList) {

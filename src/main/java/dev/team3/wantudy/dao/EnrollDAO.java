@@ -35,4 +35,6 @@ public interface EnrollDAO {
 
 	public List<EnrollDTO> selectStudyingEnrolls(MemberDTO memberDTO) throws SQLException;
 
+	public List<EnrollDTO> selectApplyEnrolls(MemberDTO memberDTO) throws SQLException;
+
 }

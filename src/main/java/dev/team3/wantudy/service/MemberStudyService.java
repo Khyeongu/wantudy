@@ -26,4 +26,5 @@ public interface MemberStudyService {
 	public String getmembername(int member_no) throws Exception;
 	public String getCategoryImgpath(int category_no) throws Exception;
 	public List<EnrollDTO> selectStudyingEnrolls(MemberDTO memberDTO) throws Exception;
+	public List<EnrollDTO> selectApplyEnrolls(MemberDTO memberDTO) throws Exception;
 }
