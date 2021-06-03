@@ -30,4 +30,10 @@
        offset 0 rows fetch first 1 rows only
 
 	</select>
+	
+	<select id="getmembername" parameterType="int" resultType="String">
+		select name from member where no = #{member_no}
+
+	</select>
+	
 </mapper>
