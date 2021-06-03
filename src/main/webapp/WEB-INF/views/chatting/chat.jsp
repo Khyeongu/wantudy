@@ -735,9 +735,9 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 					</div>
 				</div>
 
-				<div class="col-lg-8 col-md-7">
-					<h4 class="mb-3 border__bottom">대화창</h4>
-					<div class="row">
+				<div class="col-lg-8 col-md-7 ml-5 pl-5 px-5">
+				
+					<div class="row mt-4">
 						<div class="col-lg-12">
 							<div class="chattingwholecontainer">
 								<div class="chattingtitlecontainer">
@@ -756,7 +756,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 										value="<%=((MemberDTO) session.getAttribute("userInfo")).getNo()%>">
 									<div id="yourMsg">
 											
-										<input id="chatting" placeholder="보내실 메시지를 입력하세요.">
+										<input id="chatting" placeholder="보낼 메시지를 입력하세요.">
 										<button onclick="insertChattinglog(); sendChat();"
 												id="sendBtn">보내기</button>
 										
