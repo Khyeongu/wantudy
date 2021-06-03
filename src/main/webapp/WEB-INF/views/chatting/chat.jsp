@@ -248,6 +248,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 		var study_no = $(study).data("value");
 		var title = $(study).children('.studynameandlogcontainer').children('.studynamecontainer').text();
 		
+		selectstudy(study);
 		
 		$('.chattingtitle').text(title);
 		
@@ -607,6 +608,11 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 				});
 
 	}
+	
+	function selectstudy(study){
+		$('.studycontainer').removeClass('studycontainerclicked');
+		$(study).addClass('studycontainerclicked');
+	}
 </script>
 
 <body>
@@ -720,7 +726,6 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 										<div class="chattingimgcontainer"></div>
 										<div class="chattingtitle"></div>
 									</div>
-									<div class="showchattinglistbuttoncontainer"><div class="showchattinglistbutton">목록 보기</div></div>
 								</div>
 								
 								<div class="chattingcontainer">
