@@ -1,8 +1,11 @@
 package dev.team3.wantudy.controller;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -22,9 +25,9 @@ import org.springframework.web.servlet.ModelAndView;
 import dev.team3.wantudy.dto.EnrollDTO;
 import dev.team3.wantudy.dto.MemberDTO;
 import dev.team3.wantudy.dto.SearchDTO;
-import dev.team3.wantudy.dto.StudyDTO;
 import dev.team3.wantudy.dto.StudyRnumDTO;
 import dev.team3.wantudy.dto.StudyStatusDTO;
+import dev.team3.wantudy.dto.StudyStatusForJspDTO;
 import dev.team3.wantudy.service.CategoryService;
 import dev.team3.wantudy.service.EnrollService;
 import dev.team3.wantudy.service.StudyService;
@@ -50,18 +53,27 @@ public class SearchController {
 		MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 		session.setAttribute("userInfo", userInfo);
 
+		return "search/search";
+	}
+
+	@ResponseBody
+	@PostMapping(value = { "" })
+	public Map<String, Object> showRecentStudy(Model model, HttpSession session) {
+		MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
+		session.setAttribute("userInfo", userInfo);
 		try {
 			List<StudyRnumDTO> studyList = studyService.getRecentStudy();
-			List<StudyStatusDTO> recentStudyList = new ArrayList<StudyStatusDTO>();
+			List<StudyStatusForJspDTO> recentStudyList = new ArrayList<StudyStatusForJspDTO>();
 
+			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 			for (StudyRnumDTO s : studyList) {
-				StudyStatusDTO ss = new StudyStatusDTO();
+				StudyStatusForJspDTO ss = new StudyStatusForJspDTO();
 
 				ss.setNo(s.getNo());
 				ss.setName(s.getName());
 				ss.setContent(s.getContent());
-				ss.setStartdate(s.getStartdate());
-				ss.setEnddate(s.getEnddate());
+				ss.setStartdate(dateFormat.format(s.getStartdate()));
+				ss.setEnddate(dateFormat.format(s.getEnddate()));
 				ss.setCapacity(s.getCapacity());
 				ss.setMember_no(s.getMember_no());
 				ss.setCategory_no(s.getCategory_no());
@@ -71,14 +83,17 @@ public class SearchController {
 				recentStudyList.add(ss);
 			}
 
-			model.addAttribute("recentStudyList", recentStudyList);
+			Map<String, Object> result = new HashMap<String, Object>();
+			result.put("recentStudyList", recentStudyList);
 
-		} catch (Exception e) {
+			return result;
+		} catch (
+
+		Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return null;
 		}
-
-		return "search/search";
 	}
 
 	/* �솃 �럹�씠吏� */
@@ -118,22 +133,26 @@ public class SearchController {
 
 	@ResponseBody
 	@PostMapping(value = "/list")
-	public ModelAndView list(@ModelAttribute SearchDTO searchDTO, HttpSession session) {
-		System.out.println("post 로 통신 성공");
+	public HashMap<String, String> list(@ModelAttribute SearchDTO searchDTO, HttpSession session) {
 
-		ModelAndView mav = new ModelAndView();
+		MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
+		session.setAttribute("userInfo", userInfo);
+		
 		try {
-			List<StudyRnumDTO> list = studyService.getStudyListWithSearch(searchDTO);
+			List<StudyRnumDTO> searchResult = studyService.getStudyListWithSearch(searchDTO);
 
-			for (StudyRnumDTO studyRnumDTO : list) {
+			for (StudyRnumDTO studyRnumDTO : searchResult) {
 				System.out.println(studyRnumDTO);
 			}
 
-			// mav.setViewName("list");
-			// mav.addObject("list", list);
+			Map<String, Object> result = new HashMap<String, Object>();
+			result.put("searchResult", searchResult);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		
+		
 
 		return null;
 	}
