@@ -247,8 +247,12 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 
 		var study_no = $(study).data("value");
 		var title = $(study).children('.studynameandlogcontainer').children('.studynamecontainer').text();
-		
+		var categoryimgpath = $(study).children('.studyimgcontainer').children('img').attr("src");
+		var categoryimg = "<img src='"+categoryimgpath+"'>";
+		$('.chattingimgcontainer').append(categoryimg);
 		selectstudy(study);
+		
+		
 		
 		$('.chattingtitle').text(title);
 		
@@ -700,6 +704,11 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 									<div class="studycontainer" data-value="${studylist.no}"
 										onClick="getStudyNo(this)">
 										<div class="studyimgcontainer">
+										<c:forEach var="categoryimg" items="${categoryimgpath}">
+													<c:if test="${categoryimg.key == studylist.no}">
+														<img src="${context}/<c:out value="${categoryimg.value}"/>">
+													</c:if>
+										</c:forEach>
 										</div>
 										<div class="studynameandlogcontainer">
 											<div class="studynamecontainer">

@@ -44,6 +44,7 @@ public class ChattingController {
 		List<EnrollDTO> enrolllist = chattingService.selectavailableEnrolls(memberDTO);
 		List<StudyDTO> studylist = new ArrayList<StudyDTO>();
 		Map<Integer,String> lastloglist = new HashMap<Integer,String>();
+		Map<Integer,String> categoryimg = new HashMap<Integer,String>();
 		
 		System.out.println();
 		for(EnrollDTO enroll : enrolllist) {
@@ -51,6 +52,7 @@ public class ChattingController {
 			StudyDTO studyDTO = chattingService.getStudy(study_no);
 			System.out.println(studyDTO.getName());
 			String categoryimgpath = chattingService.getCategoryImgpath(studyDTO.getCategory_no());
+			categoryimg.put(studyDTO.getNo(), categoryimgpath);
 			studylist.add(studyDTO);
 			
 			try {
@@ -65,6 +67,7 @@ public class ChattingController {
 		model.addAttribute("lastloglist",lastloglist);
 		model.addAttribute("enrolllist",enrolllist);
 		model.addAttribute("studylist",studylist);
+		model.addAttribute("categoryimgpath",categoryimg);
 		return "chatting/chat";
 	}
 	
