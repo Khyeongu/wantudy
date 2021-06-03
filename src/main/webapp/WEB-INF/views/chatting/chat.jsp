@@ -58,6 +58,10 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 
 
 <script type="text/javascript">
+	document.addEventListener("DOMContentLoaded", function(){
+	   	alert("준비완료");
+	});
+
 	var now_time;
 	var ws;
 	wsOpen();
