@@ -9,4 +9,5 @@ import lombok.ToString;
 public class CategoryDTO {
 	int no;
 	String name;
+	String imgpath;
 }

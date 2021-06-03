@@ -24,6 +24,7 @@ public class MemberStudyDTO {
 	int study_capacity;
 	int study_member_no;
 	String study_category;
+	String category_imgpath;
 	
 	int study_member_count;
 	String statusImg;

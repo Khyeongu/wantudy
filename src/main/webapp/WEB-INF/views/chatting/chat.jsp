@@ -5,6 +5,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
+int study_no = (Integer) session.getAttribute("study_no");
 %>
 <c:set var="context" value="${pageContext.request.contextPath}" />
 
@@ -632,7 +633,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 						<div class="header__top__left">
 							<ul>
 								<li><i class="fa fa-envelope"></i> ${sessionScope.userInfo.name}님 안녕하세요</li>
-								<li>새로운 스터디와 함께 공부해보세요!</li>
+								<li>${study_no}새로운 스터디와 함께 공부해보세요!</li>
 							</ul>
 						</div>
 					</div>

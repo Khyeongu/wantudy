@@ -23,5 +23,6 @@ public class StudyStatusDTO {
 	int category_no;
 	int member_count;
 	String category;
+	String category_imgpath;
 
 }
