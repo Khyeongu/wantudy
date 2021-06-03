@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import dev.team3.wantudy.dto.ApplyMemberDTO;
+import dev.team3.wantudy.dto.CategoryDTO;
 import dev.team3.wantudy.dto.ChattinglogDTO;
 import dev.team3.wantudy.dto.EnrollDTO;
 import dev.team3.wantudy.dto.MemberDTO;
@@ -23,4 +24,5 @@ public interface MemberStudyService {
 	public List<ApplyMemberDTO> getStudyMemberList(HashMap<String, Object> pagingInfo) throws Exception;
 	public ChattinglogDTO getlastlog(int study_no) throws Exception;
 	public String getmembername(int member_no) throws Exception;
+	public String getCategoryImgpath(int category_no) throws Exception;
 }

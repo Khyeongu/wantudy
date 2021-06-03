@@ -11,4 +11,7 @@ public interface CategoryDAO {
 
 	List<CategoryDTO> getCategoryAll() throws SQLException;
 
+
+	String getCategoryImgpath(int category_no) throws SQLException;
+
 }

@@ -113,20 +113,25 @@ ALTER TABLE ABILITYLEVEL ADD CONSTRAINT abilitylevel_pk PRIMARY KEY ( no );
 
 -- CATEGORY 테이블 생성 
 CREATE TABLE CATEGORY (
-      no    NUMBER NOT NULL        -- 카테고리 번호
-    , name  VARCHAR2(50) NOT NULL  -- 카테고리 이름
+      no       NUMBER NOT NULL        -- 카테고리 번호
+    , name     VARCHAR2(50) NOT NULL  -- 카테고리 이름
+    , imgpath  VARCHAR2(50) NOT NULL  -- 카테고리 이미지 경로
+
 /*****************************************************************************
       TABLE NAME  	: CATEGORY
       DESCRIPTION   : 카테고리를 저장하는 테이블
       PARAMETERS    : no     -- 카테고리 번호
-					  name	 -- 카테고리 이름
+		      name	 -- 카테고리 이름
+		      imgpath       -- 카테고리 이미지 경로
       특이사항       :
   ----------------------------------------------------------------------------
         DATE       AUTHOR           DESCRIPTION
   ----------------------------------------------------------------------------
      2021-05-20    KSY              최초 작성
-	 2021-05-20    KHG              최초 작성
-	 2021-05-20    LYL              최초 작성
+     2021-05-20    KHG              최초 작성
+     2021-05-20    LYL              최초 작성
+     2021-06-03    LYL              imgpath 컬럼 추가
+	
 
 ******************************************************************************/
 );
@@ -496,17 +501,19 @@ insert into abilitylevel (no,name,score) values (110,'mongodb',5);
 
 /*insert category
 =====================================*/
-insert into category (no, name) values (0, '선택안함');
-insert into category (no, name) values (1, '네트워크');
-insert into category (no, name) values (2, '디자인패턴');
-insert into category (no, name) values (3, '머신러닝');
-insert into category (no, name) values (4, '보안');
-insert into category (no, name) values (5, '알고리즘');
-insert into category (no, name) values (6, '안드로이드');
-insert into category (no, name) values (7, '운영체제');
-insert into category (no, name) values (8, '웹');
-insert into category (no, name) values (9, '자료구조');
-insert into category (no, name) values (10, '프로그래밍 언어');
-insert into category (no, name) values (11, '컴퓨터구조');
-insert into category (no, name) values (12, 'IOS');
-insert into category (no, name) values (13, 'DB');
+insert into category (no, name, imgpath) values (0, '선택안함', 'resources/img/categories/test.jpg');
+insert into category (no, name, imgpath) values (1, '네트워크', 'resources/img/categories/network.jpg');
+insert into category (no, name, imgpath) values (2, '디자인패턴', 'resources/img/categories/designpattern.png');
+insert into category (no, name, imgpath) values (3, '머신러닝', 'resources/img/categories/machinelearning.jpg');
+insert into category (no, name, imgpath) values (4, '보안', 'resources/img/categories/security.jpg');
+insert into category (no, name, imgpath) values (5, '알고리즘', 'resources/img/categories/algorithm.jpg');
+insert into category (no, name, imgpath) values (6, '안드로이드', 'resources/img/categories/android.png');
+insert into category (no, name, imgpath) values (7, '운영체제', 'resources/img/categories/operatingsystem.jpg');
+insert into category (no, name, imgpath) values (8, '웹', 'resources/img/categories/web.jpg');
+insert into category (no, name, imgpath) values (9, '자료구조', 'resources/img/categories/datastructure.jpg');
+insert into category (no, name, imgpath) values (10, '프로그래밍 언어', 'resources/img/categories/programminglanguage.png');
+insert into category (no, name, imgpath) values (11, '컴퓨터구조', 'resources/img/categories/computerstructure.jpg');
+insert into category (no, name, imgpath) values (12, 'IOS', 'resources/img/categories/ios.jpg');
+insert into category (no, name, imgpath) values (13, 'DB', 'resources/img/categories/database.jpg');
+
+

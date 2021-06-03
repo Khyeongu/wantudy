@@ -14,5 +14,10 @@
 		select *
 		from category	
 	</select>
-	
+
+	<select id="getCategoryImgpath" parameterType="int" resultType="string">
+		select imgpath
+		from category
+		where no=#{category_no}
+	</select>	
 </mapper>
