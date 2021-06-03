@@ -12,4 +12,5 @@ public class EnrollDTO {
 	int study_no;
 	String status;
 	int skip;
+	int no;
 }

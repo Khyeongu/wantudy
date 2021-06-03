@@ -13,4 +13,5 @@ public class ApplyMemberDTO {
 	int skip;
 	int interest_no;
 	String interest_name;
+	String member_img;
 }

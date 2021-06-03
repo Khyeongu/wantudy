@@ -19,6 +19,8 @@ public interface StudyDAO {
 
 	public int createStudyNo() throws SQLException;
 
-	public List<StudyRnumDTO> getRecentStudy() throws SQLException;;
+	public List<StudyRnumDTO> getRecentStudy() throws SQLException;
+
+	public String getStudyName(int study_no) throws SQLException;
 
 }

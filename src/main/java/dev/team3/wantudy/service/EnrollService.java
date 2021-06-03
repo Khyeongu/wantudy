@@ -1,6 +1,7 @@
 package dev.team3.wantudy.service;
 
 import java.util.HashMap;
+import java.util.List;
 
 import dev.team3.wantudy.dto.EnrollDTO;
 import dev.team3.wantudy.dto.StudyDTO;
@@ -22,5 +23,9 @@ public interface EnrollService {
 	void insertStudyMasterEnroll(EnrollDTO enrollDTO) throws Exception;
 
 	int checkAlreadyEnrolled(EnrollDTO enrollDTO) throws Exception;
+
+	List<EnrollDTO> memberDetail(int member_no) throws Exception;
+
+
 
 }

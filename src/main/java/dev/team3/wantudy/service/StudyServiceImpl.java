@@ -55,4 +55,10 @@ public class StudyServiceImpl implements StudyService {
 		return studyDAO.getRecentStudy();
 	}
 
+	@Override
+	public String getStudyName(int study_no) throws Exception {
+		// TODO Auto-generated method stub
+		return studyDAO.getStudyName(study_no);
+	}
+
 }
