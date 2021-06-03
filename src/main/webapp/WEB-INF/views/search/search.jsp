@@ -154,103 +154,135 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 	<section class="blog spad">
 		<div class="container">
 			<div class="row">
+
 				<div class="col-lg-1 col-md-5 pl-5 pr-5"></div>
 
 				<div class="col-lg-10 col-md-7">
-					<h4 class="mb-3 border__bottom">최근 생긴 스터디</h4>
+					<h4 class="mb-3 border__bottom">스터디 검색</h4>
 					<div class="row">
+						<div class="col-lg-3 col-md-3"></div>
+						<div class="hero__search col-lg-8 col-md-8">
+							<div class="hero__search__form">
+								<form action="#">
+									<select name="searchCondition" class="hero__search__categories arrow_carrot-down">
+										<option value="title" <c:if test="${searchDTO.searchCondition == 'title'}"> selected </c:if>>제목</option>
+										<option value="name" <c:if test="${searchDTO.searchCondition == 'name'}"> selected </c:if>>이름</option>
+										<option value="content" <c:if test="${searchDTO.searchCondition == 'content'}"> selected </c:if>>내용</option>
+									</select>
+									<input type="text" name="searchKeyword" required="required" autocomplete=off placeholder="검색" value="${searchDTO.searchKeyword}" />
+									<button type="submit" class="site-btn">SEARCH</button>
+								</form>
+							</div>
 
-						<c:forEach items="${recentStudyList}" var="rsl">
-							<c:set var="current_cnt" value="${rsl.member_count}" />
-							<c:set var="max_cnt" value="${rsl.capacity}" />
-							<!-- 카드 시작 -->
-							<div class="col-lg-4" data-toggle="modal" data-target="#exampleModal${rsl.no}" style="cursor: pointer;">
-								<!-- Modal -->
-								<div class="modal fade" id="exampleModal${rsl.no}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-									<div class="modal-dialog" role="document">
-										<div class="modal-content">
-											<div class="modal-header">
-												<h5 class="modal-title" id="exampleModalLabel">${rsl.name}</h5>
-												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-													<span aria-hidden="true">&times;</span>
-												</button>
-											</div>
-											<div class="modal-body">
-												<div class="row">
-													<div class="col-lg-12">
-														<div class="studyinfo" id="studyinfo">
-															<form id="studyInfoForm" name="studyInfoForm" method="post">
-																<div>
-																	<h4>스터디 이름</h4>
-																	<input type="text" id="name" name="name" value="${rsl.name}" disabled="disabled">
-																</div>
-																<div>
-																	<h4>스터디 내용 //글상자 크기 변경해야함</h4>
-																	<input type="text" id="content" name="content" value="${rsl.content}" disabled="disabled">
-																</div>
-																<div>
-																	<h4>시작 날짜</h4>
-																	<input autocomplete="off" class="form-control" id="startdate" name="startdate" type="text" value="${rsl.startdate}" placeholder="시작 날짜" disabled="disabled" />
-																</div>
-																<div>
-																	<h4>종료 날짜</h4>
-																	<input autocomplete="off" class="form-control" id="enddate" name="enddate" type="text" value="${rsl.enddate}" placeholder="종료 날짜" disabled="disabled" />
-																</div>
-																<div>
-																	<h4>최대 인원</h4>
-																	<input type="text" id="capacity" name="capacity" value="${rsl.capacity}" disabled="disabled">
-																</div>
-																<div>
-																	<h4>카테고리</h4>
-																</div>
-																<div>
-																	<input type="text" id="capacity" name="capacity" value="${rsl.category}" disabled="disabled">
-																</div>
-															</form>
+						</div>
+
+					</div>
+
+
+				</div>
+
+
+
+
+
+				<div class="row">
+					<div class="col-lg-1 col-md-5 pl-5 pr-5"></div>
+
+					<div class="col-lg-10 col-md-7">
+						<h4 class="mb-3 border__bottom">최근 생긴 스터디</h4>
+						<div class="row">
+
+							<c:forEach items="${recentStudyList}" var="rsl">
+								<c:set var="current_cnt" value="${rsl.member_count}" />
+								<c:set var="max_cnt" value="${rsl.capacity}" />
+								<!-- 카드 시작 -->
+								<div class="col-lg-4" data-toggle="modal" data-target="#exampleModal${rsl.no}" style="cursor: pointer;">
+									<!-- Modal -->
+									<div class="modal fade" id="exampleModal${rsl.no}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+										<div class="modal-dialog" role="document">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h5 class="modal-title" id="exampleModalLabel">${rsl.name}</h5>
+													<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+													</button>
+												</div>
+												<div class="modal-body">
+													<div class="row">
+														<div class="col-lg-12">
+															<div class="studyinfo" id="studyinfo">
+																<form id="studyInfoForm" name="studyInfoForm" method="post">
+																	<div>
+																		<h4>스터디 이름</h4>
+																		<input type="text" id="name" name="name" value="${rsl.name}" disabled="disabled">
+																	</div>
+																	<div>
+																		<h4>스터디 내용 //글상자 크기 변경해야함</h4>
+																		<input type="text" id="content" name="content" value="${rsl.content}" disabled="disabled">
+																	</div>
+																	<div>
+																		<h4>시작 날짜</h4>
+																		<input autocomplete="off" class="form-control" id="startdate" name="startdate" type="text" value="${rsl.startdate}" placeholder="시작 날짜" disabled="disabled" />
+																	</div>
+																	<div>
+																		<h4>종료 날짜</h4>
+																		<input autocomplete="off" class="form-control" id="enddate" name="enddate" type="text" value="${rsl.enddate}" placeholder="종료 날짜" disabled="disabled" />
+																	</div>
+																	<div>
+																		<h4>최대 인원</h4>
+																		<input type="text" id="capacity" name="capacity" value="${rsl.capacity}" disabled="disabled">
+																	</div>
+																	<div>
+																		<h4>카테고리</h4>
+																	</div>
+																	<div>
+																		<input type="text" id="capacity" name="capacity" value="${rsl.category}" disabled="disabled">
+																	</div>
+																</form>
+															</div>
 														</div>
 													</div>
+
 												</div>
-
+												<div class="modal-footer">
+													<button type="button" class="btn btn-primary" onclick="enroll(${rsl.no})">신청하기</button>
+													<button type="button" class="btn btn-secondary" data-dismiss="modal">창 닫기</button>
+												</div>
 											</div>
-											<div class="modal-footer">
-												<button type="button" class="btn btn-primary" onclick="enroll(${rsl.no})">신청하기</button>
-												<button type="button" class="btn btn-secondary" data-dismiss="modal">창 닫기</button>
+										</div>
+									</div>
+									<div class="studycard ml-2 mr-2">
+										<!-- 카드 헤더 -->
+										<div class="studycard-header" style="background-image: url('${context}/resources/img/categories/test.jpg')">
+											<div class="studycard-header-is_closed possible">
+												<div class="studycard-header-text">모집중</div>
+												<div class="studycard-header-number">${rsl.member_count}/${rsl.capacity}</div>
+											</div>
+										</div>
+										<!--  카드 바디 -->
+										<div class="studycard-body">
+											<!--  카드 바디 헤더 -->
+											<div class="studycard-body-header">
+												<h1>${rsl.name}</h1>
+												<p>${rsl.category}스터디</p>
+											</div>
+											<p class="studycard-body-description">${rsl.content}</p>
+											<!--  카드 바디 본문 -->
+
+											<!--  카드 바디 푸터 -->
+											<div class="studycard-body-footer">
+												<hr style="margin-bottom: 8px; opacity: 0.5; border-color: #EF5A31">
+												${rsl.startdate} ~ ${rsl.enddate}
 											</div>
 										</div>
 									</div>
 								</div>
-								<div class="studycard ml-2 mr-2">
-									<!-- 카드 헤더 -->
-									<div class="studycard-header" style="background-image: url('${context}/resources/img/categories/test.jpg')">
-										<div class="studycard-header-is_closed possible">
-											<div class="studycard-header-text">모집중</div>
-											<div class="studycard-header-number">${rsl.member_count}/${rsl.capacity}</div>
-										</div>
-									</div>
-									<!--  카드 바디 -->
-									<div class="studycard-body">
-										<!--  카드 바디 헤더 -->
-										<div class="studycard-body-header">
-											<h1>${rsl.name}</h1>
-											<p>${rsl.category}스터디</p>
-										</div>
-										<p class="studycard-body-description">${rsl.content}</p>
-										<!--  카드 바디 본문 -->
-
-										<!--  카드 바디 푸터 -->
-										<div class="studycard-body-footer">
-											<hr style="margin-bottom: 8px; opacity: 0.5; border-color: #EF5A31">
-											${rsl.startdate} ~ ${rsl.enddate}
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- 카드 끝 -->
-						</c:forEach>
+								<!-- 카드 끝 -->
+							</c:forEach>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
 	</section>
 	<!-- Blog Section End -->
 

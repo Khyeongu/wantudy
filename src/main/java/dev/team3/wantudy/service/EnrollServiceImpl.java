@@ -51,7 +51,7 @@ public class EnrollServiceImpl implements EnrollService {
 		// TODO Auto-generated method stub
 		enrollDAO.kickMember(memberInfo);
 	}
-	
+
 	@Override
 	public void insertMemberEnroll(EnrollDTO enrollDTO) throws Exception {
 		enrollDAO.insertMemberEnroll(enrollDTO);
