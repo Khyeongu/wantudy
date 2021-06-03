@@ -60,18 +60,18 @@
 	<select id="insertMemberEnroll" parameterType="EnrollDTO">
 		insert into
 		enroll
-		(member_no, study_no, status)
+		(no, member_no, study_no, status)
 		values
-		(#{member_no}, #{study_no},
+		(ENROLL_NO_SEQ.nextval, #{member_no}, #{study_no},
 		'심사중')
 	</select>
 
 	<select id="insertStudyMasterEnroll" parameterType="EnrollDTO">
 		insert into
 		enroll
-		(member_no, study_no, status)
+		(no, member_no, study_no, status)
 		values
-		(#{member_no}, #{study_no},
+		(ENROLL_NO_SEQ.nextval, #{member_no}, #{study_no},
 		'진행중')
 	</select>
 
