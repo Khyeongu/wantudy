@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import dev.team3.wantudy.dao.RequirementDAO;
 import dev.team3.wantudy.dao.StudyDAO;
+import dev.team3.wantudy.dto.SearchDTO;
 import dev.team3.wantudy.dto.StudyDTO;
 import dev.team3.wantudy.dto.StudyRnumDTO;
 
@@ -56,6 +57,10 @@ public class StudyServiceImpl implements StudyService {
 	}
 
 	@Override
+	public List<StudyRnumDTO> getStudyListWithSearch(SearchDTO searchDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return studyDAO.getStudyListWithSearch(searchDTO);
+    
 	public String getStudyName(int study_no) throws Exception {
 		// TODO Auto-generated method stub
 		return studyDAO.getStudyName(study_no);

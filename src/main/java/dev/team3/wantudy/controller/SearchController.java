@@ -12,13 +12,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import dev.team3.wantudy.dto.EnrollDTO;
 import dev.team3.wantudy.dto.MemberDTO;
+import dev.team3.wantudy.dto.SearchDTO;
+import dev.team3.wantudy.dto.StudyDTO;
 import dev.team3.wantudy.dto.StudyRnumDTO;
 import dev.team3.wantudy.dto.StudyStatusDTO;
 import dev.team3.wantudy.service.CategoryService;
@@ -110,6 +114,28 @@ public class SearchController {
 			e.printStackTrace();
 		}
 		return map;
+	}
+
+	@ResponseBody
+	@PostMapping(value = "/list")
+	public ModelAndView list(@ModelAttribute SearchDTO searchDTO, HttpSession session) {
+		System.out.println("post 로 통신 성공");
+
+		ModelAndView mav = new ModelAndView();
+		try {
+			List<StudyRnumDTO> list = studyService.getStudyListWithSearch(searchDTO);
+
+			for (StudyRnumDTO studyRnumDTO : list) {
+				System.out.println(studyRnumDTO);
+			}
+
+			// mav.setViewName("list");
+			// mav.addObject("list", list);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return null;
 	}
 
 }

@@ -237,7 +237,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 				<div class="col-lg-3 col-md-5 pl-5 pr-5"></div>
 
 				<div class="col-lg-9 col-md-7" id="studyBasicInfo" style="display:;">
-					<h4 class="mb-3 border__bottom">스터디 정보 수정</h4>
+					<h4 class="mb-3 border__bottom">스터디 추가</h4>
 					<div class="row">
 						<div class="col-lg-7">
 							<div class="studyinfo" id="studyinfo">
@@ -247,7 +247,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 										<input type="text" id="name" name="name" autocomplete="off">
 									</div>
 									<div>
-										<h4>스터디 내용 //글상자 크기 변경해야함</h4>
+										<h4>스터디 내용</h4>
 										<input type="text" id="content" name="content" required="required" autocomplete="off">
 									</div>
 									<div>

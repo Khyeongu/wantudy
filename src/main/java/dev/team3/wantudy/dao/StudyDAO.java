@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import dev.team3.wantudy.dto.EnrollDTO;
+import dev.team3.wantudy.dto.SearchDTO;
 import dev.team3.wantudy.dto.StudyDTO;
 import dev.team3.wantudy.dto.StudyRnumDTO;
 
@@ -21,6 +22,8 @@ public interface StudyDAO {
 
 	public List<StudyRnumDTO> getRecentStudy() throws SQLException;
 
+	public List<StudyRnumDTO> getStudyListWithSearch(SearchDTO searchDTO) throws SQLException;
+  
 	public String getStudyName(int study_no) throws SQLException;
 
 }

@@ -31,20 +31,17 @@ public class EnrollServiceImpl implements EnrollService {
 		return enrollDAO.selectMemberStudyEnroll(studyDTO);
 	}
 
-
 	@Override
 	public void acceptMember(HashMap<String, Object> memberInfo) throws Exception {
 		// TODO Auto-generated method stub
 		enrollDAO.acceptMember(memberInfo);
 	}
 
-
 	@Override
 	public void refuseMember(HashMap<String, Object> memberInfo) throws Exception {
 		// TODO Auto-generated method stub
 		enrollDAO.refuseMember(memberInfo);
 	}
-
 
 	@Override
 	public void kickMember(HashMap<String, Object> memberInfo) throws Exception {
