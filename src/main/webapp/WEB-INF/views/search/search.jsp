@@ -178,7 +178,6 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 				console.log('success');
 				//var msg = data.msg;
 				console.log(data.message);
-				alert(data.message);
 				location.href = '${pageContext.request.contextPath}/search';
 			},
 			error : function(request, error) {
@@ -204,12 +203,10 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 			contentType : "application/x-www-form-urlencoded; charset=utf-8",
 			dataType : "json",
 			success : function(data) {
-				alert('success');
 				var searchResultList = data.searchedStudyList;
 				var studySearchResultHtml = '';
 				
 	            $.each(searchResultList, function(key, value) {
-	            	alert(value.name);
 
 		            /* 카드 시작  */
 					studySearchResultHtml+='						<div class="col-lg-4" data-toggle="modal" data-target="#exampleModal'+value.no+'" style="cursor: pointer;">';
@@ -300,7 +297,6 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 				
 	            $("#studySearchResult").html(studySearchResultHtml);
 	            
-	            alert('잠시 대기');
 	   		 	
 			},
 			error : function(request, error) {
@@ -352,13 +348,13 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 			<div class="row">
 				<div class="col-lg-3">
 					<div class="header__logo  align-self-center">
-						<a class="navbar-brand" href="search"><span class="navbar-name">wantudy</span></a>
+						<a class="navbar-brand" href="${context}/home"><span class="navbar-name">wantudy</span></a>
 					</div>
 				</div>
 				<div class="col-lg-7">
 					<nav class="header__menu">
 						<ul>
-							<li><a href="${context}/home">홈</a></li>
+							<li><a href="${context}/home">내 스터디</a></li>
 							<li class="active"><a href="${context}/search">스터디 검색</a></li>
 							<li><a href="${context}/createStudy">스터디 추가</a></li>
 							<li><a href="#">채팅</a>
@@ -376,7 +372,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 	<!-- Header Section End -->
 
 	<!-- Breadcrumb Section Begin -->
-	<section class="breadcrumb-section set-bg" style="background-image: url('${context}/resources/img/breadcrumb.jpg')">
+	<section class="breadcrumb-section set-bg" style="background-image: url('${context}/resources/img/banner.jpg')">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 text-center">
@@ -402,15 +398,14 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 						<div class="col-lg-3 col-md-3"></div>
 						<div class="hero__search col-lg-8 col-md-8">
 							<div class="hero__search__form">
-								<form>
 									<select id="searchCondition" class="hero__search__categories arrow_carrot-down">
 										<option value="name" <c:if test="${searchDTO.searchCondition == 'name'}"> selected </c:if>>제목</option>
 										<option value="content" <c:if test="${searchDTO.searchCondition == 'content'}"> selected </c:if>>내용</option>
 										<option value="categoty" <c:if test="${searchDTO.searchCondition == 'category'}"> selected </c:if>>카테고리</option>
 									</select>
 									<input type="text" id="searchKeyword" required="required" autocomplete=off placeholder="검색" value="${searchDTO.searchKeyword}" />
-									<button type="submit" class="site-btn" onclick="search()">SEARCH</button>
-								</form>
+									<button type="button" class="site-btn" onclick="search()">SEARCH</button>
+								
 							</div>
 
 						</div>

@@ -1185,7 +1185,7 @@ transparent
 	float: left;
 }
 
-.hero__search__form form .hero__search__categories {
+.hero__search__form .hero__search__categories {
 	width: 24%;
 	float: left;
 	font-size: 16px;
@@ -1196,7 +1196,7 @@ transparent
 	position: relative;
 }
 
-.hero__search__form form .hero__search__categories:after {
+.hero__search__form .hero__search__categories:after {
 	position: absolute;
 	right: 0;
 	top: 14px;
@@ -1207,13 +1207,13 @@ transparent
 	content: "";
 }
 
-.hero__search__form form .hero__search__categories span {
+.hero__search__form .hero__search__categories span {
 	position: absolute;
 	right: 14px;
 	top: 14px;
 }
 
-.hero__search__form form input {
+.hero__search__form input {
 	width: 70%;
 	border: none;
 	height: 48px;
@@ -1222,11 +1222,13 @@ transparent
 	padding-left: 20px;
 }
 
-.hero__search__form form input::placeholder {
+
+
+.hero__search__form input::placeholder {
 	color: #b2b2b2;
 }
 
-.hero__search__form form button {
+.hero__search__form button {
 	position: absolute;
 	right: 0;
 	top: -1px;
