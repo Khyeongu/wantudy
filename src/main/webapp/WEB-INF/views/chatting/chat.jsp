@@ -292,7 +292,6 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 						datatype : "json",
 						async : false,
 						success : function(data) {
-							alert("채팅로그를 불러왔습니다.");
 
 							console.log(data.chattingloglist);
 
