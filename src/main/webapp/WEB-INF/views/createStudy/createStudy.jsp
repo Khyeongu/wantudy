@@ -267,7 +267,6 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 									</div>
 									<div>
 										<select id="category_no" name="category_no" class="form-control mt-1">
-											<option value="0">선택안함</option>
 											<c:forEach items="${categoryList}" var="category">
 												<option value="${category.no}">${category.name}</option>
 											</c:forEach>

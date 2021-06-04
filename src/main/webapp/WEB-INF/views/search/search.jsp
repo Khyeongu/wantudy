@@ -125,7 +125,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 					recentStudyInnerHTML+='							</div>';
 					recentStudyInnerHTML+='							<div class="studycard ml-2 mr-2">';
 					/* 카드 헤더  */
-					recentStudyInnerHTML+='								<div class="studycard-header" style="background-image: url(\'${context}/resources/img/categories/test.jpg\')">';
+					recentStudyInnerHTML+='								<div class="studycard-header" style="background-image: url(\'${context}/'+value.category_imgpath+'\')">';
 					recentStudyInnerHTML+='									<div class="studycard-header-is_closed possible">';
 					recentStudyInnerHTML+='										<div class="studycard-header-text">모집중</div>';
 					recentStudyInnerHTML+='										<div class="studycard-header-number">'+value.member_count+'/'+value.capacity+'</div>';
@@ -178,7 +178,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 				console.log('success');
 				//var msg = data.msg;
 				console.log(data.message);
-				alert(data.message)
+				alert(data.message);
 				location.href = '${pageContext.request.contextPath}/search';
 			},
 			error : function(request, error) {
@@ -192,6 +192,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 	function search() {
 		var searchCondition = document.getElementById("searchCondition").value;
 		var searchKeyword = document.getElementById("searchKeyword").value;
+		
 
 		$.ajax({
 			type : 'POST',
@@ -204,15 +205,117 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 			dataType : "json",
 			success : function(data) {
 				alert('success');
-				location.href = '${pageContext.request.contextPath}/search';
+				var searchResultList = data.searchedStudyList;
+				var studySearchResultHtml = '';
+				
+	            $.each(searchResultList, function(key, value) {
+	            	alert(value.name);
+
+		            /* 카드 시작  */
+					studySearchResultHtml+='						<div class="col-lg-4" data-toggle="modal" data-target="#exampleModal'+value.no+'" style="cursor: pointer;">';
+					/* Modal  */
+					studySearchResultHtml+='							<div class="modal fade" id="exampleModal'+value.no+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">';
+					studySearchResultHtml+='								<div class="modal-dialog" role="document">';
+					studySearchResultHtml+='									<div class="modal-content">';
+					studySearchResultHtml+='										<div class="modal-header">';
+					studySearchResultHtml+='											<h5 class="modal-title" id="exampleModalLabel">'+value.name+'</h5>';
+					studySearchResultHtml+='											<button type="button" class="close" data-dismiss="modal" aria-label="Close">';
+					studySearchResultHtml+='												<span aria-hidden="true">&times;</span>';
+					studySearchResultHtml+='											</button>';
+					studySearchResultHtml+='										</div>';
+					studySearchResultHtml+='										<div class="modal-body">';
+					studySearchResultHtml+='											<div class="row">';
+					studySearchResultHtml+='												<div class="col-lg-12">';
+					studySearchResultHtml+='													<div class="studyinfo" id="studyinfo">';
+					studySearchResultHtml+='														<form id="studyInfoForm" name="studyInfoForm" method="post">';
+					studySearchResultHtml+='															<div>';
+					studySearchResultHtml+='																<h4>스터디 이름</h4>';
+					studySearchResultHtml+='																<input type="text" id="name" name="name" value="'+value.name+'" disabled="disabled">';
+					studySearchResultHtml+='															</div>';
+					studySearchResultHtml+='															<div>';
+					studySearchResultHtml+='																<h4>스터디 내용</h4>';
+					studySearchResultHtml+='																<input type="text" id="content" name="content" value="'+value.content+'" disabled="disabled">';
+					studySearchResultHtml+='															</div>';
+					studySearchResultHtml+='															<div>';
+					studySearchResultHtml+='																<h4>시작 날짜</h4>';
+					studySearchResultHtml+='																<input autocomplete="off" class="form-control" id="startdate" name="startdate" type="text" value="'+value.startdate+'" placeholder="시작 날짜" disabled="disabled" />';
+					studySearchResultHtml+='															</div>';
+					studySearchResultHtml+='															<div>';
+					studySearchResultHtml+='																<h4>종료 날짜</h4>';
+					studySearchResultHtml+='																<input autocomplete="off" class="form-control" id="enddate" name="enddate" type="text" value="'+value.enddate+'" placeholder="종료 날짜" disabled="disabled" />';
+					studySearchResultHtml+='															</div>';
+					studySearchResultHtml+='															<div>';
+					studySearchResultHtml+='																<h4>최대 인원</h4>';
+					studySearchResultHtml+='																<input type="text" id="capacity" name="capacity" value="'+value.capacity+'" disabled="disabled">';
+					studySearchResultHtml+='															</div>';
+					studySearchResultHtml+='															<div>';
+					studySearchResultHtml+='																<h4>카테고리</h4>';
+					studySearchResultHtml+='															</div>';
+					studySearchResultHtml+='															<div>';
+					studySearchResultHtml+='																<input type="text" id="capacity" name="capacity" value="'+value.category+'" disabled="disabled">';
+					studySearchResultHtml+='															</div>';
+					studySearchResultHtml+='														</form>';
+					studySearchResultHtml+='													</div>';
+					studySearchResultHtml+='												</div>';
+					studySearchResultHtml+='											</div>';
+					studySearchResultHtml+='';
+					studySearchResultHtml+='										</div>';
+					studySearchResultHtml+='										<div class="modal-footer">';
+					studySearchResultHtml+='											<button type="button" class="btn btn-primary" onclick="enroll('+value.no+')">신청하기</button>';
+					studySearchResultHtml+='											<button type="button" class="btn btn-secondary" data-dismiss="modal">창 닫기</button>';
+					studySearchResultHtml+='										</div>';
+					studySearchResultHtml+='									</div>';
+					studySearchResultHtml+='								</div>';
+					studySearchResultHtml+='							</div>';
+					studySearchResultHtml+='							<div class="studycard ml-2 mr-2">';
+					/* 카드 헤더  */
+					studySearchResultHtml+='								<div class="studycard-header" style="background-image: url(\'${context}/'+value.category_imgpath+'\')">';
+					studySearchResultHtml+='									<div class="studycard-header-is_closed possible">';
+					studySearchResultHtml+='										<div class="studycard-header-text">모집중</div>';
+					studySearchResultHtml+='										<div class="studycard-header-number">'+value.member_count+'/'+value.capacity+'</div>';
+					studySearchResultHtml+='									</div>';
+					studySearchResultHtml+='								</div>';
+					/* 카드 바디 */
+					studySearchResultHtml+='								<div class="studycard-body">';
+					/*   카드 바디 헤더  */
+					studySearchResultHtml+='									<div class="studycard-body-header">';
+					studySearchResultHtml+='										<h1>'+value.name+'</h1>';
+					studySearchResultHtml+='										<p>'+value.category+'스터디</p>';
+					studySearchResultHtml+='									</div>';
+					studySearchResultHtml+='									<p class="studycard-body-description">'+value.content+'</p>';
+					/* 카드 바디 본문 */
+					studySearchResultHtml+='';
+					/* 카드 바디 푸터 */
+					studySearchResultHtml+='									<div class="studycard-body-footer">';
+					studySearchResultHtml+='										<hr style="margin-bottom: 8px; opacity: 0.5; border-color: #EF5A31">';
+					studySearchResultHtml+='										'+value.startdate+' ~ '+value.enddate;
+					studySearchResultHtml+='									</div>';
+					studySearchResultHtml+='								</div>';
+					studySearchResultHtml+='							</div>';
+					studySearchResultHtml+='						</div>';
+					/* 카드 끝 */
+
+	               
+	            });
+				
+	            $("#studySearchResult").html(studySearchResultHtml);
+	            
+	            alert('잠시 대기');
+	   		 	
 			},
 			error : function(request, error) {
 				console.log("code:" + request.status + "\n" + "message:"
 						+ request.responseText + "\n" + "error:" + error);
-				alert('exception');
+				alert('error exception');
 
+			},
+			fail : function() {
+				console.log("code:" + request.status + "\n" + "message:"
+						+ request.responseText + "\n" + "error:" + error);
+				alert('fail exception');
 			}
 		});
+
 	}
 </script>
 </head>
@@ -313,13 +416,11 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 						</div>
 
 					</div>
-
+					<div class="row" id="studySearchResult"></div>
 
 				</div>
 
 			</div>
-
-
 
 
 			<div class="row">

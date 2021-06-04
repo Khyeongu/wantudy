@@ -47,7 +47,7 @@ public class SearchController {
 
 	@Autowired
 	private CategoryService categoryService;
-	
+
 	@Autowired
 	private MemberStudyService memberStudyService;
 
@@ -138,28 +138,47 @@ public class SearchController {
 
 	@ResponseBody
 	@PostMapping(value = "/list")
-	public HashMap<String, String> list(@ModelAttribute SearchDTO searchDTO, HttpSession session) {
+	public Map<String, Object> list(@ModelAttribute SearchDTO searchDTO, HttpSession session) {
 
 		MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 		session.setAttribute("userInfo", userInfo);
-		
+
 		try {
 			List<StudyRnumDTO> searchResult = studyService.getStudyListWithSearch(searchDTO);
+			List<StudyStatusForJspDTO> searchedStudyList = new ArrayList<StudyStatusForJspDTO>();
+			
+			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			for (StudyRnumDTO s : searchResult) {
+				StudyStatusForJspDTO ss = new StudyStatusForJspDTO();
 
-			for (StudyRnumDTO studyRnumDTO : searchResult) {
-				System.out.println(studyRnumDTO);
+				ss.setNo(s.getNo());
+				ss.setName(s.getName());
+				ss.setContent(s.getContent());
+				ss.setStartdate(dateFormat.format(s.getStartdate()));
+				ss.setEnddate(dateFormat.format(s.getEnddate()));
+				ss.setCapacity(s.getCapacity());
+				ss.setMember_no(s.getMember_no());
+				ss.setCategory_no(s.getCategory_no());
+				ss.setMember_count(enrollService.getMemberCount(s.getNo()));
+				ss.setCategory(categoryService.getCategory(s.getCategory_no()));
+				ss.setCategory_imgpath(memberStudyService.getCategoryImgpath(s.getCategory_no()));
+
+				searchedStudyList.add(ss);
 			}
 
 			Map<String, Object> result = new HashMap<String, Object>();
-			result.put("searchResult", searchResult);
+
+			result.put("searchedStudyList", searchedStudyList);
+
+			System.out.println(result);
+
+			return result;
+			
 		} catch (Exception e) {
 			e.printStackTrace();
+			return null;
 		}
-		
-		
-		
 
-		return null;
 	}
 
 }
