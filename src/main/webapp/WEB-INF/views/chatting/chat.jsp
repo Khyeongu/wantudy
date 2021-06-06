@@ -135,6 +135,11 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 					$("#chattingloglistcontainer").append(str);
 				}
 				
+				//스터디 목록에 마지막 채팅 로그 바꿔주기
+				$('.studycontainer[data-value='+study_no+']').children('.studynameandlogcontainer').children('.studylastlogcontainer').text(msg);
+				
+				
+
 				
 				
 
