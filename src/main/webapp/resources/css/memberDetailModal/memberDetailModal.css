@@ -66,7 +66,7 @@
 
 .modal-box .modal-dialog .modal-content .modal-body .title{
     color: #3d575e;
-    font-size: 40px;
+    font-size: 25px;
     font-weight: 700;
     text-transform: capitalize;
     margin: 0 0 5px 0;
@@ -123,6 +123,18 @@
 	display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.modal-box .modal-dialog .modal-content .modal-body .icon{
+    color: #f3e89e;
+    background: #7fad39;
+    font-size: 50px;
+    font-weight: bold;
+    line-height: 110px;
+    height: 110px;
+    width: 110px;
+    margin: 0 auto 5px;
+    border-radius: 50%;
 }
 
 @media only screen and (max-width: 576px){
