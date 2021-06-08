@@ -178,6 +178,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 				console.log('success');
 				//var msg = data.msg;
 				console.log(data.message);
+				alert(data.message);
 				location.href = '${pageContext.request.contextPath}/search';
 			},
 			error : function(request, error) {
@@ -186,6 +187,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 				alert('exception');
 			}
 		});
+		
 	}
 
 	function search() {
@@ -337,7 +339,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 						<div class="header__top__right">
 
 							<div class="header__top__right__auth">
-								<a href="#"><i class="fa fa-user"></i> Logout</a>
+								<a href="${context}/sign"><i class="fa fa-user"></i> Logout</a>
 							</div>
 						</div>
 					</div>

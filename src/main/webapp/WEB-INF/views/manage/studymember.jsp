@@ -234,7 +234,7 @@ function kickMember(member_name, member_no){
 						<div class="header__top__right">
 
 							<div class="header__top__right__auth">
-								<a href="#"><i class="fa fa-user"></i> Logout</a>
+								<a href="${context}/sign"><i class="fa fa-user"></i> Logout</a>
 							</div>
 						</div>
 					</div>

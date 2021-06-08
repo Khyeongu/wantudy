@@ -133,6 +133,10 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 					str += "</div>";
 					str += "</div>";
 					$("#chattingloglistcontainer").append(str);
+			         //스터디 목록에 마지막 채팅 로그 바꿔주기
+		            $('.studycontainer[data-value='+study_no+']').children('.studynameandlogcontainer').children('.studylastlogcontainer').text(msg);
+		            
+		            
 				}
 				
 				
@@ -208,8 +212,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 				"member_no" : uN
 			},
 			success : function(data) {
-				alert("채팅로그를 저장했습니다.");
-
+	
 			},
 			error : function(request, status, error) {
 				alert("code:" + request.status + "\n" + "message:"
@@ -475,7 +478,6 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 					datatype : "json",
 					async : false,
 					success : function(data) {
-						alert("채팅로그를 불러왔습니다.");
 
 						var length = data.chattingloglist.length;
 
@@ -641,7 +643,7 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 						<div class="header__top__right">
 
 							<div class="header__top__right__auth">
-								<a href="#"><i class="fa fa-user"></i> Logout</a>
+								<a href="${context}/sign"><i class="fa fa-user"></i> Logout</a>
 							</div>
 						</div>
 					</div>

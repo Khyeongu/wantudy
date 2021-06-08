@@ -85,7 +85,7 @@
 	<select id="memberDetail" parameterType="int" resultType="EnrollDTO">
 		select *
 		from enroll
-		where member_no=#{member_no} and status in ('종료', '무단이탈')
+		where member_no=#{member_no} and status in ('완료', '무단이탈')
 	</select>
 	
 	<select id="selectStudyingEnrolls" parameterType="MemberDTO"

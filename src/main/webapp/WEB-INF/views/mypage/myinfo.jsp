@@ -114,7 +114,7 @@ function updateInfo(){
 						<div class="header__top__right">
 
 							<div class="header__top__right__auth">
-								<a href="#"><i class="fa fa-user"></i> Logout</a>
+								<a href="${context}/home"><i class="fa fa-user"></i> Logout</a>
 							</div>
 						</div>
 					</div>
@@ -125,7 +125,7 @@ function updateInfo(){
 			<div class="row">
 				<div class="col-lg-3">
 					<div class="header__logo  align-self-center">
-						<a class="navbar-brand" href="${context}/home"><span class="navbar-name">wantudy</span></a>
+						<a class="navbar-brand" href="${context}/sign"><span class="navbar-name">wantudy</span></a>
 					</div>
 				</div>
 				<div class="col-lg-7">
