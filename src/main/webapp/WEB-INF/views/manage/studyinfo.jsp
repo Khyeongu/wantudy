@@ -43,6 +43,9 @@ MemberDTO userInfo = (MemberDTO) session.getAttribute("userInfo");
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
 <link rel="stylesheet" href="${context}/resources/css/nice-select.css"
 	type="text/css">
+<link rel="stylesheet"
+	href="${context}/resources/css/memberDetailModal/memberDetailModal.css"
+	type="text/css">
 
 
 
@@ -65,11 +68,7 @@ $(document).ready(function(){
 });
 
 function updateInfo(){
-	if (confirm("정말 수정하시겠습니까?")) {
 		document.getElementById("studyInfoForm").submit();
-	} else {
-		return false;
-	}
 }
 </script>
 
@@ -81,6 +80,33 @@ function updateInfo(){
 	<div id="preloder">
 		<div class="loader"></div>
 	</div>
+	
+	<div class="row">
+        <div class="col-md-12">
+            <div class="modal-box">
+            
+            <!-- Modal -->
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            <div class="modal-body">
+                                <div class="icon">
+                                    <i class="fa fa-check"></i>
+                                </div>
+                                <h3 class="title">정말 수정하시겠습니까?</h3>
+                                <p class="description">확인 버튼을 누르면 수정이 완료됩니다.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="subscribe" onclick="updateInfo()">확인</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
 	<!-- Header Section Begin -->
 	<header class="header">
 		<div class="header__top">
@@ -220,7 +246,7 @@ function updateInfo(){
 						<div class="col-lg-7"></div>
 						<div class="col-lg-2 mt-3 float-right">
 							<button type="button" id="btnUpdate" class="site-btn"
-								onclick="updateInfo()">저장</button>
+								data-toggle="modal" data-target="#myModal">저장</button>
 						</div>
 					</div>
 				</div>
